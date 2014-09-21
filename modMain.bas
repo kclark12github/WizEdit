@@ -14,7 +14,15 @@ Public Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 Public Const adoNullError = &H80040E21
 
 Global Const gstrRegPath As String = "Software\Sage Software\WizEdit"
-
+Public Function ChkINumber(cnum As Integer, _
+                Optional NoNegative As Boolean = False) As Integer
+    If NoNegative And cnum = 45 Or _
+        (cnum <> 8 And cnum <> 32 And cnum <> 45 And (cnum < 48 Or cnum > 57)) Then
+        ChkINumber = 7
+    Else
+        ChkINumber = cnum
+    End If
+End Function
 Public Function GetWizEditSetting(Key As String, Value As String, vDefault As Variant) As Variant
     GetWizEditSetting = VbRegQueryValue(HKEY_CURRENT_USER, gstrRegPath & "\" & Key, Value)
     If GetWizEditSetting = vbNullString Then GetWizEditSetting = vDefault
@@ -45,4 +53,60 @@ Public Sub SaveWizEditSetting(Key As String, Value As String, Data As Variant)
         Call VbRegSetValue(HKEY_CURRENT_USER, KeyPath, Value, REG_SZ, Data)
     End If
 End Sub
+Public Function ValidateAttribute(Optional x As Control = Nothing) As Boolean
+    Const iLimit As Byte = 99
+    Dim fCancel As Boolean
+    Dim ctl As Control
+    fCancel = False
+    If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
+    With ctl
+        If Val(.Text) < 1 Or Val(.Text) > iLimit Then
+            fCancel = True
+            Call Beep
+            .Text = vbNullString
+        Else
+            '.Text = Format(.Text, "00")
+        End If
+    End With
+    Set ctl = Nothing
+    ValidateAttribute = fCancel
+End Function
+Public Function ValidateI2(Optional x As Control = Nothing) As Boolean
+    Dim iLimit As Long
+    Dim fCancel As Boolean
+    Dim ctl As Control
+    fCancel = False
+    If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
+    With ctl
+        iLimit = (2 ^ 16) - 1
+        If Val(.Text) < 1 Or CLng(Val(.Text)) > iLimit Then
+            fCancel = True
+            Call Beep
+            .Text = vbNullString
+        Else
+            .Text = Format(.Text, "#,##0")
+        End If
+    End With
+    Set ctl = Nothing
+    ValidateI2 = fCancel
+End Function
+Public Function ValidateI4(Optional x As Control = Nothing) As Boolean
+    Dim iLimit As Long
+    Dim fCancel As Boolean
+    Dim ctl As Control
+    fCancel = False
+    If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
+    With ctl
+        iLimit = (2 ^ 32) - 1
+        If Val(.Text) < 1 Or CLng(Val(.Text)) > iLimit Then
+            fCancel = True
+            Call Beep
+            .Text = vbNullString
+        Else
+            .Text = Format(.Text, "#,##0")
+        End If
+    End With
+    Set ctl = Nothing
+    ValidateI4 = fCancel
+End Function
 

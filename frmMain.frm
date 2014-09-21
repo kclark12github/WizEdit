@@ -36,6 +36,7 @@ Begin VB.Form frmMain
       Width           =   1212
    End
    Begin VB.CommandButton cmdBrowse 
+      Appearance      =   0  'Flat
       Height          =   372
       Left            =   6108
       Picture         =   "frmMain.frx":1BAEA
@@ -141,7 +142,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "1:40 AM"
+            TextSave        =   "12:11 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -434,11 +435,15 @@ Private Sub EnableFields(ByVal strCaption As String)
         Exit Sub
     End If
     
-    lblScenario.Caption = "Scenario Selected..."
-    lblSelectedScenario.Caption = strCaption
-    lblSelectedScenario.Visible = True
-    
     Scenario = Trim(UCase(Mid(strCaption, 10, 3)))
+    
+    lblScenario.Caption = "Scenario Selected..."
+    If Scenario = "07G" Then    'Drop off the "G" for display purposes...
+        lblSelectedScenario.Caption = Left(strCaption, 11) & Mid(strCaption, 13)
+    Else
+        lblSelectedScenario.Caption = strCaption
+    End If
+    lblSelectedScenario.Visible = True
     
     cmdOK.Visible = True
     cmdExit.Visible = False
@@ -494,7 +499,23 @@ Private Sub cmdOK_Click()
     
     Select Case Scenario
         Case "07"
-            Call DumpWiz07(dPath & "\" & txtFile.Text)
+            'Call DumpWiz07(dPath & "\" & txtFile.Text)
+            Load frmWiz07
+            frmWiz07.DataFile = dPath & "\" & txtFile.Text
+            frmWiz07.Caption = picWiz07.ToolTipText
+            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07").ExtractIcon
+            frmWiz07.picWiz07.Visible = True
+            frmWiz07.picWiz07Gold.Visible = False
+            frmWiz07.Show vbModal
+        Case "07G"
+            'Call DumpWiz07(dPath & "\" & txtFile.Text)
+            Load frmWiz07
+            frmWiz07.DataFile = dPath & "\" & txtFile.Text
+            frmWiz07.Caption = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
+            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07g").ExtractIcon
+            frmWiz07.picWiz07.Visible = False
+            frmWiz07.picWiz07Gold.Visible = True
+            frmWiz07.Show vbModal
         Case Else
             MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
     End Select

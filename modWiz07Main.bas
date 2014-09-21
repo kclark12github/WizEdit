@@ -15,6 +15,11 @@ Option Explicit
 '      The original WizEdit was written for DOS at the end of 1995. Some of that C
 '      code is imortalized here for reference.
 '=================================================================================================================================
+Global Const Wiz07ItemMapMax As Integer = 569
+Global Const Wiz07RaceMapMax As Integer = 10
+Global Const Wiz07ProfessionMapMax As Integer = 13
+Global Const Wiz07ConditionMapMax As Integer = 11
+Global Const Wiz07SpellMapMax As Integer = 95
 
 '/* WIZARDRY.H
 '*/
@@ -347,132 +352,6 @@ Type Character
 End Type
 
 Private Spells(1 To 96) As String
-Private Function strCondition(ByVal x As Byte) As String
-'char *ConditionMap[] = {"OK","Asleep","Blinded","Dead","Poisoned","Stoned","Insane","Afraid","Nauseated","Paralyzed","Irritated","Diseased"};
-    Select Case x
-        Case 0
-            strCondition = "OK"
-        Case 1
-            strCondition = "Asleep"
-        Case 2
-            strCondition = "Blinded"
-        Case 3
-            strCondition = "Dead"
-        Case 4
-            strCondition = "Poisoned"
-        Case 5
-            strCondition = "Stoned"
-        Case 6
-            strCondition = "Insane"
-        Case 7
-            strCondition = "Afraid"
-        Case 8
-            strCondition = "Nauseated"
-        Case 9
-            strCondition = "Paralyzed"
-        Case 10
-            strCondition = "Irritated"
-        Case 11
-            strCondition = "Diseased"
-        Case Else
-            strCondition = "Unknown"
-    End Select
-End Function
-Private Function strGender(ByVal x As Byte) As String
-    Select Case x
-        Case 0
-            strGender = "Male"
-        Case 1
-            strGender = "Female"
-        Case Else
-            strGender = "Unknown"
-    End Select
-End Function
-Private Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
-    Dim i As Integer
-
-    strHex = ""
-    For i = 1 To nBytes
-        strHex = strHex & Format(Hex(xBytes(i)), "00")
-        If i Mod 4 = 0 Then strHex = strHex & " "
-        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
-    Next i
-End Function
-Private Function strProfession(ByVal x As Byte) As String
-'char *ProfessionMap[] = {"Fighter","Mage","Priest","Thief","Ranger","Alchemist","Bard","Psionic","Valkyrie","Bishop","Lord","Samurai","Monk","Ninja"};
-    Select Case x
-        Case 0
-            strProfession = "Fighter"
-        Case 1
-            strProfession = "Mage"
-        Case 2
-            strProfession = "Priest"
-        Case 3
-            strProfession = "Thief"
-        Case 4
-            strProfession = "Ranger"
-        Case 5
-            strProfession = "Alchemist"
-        Case 6
-            strProfession = "Bard"
-        Case 7
-            strProfession = "Psionic"
-        Case 8
-            strProfession = "Valkyrie"
-        Case 9
-            strProfession = "Bishop"
-        Case 10
-            strProfession = "Lord"
-        Case 11
-            strProfession = "Samurai"
-        Case 12
-            strProfession = "Monk"
-        Case 13
-            strProfession = "Ninja"
-        Case Else
-            strProfession = "Unknown"
-    End Select
-End Function
-Private Function strRace(ByVal x As Byte) As String
-'char *RaceMap[] = {"Human","Elf","Dwarf","Gnome","Hobbit","Faerie","Lizardman","Dracon","Rawulf","Felpurr","Mook"};
-    Select Case x
-        Case 0
-            strRace = "Human"
-        Case 1
-            strRace = "Elf"
-        Case 2
-            strRace = "Dwarf"
-        Case 3
-            strRace = "Gnome"
-        Case 4
-            strRace = "Hobbit"
-        Case 5
-            strRace = "Faerie"
-        Case 6
-            strRace = "Lizardman"
-        Case 7
-            strRace = "Dracon"
-        Case 8
-            strRace = "Rawulf"
-        Case 9
-            strRace = "Felpurr"
-        Case 10
-            strRace = "Mook"
-        Case Else
-            strRace = "Unknown"
-    End Select
-End Function
-Private Function strItem(x As Item) As String
-    strItem = vbTab & "Code: " & x.ItemCode
-End Function
-Private Function strPoints(x As Points) As String
-    strPoints = x.Current & "/" & x.Maximum
-End Function
-Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
-    Dim Temp As String
-    If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
-    strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
-End Function
 Public Sub DumpWiz07(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
@@ -734,4 +613,187 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
+Public Sub PopulateCondition(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz07ConditionMapMax
+            .AddItem strCondition(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateGender(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To 1
+            .AddItem strGender(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateProfession(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz07ProfessionMapMax
+            .AddItem strProfession(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateRace(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz07RaceMapMax
+            .AddItem strRace(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub ReadWiz07(ByVal strFile As String, xCharacters() As Character)
+    Dim i As Long
+    Dim j As Long
+    Dim Unit As Integer
+    Dim BytesReadSoFar As Long
+    Dim errorCode As Long
+    
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open strFile For Binary Access Read Write Lock Read Write As #Unit
+    Get #Unit, &H3635, xCharacters(1)
+    Close #Unit
+    
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "ReadWiz07"
+    Exit Sub
+    Resume Next
+End Sub
+Private Function strCondition(ByVal x As Byte) As String
+'char *ConditionMap[] = {"OK","Asleep","Blinded","Dead","Poisoned","Stoned","Insane","Afraid","Nauseated","Paralyzed","Irritated","Diseased"};
+    Select Case x
+        Case 0
+            strCondition = "OK"
+        Case 1
+            strCondition = "Asleep"
+        Case 2
+            strCondition = "Blinded"
+        Case 3
+            strCondition = "Dead"
+        Case 4
+            strCondition = "Poisoned"
+        Case 5
+            strCondition = "Stoned"
+        Case 6
+            strCondition = "Insane"
+        Case 7
+            strCondition = "Afraid"
+        Case 8
+            strCondition = "Nauseated"
+        Case 9
+            strCondition = "Paralyzed"
+        Case 10
+            strCondition = "Irritated"
+        Case 11
+            strCondition = "Diseased"
+        Case Else
+            strCondition = "Unknown"
+    End Select
+End Function
+Private Function strGender(ByVal x As Byte) As String
+    Select Case x
+        Case 0
+            strGender = "Male"
+        Case 1
+            strGender = "Female"
+        Case Else
+            strGender = "Unknown"
+    End Select
+End Function
+Private Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
+    Dim i As Integer
+
+    strHex = ""
+    For i = 1 To nBytes
+        strHex = strHex & Format(Hex(xBytes(i)), "00")
+        If i Mod 4 = 0 Then strHex = strHex & " "
+        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
+    Next i
+End Function
+Private Function strProfession(ByVal x As Byte) As String
+'char *ProfessionMap[] = {"Fighter","Mage","Priest","Thief","Ranger","Alchemist","Bard","Psionic","Valkyrie","Bishop","Lord","Samurai","Monk","Ninja"};
+    Select Case x
+        Case 0
+            strProfession = "Fighter"
+        Case 1
+            strProfession = "Mage"
+        Case 2
+            strProfession = "Priest"
+        Case 3
+            strProfession = "Thief"
+        Case 4
+            strProfession = "Ranger"
+        Case 5
+            strProfession = "Alchemist"
+        Case 6
+            strProfession = "Bard"
+        Case 7
+            strProfession = "Psionic"
+        Case 8
+            strProfession = "Valkyrie"
+        Case 9
+            strProfession = "Bishop"
+        Case 10
+            strProfession = "Lord"
+        Case 11
+            strProfession = "Samurai"
+        Case 12
+            strProfession = "Monk"
+        Case 13
+            strProfession = "Ninja"
+        Case Else
+            strProfession = "Unknown"
+    End Select
+End Function
+Private Function strRace(ByVal x As Byte) As String
+'char *RaceMap[] = {"Human","Elf","Dwarf","Gnome","Hobbit","Faerie","Lizardman","Dracon","Rawulf","Felpurr","Mook"};
+    Select Case x
+        Case 0
+            strRace = "Human"
+        Case 1
+            strRace = "Elf"
+        Case 2
+            strRace = "Dwarf"
+        Case 3
+            strRace = "Gnome"
+        Case 4
+            strRace = "Hobbit"
+        Case 5
+            strRace = "Faerie"
+        Case 6
+            strRace = "Lizardman"
+        Case 7
+            strRace = "Dracon"
+        Case 8
+            strRace = "Rawulf"
+        Case 9
+            strRace = "Felpurr"
+        Case 10
+            strRace = "Mook"
+        Case Else
+            strRace = "Unknown"
+    End Select
+End Function
+Private Function strItem(x As Item) As String
+    strItem = vbTab & "Code: " & x.ItemCode
+End Function
+Private Function strPoints(x As Points) As String
+    strPoints = x.Current & "/" & x.Maximum
+End Function
+Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
+    Dim Temp As String
+    If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
+    strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
+End Function
 
