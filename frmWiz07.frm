@@ -2292,6 +2292,7 @@ Begin VB.Form frmWiz07
    Begin VB.CommandButton cmdCancel 
       Appearance      =   0  'Flat
       Cancel          =   -1  'True
+      CausesValidation=   0   'False
       Height          =   432
       Left            =   9720
       MaskColor       =   &H00FF00FF&
@@ -2597,6 +2598,7 @@ Begin VB.Form frmWiz07
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   889
             MinWidth        =   891
             TextSave        =   "NUM"
@@ -2608,7 +2610,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:40 PM"
+            TextSave        =   "8:58 PM"
             Key             =   "Time"
          EndProperty
       EndProperty

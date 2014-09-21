@@ -14,13 +14,15 @@ Public Sub TextSelected()
     Dim ctl As Control
    
     On Error Resume Next
-    Select Case TypeName(Screen.ActiveControl)
+    Set ctl = Screen.ActiveControl
+    Select Case TypeName(ctl)
         Case "TextBox", "ComboBox", "DataCombo"
-            Set ctl = Screen.ActiveControl
             i = Len(ctl.Text)
             ctl.SelStart = 0
             ctl.SelLength = i
     End Select
+    'Debug.Print ctl.Name & " Selected..."
+    Set ctl = Nothing
 End Sub
 Public Sub KeyPressUcase(KeyAscii As Integer)
     Dim Char As String

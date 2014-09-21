@@ -181,6 +181,7 @@ Begin VB.Form frmWiz01
          Left            =   1440
          Style           =   2  'Dropdown List
          TabIndex        =   6
+         Tag             =   "TabStop"
          ToolTipText     =   "Character's Profession (i.e. Fighter, Mage, etc.)..."
          Top             =   780
          Width           =   1692
@@ -219,7 +220,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196650
+         BuddyDispid     =   196618
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -365,6 +366,7 @@ Begin VB.Form frmWiz01
          Locked          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   5
+         Tag             =   "TabStop"
          ToolTipText     =   "Character's Gender (Male/Female)..."
          Top             =   420
          Width           =   1692
@@ -404,7 +406,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196658
+         BuddyDispid     =   196624
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -427,7 +429,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196656
+         BuddyDispid     =   196622
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -450,7 +452,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196655
+         BuddyDispid     =   196621
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -471,7 +473,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAGL"
-         BuddyDispid     =   196654
+         BuddyDispid     =   196620
          OrigLeft        =   2400
          OrigTop         =   3360
          OrigRight       =   2640
@@ -494,7 +496,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLCK"
-         BuddyDispid     =   196653
+         BuddyDispid     =   196619
          OrigLeft        =   2400
          OrigTop         =   3780
          OrigRight       =   2640
@@ -517,13 +519,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196645
+         BuddyDispid     =   196614
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
          OrigBottom      =   972
          Max             =   65535
-         Min             =   1
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -540,13 +541,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEXP"
-         BuddyDispid     =   196642
+         BuddyDispid     =   196613
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
          OrigBottom      =   972
          Max             =   65535
-         Min             =   1
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -563,13 +563,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtGP"
-         BuddyDispid     =   196640
+         BuddyDispid     =   196612
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
          OrigBottom      =   972
          Max             =   65535
-         Min             =   1
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -586,7 +585,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196639
+         BuddyDispid     =   196611
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -609,7 +608,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196637
+         BuddyDispid     =   196610
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1257,6 +1256,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D1B
          Style           =   2  'Dropdown List
          TabIndex        =   22
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #1..."
          Top             =   828
          Width           =   2712
@@ -1280,6 +1280,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D1F
          Style           =   2  'Dropdown List
          TabIndex        =   50
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #8..."
          Top             =   3780
          Width           =   2712
@@ -1303,6 +1304,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D23
          Style           =   2  'Dropdown List
          TabIndex        =   46
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #7..."
          Top             =   3360
          Width           =   2712
@@ -1326,6 +1328,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D27
          Style           =   2  'Dropdown List
          TabIndex        =   42
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #6..."
          Top             =   2940
          Width           =   2712
@@ -1349,6 +1352,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D2B
          Style           =   2  'Dropdown List
          TabIndex        =   38
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #5..."
          Top             =   2520
          Width           =   2712
@@ -1372,6 +1376,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D2F
          Style           =   2  'Dropdown List
          TabIndex        =   34
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #4..."
          Top             =   2100
          Width           =   2712
@@ -1395,6 +1400,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D33
          Style           =   2  'Dropdown List
          TabIndex        =   30
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #3..."
          Top             =   1680
          Width           =   2712
@@ -1418,6 +1424,7 @@ Begin VB.Form frmWiz01
          List            =   "frmWiz01.frx":1D37
          Style           =   2  'Dropdown List
          TabIndex        =   26
+         Tag             =   "TabStop"
          ToolTipText     =   "Item Carried in slot #2..."
          Top             =   1260
          Width           =   2712
@@ -2071,13 +2078,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage1"
-         BuddyDispid     =   196622
+         BuddyDispid     =   196674
          OrigLeft        =   2400
          OrigTop         =   3444
          OrigRight       =   2640
          OrigBottom      =   3804
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2094,13 +2100,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest1"
-         BuddyDispid     =   196620
+         BuddyDispid     =   196673
          OrigLeft        =   2400
          OrigTop         =   3900
          OrigRight       =   2640
          OrigBottom      =   4260
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2117,13 +2122,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage2"
-         BuddyDispid     =   196618
+         BuddyDispid     =   196672
          OrigLeft        =   3300
          OrigTop         =   3420
          OrigRight       =   3540
          OrigBottom      =   3780
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2140,13 +2144,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest2"
-         BuddyDispid     =   196616
+         BuddyDispid     =   196671
          OrigLeft        =   3240
          OrigTop         =   3900
          OrigRight       =   3480
          OrigBottom      =   4260
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2163,13 +2166,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage3"
-         BuddyDispid     =   196615
+         BuddyDispid     =   196668
          OrigLeft        =   4140
          OrigTop         =   3420
          OrigRight       =   4380
          OrigBottom      =   3780
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2186,13 +2188,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest3"
-         BuddyDispid     =   196619
+         BuddyDispid     =   196667
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2209,13 +2210,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage4"
-         BuddyDispid     =   196631
+         BuddyDispid     =   196666
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2232,13 +2232,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest4"
-         BuddyDispid     =   196633
+         BuddyDispid     =   196665
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2255,13 +2254,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage5"
-         BuddyDispid     =   196635
+         BuddyDispid     =   196664
          OrigLeft        =   5760
          OrigTop         =   3420
          OrigRight       =   6000
          OrigBottom      =   3780
-         Max             =   99
-         Min             =   1
+         Max             =   999
          Enabled         =   -1  'True
       End
       Begin MSComCtl2.UpDown udMage6 
@@ -2276,13 +2274,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage6"
-         BuddyDispid     =   196667
+         BuddyDispid     =   196663
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2299,13 +2296,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage7"
-         BuddyDispid     =   196670
+         BuddyDispid     =   196662
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2322,13 +2318,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest5"
-         BuddyDispid     =   196675
+         BuddyDispid     =   196661
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2345,13 +2340,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest6"
-         BuddyDispid     =   196694
+         BuddyDispid     =   196660
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2368,13 +2362,12 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest7"
-         BuddyDispid     =   196696
+         BuddyDispid     =   196659
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
          OrigBottom      =   684
-         Max             =   99
-         Min             =   1
+         Max             =   999
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
@@ -2706,6 +2699,7 @@ Begin VB.Form frmWiz01
    Begin VB.CommandButton cmdCancel 
       Appearance      =   0  'Flat
       Cancel          =   -1  'True
+      CausesValidation=   0   'False
       Height          =   432
       Left            =   7680
       MaskColor       =   &H00FF00FF&
@@ -2937,7 +2931,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:48 AM"
+            TextSave        =   "10:29 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3002,11 +2996,13 @@ Const DisabledColor = &HC0C0&
 Public DataFile As String
 Private SaveMessage As String
 Private SelectedCharacter As Integer
+Private ActiveTab As Integer
 Private Characters(1 To Wiz01CharactersMax) As Wiz01Character
 Private Sub cboCharacter_Click()
     Dim i As Integer
     Dim j As Integer
     Dim SpellNumber As Integer
+    Dim bString As String
     Dim ctl As Control
     
     sbStatus.Panels("Message").Text = vbNullString
@@ -3040,28 +3036,28 @@ Private Sub cboCharacter_Click()
         txtGP.Text = Format(.GP, "#,##0")
     
         'SpellBooks...
-        For j = 1 To 8
-            For i = 1 To 8
-                If ((j - 1) * 8) + i <= Wiz01SpellMapMax Then
-                    SpellNumber = ((j - 1) * 8) + i
-                    Debug.Print vbTab & strSpell(SpellNumber, .SpellBooks(j), i - 1)
-                    If SpellNumber <= 21 Then
-                        If icvtSpell(SpellNumber, .SpellBooks(j), i - 1) Then
-                            lstMageSpells.Selected(SpellNumber - 1) = True
-                        Else
-                            lstMageSpells.Selected(SpellNumber - 1) = False
-                        End If
-                    Else
-                        If icvtSpell(SpellNumber, .SpellBooks(j), i - 1) Then
-                            lstPriestSpells.Selected(SpellNumber - 1 - 21) = True
-                        Else
-                            lstPriestSpells.Selected(SpellNumber - 1 - 21) = False
-                        End If
-                    End If
+        bString = icvtSpellsToBin(.SpellBooks)
+        For i = 1 To Wiz01SpellMapMax
+'            If Mid(bString, i + 1, 1) = "1" Then
+'                Debug.Print "[X] " & GetSpell(i)
+'            Else
+'                Debug.Print "[ ] " & GetSpell(i)
+'            End If
+            If i <= 21 Then
+                If Mid(bString, i + 1, 1) = "1" Then
+                    lstMageSpells.Selected(i - 1) = True
+                Else
+                    lstMageSpells.Selected(i - 1) = False
                 End If
-            Next i
-        Next j
-    
+            Else
+                If Mid(bString, i + 1, 1) = "1" Then
+                    lstPriestSpells.Selected(i - 1 - 21) = True
+                Else
+                    lstPriestSpells.Selected(i - 1 - 21) = False
+                End If
+            End If
+        Next i
+        
         txtMage1.Text = .MageSpellPoints(1)
         txtPriest1.Text = .PriestSpellPoints(1)
         txtMage2.Text = .MageSpellPoints(2)
@@ -3122,18 +3118,57 @@ Private Sub ClearFields()
         End Select
     Next ctl
 End Sub
+Private Sub cboGender_GotFocus()
+    TextSelected
+End Sub
+Private Sub cboItem_Change(Index As Integer)
+    TextSelected
+End Sub
+Private Sub cboProfession_GotFocus()
+    TextSelected
+End Sub
+Private Sub cboRace_GotFocus()
+    TextSelected
+End Sub
+Private Sub cboStatus_GotFocus()
+    TextSelected
+End Sub
+Private Sub chkCursed_GotFocus(Index As Integer)
+    TextSelected
+End Sub
+Private Sub chkEquipped_GotFocus(Index As Integer)
+    TextSelected
+End Sub
+Private Sub chkIdentified_GotFocus(Index As Integer)
+    TextSelected
+End Sub
 Private Sub cmdCancel_Click()
     Call DisableFields
     Call picTabs_Click(1)
     cboCharacter.SetFocus
 End Sub
+Private Sub cmdCancel_GotFocus()
+    TextSelected
+End Sub
 Private Sub cmdEdit_Click()
     Call EnableFields
-    Call picTabs_Click(1)
-    cboRace.SetFocus
+    Select Case ActiveTab
+        Case 1
+            cboRace.SetFocus
+        Case 2
+            chkEquipped(1).SetFocus
+        Case 3
+            lstMageSpells.SetFocus
+    End Select
+End Sub
+Private Sub cmdEdit_GotFocus()
+    TextSelected
 End Sub
 Private Sub cmdExit_Click()
     Unload Me
+End Sub
+Private Sub cmdExit_GotFocus()
+    TextSelected
 End Sub
 Private Sub cmdOK_Click()
     'Move data from screen controls back into Characters array...
@@ -3235,6 +3270,9 @@ Private Sub EnableFields()
         End Select
     Next ctl
 End Sub
+Private Sub cmdOK_GotFocus()
+    TextSelected
+End Sub
 Private Sub Form_Activate()
     Dim i As Integer
     
@@ -3284,9 +3322,28 @@ End Sub
 Private Sub lblStats_Click()
     Call picTabs_Click(1)
 End Sub
+Private Sub lstMageSpells_GotFocus()
+    TextSelected
+    lstMageSpells.ListIndex = 0
+End Sub
+Private Sub lstMageSpells_LostFocus()
+    lstMageSpells.ListIndex = -1
+End Sub
+Private Sub lstPriestSpells_GotFocus()
+    TextSelected
+    lstPriestSpells.ListIndex = 0
+End Sub
+Private Sub lstPriestSpells_LostFocus()
+    lstPriestSpells.ListIndex = -1
+End Sub
+Private Sub picFrames_GotFocus(Index As Integer)
+    TextSelected
+End Sub
 Private Sub picTabs_Click(Index As Integer)
     Dim i As Integer
+    Dim ctl As Control
     
+    ActiveTab = Index
     lblStats.ForeColor = DisabledColor
     lblItems.ForeColor = DisabledColor
     lblSpells.ForeColor = DisabledColor
@@ -3311,6 +3368,23 @@ Private Sub picTabs_Click(Index As Integer)
         End Select
     Next i
     
+    Debug.Print "Testing..."
+    For Each ctl In Me.Controls
+        Select Case TypeName(ctl)
+            Case "Label", "ImageList", "CommandButton", "UpDown"
+            Case Else
+                If Not ctl.Container Is Me And Not IsNull(ctl.Container) Then
+                    If ctl.Container Is picFrames(Index) Then
+                        ctl.TabStop = True
+                        Debug.Print ctl.Name & ".TabStop = True"
+                    Else
+                        ctl.TabStop = False
+                        Debug.Print ctl.Name & ".TabStop = False"
+                    End If
+                End If
+        End Select
+    Next ctl
+    
     'Move the picWizardryLogo to the appropriate position, per frame...
     Select Case Index
         Case 1  'Basic Statistics...
@@ -3322,8 +3396,18 @@ Private Sub picTabs_Click(Index As Integer)
         Case Else
     End Select
     
+    On Error Resume Next
+    Select Case Index
+        Case 1
+            cboRace.SetFocus
+        Case 2
+            chkEquipped(1).SetFocus
+        Case 3
+            lstMageSpells.SetFocus
+    End Select
 End Sub
 Private Sub picTabs_GotFocus(Index As Integer)
+    TextSelected
     SaveMessage = sbStatus.Panels("Message").Text
     Select Case Index
         Case 1  'Basic Statistics...
@@ -3343,6 +3427,12 @@ Private Sub picTabs_LostFocus(Index As Integer)
         Case Else
     End Select
     sbStatus.Panels("Message").Text = SaveMessage
+End Sub
+Private Sub picWiz01_GotFocus()
+    TextSelected
+End Sub
+Private Sub picWizardryLogo_GotFocus()
+    TextSelected
 End Sub
 Private Sub txtAge_GotFocus()
     TextSelected

@@ -58,7 +58,7 @@ Type Wiz01Character
     Unknown4(1 To 34) As Byte
 End Type
 Private ItemList(0 To Wiz01ItemMapMax) As String
-Private Spells(1 To Wiz01SpellMapMax) As String
+Private Spells(0 To Wiz01SpellMapMax) As String
 Public Sub DumpWiz01(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
@@ -171,8 +171,35 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
+Public Function GetSpell(i As Integer) As String
+    GetSpell = Spells(i)
+End Function
 Public Function icvtSpell(Spell As Integer, Data As Byte, Offset As Integer) As Boolean
     If (Data And 2 ^ Offset) = 2 ^ Offset Then icvtSpell = True Else icvtSpell = False
+End Function
+Public Function icvtSpellsToBin(Data() As Byte) As String
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim errorCode As Long
+    Dim bString As String
+    
+    bString = vbNullString
+    For i = 1 To UBound(Data)
+        For Offset = 0 To 7
+            If (Data(i) And 2 ^ Offset) = 2 ^ Offset Then bString = bString & "1" Else bString = bString & "0"
+        Next Offset
+    Next i
+    icvtSpellsToBin = bString
+    
+ExitSub:
+    Exit Function
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "icvtSpellsToBin"
+    Exit Function
+    Resume Next
 End Function
 Public Function icvtStatistic(xStatistics As Long, WhichStat As Integer) As Integer
     Select Case WhichStat
@@ -297,6 +324,7 @@ Public Sub InitializeWiz01ItemList()
 End Sub
 Public Sub InitializeWiz01Spells()
     'Mage Spell Book...
+    Spells(0) = "Unknown"
     Spells(1) = "Halito"
     Spells(2) = "Mogref"
     Spells(3) = "Katino"
@@ -563,6 +591,46 @@ Private Sub Test()
     Next i
     Close #Unit
 
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Test"
+    Exit Sub
+    Resume Next
+End Sub
+Public Sub TestSpells()
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    'Dim Data As Long
+    Dim errorCode As Long
+    Dim Data(1 To 8) As Byte
+    Dim bString As String
+    
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open "spells.dat" For Binary Access Read Write Lock Read Write As #Unit
+    For i = 1 To 8
+        Get #Unit, , Data(i)
+    Next i
+    Close #Unit
+
+    bString = vbNullString
+    For i = 1 To 8
+        bString = bString & Hex(Data(i))
+    Next i
+    Debug.Print "Hex: " & bString
+    
+    bString = vbNullString
+    For i = 1 To 8
+        For Offset = 0 To 7
+            If (Data(i) And 2 ^ Offset) = 2 ^ Offset Then bString = bString & "1" Else bString = bString & "0"
+        Next Offset
+    Next i
+    Debug.Print "Bin: " & bString
+    
 ExitSub:
     Exit Sub
     

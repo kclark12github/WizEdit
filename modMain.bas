@@ -57,10 +57,13 @@ Public Function ValidateByte(Optional x As Control = Nothing) As Boolean
     Const iLimit As Byte = 99
     Dim fCancel As Boolean
     Dim ctl As Control
+    
+    On Error Resume Next
     fCancel = False
     If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
     With ctl
-        If Val(.Text) < 1 Or Val(.Text) > iLimit Then
+        If .Text = vbNullString Then .Text = "0"
+        If Val(.Text) < 0 Or Val(.Text) > iLimit Then
             fCancel = True
             Call Beep
             .Text = vbNullString
@@ -75,11 +78,14 @@ Public Function ValidateI2(Optional x As Control = Nothing) As Boolean
     Dim iLimit As Long
     Dim fCancel As Boolean
     Dim ctl As Control
+    
+    On Error Resume Next
     fCancel = False
     If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
     With ctl
+        If .Text = vbNullString Then .Text = "0"
         iLimit = (2 ^ 16) - 1
-        If Val(.Text) < 1 Or CLng(Val(.Text)) > iLimit Then
+        If Val(.Text) < 0 Or CLng(Val(.Text)) > iLimit Then
             fCancel = True
             Call Beep
             .Text = vbNullString
@@ -94,11 +100,14 @@ Public Function ValidateI4(Optional x As Control = Nothing) As Boolean
     Dim iLimit As Long
     Dim fCancel As Boolean
     Dim ctl As Control
+    
+    On Error Resume Next
     fCancel = False
     If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
     With ctl
+        If .Text = vbNullString Then .Text = "0"
         iLimit = (2 ^ 31) - 1
-        If Val(.Text) < 1 Or CLng(Val(.Text)) > iLimit Then
+        If Val(.Text) < 0 Or CLng(Val(.Text)) > iLimit Then
             fCancel = True
             Call Beep
             .Text = vbNullString
