@@ -254,16 +254,16 @@ Public Sub InitializeWiz01ItemList()
     ItemList(26) = "Breast Plate +1"
     ItemList(27) = "Scroll Of Badios"
     ItemList(28) = "Scroll Of Halito"
-    ItemList(29) = "Long Sword –1"
-    ItemList(30) = "Short Sword –1"
-    ItemList(31) = "Mace –1"
+    ItemList(29) = "Long Sword -1"
+    ItemList(30) = "Short Sword -1"
+    ItemList(31) = "Mace -1"
     ItemList(32) = "Staff +2"
     ItemList(33) = "Dragon Slayer"
     ItemList(34) = "Helm +1"
     ItemList(35) = "Leather -1"
     ItemList(36) = "Chain -1"
     ItemList(37) = "Breast Plate -1"
-    ItemList(38) = "Shield –1"
+    ItemList(38) = "Shield -1"
     ItemList(39) = "Jeweled Amulet"
     ItemList(40) = "Scroll of Badios"
     ItemList(41) = "Potion of Sopic"
@@ -295,14 +295,14 @@ Public Sub InitializeWiz01ItemList()
     ItemList(67) = "Scroll of Badial"
     ItemList(68) = "Short Sword -2"
     ItemList(69) = "Dagger +2"
-    ItemList(70) = "Mace –2"
-    ItemList(71) = "Staff –2"
+    ItemList(70) = "Mace -2"
+    ItemList(71) = "Staff -2"
     ItemList(72) = "Dagger Of Speed"
     ItemList(73) = "Cursed Robe"
     ItemList(74) = "Leather -2"
     ItemList(75) = "Chain -2"
     ItemList(76) = "Breastplate -2"
-    ItemList(77) = "Shield –2"
+    ItemList(77) = "Shield -2"
     ItemList(78) = "Cursed Helmet"
     ItemList(79) = "Breast Plate +2"
     ItemList(80) = "Silver Gloves"
@@ -465,6 +465,7 @@ Public Sub ReadWiz01(ByVal strFile As String, xCharacters() As Wiz01Character)
     
     For i = 1 To 20
         xCharacters(i).Name = Replace(xCharacters(i).Name, Chr(0), " ")
+        xCharacters(i).Name = Left(xCharacters(i).Name, xCharacters(i).NameLength)
     Next i
     
 ExitSub:
