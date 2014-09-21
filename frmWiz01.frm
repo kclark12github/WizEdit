@@ -7,7 +7,7 @@ Begin VB.Form frmWiz01
    Caption         =   "Wizardry 01 - Proving Grounds of the Mad Overlord"
    ClientHeight    =   6420
    ClientLeft      =   36
-   ClientTop       =   264
+   ClientTop       =   492
    ClientWidth     =   9288
    Icon            =   "frmWiz01.frx":0000
    LinkTopic       =   "Form1"
@@ -15,7 +15,6 @@ Begin VB.Form frmWiz01
    MinButton       =   0   'False
    ScaleHeight     =   6420
    ScaleWidth      =   9288
-   ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.PictureBox picFrames 
       Appearance      =   0  'Flat
@@ -2325,7 +2324,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage1"
-         BuddyDispid     =   196682
+         BuddyDispid     =   196699
          OrigLeft        =   2400
          OrigTop         =   3444
          OrigRight       =   2640
@@ -2347,7 +2346,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest1"
-         BuddyDispid     =   196681
+         BuddyDispid     =   196698
          OrigLeft        =   2400
          OrigTop         =   3900
          OrigRight       =   2640
@@ -2369,7 +2368,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage2"
-         BuddyDispid     =   196680
+         BuddyDispid     =   196697
          OrigLeft        =   3300
          OrigTop         =   3420
          OrigRight       =   3540
@@ -2391,7 +2390,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest2"
-         BuddyDispid     =   196679
+         BuddyDispid     =   196696
          OrigLeft        =   3240
          OrigTop         =   3900
          OrigRight       =   3480
@@ -2413,7 +2412,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage3"
-         BuddyDispid     =   196676
+         BuddyDispid     =   196693
          OrigLeft        =   4140
          OrigTop         =   3420
          OrigRight       =   4380
@@ -2435,7 +2434,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest3"
-         BuddyDispid     =   196675
+         BuddyDispid     =   196692
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2457,7 +2456,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage4"
-         BuddyDispid     =   196674
+         BuddyDispid     =   196691
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2479,7 +2478,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest4"
-         BuddyDispid     =   196673
+         BuddyDispid     =   196690
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2501,7 +2500,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage5"
-         BuddyDispid     =   196672
+         BuddyDispid     =   196689
          OrigLeft        =   5760
          OrigTop         =   3420
          OrigRight       =   6000
@@ -2521,7 +2520,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage6"
-         BuddyDispid     =   196671
+         BuddyDispid     =   196688
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2543,7 +2542,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage7"
-         BuddyDispid     =   196670
+         BuddyDispid     =   196687
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2565,7 +2564,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest5"
-         BuddyDispid     =   196669
+         BuddyDispid     =   196686
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2587,7 +2586,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest6"
-         BuddyDispid     =   196668
+         BuddyDispid     =   196685
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2609,7 +2608,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest7"
-         BuddyDispid     =   196667
+         BuddyDispid     =   196684
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -3159,7 +3158,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "9:50 AM"
+            TextSave        =   "7:27 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3211,6 +3210,30 @@ Begin VB.Form frmWiz01
       TabIndex        =   75
       Top             =   264
       Width           =   1020
+   End
+   Begin VB.Menu mnuOptions 
+      Caption         =   "&Options"
+      Begin VB.Menu mnuOptionsOpen 
+         Caption         =   "&Open..."
+      End
+      Begin VB.Menu mnuOptionsHexDump 
+         Caption         =   "&Hex Dump..."
+      End
+      Begin VB.Menu mnuOptionsPrint 
+         Caption         =   "&Print Characters..."
+      End
+      Begin VB.Menu mnuOptionsSep0 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuOptionsExit 
+         Caption         =   "E&xit"
+      End
+   End
+   Begin VB.Menu mnuHelp 
+      Caption         =   "&Help"
+      Begin VB.Menu mnuHelpAbout 
+         Caption         =   "About &WizEdit 2000..."
+      End
    End
 End
 Attribute VB_Name = "frmWiz01"
@@ -3387,10 +3410,10 @@ Private Sub cmdSave_Click()
     'Call DumpWiz01(Characters(SelectedCharacter))
     Call UnloadCharacter(SelectedCharacter)
     'Debug.Print String(80, "=") & vbCrLf & "After:"
-    'Call DumpWiz01(Characters(SelectedCharacter))
+    'Call Wiz01DumpCharacter(Characters(SelectedCharacter))
     
     'Write Data back to DataFile...
-    Call WriteWiz01(DataFile, Characters)
+    Call Wiz01Write(DataFile, Characters)
     
     Call DisableFields
     Call picTabs_Click(1)
@@ -3406,6 +3429,8 @@ Private Sub DisableFields()
     cmdSave.Visible = False
     cmdCancel.Visible = False
     cmdExit.Visible = True
+    mnuOptions.Enabled = True
+    mnuHelp.Enabled = True
     
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
@@ -3455,7 +3480,8 @@ Private Sub EnableFields()
     cmdSave.Visible = True
     cmdCancel.Visible = True
     cmdExit.Visible = False
-    
+    mnuOptions.Enabled = False
+    mnuHelp.Enabled = False
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
             Case "CommandButton"
@@ -3508,7 +3534,7 @@ Private Sub Form_Activate()
     Dim i As Integer
     
     'Populate Form with data from disk...
-    Call ReadWiz01(DataFile, Characters)
+    Call Wiz01Read(DataFile, Characters)
     For i = 1 To Wiz01CharactersMax
         If Trim(Characters(i).Name) <> vbNullString Then cboCharacter.AddItem Trim(Characters(i).Name), i - 1
     Next i
@@ -3546,6 +3572,10 @@ Private Sub Form_Load()
         Call PopulateWiz01Item(cboItem(i))
     Next i
     Call PopulateWiz01SpellBooks(lstMageSpells, lstPriestSpells)
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+    frmMain.MainCancel
+    frmMain.Show
 End Sub
 Private Sub lblItems_Click()
     Call picTabs_Click(2)
@@ -3661,6 +3691,116 @@ Private Sub LoadCharacter(iCharacter As Integer)
         lstPriestSpells.ListIndex = -1
     End With
 End Sub
+Private Sub mnuOptionsExit_Click()
+    cmdExit_Click
+End Sub
+Private Sub mnuOptionsHexDump_Click()
+    Dim xOutput As String
+    Dim sStatus As String
+    On Error GoTo ErrorHandler
+
+    initCommonDialog
+    With frmMain.cdgMain
+        .FileName = ParsePath(DataFile, DrvDirFileNameBase) & " " & _
+            Year(Date) & Format(Month(Date), "00") & Format(Day(Date), "00") & "-" & _
+            Format(Hour(Time), "00") & Format(Minute(Time), "00") & Format(Second(Time), "00") & _
+            ".dmp"
+        .Filter = "Hex Dump Files (*.DMP)|*.dmp|Text Files (*.TXT)|*.txt|All Files (*.*)|*.*"
+        .FilterIndex = 1
+        .Flags = cdlOFNHideReadOnly + cdlOFNPathMustExist + cdlOFNFileMustExist + _
+            cdlOFNNoChangeDir + cdlOFNNoReadOnlyReturn
+        .CancelError = True
+        .ShowSave    ' Call the open file procedure.
+        xOutput = .FileName
+    End With
+    
+    cboCharacter.Enabled = False
+    cmdExit.Enabled = False
+    cmdEdit.Enabled = False
+    Me.MousePointer = vbHourglass
+    sStatus = sbStatus.Panels("Message").Text
+    sbStatus.Panels("Message").Text = "Creating " & xOutput & "..."
+    Call HexDump(DataFile, xOutput)
+    Call MsgBox("HexDump complete.", vbInformation, Me.Caption)
+    sbStatus.Panels("Message").Text = sStatus
+    Me.MousePointer = vbDefault
+    cboCharacter.Enabled = True
+    cmdExit.Enabled = True
+    cmdEdit.Enabled = True
+    Exit Sub
+    
+ErrorHandler:
+    Select Case Err.Number
+        Case cdlCancel
+            sbStatus.Panels("Status").Text = "Cancelled"
+            MsgBox "Operation cancelled at User's request.", vbInformation, Me.Caption
+            Exit Sub
+        Case 52, 76
+            Resume Next
+        Case Else
+            MsgBox Err.Description & " (Error #" & Err.Number & ")", Me.Caption
+            Exit Sub
+    End Select
+End Sub
+Private Sub mnuOptionsPrint_Click()
+    Dim i As Long
+    Dim oUnit As Integer
+    Dim xOutput As String
+    Dim sStatus As String
+    Dim errorCode As Long
+    
+    On Error GoTo ErrorHandler
+
+    initCommonDialog
+    With frmMain.cdgMain
+        .FileName = ParsePath(DataFile, DrvDirFileNameBase) & " Characters " & _
+            Year(Date) & Format(Month(Date), "00") & Format(Day(Date), "00") & "-" & _
+            Format(Hour(Time), "00") & Format(Minute(Time), "00") & Format(Second(Time), "00") & _
+            ".txt"
+        .Filter = "Text Files (*.TXT)|*.txt|All Files (*.*)|*.*"
+        .FilterIndex = 1
+        .Flags = cdlOFNHideReadOnly + cdlOFNPathMustExist + cdlOFNFileMustExist + _
+            cdlOFNNoChangeDir + cdlOFNNoReadOnlyReturn
+        .CancelError = True
+        .ShowSave    ' Call the open file procedure.
+        xOutput = .FileName
+    End With
+    
+    cboCharacter.Enabled = False
+    cmdExit.Enabled = False
+    cmdEdit.Enabled = False
+    Me.MousePointer = vbHourglass
+    sStatus = sbStatus.Panels("Message").Text
+    sbStatus.Panels("Message").Text = "Creating " & xOutput & "..."
+    
+    oUnit = FreeFile
+    Open xOutput For Output Access Write Lock Read Write As #oUnit
+    For i = 1 To UBound(Characters)
+        If Trim(Characters(i).Name) <> vbNullString Then Call Wiz01PrintCharacter(oUnit, Characters(i))
+    Next i
+    Close #oUnit
+    
+    Call MsgBox("Print complete.", vbInformation, Me.Caption)
+    sbStatus.Panels("Message").Text = sStatus
+    Me.MousePointer = vbDefault
+    cboCharacter.Enabled = True
+    cmdExit.Enabled = True
+    cmdEdit.Enabled = True
+    Exit Sub
+    
+ErrorHandler:
+    Select Case Err.Number
+        Case cdlCancel
+            sbStatus.Panels("Status").Text = "Cancelled"
+            MsgBox "Operation cancelled at User's request.", vbInformation, Me.Caption
+            Exit Sub
+        Case 52, 76
+            Resume Next
+        Case Else
+            MsgBox Err.Description & " (Error #" & Err.Number & ")", Me.Caption
+            Exit Sub
+    End Select
+End Sub
 Private Sub picFrames_GotFocus(Index As Integer)
     TextSelected
 End Sub
@@ -3696,7 +3836,7 @@ Private Sub picTabs_Click(Index As Integer)
     'Debug.Print "Testing..."
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
-            Case "Label", "ImageList", "CommandButton", "UpDown"
+            Case "Label", "ImageList", "CommandButton", "UpDown", "Menu"
             Case Else
                 Select Case ctl.Name
                     Case "txtAC", "txtYears"

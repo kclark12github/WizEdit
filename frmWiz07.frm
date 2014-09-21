@@ -2610,7 +2610,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "8:58 PM"
+            TextSave        =   "7:28 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -2693,7 +2693,7 @@ Private Sub cboCharacter_Click()
         cboProfession.ListIndex = .Profession
         cboRace.ListIndex = .Race
         
-        txtSTR.Text = .STR
+        txtSTR.Text = .str
         txtINT.Text = .INT
         txtPIE.Text = .PIE
         txtVIT.Text = .VIT
@@ -3126,6 +3126,10 @@ Private Sub Form_Load()
     Call PopulateWiz07SkillsPersonal(cboSkillsPersonal)
     Call PopulateWiz07SkillsPhysical(cboSkillsPhysical)
     Call PopulateWiz07SkillsWeaponry(cboSkillsWeaponry)
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+    frmMain.MainCancel
+    frmMain.Show
 End Sub
 Private Sub lblItems_Click()
     Call picTabs_Click(3)

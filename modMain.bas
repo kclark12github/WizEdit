@@ -12,6 +12,7 @@ Option Explicit
 Public Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Long) As Long
 Public Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 Public Const adoNullError = &H80040E21
+Public CommandLineArgs() As Variant
 Public Function ChkINumber(cnum As Integer, _
                 Optional NoNegative As Boolean = False) As Integer
     If NoNegative And cnum = 45 Or _
@@ -88,8 +89,98 @@ Public Sub initCommonDialog()
     frmMain.cdgMain.FileName = vbNullString
     frmMain.cdgMain.Filter = vbNullString
     frmMain.cdgMain.FilterIndex = 0
-    frmMain.cdgMain.flags = 0
+    frmMain.cdgMain.Flags = 0
     'Any additional fields used by any Form in FiRRe must be added to this list...
+End Sub
+Public Function IsPrintable(ByVal xByte As Byte) As Boolean
+    If xByte < 32 Then
+        IsPrintable = False
+    Else
+        Select Case xByte
+            Case 127, 129, 141, 143, 144, 157
+                IsPrintable = False
+            Case Else
+                IsPrintable = True
+        End Select
+    End If
+End Function
+Public Sub HexDump(xInput As String, xOutput As String)
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim iUnit As Integer
+    Dim oUnit As Integer
+    Dim Data(0 To 15) As Byte
+    Dim BytesReadSoFar As Long
+    Dim BytesLeft As Long
+    Dim MaxBytes As Long
+    Dim errorCode As Long
+    Dim aOutput As String
+    Dim hOutput As String
+    Dim oOutput As String
+    
+    'On Error GoTo ErrorHandler
+    iUnit = FreeFile
+    MaxBytes = FileLen(xInput)
+    Open xInput For Binary Access Read Lock Read As #iUnit
+    oUnit = FreeFile
+    Open xOutput For Output Access Write Lock Read Write As #oUnit
+    Print #oUnit, String(100, "=")
+    Print #oUnit, "HexDump of " & xInput & " Generated on " & Format(Date, "Long Date")
+    Print #oUnit, String(100, "=")
+    
+    Offset = 0
+    Do While Not EOF(iUnit) And BytesReadSoFar < MaxBytes
+        Get #iUnit, , Data
+        BytesReadSoFar = Seek(iUnit) - 1
+        BytesLeft = BytesReadSoFar Mod 16
+    
+        aOutput = vbNullString
+        hOutput = vbNullString
+        For i = 0 To 15 - BytesLeft
+            oOutput = Hex(Data(i))
+            oOutput = String(2 - Len(oOutput), "0") & oOutput
+            hOutput = hOutput & oOutput & " "
+            If IsPrintable(Data(i)) Then aOutput = aOutput & Chr(CLng(Data(i))) Else aOutput = aOutput & "."
+            Data(i) = 0
+        Next i
+        If BytesLeft > 0 Then
+            For i = 1 To BytesLeft
+                hOutput = hOutput & "   "
+                aOutput = aOutput & " "
+            Next i
+        End If
+        oOutput = Hex(Offset)
+        If Len(oOutput) < 8 Then oOutput = String(8 - Len(oOutput), "0") & oOutput
+        
+        Print #oUnit, oOutput & vbTab & hOutput & vbTab & aOutput
+        Offset = Offset + 16
+    Loop
+    
+    Print #oUnit, String(100, "=")
+    Print #oUnit, "Total Bytes Dumped: " & BytesReadSoFar
+    'Debug.Print "Total Bytes Dumped: " & BytesReadSoFar
+    Print #oUnit, String(100, "=")
+
+ExitSub:
+    Close #iUnit
+    Close #oUnit
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Test"
+    Exit Sub
+    Resume Next
+    
+'    strHex = ""
+'    For i = 1 To nBytes
+'        strHex = strHex & Format(Hex(xBytes(i)), "00") ' & " "
+'        If i Mod 4 = 0 Then strHex = strHex & " "
+'        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
+'    Next i
+End Sub
+Public Sub Main()
+    frmMain.Show vbModal
 End Sub
 Public Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
     Dim i As Integer

@@ -10,6 +10,9 @@ Attribute VB_Name = "modWiz01Main"
 '=================================================================================================================================
 Option Explicit
 
+Global Const Wiz01ScenarioName As String = "PROVING GROUNDS OF THE MAD OVERLORD!"
+Global Const Wiz01ScenarioDataOffset As Long = &H1D401
+Global Const Wiz01CharacterDataOffset As Long = &H1D801
 Global Const Wiz01CharactersMax As Integer = 20
 Global Const Wiz01ItemListMax As Integer = 8
 Global Const Wiz01ItemMapMax As Integer = 100
@@ -19,6 +22,11 @@ Global Const Wiz01ProfessionMapMax As Integer = 7
 Global Const Wiz01StatusMapMax As Integer = 7
 Global Const Wiz01SpellLevelMax As Integer = 7
 Global Const Wiz01SpellMapMax As Integer = 50
+
+Type Wiz01ScenarioTag
+    Length As Byte
+    Name As String * 48
+End Type
 
 Type Wiz01Item
     Equipped As Integer
@@ -67,97 +75,9 @@ Private ItemList(0 To Wiz01ItemMapMax) As String
 Private Spells(0 To Wiz01SpellMapMax) As String
 Private Function Dumapic(xCharacter As Wiz01Character) As String
     With xCharacter
-        Dumapic = "Party is facing ???? " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down from the steps leading to the castle"
+        Dumapic = "Party is facing ???? " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
     End With
 End Function
-Public Sub DumpWiz01(xCharacter As Wiz01Character)
-    Dim i As Long
-    Dim j As Long
-    Dim k As Long
-    Dim iChar As Long
-    Dim errorCode As Long
-    Dim strTemp As String
-    Dim bString As String
-    
-    On Error GoTo ErrorHandler
-    Debug.Print String(80, "=")
-    With xCharacter
-        .Name = Replace(.Name, Chr(0), " ")
-        
-        Debug.Print "Name:               " & vbTab & Left(.Name, .NameLength)
-        Debug.Print "Password:           " & vbTab & Left(.Password, .PasswordLength)
-
-        If .Out = 1 Then
-            Debug.Print "On Expidition:      " & vbTab & "YES"
-        Else
-            Debug.Print "On Expidition:      " & vbTab & "NO"
-        End If
-
-        Debug.Print "Race:               " & vbTab & strRace(.Race)
-        Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
-        Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
-        Debug.Print "Status:             " & vbTab & strStatus(.Status)
-        Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
-        Debug.Print "Level:              " & vbTab & strPoints(.LVL)
-        Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
-        Debug.Print "Gold Pieces:        " & vbTab & I6toD(.GP)
-        Debug.Print "Experience Points:  " & vbTab & I6toD(.EXP)
-
-        Debug.Print vbCrLf & "Basic Statistics..."
-        Debug.Print "Strength:           " & vbTab & cvtStatisticToInt(.Statistics, 1)
-        Debug.Print "Intellegence:       " & vbTab & cvtStatisticToInt(.Statistics, 2)
-        Debug.Print "Piety:              " & vbTab & cvtStatisticToInt(.Statistics, 3)
-        Debug.Print "Vitality:           " & vbTab & cvtStatisticToInt(.Statistics, 4)
-        Debug.Print "Agility:            " & vbTab & cvtStatisticToInt(.Statistics, 5)
-        Debug.Print "Luck:               " & vbTab & cvtStatisticToInt(.Statistics, 6)
-
-        Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
-        For i = 1 To .ItemCount
-            Debug.Print strItem(.ItemList(i))
-        Next i
-
-'        Debug.Print vbCrLf & "SpellBooks..."
-'        bString = cvtSpellsToBstr(.SpellBooks)
-'        For i = 1 To Wiz01SpellMapMax
-'            If Mid(bString, i + 1, 1) = "1" Then
-'                Debug.Print "[X] " & GetSpell(CInt(i))
-'            Else
-'                Debug.Print "[ ] " & GetSpell(CInt(i))
-'            End If
-'        Next i
-
-        Debug.Print " "
-        strTemp = "Mage Spell Points:    " & vbTab
-        For i = 1 To 7
-            strTemp = strTemp & .MageSpellPoints(i) & "/"
-        Next i
-        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
-        Debug.Print strTemp
-
-        strTemp = "Priest Spell Points:  " & vbTab
-        For i = 1 To 7
-            strTemp = strTemp & .PriestSpellPoints(i) & "/"
-        Next i
-        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
-        Debug.Print strTemp
-            
-        Debug.Print Dumapic(xCharacter)
-        Debug.Print "Unknown Region #1 (4 bytes): "
-        Debug.Print strHex(.Unknown1, 4) '& vbCrLf
-        Debug.Print "Unknown Region #2 (2 bytes): "
-        Debug.Print strHex(.Unknown2, 2) '& vbCrLf
-        Debug.Print "Unknown Region #3 (30 bytes): "
-        Debug.Print strHex(.Unknown3, 30) '& vbCrLf
-    End With
-
-ExitSub:
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "DumpWiz01"
-    Exit Sub
-    Resume Next
-End Sub
 Public Function GetSpell(i As Integer) As String
     GetSpell = Spells(i)
 End Function
@@ -503,50 +423,6 @@ Public Sub PopulateWiz01Status(x As ComboBox)
         Next i
     End With
 End Sub
-Public Sub ReadWiz01(ByVal strFile As String, xCharacters() As Wiz01Character)
-    Dim i As Long
-    Dim iChar As Integer
-    Dim Offset As Long
-    Dim Unit As Integer
-    Dim errorCode As Long
-    
-    'Proving Grounds of the Mad Overlord supports up to 20 characters...
-    'The layout is a little funky in that the Character structure seems
-    'not to have lined-up evenly with the disk layout (1024 byte blocks
-    'on disk)... So, characters start at offset 0x0001D800 and then are
-    'stored in blocks of 4 characters (832 bytes), 192 bytes of filler
-    '(completing the 1K disk block), then another 4 blocks... for 5
-    'total blocks of 4, making 20 characters.
-    
-    On Error GoTo ErrorHandler
-    Unit = FreeFile
-    Open strFile For Binary Access Read Write Lock Read Write As #Unit
-    Offset = &H1D801
-    For i = 1 To 5
-        iChar = (i * 4) - 3
-        Get #Unit, Offset, xCharacters(iChar)
-        Get #Unit, , xCharacters(iChar + 1)
-        Get #Unit, , xCharacters(iChar + 2)
-        Get #Unit, , xCharacters(iChar + 3)
-        Offset = Offset + 1024
-    Next i
-    Close #Unit
-    
-    For i = 1 To 20
-        xCharacters(i).Name = Replace(xCharacters(i).Name, Chr(0), " ")
-        xCharacters(i).Name = Left(xCharacters(i).Name, xCharacters(i).NameLength)
-    Next i
-    
-ExitSub:
-    Call SaveRegSetting("Environment", "UWAPath01", ParsePath(strFile, DrvDirNoSlash))
-    Call SaveRegSetting("Environment", "Wiz01DataFile", ParsePath(strFile, FileNameBaseExt))
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "ReadWiz01"
-    Exit Sub
-    Resume Next
-End Sub
 Private Function strAlignment(ByVal x As Integer) As String
     Select Case x
         Case 0
@@ -685,7 +561,281 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
-Public Sub WriteWiz01(ByVal strFile As String, xCharacters() As Wiz01Character)
+Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    Dim iChar As Long
+    Dim errorCode As Long
+    Dim strTemp As String
+    Dim bString As String
+    
+    On Error GoTo ErrorHandler
+    Debug.Print String(80, "=")
+    With xCharacter
+        Debug.Print "Name:               " & vbTab & Left(.Name, .NameLength)
+        Debug.Print "Password:           " & vbTab & Left(.Password, .PasswordLength)
+
+        If .Out = 1 Then
+            Debug.Print "On Expidition:      " & vbTab & "YES"
+        Else
+            Debug.Print "On Expidition:      " & vbTab & "NO"
+        End If
+        Debug.Print Dumapic(xCharacter)
+
+        Debug.Print "Race:               " & vbTab & strRace(.Race)
+        Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
+        Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
+        Debug.Print "Status:             " & vbTab & strStatus(.Status)
+        Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
+        Debug.Print "Level:              " & vbTab & strPoints(.LVL)
+        Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
+        Debug.Print "Gold Pieces:        " & vbTab & I6toD(.GP)
+        Debug.Print "Experience Points:  " & vbTab & I6toD(.EXP)
+        Debug.Print "Armor Class:        " & vbTab & .AC
+        Debug.Print "Honors:             " & vbTab & .Honors
+        
+        Debug.Print vbCrLf & "Basic Statistics..."
+        Debug.Print "Strength:           " & vbTab & cvtStatisticToInt(.Statistics, 1)
+        Debug.Print "Intellegence:       " & vbTab & cvtStatisticToInt(.Statistics, 2)
+        Debug.Print "Piety:              " & vbTab & cvtStatisticToInt(.Statistics, 3)
+        Debug.Print "Vitality:           " & vbTab & cvtStatisticToInt(.Statistics, 4)
+        Debug.Print "Agility:            " & vbTab & cvtStatisticToInt(.Statistics, 5)
+        Debug.Print "Luck:               " & vbTab & cvtStatisticToInt(.Statistics, 6)
+
+        Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
+        For i = 1 To .ItemCount
+            Debug.Print strItem(.ItemList(i))
+        Next i
+
+'        Debug.Print vbCrLf & "SpellBooks..."
+'        bString = cvtSpellsToBstr(.SpellBooks)
+'        For i = 1 To Wiz01SpellMapMax
+'            If Mid(bString, i + 1, 1) = "1" Then
+'                Debug.Print "[X] " & GetSpell(CInt(i))
+'            Else
+'                Debug.Print "[ ] " & GetSpell(CInt(i))
+'            End If
+'        Next i
+
+        Debug.Print " "
+        strTemp = "Mage Spell Points:    " & vbTab
+        For i = 1 To 7
+            strTemp = strTemp & .MageSpellPoints(i) & "/"
+        Next i
+        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+        Debug.Print strTemp
+
+        strTemp = "Priest Spell Points:  " & vbTab
+        For i = 1 To 7
+            strTemp = strTemp & .PriestSpellPoints(i) & "/"
+        Next i
+        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+        Debug.Print strTemp
+            
+        Debug.Print "Unknown Region #1 (4 bytes): "
+        Debug.Print strHex(.Unknown1, 4) '& vbCrLf
+        Debug.Print "Unknown Region #2 (2 bytes): "
+        Debug.Print strHex(.Unknown2, 2) '& vbCrLf
+        Debug.Print "Unknown Region #3 (30 bytes): "
+        Debug.Print strHex(.Unknown3, 30) '& vbCrLf
+    End With
+
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "DumpWiz01"
+    Exit Sub
+    Resume Next
+End Sub
+Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    Dim iChar As Long
+    Dim errorCode As Long
+    Dim strTemp As String
+    Dim bString As String
+    Dim MageSpell As String * 20
+    Dim PriestSpell As String * 20
+    
+    On Error GoTo ErrorHandler
+    
+    With xCharacter
+        Print #oUnit, String(100, "=")
+        Print #oUnit, "Character Print: " & Left(.Name, .NameLength) & " Generated on " & Format(Date, "Long Date")
+        Print #oUnit, String(100, "-")
+            
+        Print #oUnit, "Name:               " & vbTab & Left(.Name, .NameLength)
+        Print #oUnit, "Password:           " & vbTab & Left(.Password, .PasswordLength)
+
+        If .Out = 1 Then
+            Print #oUnit, "On Expidition:      " & vbTab & "YES"
+        Else
+            Print #oUnit, "On Expidition:      " & vbTab & "NO"
+        End If
+        If .Location = 0 Then
+            Print #oUnit, "Location:           " & vbTab & "Castle"
+        Else
+            Print #oUnit, "Location:           " & vbTab & Dumapic(xCharacter)
+        End If
+
+        Print #oUnit, "Race:               " & vbTab & strRace(.Race)
+        Print #oUnit, "Profession:         " & vbTab & strProfession(.Profession)
+        Print #oUnit, "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
+        Print #oUnit, "Status:             " & vbTab & strStatus(.Status)
+        Print #oUnit, "Alignment:          " & vbTab & strAlignment(.Alignment)
+        Print #oUnit, "Level:              " & vbTab & strPoints(.LVL)
+        Print #oUnit, "Hit Points:         " & vbTab & strPoints(.HP)
+        Print #oUnit, "Gold Pieces:        " & vbTab & I6toD(.GP)
+        Print #oUnit, "Experience Points:  " & vbTab & I6toD(.EXP)
+        Print #oUnit, "Armor Class:        " & vbTab & .AC
+        Print #oUnit, "Honors:             " & vbTab & .Honors
+        
+        Print #oUnit, vbCrLf & "Basic Statistics..."
+        Print #oUnit, "Strength:           " & vbTab & cvtStatisticToInt(.Statistics, 1)
+        Print #oUnit, "Intellegence:       " & vbTab & cvtStatisticToInt(.Statistics, 2)
+        Print #oUnit, "Piety:              " & vbTab & cvtStatisticToInt(.Statistics, 3)
+        Print #oUnit, "Vitality:           " & vbTab & cvtStatisticToInt(.Statistics, 4)
+        Print #oUnit, "Agility:            " & vbTab & cvtStatisticToInt(.Statistics, 5)
+        Print #oUnit, "Luck:               " & vbTab & cvtStatisticToInt(.Statistics, 6)
+
+        Print #oUnit, vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
+        For i = 1 To .ItemCount
+            Print #oUnit, strItem(.ItemList(i))
+        Next i
+
+        Print #oUnit, vbCrLf & "SpellBooks..."
+        bString = cvtSpellsToBstr(.SpellBooks)
+        
+        Print #oUnit, "Mage:               " & vbTab & "Priest:"
+        i = i
+        Do While i <= Wiz01SpellMapMax
+            If i + 21 > Wiz01SpellMapMax Then Exit Do
+            MageSpell = String(20, " ")
+            PriestSpell = String(20, " ")
+            If i <= 21 Then
+                If Mid(bString, i + 1, 1) = "1" Then
+                    MageSpell = "[X] " & GetSpell(CInt(i))
+                Else
+                    MageSpell = "[ ] " & GetSpell(CInt(i))
+                End If
+            End If
+            If Mid(bString, i + 1 + 21, 1) = "1" Then
+                PriestSpell = "[X] " & GetSpell(CInt(i + 21))
+            Else
+                PriestSpell = "[ ] " & GetSpell(CInt(i + 21))
+            End If
+            Print #oUnit, MageSpell & vbTab & PriestSpell
+            i = i + 1
+        Loop
+        
+        Print #oUnit, " "
+        strTemp = "Mage Spell Points:    " & vbTab
+        For i = 1 To 7
+            strTemp = strTemp & .MageSpellPoints(i) & "/"
+        Next i
+        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+        Print #oUnit, strTemp
+
+        strTemp = "Priest Spell Points:  " & vbTab
+        For i = 1 To 7
+            strTemp = strTemp & .PriestSpellPoints(i) & "/"
+        Next i
+        strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+        Print #oUnit, strTemp
+            
+        Print #oUnit, "Unknown Region #1 (4 bytes): "
+        Print #oUnit, strHex(.Unknown1, 4) '& vbCrLf
+        Print #oUnit, "Unknown Region #2 (2 bytes): "
+        Print #oUnit, strHex(.Unknown2, 2) '& vbCrLf
+        Print #oUnit, "Unknown Region #3 (24 bytes): "
+        Print #oUnit, strHex(.Unknown3, 24) '& vbCrLf
+    End With
+
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Wiz01PrintCharacter"
+    Exit Sub
+    Resume Next
+End Sub
+Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim errorCode As Long
+    Dim ScenarioName As Wiz01ScenarioTag
+    
+    'Proving Grounds of the Mad Overlord supports up to 20 characters...
+    'The layout is a little funky in that the Character structure seems
+    'not to have lined-up evenly with the disk layout (1024 byte blocks
+    'on disk)... So, characters start at offset 0x0001D800 and then are
+    'stored in blocks of 4 characters (832 bytes), 192 bytes of filler
+    '(completing the 1K disk block), then another 4 blocks... for 5
+    'total blocks of 4, making 20 characters.
+    
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open strFile For Binary Access Read Write Lock Read Write As #Unit
+    Offset = Wiz01CharacterDataOffset
+    For i = 1 To 5
+        iChar = (i * 4) - 3
+        Get #Unit, Offset, xCharacters(iChar)
+        Get #Unit, , xCharacters(iChar + 1)
+        Get #Unit, , xCharacters(iChar + 2)
+        Get #Unit, , xCharacters(iChar + 3)
+        Offset = Offset + 1024
+    Next i
+    
+    For i = 1 To 20
+        xCharacters(i).Name = Replace(xCharacters(i).Name, Chr(0), " ")
+        xCharacters(i).Name = Left(xCharacters(i).Name, xCharacters(i).NameLength)
+    Next i
+    
+ExitSub:
+    Close #Unit
+    Call SaveRegSetting("Environment", "UWAPath01", ParsePath(strFile, DrvDirNoSlash))
+    Call SaveRegSetting("Environment", "Wiz01DataFile", ParsePath(strFile, FileNameBaseExt))
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Wiz01Read"
+    Exit Sub
+    Resume Next
+End Sub
+Public Function Wiz01ValidateScenario(xFileName As String) As Boolean
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim errorCode As Long
+    Dim ScenarioName As Wiz01ScenarioTag
+    
+    Wiz01ValidateScenario = False
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open xFileName For Binary Access Read Lock Read As #Unit
+    Get #Unit, Wiz01ScenarioDataOffset, ScenarioName
+    If Left(ScenarioName.Name, ScenarioName.Length) <> Wiz01ScenarioName Then
+        Call MsgBox("Save game file specified is not a valid Ultimate Wizardry Archives: Proving Grounds of the Mad Overlord! save game file.", vbExclamation, Screen.ActiveForm.Caption)
+        GoTo ExitSub
+    End If
+    Wiz01ValidateScenario = True
+
+ExitSub:
+    Close #Unit
+    Exit Function
+    
+ErrorHandler:
+    Call MsgBox(Err.Description, vbExclamation, "Wiz01ValidateScenario")
+    Exit Function
+    Resume Next
+End Function
+Public Sub Wiz01Write(ByVal strFile As String, xCharacters() As Wiz01Character)
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
@@ -718,7 +868,7 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "WriteWiz01"
+    MsgBox Err.Description, vbExclamation, "Wiz01Write"
     Exit Sub
     Resume Next
 End Sub

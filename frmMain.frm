@@ -468,7 +468,7 @@ Private Sub cmdBrowse_Click()
         .FileName = txtFile.Text
         .Filter = dFilter
         .FilterIndex = 1
-        .flags = cdlOFNHideReadOnly + cdlOFNPathMustExist + cdlOFNFileMustExist + _
+        .Flags = cdlOFNHideReadOnly + cdlOFNPathMustExist + cdlOFNFileMustExist + _
             cdlOFNNoChangeDir + cdlOFNNoReadOnlyReturn
         .CancelError = True
         .ShowOpen    ' Call the open file procedure.
@@ -524,7 +524,7 @@ Private Sub cmdOK_Click()
         'Before we bail, try the  current directory...
         If Dir(CurDir & "\" & txtFile.Text, vbNormal) = vbNullString Then
             Call Beep
-            MsgBox "Save Game file not found!" & vbCrLf & vbCrLf & dPath & "\" & txtFile.Text, vbExclamation, Me.Caption
+            Call MsgBox("Save Game file not found!" & vbCrLf & vbCrLf & dPath & "\" & txtFile.Text, vbExclamation, Me.Caption)
             Call cmdBrowse_Click
             Exit Sub
         Else
@@ -534,14 +534,17 @@ Private Sub cmdOK_Click()
     
     Select Case Scenario
         Case "01"
+            If Not Wiz01ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
             'Call DumpWiz01(dPath & "\" & txtFile.Text)
             Load frmWiz01
             frmWiz01.DataFile = dPath & "\" & txtFile.Text
             frmWiz01.Caption = picWiz01.ToolTipText
             frmWiz01.Icon = imgIcons32.ListImages("Wiz01").ExtractIcon
             frmWiz01.picWiz01.Visible = True
-            frmWiz01.Show vbModal
+            Me.Hide
+            frmWiz01.Show
         Case "07"
+            'If Not Wiz07ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
             Load frmWiz07
             frmWiz07.DataFile = dPath & "\" & txtFile.Text
@@ -549,8 +552,10 @@ Private Sub cmdOK_Click()
             frmWiz07.Icon = imgIcons32.ListImages("Wiz07").ExtractIcon
             frmWiz07.picWiz07.Visible = True
             'frmWiz07.picWiz07.Picture = picWiz07.Picture
-            frmWiz07.Show vbModal
+            Me.Hide
+            frmWiz07.Show
         Case "07G"
+            'If Not Wiz07ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
             Load frmWiz07
             frmWiz07.DataFile = dPath & "\" & txtFile.Text
@@ -558,12 +563,13 @@ Private Sub cmdOK_Click()
             frmWiz07.Icon = imgIcons32.ListImages("Wiz07g").ExtractIcon
             frmWiz07.picWiz07Gold.Visible = True
             'frmWiz07.picWiz07Gold.Picture = picWiz07g.Picture
-            frmWiz07.Show vbModal
+            Me.Hide
+            frmWiz07.Show
         Case Else
             MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
     End Select
     
-    cmdCancel_Click
+ExitSub:
     Exit Sub
 End Sub
 Private Sub EnableFields(ByVal strCaption As String)
@@ -623,6 +629,11 @@ Private Sub EnableFields(ByVal strCaption As String)
     End Select
 End Sub
 Private Sub Form_Load()
+    'Handle Command Line Arguments (if any)...
+    CommandLineArgs = GetCommandLine()
+    If UBound(CommandLineArgs) > 0 Then
+    End If
+    
     cmdOK.Visible = False
     cmdCancel.Visible = False
     cmdExit.Enabled = True
@@ -635,7 +646,9 @@ Private Sub Form_Load()
     cmdBrowse.Visible = False
     
     fScenarioSelected = False
-
+End Sub
+Public Sub MainCancel()
+    cmdCancel_Click
 End Sub
 Private Sub picWiz01_Click()
     Call EnableFields(picWiz01.ToolTipText)
