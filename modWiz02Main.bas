@@ -1,5 +1,5 @@
-Attribute VB_Name = "modWiz01Main"
-'modWiz01Main - modWiz01Main.bas
+Attribute VB_Name = "modWiz02Main"
+'modWiz02Main - modWiz02Main.bas
 '   Main module for Proving Grounds of the Mad Overlord...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
@@ -10,37 +10,37 @@ Attribute VB_Name = "modWiz01Main"
 '=================================================================================================================================
 Option Explicit
 
-Global Const Wiz01ScenarioName As String = "PROVING GROUNDS OF THE MAD OVERLORD!"
-Global Const Wiz01ScenarioDataOffset As Long = &H1D401
-Global Const Wiz01CharacterDataOffset As Long = &H1D801
-Global Const Wiz01CharactersMax As Integer = 20
-Global Const Wiz01ItemListMax As Integer = 8
-Global Const Wiz01ItemMapMax As Integer = 100
-Global Const Wiz01AlignmentMapMax As Integer = 3
-Global Const Wiz01RaceMapMax As Integer = 5
-Global Const Wiz01ProfessionMapMax As Integer = 7
-Global Const Wiz01StatusMapMax As Integer = 7
-Global Const Wiz01SpellLevelMax As Integer = 7
-Global Const Wiz01SpellMapMax As Integer = 50
+Global Const Wiz02ScenarioName As String = "THE KNIGHT OF DIAMONDS"
+Global Const Wiz02ScenarioDataOffset As Long = &H1CE01
+Global Const Wiz02CharacterDataOffset As Long = &H1D201
+Global Const Wiz02CharactersMax As Integer = 20
+Global Const Wiz02ItemListMax As Integer = 8
+Global Const Wiz02ItemMapMax As Integer = 100
+Global Const Wiz02AlignmentMapMax As Integer = 3
+Global Const Wiz02RaceMapMax As Integer = 5
+Global Const Wiz02ProfessionMapMax As Integer = 7
+Global Const Wiz02StatusMapMax As Integer = 7
+Global Const Wiz02SpellLevelMax As Integer = 7
+Global Const Wiz02SpellMapMax As Integer = 50
 
-Type Wiz01ScenarioTag
+Type Wiz02ScenarioTag
     Length As Byte
     Name As String * 48
 End Type
 
-Type Wiz01Item
+Type Wiz02Item
     Equipped As Integer
     Cursed As Integer
     Identified As Integer
     ItemCode As Integer
 End Type
 
-Type Wiz01Points
+Type Wiz02Points
     Current As Integer
     Maximum As Integer
 End Type
 
-Type Wiz01Character
+Type Wiz02Character
     NameLength As Byte                  '0x1D800   Pascal Varying Length String Format...
     Name As String * 15                 '
     PasswordLength As Byte              '0x1D810   Pascal Varying Length String Format...
@@ -56,10 +56,10 @@ Type Wiz01Character
     Unknown1(1 To 4) As Byte            '0x1D830
     GP(1 To 3) As Integer               '0x1D834
     ItemCount As Integer                '0x1D83A
-    ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
+    ItemList(1 To 8) As Wiz02Item       '0x1D83C    List of Items (stowing not an option in Wiz02...)
     EXP(1 To 3) As Integer              '0x1D87C
-    LVL As Wiz01Points                  '0x1D882
-    HP As Wiz01Points                   '0x1D886
+    LVL As Wiz02Points                  '0x1D882
+    HP As Wiz02Points                   '0x1D886
     SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
     MageSpellPoints(1 To 7) As Integer  '0x1D892
     PriestSpellPoints(1 To 7) As Integer '0x1D8A0
@@ -71,9 +71,9 @@ Type Wiz01Character
     Honors As Integer                   '0x1D8CE    Need more testing, but 1 = ">"
                                         '0x1D8D0    Next Character Record...
 End Type
-Private ItemList(0 To Wiz01ItemMapMax) As String
-Private Spells(0 To Wiz01SpellMapMax) As String
-Private Function Dumapic(xCharacter As Wiz01Character) As String
+Private ItemList(0 To Wiz02ItemMapMax) As String
+Private Spells(0 To Wiz02SpellMapMax) As String
+Private Function Dumapic(xCharacter As Wiz02Character) As String
     With xCharacter
         ' Always seems to be facing North when Quiting from within the Maze...
         Dumapic = "Facing North; " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
@@ -154,7 +154,7 @@ Public Function cvtStatisticToInt(xStatistics As Long, WhichStat As Integer) As 
             cvtStatisticToInt = 0
     End Select
 End Function
-Public Sub InitializeWiz01ItemList()
+Public Sub InitializeWiz02ItemList()
     ItemList(0) = "Special: Broken Item"
     ItemList(1) = "Weapon: Long Sword"
     ItemList(2) = "Weapon: Short Sword"
@@ -257,7 +257,7 @@ Public Sub InitializeWiz01ItemList()
     ItemList(99) = "Special: Gold Key"
     ItemList(100) = "Special: Blue Ribbon"
 End Sub
-Public Sub InitializeWiz01Spells()
+Public Sub InitializeWiz02Spells()
     'Mage Spell Book...
     Spells(0) = "Unknown"
     Spells(1) = "Halito"
@@ -345,61 +345,61 @@ Public Function IsSpellCaster(x As Integer) As Boolean
             IsSpellCaster = False
     End Select
 End Function
-Public Function lkupWiz01ItemByCbo(x As Integer, cbo As ComboBox) As Integer
+Public Function lkupWiz02ItemByCbo(x As Integer, cbo As ComboBox) As Integer
     Dim i As Integer
     For i = 0 To cbo.ListCount - 1
         If ItemList(x) = cbo.List(i) Then
-            lkupWiz01ItemByCbo = i
+            lkupWiz02ItemByCbo = i
             Exit Function
         End If
     Next i
 End Function
-Public Function lkupWiz01ItemByName(x As String) As Integer
+Public Function lkupWiz02ItemByName(x As String) As Integer
     Dim i As Integer
-    For i = 0 To Wiz01ItemMapMax
+    For i = 0 To Wiz02ItemMapMax
         If ItemList(i) = x Then
-            lkupWiz01ItemByName = i
+            lkupWiz02ItemByName = i
             Exit Function
         End If
     Next i
 End Function
-Public Sub PopulateWiz01Alignment(x As ComboBox)
+Public Sub PopulateWiz02Alignment(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01AlignmentMapMax
+        For i = 0 To Wiz02AlignmentMapMax
             .AddItem strAlignment(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz01Item(x As ComboBox)
+Public Sub PopulateWiz02Item(x As ComboBox)
     Dim i As Integer
     With x
         .Clear
-        For i = 0 To Wiz01ItemMapMax
+        For i = 0 To Wiz02ItemMapMax
             .AddItem ItemList(i)    ', i    'Removed to allow ComboBox to be Sorted
         Next i
     End With
 End Sub
-Public Sub PopulateWiz01Profession(x As ComboBox)
+Public Sub PopulateWiz02Profession(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01ProfessionMapMax
+        For i = 0 To Wiz02ProfessionMapMax
             .AddItem strProfession(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz01Race(x As ComboBox)
+Public Sub PopulateWiz02Race(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01RaceMapMax
+        For i = 0 To Wiz02RaceMapMax
             .AddItem strRace(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz01SpellBooks(lstMageSpells As ListBox, lstPriestSpells As ListBox)
+Public Sub PopulateWiz02SpellBooks(lstMageSpells As ListBox, lstPriestSpells As ListBox)
     Dim i As Integer
     With lstMageSpells
         .Clear
@@ -415,11 +415,11 @@ Public Sub PopulateWiz01SpellBooks(lstMageSpells As ListBox, lstPriestSpells As 
         Next i
     End With
 End Sub
-Public Sub PopulateWiz01Status(x As ComboBox)
+Public Sub PopulateWiz02Status(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01StatusMapMax
+        For i = 0 To Wiz02StatusMapMax
             .AddItem strStatus(i), CInt(i)
         Next i
     End With
@@ -498,7 +498,7 @@ Private Function strRace(ByVal x As Byte) As String
             strRace = "Unknown"
     End Select
 End Function
-Private Function strItem(x As Wiz01Item) As String
+Private Function strItem(x As Wiz02Item) As String
 '    strItem = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "
 '    If x.Identified Then strItem = strItem & "; Identified"
 '    If x.Equipped Then strItem = strItem & "; **EQUIPPED**"
@@ -514,7 +514,7 @@ Private Function strItem(x As Wiz01Item) As String
     End If
     strItem = strItem & ItemList(x.ItemCode)
 End Function
-Private Function strPoints(x As Wiz01Points) As String
+Private Function strPoints(x As Wiz02Points) As String
     strPoints = x.Current & "/" & x.Maximum
 End Function
 Public Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
@@ -562,7 +562,7 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
-Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
+Public Sub Wiz02DumpCharacter(xCharacter As Wiz02Character)
     Dim i As Long
     Dim j As Long
     Dim k As Long
@@ -617,7 +617,7 @@ Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
 
 '        Debug.Print vbCrLf & "SpellBooks..."
 '        bString = cvtSpellsToBstr(.SpellBooks)
-'        For i = 1 To Wiz01SpellMapMax
+'        For i = 1 To Wiz02SpellMapMax
 '            If Mid(bString, i + 1, 1) = "1" Then
 '                Debug.Print "[X] " & GetSpell(CInt(i))
 '            Else
@@ -652,11 +652,11 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "DumpWiz01"
+    MsgBox Err.Description, vbExclamation, "DumpWiz02"
     Exit Sub
     Resume Next
 End Sub
-Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
+Public Sub Wiz02PrintCharacter(oUnit As Integer, xCharacter As Wiz02Character)
     Dim i As Long
     Dim j As Long
     Dim k As Long
@@ -724,8 +724,8 @@ Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
         
         Print #oUnit, "Mage:               " & vbTab & "Priest:"
         i = i
-        Do While i <= Wiz01SpellMapMax
-            If i + 21 > Wiz01SpellMapMax Then Exit Do
+        Do While i <= Wiz02SpellMapMax
+            If i + 21 > Wiz02SpellMapMax Then Exit Do
             MageSpell = String(20, " ")
             PriestSpell = String(20, " ")
             If i <= 21 Then
@@ -771,17 +771,17 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01PrintCharacter"
+    MsgBox Err.Description, vbExclamation, "Wiz02PrintCharacter"
     Exit Sub
     Resume Next
 End Sub
-Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
+Public Sub Wiz02Read(ByVal strFile As String, xCharacters() As Wiz02Character)
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
     Dim errorCode As Long
-    Dim ScenarioName As Wiz01ScenarioTag
+    Dim ScenarioName As Wiz02ScenarioTag
     
     'Proving Grounds of the Mad Overlord supports up to 20 characters...
     'The layout is a little funky in that the Character structure seems
@@ -794,7 +794,7 @@ Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
-    Offset = Wiz01CharacterDataOffset
+    Offset = Wiz02CharacterDataOffset
     For i = 1 To 5
         iChar = (i * 4) - 3
         Get #Unit, Offset, xCharacters(iChar)
@@ -812,43 +812,43 @@ Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
 ExitSub:
     Close #Unit
     Call SaveRegSetting("Environment", "UWAPath01", ParsePath(strFile, DrvDirNoSlash))
-    Call SaveRegSetting("Environment", "Wiz01DataFile", ParsePath(strFile, FileNameBaseExt))
+    Call SaveRegSetting("Environment", "Wiz02DataFile", ParsePath(strFile, FileNameBaseExt))
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01Read"
+    MsgBox Err.Description, vbExclamation, "Wiz02Read"
     Exit Sub
     Resume Next
 End Sub
-Public Function Wiz01ValidateScenario(xFileName As String) As Boolean
+Public Function Wiz02ValidateScenario(xFileName As String) As Boolean
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
     Dim errorCode As Long
-    Dim ScenarioName As Wiz01ScenarioTag
+    Dim ScenarioName As Wiz02ScenarioTag
     
-    Wiz01ValidateScenario = False
+    Wiz02ValidateScenario = False
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open xFileName For Binary Access Read Lock Read As #Unit
-    Get #Unit, Wiz01ScenarioDataOffset, ScenarioName
-    If Left(ScenarioName.Name, ScenarioName.Length) <> Wiz01ScenarioName Then
+    Get #Unit, Wiz02ScenarioDataOffset, ScenarioName
+    If Left(ScenarioName.Name, ScenarioName.Length) <> Wiz02ScenarioName Then
         Call MsgBox("Save game file specified is not a valid Ultimate Wizardry Archives: Proving Grounds of the Mad Overlord! save game file.", vbExclamation, Screen.ActiveForm.Caption)
         GoTo ExitSub
     End If
-    Wiz01ValidateScenario = True
+    Wiz02ValidateScenario = True
 
 ExitSub:
     Close #Unit
     Exit Function
     
 ErrorHandler:
-    Call MsgBox(Err.Description, vbExclamation, "Wiz01ValidateScenario")
+    Call MsgBox(Err.Description, vbExclamation, "Wiz02ValidateScenario")
     Exit Function
     Resume Next
 End Function
-Public Sub Wiz01Write(ByVal strFile As String, xCharacters() As Wiz01Character)
+Public Sub Wiz02Write(ByVal strFile As String, xCharacters() As Wiz02Character)
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
@@ -866,7 +866,7 @@ Public Sub Wiz01Write(ByVal strFile As String, xCharacters() As Wiz01Character)
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
-    Offset = &H1D801
+    Offset = Wiz02CharacterDataOffset
     For i = 1 To 5
         iChar = (i * 4) - 3
         Put #Unit, Offset, xCharacters(iChar)
@@ -881,43 +881,7 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01Write"
-    Exit Sub
-    Resume Next
-End Sub
-Public Sub Test()
-    Dim i As Long
-    Dim iChar As Integer
-    Dim Offset As Long
-    Dim Unit As Integer
-    Dim Data(1 To 3) As Integer
-    Dim x As Double
-    Dim errorCode As Long
-'553599992787
-'23 A7 0F 27 FF FF
-    
-    'On Error GoTo ErrorHandler
-    Unit = FreeFile
-    Open "Input.dat" For Binary Access Read Write Lock Read Write As #Unit
-    Get #Unit, , Data
-    Close #Unit
-    
-    'x = CDbl(553599992787#)
-    x = I6toD(Data)
-    Data(1) = 0
-    Data(2) = 0
-    Data(3) = 0
-    Call DtoI6(x, Data)
-    Unit = FreeFile
-    Open "Output.dat" For Binary Access Read Write Lock Read Write As #Unit
-    Put #Unit, , Data
-    Close #Unit
-
-ExitSub:
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Test"
+    MsgBox Err.Description, vbExclamation, "Wiz02Write"
     Exit Sub
     Resume Next
 End Sub
