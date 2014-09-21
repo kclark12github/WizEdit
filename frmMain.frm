@@ -142,7 +142,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:11 AM"
+            TextSave        =   "2:12 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -427,6 +427,46 @@ End Sub
 Private Sub cmdExit_Click()
     Unload Me
 End Sub
+Private Sub cmdOK_Click()
+    If Dir(dPath & "\" & txtFile.Text, vbNormal) = vbNullString Then
+        'Before we bail, try the  current directory...
+        If Dir(CurDir & "\" & txtFile.Text, vbNormal) = vbNullString Then
+            Call Beep
+            MsgBox "Save Game file not found!" & vbCrLf & vbCrLf & dPath & "\" & txtFile.Text, vbExclamation, Me.Caption
+            Call cmdBrowse_Click
+            Exit Sub
+        Else
+            dPath = CurDir
+            Call SaveWizEditSetting("Environment", "UWAPath" & Scenario, dPath)
+        End If
+    End If
+    
+    Select Case Scenario
+        Case "07"
+            'Call DumpWiz07(dPath & "\" & txtFile.Text)
+            Load frmWiz07
+            frmWiz07.DataFile = dPath & "\" & txtFile.Text
+            frmWiz07.Caption = picWiz07.ToolTipText
+            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07").ExtractIcon
+            frmWiz07.picWiz07.Visible = True
+            frmWiz07.picWiz07Gold.Visible = False
+            frmWiz07.Show vbModal
+        Case "07G"
+            'Call DumpWiz07(dPath & "\" & txtFile.Text)
+            Load frmWiz07
+            frmWiz07.DataFile = dPath & "\" & txtFile.Text
+            frmWiz07.Caption = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
+            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07g").ExtractIcon
+            frmWiz07.picWiz07.Visible = False
+            frmWiz07.picWiz07Gold.Visible = True
+            frmWiz07.Show vbModal
+        Case Else
+            MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
+    End Select
+    
+    cmdCancel_Click
+    Exit Sub
+End Sub
 Private Sub EnableFields(ByVal strCaption As String)
     Dim dFileName As String
     
@@ -482,46 +522,6 @@ Private Sub EnableFields(ByVal strCaption As String)
             dPath = GetWizEditSetting("Environment", "UWAPath" & Scenario, "C:\Sirtech\WizGold")
             dFilter = "Saved Games (*.GLD)|*.GLD|All Files (*.*)|*.*"
     End Select
-End Sub
-Private Sub cmdOK_Click()
-    If Dir(dPath & "\" & txtFile.Text, vbNormal) = vbNullString Then
-        'Before we bail, try the  current directory...
-        If Dir(CurDir & "\" & txtFile.Text, vbNormal) = vbNullString Then
-            Call Beep
-            MsgBox "Save Game file not found!" & vbCrLf & vbCrLf & dPath & "\" & txtFile.Text, vbExclamation, Me.Caption
-            Call cmdBrowse_Click
-            Exit Sub
-        Else
-            dPath = CurDir
-            Call SaveWizEditSetting("Environment", "UWAPath" & Scenario, dPath)
-        End If
-    End If
-    
-    Select Case Scenario
-        Case "07"
-            'Call DumpWiz07(dPath & "\" & txtFile.Text)
-            Load frmWiz07
-            frmWiz07.DataFile = dPath & "\" & txtFile.Text
-            frmWiz07.Caption = picWiz07.ToolTipText
-            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07").ExtractIcon
-            frmWiz07.picWiz07.Visible = True
-            frmWiz07.picWiz07Gold.Visible = False
-            frmWiz07.Show vbModal
-        Case "07G"
-            'Call DumpWiz07(dPath & "\" & txtFile.Text)
-            Load frmWiz07
-            frmWiz07.DataFile = dPath & "\" & txtFile.Text
-            frmWiz07.Caption = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
-            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07g").ExtractIcon
-            frmWiz07.picWiz07.Visible = False
-            frmWiz07.picWiz07Gold.Visible = True
-            frmWiz07.Show vbModal
-        Case Else
-            MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
-    End Select
-    
-    cmdCancel_Click
-    Exit Sub
 End Sub
 Private Sub Form_Load()
     cmdOK.Visible = False

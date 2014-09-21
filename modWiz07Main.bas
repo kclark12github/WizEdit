@@ -264,7 +264,7 @@ Type Character
     MKS As Long                         'Monster Kills
     GP As Long                          'Gold Pieces
     HP As Points                        'Hit Points
-    STA As Points                       'Stamina
+    STM As Points                       'Stamina
     CC As Points                        'Carrying Capacity
     Level As Integer                    'Level (Duh)
     Lives As Integer                    'Number of Lives Used
@@ -346,7 +346,7 @@ Type Character
     Race As Byte
     Gender As Byte
     Profession As Byte
-    Alive As Byte                       '??? Under Investigation...
+    Age As Byte                         '??? Under Investigation...
     ConditionCode As Byte               '??? Under Investigation...
     Unknown5(1 To 12) As Byte           '???
 End Type
@@ -478,7 +478,7 @@ Public Sub DumpWiz07(ByVal strFile As String)
         Debug.Print "Monster Kills:     " & vbTab & .MKS & vbTab & "0x" & Hex(.MKS)
         Debug.Print "Gold Pieces:       " & vbTab & .GP & vbTab & "0x" & Hex(.GP)
         Debug.Print "Hit Points:        " & vbTab & strPoints(.HP)
-        Debug.Print "Stamina:           " & vbTab & strPoints(.STA)
+        Debug.Print "Stamina:           " & vbTab & strPoints(.STM)
         Debug.Print "Carrying Capacity: " & vbTab & strPoints(.CC)
         Debug.Print "Level:             " & vbTab & .Level
         Debug.Print "Lives:             " & vbTab & .Lives
@@ -581,7 +581,7 @@ Public Sub DumpWiz07(ByVal strFile As String)
         Debug.Print "Race:              " & vbTab & strRace(.Race)
         Debug.Print "Gender:            " & vbTab & strGender(.Gender)
         Debug.Print "Profession:        " & vbTab & strProfession(.Profession)
-        Debug.Print "?Alive?:           " & vbTab & .Alive
+        Debug.Print "Age?:              " & vbTab & .Age
         Debug.Print "ConditionCode:     " & vbTab & strCondition(.ConditionCode)
         
         Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"

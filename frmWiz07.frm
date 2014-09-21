@@ -14,6 +14,27 @@ Begin VB.Form frmWiz07
    ScaleWidth      =   11256
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
+   Begin VB.CommandButton cmdOK 
+      Appearance      =   0  'Flat
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Style           =   1  'Graphical
+      TabIndex        =   90
+      Top             =   2460
+      Width           =   1212
+   End
+   Begin VB.CommandButton cmdCancel 
+      Appearance      =   0  'Flat
+      Cancel          =   -1  'True
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Style           =   1  'Graphical
+      TabIndex        =   89
+      Top             =   2940
+      Width           =   1212
+   End
    Begin VB.PictureBox picWiz07 
       AutoSize        =   -1  'True
       BackColor       =   &H00000000&
@@ -22,7 +43,7 @@ Begin VB.Form frmWiz07
       Picture         =   "frmWiz07.frx":1CCA
       ScaleHeight     =   2016
       ScaleWidth      =   1344
-      TabIndex        =   58
+      TabIndex        =   57
       Top             =   120
       Width           =   1392
    End
@@ -33,7 +54,7 @@ Begin VB.Form frmWiz07
       Picture         =   "frmWiz07.frx":2715
       ScaleHeight     =   324
       ScaleWidth      =   1104
-      TabIndex        =   36
+      TabIndex        =   35
       Top             =   660
       Width           =   1152
       Begin VB.Label lblStats 
@@ -52,7 +73,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   0
-         TabIndex        =   37
+         TabIndex        =   36
          Top             =   0
          Width           =   1032
       End
@@ -61,13 +82,346 @@ Begin VB.Form frmWiz07
       Appearance      =   0  'Flat
       BackColor       =   &H00000000&
       ForeColor       =   &H80000008&
-      Height          =   4992
+      Height          =   5112
       Left            =   120
-      ScaleHeight     =   4968
+      ScaleHeight     =   5088
       ScaleWidth      =   9108
       TabIndex        =   3
       Top             =   1020
       Width           =   9132
+      Begin VB.PictureBox picWizardryLogo 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00000000&
+         Height          =   420
+         Left            =   4152
+         ScaleHeight     =   372
+         ScaleWidth      =   1920
+         TabIndex        =   88
+         Top             =   3900
+         Width           =   1968
+      End
+      Begin VB.TextBox txtDivineSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   86
+         Text            =   "frmWiz07.frx":1BF37
+         ToolTipText     =   "Divine Spell Points (automatically ""topped-off"")..."
+         Top             =   3780
+         Width           =   996
+      End
+      Begin VB.TextBox txtMentalSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   84
+         Text            =   "frmWiz07.frx":1BF3A
+         ToolTipText     =   "Mental Spell Points (automatically ""topped-off"")..."
+         Top             =   3360
+         Width           =   996
+      End
+      Begin VB.TextBox txtEarthSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   82
+         Text            =   "frmWiz07.frx":1BF3D
+         ToolTipText     =   "Earth Spell Points (automatically ""topped-off"")..."
+         Top             =   2940
+         Width           =   996
+      End
+      Begin VB.TextBox txtAirSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   80
+         Text            =   "frmWiz07.frx":1BF40
+         ToolTipText     =   "Air Spell Points (automatically ""topped-off"")..."
+         Top             =   2520
+         Width           =   996
+      End
+      Begin VB.TextBox txtWaterSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   78
+         Text            =   "frmWiz07.frx":1BF43
+         ToolTipText     =   "Water Spell Points (automatically ""topped-off"")..."
+         Top             =   2100
+         Width           =   996
+      End
+      Begin VB.TextBox txtFireSP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7620
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   76
+         Text            =   "frmWiz07.frx":1BF46
+         ToolTipText     =   "Fire Spell Points (automatically ""topped-off"")..."
+         Top             =   1680
+         Width           =   996
+      End
+      Begin VB.TextBox txtAge 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4680
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   74
+         Text            =   "frmWiz07.frx":1BF49
+         ToolTipText     =   "Age...? (Still not sure of this one)..."
+         Top             =   840
+         Width           =   996
+      End
+      Begin VB.TextBox txtLives 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4680
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   72
+         Text            =   "frmWiz07.frx":1BF4C
+         ToolTipText     =   "Lives..."
+         Top             =   420
+         Width           =   996
+      End
+      Begin VB.TextBox txtLVL 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4680
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   70
+         Text            =   "frmWiz07.frx":1BF4F
+         ToolTipText     =   "Level..."
+         Top             =   0
+         Width           =   996
+      End
+      Begin VB.TextBox txtGP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7380
+         MaxLength       =   13
+         MultiLine       =   -1  'True
+         TabIndex        =   68
+         Text            =   "frmWiz07.frx":1BF52
+         ToolTipText     =   "Gold Pieces..."
+         Top             =   840
+         Width           =   1476
+      End
+      Begin VB.TextBox txtMKS 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7380
+         MaxLength       =   13
+         MultiLine       =   -1  'True
+         TabIndex        =   66
+         Text            =   "frmWiz07.frx":1BF55
+         ToolTipText     =   "Monster Kills..."
+         Top             =   420
+         Width           =   1476
+      End
+      Begin VB.TextBox txtEXP 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   7380
+         MaxLength       =   13
+         MultiLine       =   -1  'True
+         TabIndex        =   64
+         Text            =   "frmWiz07.frx":1BF58
+         ToolTipText     =   "Experience Points..."
+         Top             =   0
+         Width           =   1476
+      End
+      Begin VB.TextBox txtCC 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4320
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   62
+         Text            =   "frmWiz07.frx":1BF5B
+         ToolTipText     =   "Carrying Capacity (automatically ""topped-off"")..."
+         Top             =   2520
+         Width           =   996
+      End
+      Begin VB.TextBox txtSTM 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4320
+         MaxLength       =   6
+         MultiLine       =   -1  'True
+         TabIndex        =   60
+         Text            =   "frmWiz07.frx":1BF5E
+         ToolTipText     =   "Stamina (automatically ""topped-off"")..."
+         Top             =   2100
+         Width           =   996
+      End
       Begin VB.TextBox txtHP 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00808080&
@@ -82,13 +436,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   4740
+         Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   59
-         Text            =   "frmWiz07.frx":1BF37
-         ToolTipText     =   "Hit Points..."
-         Top             =   1560
+         TabIndex        =   58
+         Text            =   "frmWiz07.frx":1BF61
+         ToolTipText     =   "Hit Points (automatically ""topped-off"")..."
+         Top             =   1680
          Width           =   996
       End
       Begin VB.ComboBox cboCondition 
@@ -104,12 +458,12 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         Left            =   4020
+         Left            =   4320
          Style           =   2  'Dropdown List
-         TabIndex        =   57
+         TabIndex        =   56
          ToolTipText     =   "Character's Condition (i.e. OK, Afraid, Poisoned, etc.)..."
-         Top             =   3960
-         Width           =   1692
+         Top             =   2940
+         Width           =   1632
       End
       Begin VB.ComboBox cboProfession 
          BackColor       =   &H00808080&
@@ -126,7 +480,7 @@ Begin VB.Form frmWiz07
          Height          =   336
          Left            =   1440
          Style           =   2  'Dropdown List
-         TabIndex        =   56
+         TabIndex        =   55
          ToolTipText     =   "Character's Profession (i.e. Fighter, Mage, etc.)..."
          Top             =   780
          Width           =   1692
@@ -144,28 +498,28 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":1BF3A
+         ItemData        =   "frmWiz07.frx":1BF64
          Left            =   1440
-         List            =   "frmWiz07.frx":1BF41
+         List            =   "frmWiz07.frx":1BF6B
          Style           =   2  'Dropdown List
-         TabIndex        =   55
+         TabIndex        =   54
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
          Top             =   60
          Width           =   1692
       End
       Begin MSComCtl2.UpDown udPIE 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   49
+         Left            =   2400
+         TabIndex        =   48
          TabStop         =   0   'False
-         Top             =   2400
+         Top             =   2520
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196658
+         BuddyDispid     =   196617
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -190,13 +544,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   46
-         Text            =   "frmWiz07.frx":1BF4C
+         TabIndex        =   45
+         Text            =   "frmWiz07.frx":1BF76
          ToolTipText     =   "Piety..."
-         Top             =   2400
+         Top             =   2520
          Width           =   396
       End
       Begin VB.TextBox txtKAR 
@@ -213,13 +567,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   45
-         Text            =   "frmWiz07.frx":1BF4F
+         TabIndex        =   44
+         Text            =   "frmWiz07.frx":1BF79
          ToolTipText     =   "Karma..."
-         Top             =   4500
+         Top             =   4620
          Width           =   396
       End
       Begin VB.TextBox txtPER 
@@ -236,13 +590,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   44
-         Text            =   "frmWiz07.frx":1BF52
+         TabIndex        =   43
+         Text            =   "frmWiz07.frx":1BF7C
          ToolTipText     =   "Personality..."
-         Top             =   4080
+         Top             =   4200
          Width           =   396
       End
       Begin VB.TextBox txtSPD 
@@ -259,13 +613,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   43
-         Text            =   "frmWiz07.frx":1BF55
+         TabIndex        =   42
+         Text            =   "frmWiz07.frx":1BF7F
          ToolTipText     =   "Speed..."
-         Top             =   3660
+         Top             =   3780
          Width           =   396
       End
       Begin VB.TextBox txtDEX 
@@ -282,13 +636,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   42
-         Text            =   "frmWiz07.frx":1BF58
+         TabIndex        =   41
+         Text            =   "frmWiz07.frx":1BF82
          ToolTipText     =   "Dexterity..."
-         Top             =   3240
+         Top             =   3360
          Width           =   396
       End
       Begin VB.TextBox txtVIT 
@@ -305,13 +659,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   41
-         Text            =   "frmWiz07.frx":1BF5B
+         TabIndex        =   40
+         Text            =   "frmWiz07.frx":1BF85
          ToolTipText     =   "Vitality..."
-         Top             =   2820
+         Top             =   2940
          Width           =   396
       End
       Begin VB.TextBox txtINT 
@@ -328,13 +682,13 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   40
-         Text            =   "frmWiz07.frx":1BF5E
+         TabIndex        =   39
+         Text            =   "frmWiz07.frx":1BF88
          ToolTipText     =   "Intelligence..."
-         Top             =   1980
+         Top             =   2100
          Width           =   396
       End
       Begin VB.ComboBox cboGender 
@@ -350,33 +704,14 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":1BF61
+         ItemData        =   "frmWiz07.frx":1BF8B
          Left            =   1440
-         List            =   "frmWiz07.frx":1BF6B
+         List            =   "frmWiz07.frx":1BF95
          Style           =   2  'Dropdown List
-         TabIndex        =   35
+         TabIndex        =   34
          ToolTipText     =   "Character's Gender (Male/Female)..."
          Top             =   420
          Width           =   1692
-      End
-      Begin VB.TextBox Text1 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Left            =   6300
-         TabIndex        =   32
-         ToolTipText     =   "Character Name"
-         Top             =   4380
-         Width           =   4152
       End
       Begin VB.TextBox txtSTR 
          Alignment       =   1  'Right Justify
@@ -392,28 +727,28 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   360
-         Left            =   1920
+         Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   31
-         Text            =   "frmWiz07.frx":1BF7D
+         Text            =   "frmWiz07.frx":1BFA7
          ToolTipText     =   "Strength..."
-         Top             =   1560
+         Top             =   1680
          Width           =   396
       End
       Begin MSComCtl2.UpDown udSTR 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   47
+         Left            =   2400
+         TabIndex        =   46
          TabStop         =   0   'False
-         Top             =   1560
+         Top             =   1680
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196642
+         BuddyDispid     =   196626
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -426,17 +761,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udINT 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   48
+         Left            =   2400
+         TabIndex        =   47
          TabStop         =   0   'False
-         Top             =   1980
+         Top             =   2100
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196652
+         BuddyDispid     =   196623
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -449,17 +784,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udVIT 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   50
+         Left            =   2400
+         TabIndex        =   49
          TabStop         =   0   'False
-         Top             =   2820
+         Top             =   2940
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196653
+         BuddyDispid     =   196622
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -470,17 +805,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udDEX 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   51
+         Left            =   2400
+         TabIndex        =   50
          TabStop         =   0   'False
-         Top             =   3240
+         Top             =   3360
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDEX"
-         BuddyDispid     =   196654
+         BuddyDispid     =   196621
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -491,17 +826,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udSPD 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   52
+         Left            =   2400
+         TabIndex        =   51
          TabStop         =   0   'False
-         Top             =   3660
+         Top             =   3780
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSPD"
-         BuddyDispid     =   196655
+         BuddyDispid     =   196620
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -512,17 +847,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udPER 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   53
+         Left            =   2400
+         TabIndex        =   52
          TabStop         =   0   'False
-         Top             =   4080
+         Top             =   4200
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPER"
-         BuddyDispid     =   196656
+         BuddyDispid     =   196619
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -533,17 +868,17 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udKAR 
          Height          =   360
-         Left            =   2280
-         TabIndex        =   54
+         Left            =   2400
+         TabIndex        =   53
          TabStop         =   0   'False
-         Top             =   4500
+         Top             =   4620
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtKAR"
-         BuddyDispid     =   196657
+         BuddyDispid     =   196618
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -554,17 +889,337 @@ Begin VB.Form frmWiz07
       End
       Begin MSComCtl2.UpDown udHP 
          Height          =   360
-         Left            =   5700
-         TabIndex        =   60
+         Left            =   5280
+         TabIndex        =   59
          TabStop         =   0   'False
-         Top             =   1560
+         Top             =   1680
          Width           =   240
          _ExtentX        =   423
          _ExtentY        =   635
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196670
+         BuddyDispid     =   196613
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown upSTM 
+         Height          =   360
+         Left            =   5280
+         TabIndex        =   61
+         TabStop         =   0   'False
+         Top             =   2100
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtSTM"
+         BuddyDispid     =   196672
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udCC 
+         Height          =   360
+         Left            =   5280
+         TabIndex        =   63
+         TabStop         =   0   'False
+         Top             =   2520
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtCC"
+         BuddyDispid     =   196674
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown upEXP 
+         Height          =   360
+         Left            =   8820
+         TabIndex        =   65
+         TabStop         =   0   'False
+         Top             =   0
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtEXP"
+         BuddyDispid     =   196625
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown upMKS 
+         Height          =   360
+         Left            =   8820
+         TabIndex        =   67
+         TabStop         =   0   'False
+         Top             =   420
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtMKS"
+         BuddyDispid     =   196677
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown upGP 
+         Height          =   360
+         Left            =   8820
+         TabIndex        =   69
+         TabStop         =   0   'False
+         Top             =   840
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtGP"
+         BuddyDispid     =   196679
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown upLVL 
+         Height          =   360
+         Left            =   5640
+         TabIndex        =   71
+         TabStop         =   0   'False
+         Top             =   0
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtLVL"
+         BuddyDispid     =   196681
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udLives 
+         Height          =   360
+         Left            =   5640
+         TabIndex        =   73
+         TabStop         =   0   'False
+         Top             =   420
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtLives"
+         BuddyDispid     =   196683
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udAge 
+         Height          =   360
+         Left            =   5640
+         TabIndex        =   75
+         TabStop         =   0   'False
+         Top             =   840
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtAge"
+         BuddyDispid     =   196685
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udFireSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   77
+         TabStop         =   0   'False
+         Top             =   1680
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtFireSP"
+         BuddyDispid     =   196687
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udWaterSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   79
+         TabStop         =   0   'False
+         Top             =   2100
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtWaterSP"
+         BuddyDispid     =   196689
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udAirSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   81
+         TabStop         =   0   'False
+         Top             =   2520
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtAirSP"
+         BuddyDispid     =   196691
+         OrigLeft        =   8460
+         OrigTop         =   2940
+         OrigRight       =   8700
+         OrigBottom      =   3552
+         Max             =   65535
+         Min             =   1
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udEarthSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   83
+         TabStop         =   0   'False
+         Top             =   2940
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtEarthSP"
+         BuddyDispid     =   196693
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udMentalSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   85
+         TabStop         =   0   'False
+         Top             =   3360
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtMentalSP"
+         BuddyDispid     =   196695
+         OrigLeft        =   2280
+         OrigTop         =   360
+         OrigRight       =   2520
+         OrigBottom      =   972
+         Max             =   65535
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udDivineSP 
+         Height          =   360
+         Left            =   8580
+         TabIndex        =   87
+         TabStop         =   0   'False
+         Top             =   3780
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtDivineSP"
+         BuddyDispid     =   196697
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -590,9 +1245,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   3000
-         TabIndex        =   39
-         Top             =   1260
+         Left            =   3012
+         TabIndex        =   38
+         Top             =   1380
          Width           =   2148
       End
       Begin VB.Label lbl1Stats 
@@ -610,9 +1265,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   38
-         Top             =   1260
+         Left            =   180
+         TabIndex        =   37
+         Top             =   1380
          Width           =   1608
       End
       Begin VB.Label lblGender 
@@ -631,7 +1286,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   60
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   444
          Width           =   780
       End
@@ -650,9 +1305,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   1104
          TabIndex        =   30
-         Top             =   4536
+         Top             =   4656
          Width           =   756
       End
       Begin VB.Label lblPER 
@@ -670,9 +1325,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   576
          TabIndex        =   29
-         Top             =   4116
+         Top             =   4236
          Width           =   1284
       End
       Begin VB.Label lblSPD 
@@ -690,9 +1345,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   1212
          TabIndex        =   28
-         Top             =   3696
+         Top             =   3816
          Width           =   648
       End
       Begin VB.Label lblDEX 
@@ -710,9 +1365,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   804
          TabIndex        =   27
-         Top             =   3276
+         Top             =   3396
          Width           =   1056
       End
       Begin VB.Label lblVIT 
@@ -730,9 +1385,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   960
          TabIndex        =   26
-         Top             =   2856
+         Top             =   2976
          Width           =   900
       End
       Begin VB.Label lblPIE 
@@ -750,9 +1405,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   1224
          TabIndex        =   25
-         Top             =   2436
+         Top             =   2556
          Width           =   636
       End
       Begin VB.Label lblINT 
@@ -770,9 +1425,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   600
          TabIndex        =   24
-         Top             =   2016
+         Top             =   2136
          Width           =   1260
       End
       Begin VB.Label lblSTR 
@@ -790,9 +1445,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   480
+         Left            =   936
          TabIndex        =   23
-         Top             =   1596
+         Top             =   1716
          Width           =   924
       End
       Begin VB.Label lblSPDivine 
@@ -810,9 +1465,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   7200
+         Left            =   6684
          TabIndex        =   22
-         Top             =   3780
+         Top             =   3816
          Width           =   744
       End
       Begin VB.Label lblSPMental 
@@ -830,9 +1485,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   7140
+         Left            =   6612
          TabIndex        =   21
-         Top             =   3480
+         Top             =   3396
          Width           =   816
       End
       Begin VB.Label lblSPAir 
@@ -850,9 +1505,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   5640
+         Left            =   7020
          TabIndex        =   20
-         Top             =   3720
+         Top             =   2556
          Width           =   408
       End
       Begin VB.Label lblSPEarth 
@@ -870,9 +1525,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   7140
+         Left            =   6792
          TabIndex        =   19
-         Top             =   3180
+         Top             =   2976
          Width           =   636
       End
       Begin VB.Label lblSPWater 
@@ -890,9 +1545,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   5640
+         Left            =   6720
          TabIndex        =   18
-         Top             =   3480
+         Top             =   2136
          Width           =   708
       End
       Begin VB.Label lblSPFire 
@@ -910,9 +1565,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   5640
+         Left            =   6912
          TabIndex        =   17
-         Top             =   3180
+         Top             =   1716
          Width           =   516
       End
       Begin VB.Label lblSP 
@@ -930,9 +1585,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   5400
+         Left            =   6480
          TabIndex        =   16
-         Top             =   2820
+         Top             =   1380
          Width           =   1332
       End
       Begin VB.Label lblCC 
@@ -950,9 +1605,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   3276
          TabIndex        =   15
-         Top             =   3660
+         Top             =   2556
          Width           =   936
       End
       Begin VB.Label lblSTM 
@@ -970,9 +1625,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   3312
          TabIndex        =   14
-         Top             =   2016
+         Top             =   2136
          Width           =   900
       End
       Begin VB.Label lblHP 
@@ -990,9 +1645,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   3300
+         Left            =   3048
          TabIndex        =   13
-         Top             =   1596
+         Top             =   1716
          Width           =   1164
       End
       Begin VB.Label lblGP 
@@ -1010,9 +1665,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   6744
          TabIndex        =   12
-         Top             =   3060
+         Top             =   876
          Width           =   528
       End
       Begin VB.Label lblMKS 
@@ -1030,9 +1685,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   6696
          TabIndex        =   11
-         Top             =   2760
+         Top             =   456
          Width           =   576
       End
       Begin VB.Label lblEXP 
@@ -1050,15 +1705,15 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   6072
          TabIndex        =   10
-         Top             =   2436
+         Top             =   36
          Width           =   1200
       End
-      Begin VB.Label lblAlive 
+      Begin VB.Label lblAge 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "?Alive?:"
+         Caption         =   "Age?:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -1070,10 +1725,10 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   4020
          TabIndex        =   9
-         Top             =   4260
-         Width           =   804
+         Top             =   876
+         Width           =   552
       End
       Begin VB.Label lblLife 
          AutoSize        =   -1  'True
@@ -1090,9 +1745,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   4080
          TabIndex        =   8
-         Top             =   3360
+         Top             =   456
          Width           =   480
       End
       Begin VB.Label lblLevel 
@@ -1110,9 +1765,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   3960
          TabIndex        =   7
-         Top             =   2460
+         Top             =   36
          Width           =   624
       End
       Begin VB.Label lblCondition 
@@ -1130,9 +1785,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   2880
+         Left            =   3180
          TabIndex        =   6
-         Top             =   3960
+         Top             =   2940
          Width           =   1032
       End
       Begin VB.Label lblProfession 
@@ -1200,7 +1855,7 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2076
       Left            =   9420
-      Picture         =   "frmWiz07.frx":1BF80
+      Picture         =   "frmWiz07.frx":1BFAA
       ScaleHeight     =   2028
       ScaleWidth      =   1668
       TabIndex        =   0
@@ -1220,12 +1875,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1CE53
+            Picture         =   "frmWiz07.frx":1CE7D
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1EB2F
+            Picture         =   "frmWiz07.frx":1EB59
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -1244,12 +1899,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1EE4B
+            Picture         =   "frmWiz07.frx":1EE75
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":20B27
+            Picture         =   "frmWiz07.frx":20B51
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -1259,7 +1914,7 @@ Begin VB.Form frmWiz07
       Align           =   2  'Align Bottom
       Height          =   252
       Left            =   0
-      TabIndex        =   33
+      TabIndex        =   32
       Top             =   6192
       Width           =   11256
       _ExtentX        =   19854
@@ -1309,7 +1964,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:52 AM"
+            TextSave        =   "2:16 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -1322,6 +1977,17 @@ Begin VB.Form frmWiz07
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin VB.CommandButton cmdExit 
+      Appearance      =   0  'Flat
+      Enabled         =   0   'False
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Style           =   1  'Graphical
+      TabIndex        =   91
+      Top             =   2940
+      Width           =   1212
    End
    Begin VB.Label lblCharacter 
       AutoSize        =   -1  'True
@@ -1352,10 +2018,6 @@ Attribute VB_Exposed = False
 Option Explicit
 Public DataFile As String
 Private Characters(1 To 6) As Character
-
-'char *RaceMap[] = {"Human","Elf","Dwarf","Gnome","Hobbit","Faerie","Lizardman","Dracon","Rawulf","Felpurr","Mook"};
-'char *ProfessionMap[] = {"Fighter","Mage","Priest","Thief","Ranger","Alchemist","Bard","Psionic","Valkyrie","Bishop","Lord","Samurai","Monk","Ninja"};
-'char *ConditionMap[] = {"OK","Asleep","Blinded","Dead","Poisoned","Stoned","Insane","Afraid","Nauseated","Paralyzed","Irritated","Diseased"};
 'char *SpellMap[] = {
 '     /* Fire */     "EnergyBlast","BlindingFlash","PsionicFire","Fireball",
 '                    "FireShield","DazzlingLights","FireBomb","Lightning",
@@ -1383,1124 +2045,19 @@ Private Characters(1 To 6) As Character
 '                    "AstralGate","ZapUndead","Recharge","WordOfDeath",
 '                    "Resurrection","DeathWish"};
 '
-'/* The WIZEDIT program */
-'
-'#include <stdio.h>
-'#include <stdlib.h>
-'#include <string.h>
-'#include <alloc.h>
-'#include <io.h>
-'#include <ctype.h>
-'#include <conio.h>
-'
-'#include <input.h>
-'#include <wizardry.h>
-'
-'#define MAX_NAME_LENGTH 7
-'#define MAX_I4 4294967295
-'#define MAX_I2 65535
-'#define MAX_I1 255
-'
-'extern int  titlecolor;
-'extern int  headercolor;
-'extern int  promptcolor;
-'extern int  errorcolor;
-'extern int  warningcolor;
-'extern int  selectcolor;
-'extern int  menucolor;
-'extern int  datecolor;
-'extern int  timecolor;
-'extern int  screencolor;
-'extern int  inputcolor;
-'extern int  displaycolor;
-'
-'long    FileSize = 0;
-'char    *Buffer = NULL,
-'        FileName[133],
-'        CharacterName[8];
-'struct ProgramInfo Program;
-'struct Character   *Party[6];
-'
-'#define WAND_XY     22,7
-'#define SWOR_XY     22,8
-'#define AXE_XY      22,9
-'#define MACE_XY     22,10
-'#define POLE_XY     22,11
-'#define THRO_XY     22,12
-'#define SLIN_XY     22,13
-'#define BOWS_XY     22,14
-'#define SHIE_XY     22,15
-'#define HAND_XY     22,16
-'#define SWIM_XY     39,7
-'#define CLIM_XY     39,8
-'#define SCOU_XY     39,9
-'#define MUSI_XY     39,10
-'#define ORAT_XY     39,11
-'#define LEGE_XY     39,12
-'#define SKUL_XY     39,13
-'#define NINJ_XY     39,14
-'#define FIREA_XY    56,7
-'#define REFL_XY     56,8
-'#define SNAK_XY     56,9
-'#define EAGL_XY     56,10
-'#define POWE_XY     56,11
-'#define MIND_XY     56,12
-'#define ARTI_XY     73,7
-'#define MYTH_XY     73,8
-'#define MAPP_XY     73,9
-'#define SCRI_XY     73,10
-'#define DIPL_XY     73,11
-'#define ALCH_XY     73,12
-'#define THEOL_XY    73,13
-'#define THEOS_XY    73,14
-'#define THAU_XY     73,15
-'#define KIRI_XY     73,16
-'
-'void EditSkills(void * CharacterBuffer)
-'{
-'   char           Temp[81];
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit Skills");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'
-'    textattr(screencolor + (BLACK << 4));
-'    highvideo();
-'
-'    gotoxy(4, 5);  cprintf("Skills");
-'    gotoxy(7, 6);  cprintf("Weaponry         Physical         Personal         Academia");
-'    lowvideo();
-'    gotoxy(10, 7); cprintf("Wand&Dagger      Swimming         Firearms         Artifacts      ");
-'    gotoxy(10, 8); cprintf("Sword            Climbing         Reflextion       Mythology      ");
-'    gotoxy(10, 9); cprintf("Axe              Scouting         SnakeSpeed       Mapping        ");
-'    gotoxy(10,10); cprintf("Mace&Flail       Music            EagleEye         Scribe         ");
-'    gotoxy(10,11); cprintf("Pole&Staff       Oratory          PowerStrike      Diplomacy      ");
-'    gotoxy(10,12); cprintf("Throwing         Legerdemain      MindControl      Alchemy        ");
-'    gotoxy(10,13); cprintf("Sling            Skulduggery                       Theology       ");
-'    gotoxy(10,14); cprintf("Bows             Ninjutsu                          Theosophy      ");
-'    gotoxy(10,15); cprintf("Shield                                             Thaumaturgy    ");
-'    gotoxy(10,16); cprintf("Hands&Feet                                         Kirijutsu      ");
-'
-'   gotoxy(WAND_XY); cprintf("%u", cp->Skills.Weaponry.Wand);
-'   gotoxy(SWOR_XY); cprintf("%u", cp->Skills.Weaponry.Sword);
-'   gotoxy(AXE_XY); cprintf("%u", cp->Skills.Weaponry.Axe);
-'   gotoxy(MACE_XY); cprintf("%u", cp->Skills.Weaponry.Mace);
-'   gotoxy(POLE_XY); cprintf("%u", cp->Skills.Weaponry.Pole);
-'   gotoxy(THRO_XY); cprintf("%u", cp->Skills.Weaponry.Throwing);
-'   gotoxy(SLIN_XY); cprintf("%u", cp->Skills.Weaponry.Sling);
-'   gotoxy(BOWS_XY); cprintf("%u", cp->Skills.Weaponry.Bow);
-'   gotoxy(SHIE_XY); cprintf("%u", cp->Skills.Weaponry.Shield);
-'   gotoxy(HAND_XY); cprintf("%u", cp->Skills.Weaponry.HandToHand);
-'
-'   gotoxy(SWIM_XY); cprintf("%u", cp->Skills.Physical.Swimming);
-'   gotoxy(CLIM_XY); cprintf("%u", cp->Skills.Physical.Climbing);
-'   gotoxy(SCOU_XY); cprintf("%u", cp->Skills.Physical.Scouting);
-'   gotoxy(MUSI_XY); cprintf("%u", cp->Skills.Physical.Music);
-'   gotoxy(ORAT_XY); cprintf("%u", cp->Skills.Physical.Oratory);
-'   gotoxy(LEGE_XY); cprintf("%u", cp->Skills.Physical.Legerdemain);
-'   gotoxy(SKUL_XY); cprintf("%u", cp->Skills.Physical.Skulduggery);
-'   gotoxy(NINJ_XY); cprintf("%u", cp->Skills.Physical.Ninjutsu);
-'
-'   gotoxy(FIREA_XY); cprintf("%u", cp->Skills.Personal.Firearms);
-'   gotoxy(REFL_XY); cprintf("%u", cp->Skills.Personal.Reflextion);
-'   gotoxy(SNAK_XY); cprintf("%u", cp->Skills.Personal.SnakeSpeed);
-'   gotoxy(EAGL_XY); cprintf("%u", cp->Skills.Personal.EagleEye);
-'   gotoxy(POWE_XY); cprintf("%u", cp->Skills.Personal.PowerStrike);
-'   gotoxy(MIND_XY); cprintf("%u", cp->Skills.Personal.MindControl);
-'
-'   gotoxy(ARTI_XY); cprintf("%u", cp->Skills.Academia.Artifacts);
-'   gotoxy(MYTH_XY); cprintf("%u", cp->Skills.Academia.Mythology);
-'   gotoxy(MAPP_XY); cprintf("%u", cp->Skills.Academia.Mapping);
-'   gotoxy(SCRI_XY); cprintf("%u", cp->Skills.Academia.Scribe);
-'   gotoxy(DIPL_XY); cprintf("%u", cp->Skills.Academia.Diplomacy);
-'   gotoxy(ALCH_XY); cprintf("%u", cp->Skills.Academia.Alchemy);
-'   gotoxy(THEOL_XY); cprintf("%u", cp->Skills.Academia.Theology);
-'   gotoxy(THEOS_XY); cprintf("%u", cp->Skills.Academia.Theosophy);
-'   gotoxy(THAU_XY); cprintf("%u", cp->Skills.Academia.Thaumaturgy);
-'   gotoxy(KIRI_XY); cprintf("%u", cp->Skills.Academia.Kirijutsu);
-'
-'   cp->Skills.Weaponry.Wand = GetNewI1(WAND_XY, 3, cp->Skills.Weaponry.Wand, 100);
-'   cp->Skills.Weaponry.Sword = GetNewI1(SWOR_XY, 3, cp->Skills.Weaponry.Sword, 100);
-'   cp->Skills.Weaponry.Axe = GetNewI1(AXE_XY, 3, cp->Skills.Weaponry.Axe, 100);
-'   cp->Skills.Weaponry.Mace = GetNewI1(MACE_XY, 3, cp->Skills.Weaponry.Mace, 100);
-'   cp->Skills.Weaponry.Pole = GetNewI1(POLE_XY, 3, cp->Skills.Weaponry.Pole, 100);
-'   cp->Skills.Weaponry.Throwing = GetNewI1(THRO_XY, 3, cp->Skills.Weaponry.Throwing, 100);
-'   cp->Skills.Weaponry.Sling = GetNewI1(SLIN_XY, 3, cp->Skills.Weaponry.Sling, 100);
-'   cp->Skills.Weaponry.Bow = GetNewI1(BOWS_XY, 3, cp->Skills.Weaponry.Bow, 100);
-'   cp->Skills.Weaponry.Shield = GetNewI1(SHIE_XY, 3, cp->Skills.Weaponry.Shield, 100);
-'   cp->Skills.Weaponry.HandToHand = GetNewI1(HAND_XY, 3, cp->Skills.Weaponry.HandToHand, 100);
-'
-'   cp->Skills.Physical.Swimming = GetNewI1(SWIM_XY, 3, cp->Skills.Physical.Swimming, 100);
-'   cp->Skills.Physical.Climbing = GetNewI1(CLIM_XY, 3, cp->Skills.Physical.Climbing, 100);
-'   cp->Skills.Physical.Scouting = GetNewI1(SCOU_XY, 3, cp->Skills.Physical.Scouting, 100);
-'   cp->Skills.Physical.Music = GetNewI1(MUSI_XY, 3, cp->Skills.Physical.Music, 100);
-'   cp->Skills.Physical.Oratory = GetNewI1(ORAT_XY, 3, cp->Skills.Physical.Oratory, 100);
-'   cp->Skills.Physical.Legerdemain = GetNewI1(LEGE_XY, 3, cp->Skills.Physical.Legerdemain, 100);
-'   cp->Skills.Physical.Skulduggery = GetNewI1(SKUL_XY, 3, cp->Skills.Physical.Skulduggery, 100);
-'   cp->Skills.Physical.Ninjutsu = GetNewI1(NINJ_XY, 3, cp->Skills.Physical.Ninjutsu, 100);
-'
-'   cp->Skills.Personal.Firearms = GetNewI1(FIREA_XY, 3, cp->Skills.Personal.Firearms, 100);
-'   cp->Skills.Personal.Reflextion = GetNewI1(REFL_XY, 3, cp->Skills.Personal.Reflextion, 100);
-'   cp->Skills.Personal.SnakeSpeed = GetNewI1(SNAK_XY, 3, cp->Skills.Personal.SnakeSpeed, 100);
-'   cp->Skills.Personal.EagleEye = GetNewI1(EAGL_XY,3 , cp->Skills.Personal.EagleEye, 100);
-'   cp->Skills.Personal.PowerStrike = GetNewI1(POWE_XY, 3, cp->Skills.Personal.PowerStrike, 100);
-'   cp->Skills.Personal.MindControl = GetNewI1(MIND_XY, 3, cp->Skills.Personal.MindControl, 100);
-'
-'   cp->Skills.Academia.Artifacts = GetNewI1(ARTI_XY, 3, cp->Skills.Academia.Artifacts, 100);
-'   cp->Skills.Academia.Mythology = GetNewI1(MYTH_XY, 3, cp->Skills.Academia.Mythology, 100);
-'   cp->Skills.Academia.Mapping = GetNewI1(MAPP_XY, 3, cp->Skills.Academia.Mapping, 100);
-'   cp->Skills.Academia.Scribe = GetNewI1(SCRI_XY, 3, cp->Skills.Academia.Scribe, 100);
-'   cp->Skills.Academia.Diplomacy = GetNewI1(DIPL_XY, 3, cp->Skills.Academia.Diplomacy, 100);
-'   cp->Skills.Academia.Alchemy = GetNewI1(ALCH_XY, 3, cp->Skills.Academia.Alchemy, 100);
-'   cp->Skills.Academia.Theology = GetNewI1(THEOL_XY, 3, cp->Skills.Academia.Theology, 100);
-'   cp->Skills.Academia.Theosophy = GetNewI1(THEOS_XY, 3, cp->Skills.Academia.Theosophy, 100);
-'   cp->Skills.Academia.Thaumaturgy = GetNewI1(THAU_XY, 3, cp->Skills.Academia.Thaumaturgy, 100);
-'   cp->Skills.Academia.Kirijutsu = GetNewI1(KIRI_XY, 3, cp->Skills.Academia.Kirijutsu, 100);
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'#define ITEM_START_ROW 7
-'#define ITEMCODE_X     1
-'#define ITEMNAME_X     7
-'#define ITEMPIC_X      25
-'#define ITEMWEIGHT_X   33
-'#define ITEMCOUNT_X    40
-'#define ITEMSTATUS_X   46
-'#define ITEMSTATUSx_X  52
-'#define ITEMAC_X       58
-'#define ITEMUNKNOWN_X  61
-'#define ITEMUNKNOWNx_X 69
-'
-'void EditItems(void * CharacterBuffer)
-'{
-'   int            i = 0;
-'   char           Temp[81];
-'   struct Item *ip = NULL;
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit Items");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'
-'    textattr(screencolor + (BLACK << 4));
-'    highvideo();
-'
-'    gotoxy(1, 5);  cprintf("Items");
-'    lowvideo();
-'
-'    gotoxy(1, 6);  cprintf("Code  Name             Picture  Weight Count Status      AC Unknown");
-'   textattr(displaycolor + (BLACK << 4));
-'    lowvideo();
-'   for (i = 0; i < 10; i++)
-'   {
-'      ip = (struct Item *)&cp->ItemList[i];
-'      gotoxy(ITEMCODE_X, ITEM_START_ROW+i);      cprintf("%d", ip->ItemCode);
-'
-'      memset(Temp, NULL, 81);
-'      strncpy(Temp, MapItemCode(ip->ItemCode), 17);
-'      gotoxy(ITEMNAME_X, ITEM_START_ROW+i);      cprintf("%s", Temp);
-'
-'      gotoxy(ITEMPIC_X, ITEM_START_ROW+i);       cprintf("%u", ip->PictureCode);
-'      gotoxy(ITEMWEIGHT_X, ITEM_START_ROW+i);    cprintf("%u", ip->Weight);
-'      gotoxy(ITEMCOUNT_X, ITEM_START_ROW+i);     cprintf("%u", ip->Count);
-'      gotoxy(ITEMSTATUS_X, ITEM_START_ROW+i);    cprintf("%u", ip->Status);
-'      gotoxy(ITEMSTATUSx_X, ITEM_START_ROW+i);   cprintf("(x%02X)", ip->Status);
-'      gotoxy(ITEMAC_X, ITEM_START_ROW+i);        cprintf("%u", ip->AC);
-'      gotoxy(ITEMUNKNOWN_X, ITEM_START_ROW+i);   cprintf("%u", ip->Unknown);
-'      gotoxy(ITEMUNKNOWNx_X, ITEM_START_ROW+i);  cprintf("(x%04X)", ip->Unknown);
-'   }
-'   textattr(warningcolor + (BLACK << 4));
-'    lowvideo();
-'   gotoxy(1, 19); cprintf("Note: Care should be taken in changing these values.");
-'   gotoxy(1, 20); cprintf("      This layout is not yet fully understood.");
-'   textattr(displaycolor + (BLACK << 4));
-'
-'   for (i = 0; i < 10; i++)
-'   {
-'      ip = (struct Item *)&cp->ItemList[i];
-'      ip->ItemCode = GetNewI2(ITEMCODE_X, ITEM_START_ROW+i, 5, ip->ItemCode, ItemMapMax);
-'      memset(Temp, NULL, 81);
-'      strncpy(Temp, MapItemCode(ip->ItemCode), 17);
-'      gotoxy(ITEMNAME_X, ITEM_START_ROW+i);      cprintf("%s", Temp);
-'
-'      ip->PictureCode = GetNewI2(ITEMPIC_X, ITEM_START_ROW+i, 5, ip->PictureCode, MAX_I2);
-'      ip->Weight = GetNewI2(ITEMWEIGHT_X, ITEM_START_ROW+i, 5, ip->Weight, 3000);
-'      ip->Count = GetNewI1(ITEMCOUNT_X, ITEM_START_ROW+i, 4, ip->Count, MAX_I1);
-'      ip->Status = GetNewI2(ITEMSTATUS_X, ITEM_START_ROW+i, 3, ip->Status, MAX_I1);
-'      gotoxy(ITEMSTATUSx_X, ITEM_START_ROW+i);   cprintf("(x%02X)", ip->Status);
-'      ip->AC = GetNewI2(ITEMAC_X, ITEM_START_ROW+i, 2, ip->AC, MAX_I1);
-'      ip->Unknown = GetNewI2(ITEMUNKNOWN_X, ITEM_START_ROW+i, 5, ip->Unknown, MAX_I2);
-'      gotoxy(ITEMUNKNOWNx_X, ITEM_START_ROW+i);  cprintf("(x%04X)", ip->Unknown);
-'   }
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'void EditSwagBag(void * CharacterBuffer)
-'{
-'   int            i = 0;
-'   char           Temp[81];
-'   struct Item *ip = NULL;
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit SwagBag");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'
-'    textattr(screencolor + (BLACK << 4));
-'    highvideo();
-'
-'    gotoxy(1, 5);  cprintf("SwagBag");
-'    lowvideo();
-'
-'    gotoxy(1, 6);  cprintf("Code  Name             Picture  Weight Count Status      AC Unknown");
-'   textattr(displaycolor + (BLACK << 4));
-'    lowvideo();
-'   for (i = 0; i < 10; i++)
-'   {
-'      ip = (struct Item *)&cp->SwagBag[i];
-'      gotoxy(ITEMCODE_X, ITEM_START_ROW+i);      cprintf("%d", ip->ItemCode);
-'
-'      memset(Temp, NULL, 81);
-'      strncpy(Temp, MapItemCode(ip->ItemCode), 17);
-'      gotoxy(ITEMNAME_X, ITEM_START_ROW+i);      cprintf("%s", Temp);
-'
-'      gotoxy(ITEMPIC_X, ITEM_START_ROW+i);       cprintf("%u", ip->PictureCode);
-'      gotoxy(ITEMWEIGHT_X, ITEM_START_ROW+i);    cprintf("%u", ip->Weight);
-'      gotoxy(ITEMCOUNT_X, ITEM_START_ROW+i);     cprintf("%u", ip->Count);
-'      gotoxy(ITEMSTATUS_X, ITEM_START_ROW+i);    cprintf("%u", ip->Status);
-'      gotoxy(ITEMSTATUSx_X, ITEM_START_ROW+i);   cprintf("(x%02X)", ip->Status);
-'      gotoxy(ITEMAC_X, ITEM_START_ROW+i);        cprintf("%u", ip->AC);
-'      gotoxy(ITEMUNKNOWN_X, ITEM_START_ROW+i);   cprintf("%u", ip->Unknown);
-'      gotoxy(ITEMUNKNOWNx_X, ITEM_START_ROW+i);  cprintf("(x%04X)", ip->Unknown);
-'   }
-'   textattr(warningcolor + (BLACK << 4));
-'    lowvideo();
-'   gotoxy(1, 19); cprintf("Note: Care should be taken in changing these values.");
-'   gotoxy(1, 20); cprintf("      This layout is not yet fully understood.");
-'   textattr(displaycolor + (BLACK << 4));
-'
-'   for (i = 0; i < 10; i++)
-'   {
-'      ip = (struct Item *)&cp->SwagBag[i];
-'      ip->ItemCode = GetNewI2(ITEMCODE_X, ITEM_START_ROW+i, 5, ip->ItemCode, ItemMapMax);
-'      memset(Temp, NULL, 81);
-'      strncpy(Temp, MapItemCode(ip->ItemCode), 17);
-'      gotoxy(ITEMNAME_X, ITEM_START_ROW+i);      cprintf("%s", Temp);
-'
-'      ip->PictureCode = GetNewI2(ITEMPIC_X, ITEM_START_ROW+i, 5, ip->PictureCode, MAX_I2);
-'      ip->Weight = GetNewI2(ITEMWEIGHT_X, ITEM_START_ROW+i, 5, ip->Weight, 3000);
-'      ip->Count = GetNewI1(ITEMCOUNT_X, ITEM_START_ROW+i, 4, ip->Count, 99);
-'      ip->Status = GetNewI2(ITEMSTATUS_X, ITEM_START_ROW+i, 3, ip->Status, MAX_I1);
-'      gotoxy(ITEMSTATUSx_X, ITEM_START_ROW+i);   cprintf("(x%02X)", ip->Status);
-'      ip->AC = GetNewI2(ITEMAC_X, ITEM_START_ROW+i, 2, ip->AC, MAX_I1);
-'      ip->Unknown = GetNewI2(ITEMUNKNOWN_X, ITEM_START_ROW+i, 5, ip->Unknown, MAX_I2);
-'      gotoxy(ITEMUNKNOWNx_X, ITEM_START_ROW+i);  cprintf("(x%04X)", ip->Unknown);
-'   }
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'#define B_YN 'Y' : 'N'
-'
-'void EditSpells1(void * CharacterBuffer)
-'{
-'   char           Temp[81];
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit Spells 1");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'
-'    textattr(screencolor + (BLACK << 4));
-'    highvideo();
-'
-'   gotoxy(7, 5);cprintf("Fire               Water              Air\n");
-'   lowvideo();
-'
-'   gotoxy(7, 6);cprintf("EnergyBlast:       ChillingTouch:     Poison:          ");
-'   gotoxy(7, 7);cprintf("BlindingFlash:     Stamina:           MissileShield:   ");
-'   gotoxy(7, 8);cprintf("PsionicFire:       Terror:            ShrillSound:     ");
-'   gotoxy(7, 9);cprintf("Fireball:          Weaken:            StinkBomb:       ");
-'   gotoxy(7,10);cprintf("FireShield:        Slow:              AirPocket:       ");
-'   gotoxy(7,11);cprintf("DazzlingLights:    Haste:             Silence:         ");
-'   gotoxy(7,12);cprintf("FireBomb:          CureParalysis:     PoisonGas:       ");
-'   gotoxy(7,13);cprintf("Lightning:         IceShield:         CurePoison:      ");
-'   gotoxy(7,14);cprintf("PrismicMissile:    Restfull:          Whirlwind:       ");
-'   gotoxy(7,15);cprintf("Firestorm:         IceBall:           PurifyAir:       ");
-'   gotoxy(7,16);cprintf("NuclearBlast:      Paralyze:          DeadlyPoison:    ");
-'   gotoxy(7,17);cprintf("                   Superman:          Levitate:        ");
-'   gotoxy(7,18);cprintf("                   Deepfreeze:        ToxicVapors:     ");
-'   gotoxy(7,19);cprintf("                   DrainingCloud:     NoxiousFumes:    ");
-'   gotoxy(7,20);cprintf("                   CureDisease:       Asphyxiation:    ");
-'   gotoxy(7,21);cprintf("                                      DeadlyAir:       ");
-'   gotoxy(7,22);cprintf("                                      DeathCloud:      ");
-'
-'   textattr(displaycolor + (BLACK << 4));
-'    lowvideo();
-'
-'   gotoxy(23, 6);cprintf("%c", cp->Spells.EnergyBlast ? B_YN);
-'   gotoxy(23, 7);cprintf("%c", cp->Spells.BlindingFlash ? B_YN);
-'   gotoxy(23, 8);cprintf("%c", cp->Spells.PsionicFire ? B_YN);
-'   gotoxy(23, 9);cprintf("%c", cp->Spells.Fireball ? B_YN);
-'   gotoxy(23,10);cprintf("%c", cp->Spells.FireShield ? B_YN);
-'   gotoxy(23,11);cprintf("%c", cp->Spells.DazzlingLights ? B_YN);
-'   gotoxy(23,12);cprintf("%c", cp->Spells.FireBomb ? B_YN);
-'   gotoxy(23,13);cprintf("%c", cp->Spells.Lightning ? B_YN);
-'   gotoxy(23,14);cprintf("%c", cp->Spells.PrismicMissile ? B_YN);
-'   gotoxy(23,15);cprintf("%c", cp->Spells.Firestorm ? B_YN);
-'   gotoxy(23,16);cprintf("%c", cp->Spells.NuclearBlast ? B_YN);
-'
-'   gotoxy(42, 6);cprintf("%c", cp->Spells.ChillingTouch ? B_YN);
-'   gotoxy(42, 7);cprintf("%c", cp->Spells.Stamina ? B_YN);
-'   gotoxy(42, 8);cprintf("%c", cp->Spells.Terror ? B_YN);
-'   gotoxy(42, 9);cprintf("%c", cp->Spells.Weaken ? B_YN);
-'   gotoxy(42,10);cprintf("%c", cp->Spells.Slow ? B_YN);
-'   gotoxy(42,11);cprintf("%c", cp->Spells.Haste ? B_YN);
-'   gotoxy(42,12);cprintf("%c", cp->Spells.CureParalysis ? B_YN);
-'   gotoxy(42,13);cprintf("%c", cp->Spells.IceShield ? B_YN);
-'   gotoxy(42,14);cprintf("%c", cp->Spells.Restfull ? B_YN);
-'   gotoxy(42,15);cprintf("%c", cp->Spells.IceBall ? B_YN);
-'   gotoxy(42,16);cprintf("%c", cp->Spells.Paralyze ? B_YN);
-'   gotoxy(42,17);cprintf("%c", cp->Spells.Superman ? B_YN);
-'   gotoxy(42,18);cprintf("%c", cp->Spells.Deepfreeze ? B_YN);
-'   gotoxy(42,19);cprintf("%c", cp->Spells.DrainingCloud ? B_YN);
-'   gotoxy(42,20);cprintf("%c", cp->Spells.CureDisease ? B_YN);
-'
-'   gotoxy(61, 6);cprintf("%c", cp->Spells.Poison ? B_YN);
-'   gotoxy(61, 7);cprintf("%c", cp->Spells.MissileShield ? B_YN);
-'   gotoxy(61, 8);cprintf("%c", cp->Spells.ShrillSound ? B_YN);
-'   gotoxy(61, 9);cprintf("%c", cp->Spells.StinkBomb ? B_YN);
-'   gotoxy(61,10);cprintf("%c", cp->Spells.AirPocket ? B_YN);
-'   gotoxy(61,11);cprintf("%c", cp->Spells.Silence ? B_YN);
-'   gotoxy(61,12);cprintf("%c", cp->Spells.PoisonGas ? B_YN);
-'   gotoxy(61,13);cprintf("%c", cp->Spells.CurePoison ? B_YN);
-'   gotoxy(61,14);cprintf("%c", cp->Spells.Whirlwind ? B_YN);
-'   gotoxy(61,15);cprintf("%c", cp->Spells.PurifyAir ? B_YN);
-'   gotoxy(61,16);cprintf("%c", cp->Spells.DeadlyPoison ? B_YN);
-'   gotoxy(61,17);cprintf("%c", cp->Spells.Levitate ? B_YN);
-'   gotoxy(61,18);cprintf("%c", cp->Spells.ToxicVapors ? B_YN);
-'   gotoxy(61,19);cprintf("%c", cp->Spells.NoxiousFumes ? B_YN);
-'   gotoxy(61,20);cprintf("%c", cp->Spells.Asphyxiation ? B_YN);
-'   gotoxy(61,21);cprintf("%c", cp->Spells.DeadlyAir ? B_YN);
-'   gotoxy(61,22);cprintf("%c", cp->Spells.DeathCloud ? B_YN);
-'
-'   cp->Spells.EnergyBlast = YesNo(23, 6, cp->Spells.EnergyBlast ? B_YN);
-'   cp->Spells.BlindingFlash = YesNo(23, 7, cp->Spells.BlindingFlash ? B_YN);
-'   cp->Spells.PsionicFire = YesNo(23, 8, cp->Spells.PsionicFire ? B_YN);
-'   cp->Spells.Fireball = YesNo(23, 9, cp->Spells.Fireball ? B_YN);
-'   cp->Spells.FireShield = YesNo(23,10, cp->Spells.FireShield ? B_YN);
-'   cp->Spells.DazzlingLights = YesNo(23,11, cp->Spells.DazzlingLights ? B_YN);
-'   cp->Spells.FireBomb = YesNo(23,12, cp->Spells.FireBomb ? B_YN);
-'   cp->Spells.Lightning = YesNo(23,13, cp->Spells.Lightning ? B_YN);
-'   cp->Spells.PrismicMissile = YesNo(23,14, cp->Spells.PrismicMissile ? B_YN);
-'   cp->Spells.Firestorm = YesNo(23,15, cp->Spells.Firestorm ? B_YN);
-'   cp->Spells.NuclearBlast = YesNo(23,16, cp->Spells.NuclearBlast ? B_YN);
-'
-'   cp->Spells.ChillingTouch = YesNo(42, 6, cp->Spells.ChillingTouch ? B_YN);
-'   cp->Spells.Stamina = YesNo(42, 7, cp->Spells.Stamina ? B_YN);
-'   cp->Spells.Terror = YesNo(42, 8, cp->Spells.Terror ? B_YN);
-'   cp->Spells.Weaken = YesNo(42, 9, cp->Spells.Weaken ? B_YN);
-'   cp->Spells.Slow = YesNo(42,10, cp->Spells.Slow ? B_YN);
-'   cp->Spells.Haste = YesNo(42,11, cp->Spells.Haste ? B_YN);
-'   cp->Spells.CureParalysis = YesNo(42,12, cp->Spells.CureParalysis ? B_YN);
-'   cp->Spells.IceShield = YesNo(42,13, cp->Spells.IceShield ? B_YN);
-'   cp->Spells.Restfull = YesNo(42,14, cp->Spells.Restfull ? B_YN);
-'   cp->Spells.IceBall = YesNo(42,15, cp->Spells.IceBall ? B_YN);
-'   cp->Spells.Paralyze = YesNo(42,16, cp->Spells.Paralyze ? B_YN);
-'   cp->Spells.Superman = YesNo(42,17, cp->Spells.Superman ? B_YN);
-'   cp->Spells.Deepfreeze = YesNo(42,18, cp->Spells.Deepfreeze ? B_YN);
-'   cp->Spells.DrainingCloud = YesNo(42,19, cp->Spells.DrainingCloud ? B_YN);
-'   cp->Spells.CureDisease = YesNo(42,20, cp->Spells.CureDisease ? B_YN);
-'
-'   cp->Spells.Poison = YesNo(61, 6, cp->Spells.Poison ? B_YN);
-'   cp->Spells.MissileShield = YesNo(61, 7, cp->Spells.MissileShield ? B_YN);
-'   cp->Spells.ShrillSound = YesNo(61, 8, cp->Spells.ShrillSound ? B_YN);
-'   cp->Spells.StinkBomb = YesNo(61, 9, cp->Spells.StinkBomb ? B_YN);
-'   cp->Spells.AirPocket = YesNo(61,10, cp->Spells.AirPocket ? B_YN);
-'   cp->Spells.Silence = YesNo(61,11, cp->Spells.Silence ? B_YN);
-'   cp->Spells.PoisonGas = YesNo(61,12, cp->Spells.PoisonGas ? B_YN);
-'   cp->Spells.CurePoison = YesNo(61,13, cp->Spells.CurePoison ? B_YN);
-'   cp->Spells.Whirlwind = YesNo(61,14, cp->Spells.Whirlwind ? B_YN);
-'   cp->Spells.PurifyAir = YesNo(61,15, cp->Spells.PurifyAir ? B_YN);
-'   cp->Spells.DeadlyPoison = YesNo(61,16, cp->Spells.DeadlyPoison ? B_YN);
-'   cp->Spells.Levitate = YesNo(61,17, cp->Spells.Levitate ? B_YN);
-'   cp->Spells.ToxicVapors = YesNo(61,18, cp->Spells.ToxicVapors ? B_YN);
-'   cp->Spells.NoxiousFumes = YesNo(61,19, cp->Spells.NoxiousFumes ? B_YN);
-'   cp->Spells.Asphyxiation = YesNo(61,20, cp->Spells.Asphyxiation ? B_YN);
-'   cp->Spells.DeadlyAir = YesNo(61,21, cp->Spells.DeadlyAir ? B_YN);
-'   cp->Spells.DeathCloud = YesNo(61,22, cp->Spells.DeathCloud ? B_YN);
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'void EditSpells2(void * CharacterBuffer)
-'{
-'   char           Temp[81];
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit Spells 2");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'
-'    textattr(screencolor + (BLACK << 4));
-'    highvideo();
-'
-'   gotoxy(7, 5);cprintf("Earth              Mental             Divine");
-'   lowvideo();
-'
-'   gotoxy(7, 6);cprintf("AcidSplash:        MentalAttack:   _  HealWounds:     _");
-'   gotoxy(7, 7);cprintf("ItchingSkin:       Sleep:          _  MakeWounds:     _");
-'   gotoxy(7, 8);cprintf("ArmorShield:       Bless:          _  MagicMissile:   _");
-'   gotoxy(7, 9);cprintf("Direction:         Charm:          _  DispellUndead:  _");
-'   gotoxy(7,10);cprintf("KnockKnock:        CureLesserCnd:  _  EnchantedBlade: _");
-'   gotoxy(7,11);cprintf("Blades:            DivineTrap:     _  Blink:          _");
-'   gotoxy(7,12);cprintf("Armorplate:        DetectSecret:   _  MagicScreen:    _");
-'   gotoxy(7,13);cprintf("Web:               Identify:       _  Conjuration:    _");
-'   gotoxy(7,14);cprintf("WhippingRocks:     Confusion:      _  AntiMagic:      _");
-'   gotoxy(7,15);cprintf("AcidBomb:          Watchbells:     _  RemoveCurse:    _");
-'   gotoxy(7,16);cprintf("Armormelt:         HoldMonsters:   _  Healfull:       _");
-'   gotoxy(7,17);cprintf("Crush:             Mindread:       _  Lifesteal:      _");
-'   gotoxy(7,18);cprintf("CreateLife:        SaneMind:       _  AstralGate:     _");
-'   gotoxy(7,19);cprintf("CureStone:         PsionicBlast:   _  ZapUndead:      _");
-'   gotoxy(7,20);cprintf("                   Illusion:       _  Recharge:       _");
-'   gotoxy(7,21);cprintf("LocateObject:      WizardsEye:     _  WordOfDeath:    _");
-'   gotoxy(7,22);cprintf("MindFlay:          Spooks:         _  Resurrection:   _");
-'   gotoxy(7,23);cprintf("FindPerson:        Death:          _  DeathWish:      _");
-'
-'   textattr(displaycolor + (BLACK << 4));
-'    lowvideo();
-'
-'   gotoxy(23, 6);cprintf("%c", cp->Spells.AcidSplash ? B_YN);
-'   gotoxy(23, 7);cprintf("%c", cp->Spells.ItchingSkin ? B_YN);
-'   gotoxy(23, 8);cprintf("%c", cp->Spells.ArmorShield ? B_YN);
-'   gotoxy(23, 9);cprintf("%c", cp->Spells.Direction ? B_YN);
-'   gotoxy(23,10);cprintf("%c", cp->Spells.KnockKnock ? B_YN);
-'   gotoxy(23,11);cprintf("%c", cp->Spells.Blades ? B_YN);
-'   gotoxy(23,12);cprintf("%c", cp->Spells.Armorplate ? B_YN);
-'   gotoxy(23,13);cprintf("%c", cp->Spells.Web ? B_YN);
-'   gotoxy(23,14);cprintf("%c", cp->Spells.WhippingRocks ? B_YN);
-'   gotoxy(23,15);cprintf("%c", cp->Spells.AcidBomb ? B_YN);
-'   gotoxy(23,16);cprintf("%c", cp->Spells.Armormelt ? B_YN);
-'   gotoxy(23,17);cprintf("%c", cp->Spells.Crush ? B_YN);
-'   gotoxy(23,18);cprintf("%c", cp->Spells.CreateLife ? B_YN);
-'   gotoxy(23,19);cprintf("%c", cp->Spells.CureStone ? B_YN);
-'   gotoxy(23,21);cprintf("%c", cp->Spells.LocateObject ? B_YN);
-'   gotoxy(23,22);cprintf("%c", cp->Spells.MindFlay ? B_YN);
-'   gotoxy(23,23);cprintf("%c", cp->Spells.FindPerson ? B_YN);
-'
-'   gotoxy(42, 6);cprintf("%c", cp->Spells.MentalAttack ? B_YN);
-'   gotoxy(42, 7);cprintf("%c", cp->Spells.Sleep ? B_YN);
-'   gotoxy(42, 8);cprintf("%c", cp->Spells.Bless ? B_YN);
-'   gotoxy(42, 9);cprintf("%c", cp->Spells.Charm ? B_YN);
-'   gotoxy(42,10);cprintf("%c", cp->Spells.CureLesserCnd ? B_YN);
-'   gotoxy(42,11);cprintf("%c", cp->Spells.DivineTrap ? B_YN);
-'   gotoxy(42,12);cprintf("%c", cp->Spells.DetectSecret ? B_YN);
-'   gotoxy(42,13);cprintf("%c", cp->Spells.Identify ? B_YN);
-'   gotoxy(42,14);cprintf("%c", cp->Spells.Confusion ? B_YN);
-'   gotoxy(42,15);cprintf("%c", cp->Spells.Watchbells ? B_YN);
-'   gotoxy(42,16);cprintf("%c", cp->Spells.HoldMonsters ? B_YN);
-'   gotoxy(42,17);cprintf("%c", cp->Spells.Mindread ? B_YN);
-'   gotoxy(42,18);cprintf("%c", cp->Spells.SaneMind ? B_YN);
-'   gotoxy(42,19);cprintf("%c", cp->Spells.PsionicBlast ? B_YN);
-'   gotoxy(42,20);cprintf("%c", cp->Spells.Illusion ? B_YN);
-'   gotoxy(42,21);cprintf("%c", cp->Spells.WizardsEye ? B_YN);
-'   gotoxy(42,22);cprintf("%c", cp->Spells.Spooks ? B_YN);
-'   gotoxy(42,23);cprintf("%c", cp->Spells.Death ? B_YN);
-'
-'   gotoxy(61, 6);cprintf("%c", cp->Spells.HealWounds ? B_YN);
-'   gotoxy(61, 7);cprintf("%c", cp->Spells.MakeWounds ? B_YN);
-'   gotoxy(61, 8);cprintf("%c", cp->Spells.MagicMissile ? B_YN);
-'   gotoxy(61, 9);cprintf("%c", cp->Spells.DispellUndead ? B_YN);
-'   gotoxy(61,10);cprintf("%c", cp->Spells.EnchantedBlade ? B_YN);
-'   gotoxy(61,11);cprintf("%c", cp->Spells.Blink ? B_YN);
-'   gotoxy(61,12);cprintf("%c", cp->Spells.MagicScreen ? B_YN);
-'   gotoxy(61,13);cprintf("%c", cp->Spells.Conjuration ? B_YN);
-'   gotoxy(61,14);cprintf("%c", cp->Spells.AntiMagic ? B_YN);
-'   gotoxy(61,15);cprintf("%c", cp->Spells.RemoveCurse ? B_YN);
-'   gotoxy(61,16);cprintf("%c", cp->Spells.Healfull ? B_YN);
-'   gotoxy(61,17);cprintf("%c", cp->Spells.Lifesteal ? B_YN);
-'   gotoxy(61,18);cprintf("%c", cp->Spells.AstralGate ? B_YN);
-'   gotoxy(61,19);cprintf("%c", cp->Spells.ZapUndead ? B_YN);
-'   gotoxy(61,20);cprintf("%c", cp->Spells.Recharge ? B_YN);
-'   gotoxy(61,21);cprintf("%c", cp->Spells.WordOfDeath ? B_YN);
-'   gotoxy(61,22);cprintf("%c", cp->Spells.Resurrection ? B_YN);
-'   gotoxy(61,23);cprintf("%c", cp->Spells.DeathWish ? B_YN);
-'
-'   cp->Spells.AcidSplash = YesNo(23, 6, cp->Spells.AcidSplash ? B_YN);
-'   cp->Spells.ItchingSkin = YesNo(23, 7, cp->Spells.ItchingSkin ? B_YN);
-'   cp->Spells.ArmorShield = YesNo(23, 8, cp->Spells.ArmorShield ? B_YN);
-'   cp->Spells.Direction = YesNo(23, 9, cp->Spells.Direction ? B_YN);
-'   cp->Spells.KnockKnock = YesNo(23,10, cp->Spells.KnockKnock ? B_YN);
-'   cp->Spells.Blades = YesNo(23,11, cp->Spells.Blades ? B_YN);
-'   cp->Spells.Armorplate = YesNo(23,12, cp->Spells.Armorplate ? B_YN);
-'   cp->Spells.Web = YesNo(23,13, cp->Spells.Web ? B_YN);
-'   cp->Spells.WhippingRocks = YesNo(23,14, cp->Spells.WhippingRocks ? B_YN);
-'   cp->Spells.AcidBomb = YesNo(23,15, cp->Spells.AcidBomb ? B_YN);
-'   cp->Spells.Armormelt = YesNo(23,16, cp->Spells.Armormelt ? B_YN);
-'   cp->Spells.Crush = YesNo(23,17, cp->Spells.Crush ? B_YN);
-'   cp->Spells.CreateLife = YesNo(23,18, cp->Spells.CreateLife ? B_YN);
-'   cp->Spells.CureStone = YesNo(23,19, cp->Spells.CureStone ? B_YN);
-'   cp->Spells.LocateObject = YesNo(23,21, cp->Spells.LocateObject ? B_YN);
-'   cp->Spells.MindFlay = YesNo(23,22, cp->Spells.MindFlay ? B_YN);
-'   cp->Spells.FindPerson = YesNo(23,23, cp->Spells.FindPerson ? B_YN);
-'
-'   cp->Spells.MentalAttack = YesNo(42, 6, cp->Spells.MentalAttack ? B_YN);
-'   cp->Spells.Sleep = YesNo(42, 7, cp->Spells.Sleep ? B_YN);
-'   cp->Spells.Bless = YesNo(42, 8, cp->Spells.Bless ? B_YN);
-'   cp->Spells.Charm = YesNo(42, 9, cp->Spells.Charm ? B_YN);
-'   cp->Spells.CureLesserCnd = YesNo(42,10, cp->Spells.CureLesserCnd ? B_YN);
-'   cp->Spells.DivineTrap = YesNo(42,11, cp->Spells.DivineTrap ? B_YN);
-'   cp->Spells.DetectSecret = YesNo(42,12, cp->Spells.DetectSecret ? B_YN);
-'   cp->Spells.Identify = YesNo(42,13, cp->Spells.Identify ? B_YN);
-'   cp->Spells.Confusion = YesNo(42,14, cp->Spells.Confusion ? B_YN);
-'   cp->Spells.Watchbells = YesNo(42,15, cp->Spells.Watchbells ? B_YN);
-'   cp->Spells.HoldMonsters = YesNo(42,16, cp->Spells.HoldMonsters ? B_YN);
-'   cp->Spells.Mindread = YesNo(42,17, cp->Spells.Mindread ? B_YN);
-'   cp->Spells.SaneMind = YesNo(42,18, cp->Spells.SaneMind ? B_YN);
-'   cp->Spells.PsionicBlast = YesNo(42,19, cp->Spells.PsionicBlast ? B_YN);
-'   cp->Spells.Illusion = YesNo(42,20, cp->Spells.Illusion ? B_YN);
-'   cp->Spells.WizardsEye = YesNo(42,21, cp->Spells.WizardsEye ? B_YN);
-'   cp->Spells.Spooks = YesNo(42,22, cp->Spells.Spooks ? B_YN);
-'   cp->Spells.Death = YesNo(42,23, cp->Spells.Death ? B_YN);
-'
-'   cp->Spells.HealWounds = YesNo(61, 6, cp->Spells.HealWounds ? B_YN);
-'   cp->Spells.MakeWounds = YesNo(61, 7, cp->Spells.MakeWounds ? B_YN);
-'   cp->Spells.MagicMissile = YesNo(61, 8, cp->Spells.MagicMissile ? B_YN);
-'   cp->Spells.DispellUndead = YesNo(61, 9, cp->Spells.DispellUndead ? B_YN);
-'   cp->Spells.EnchantedBlade = YesNo(61,10, cp->Spells.EnchantedBlade ? B_YN);
-'   cp->Spells.Blink = YesNo(61,11, cp->Spells.Blink ? B_YN);
-'   cp->Spells.MagicScreen = YesNo(61,12, cp->Spells.MagicScreen ? B_YN);
-'   cp->Spells.Conjuration = YesNo(61,13, cp->Spells.Conjuration ? B_YN);
-'   cp->Spells.AntiMagic = YesNo(61,14, cp->Spells.AntiMagic ? B_YN);
-'   cp->Spells.RemoveCurse = YesNo(61,15, cp->Spells.RemoveCurse ? B_YN);
-'   cp->Spells.Healfull = YesNo(61,16, cp->Spells.Healfull ? B_YN);
-'   cp->Spells.Lifesteal = YesNo(61,17, cp->Spells.Lifesteal ? B_YN);
-'   cp->Spells.AstralGate = YesNo(61,18, cp->Spells.AstralGate ? B_YN);
-'   cp->Spells.ZapUndead = YesNo(61,19, cp->Spells.ZapUndead ? B_YN);
-'   cp->Spells.Recharge = YesNo(61,20, cp->Spells.Recharge ? B_YN);
-'   cp->Spells.WordOfDeath = YesNo(61,21, cp->Spells.WordOfDeath ? B_YN);
-'   cp->Spells.Resurrection = YesNo(61,22, cp->Spells.Resurrection ? B_YN);
-'   cp->Spells.DeathWish = YesNo(61,23, cp->Spells.DeathWish ? B_YN);
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'#define GENDd_XY    13,5
-'#define GEND_XY     17,5
-'#define RACEd_XY    13,6
-'#define RACE_XY     17,6
-'#define PROFd_XY    13,7
-'#define PROF_XY     17,7
-'#define LEVEL_XY    36,7
-'#define CONDd_XY    13,8
-'#define COND_XY     17,8
-'#define LIVES_XY    36,8
-'#define ALIVE_XY    52,8
-'
-'#define STR_XY      11,11
-'#define INT_XY      11,12
-'#define PIE_XY      11,13
-'#define VIT_XY      11,14
-'#define DEX_XY      11,15
-'#define SPD_XY      11,16
-'#define PER_XY      11,17
-'#define KAR_XY      11,18
-'#define EXP_XY      31,11
-'#define MKS_XY      31,12
-'#define GP_XY       31,13
-'#define HP_XY       31,15
-'#define STA_XY      31,16
-'#define CC_XY       31,17
-'#define FIRE_XY     52,11
-'#define WATER_XY    52,12
-'#define AIR_XY      52,13
-'#define EARTH_XY    64,11
-'#define MENTAL_XY   64,12
-'#define DIVINE_XY   64,13
-'#define SKILLS_XY   60,16
-'#define ITEMS_XY    60,17
-'#define SWAG_XY     60,18
-'#define SPELLS_XY   60,19
-'
-'void EditCharacter(void * CharacterBuffer)
-'{
-'   short int      WriteChanges = FALSE,
-'                  DoSkills, DoItems, DoSwagBag, DoSpells;
-'   char           Temp[81];
-'   struct Character *cp = (struct Character *)CharacterBuffer;
-'    SCREEN_BUFFER   MainEditMenuPage;
-'
-'AGAIN:
-'    clrscr();
-'   header("Edit Character");
-'
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf(" Character: ");                highvideo();
-'    cprintf("%s", cp->Name);
-'    gettext(1, 1, 80, 24, MainEditMenuPage);
-'
-'    textattr(screencolor + (BLACK << 4));
-'   lowvideo();
-'   gotoxy(1, 5); cprintf("    Gender:                 ");
-'   gotoxy(1, 6); cprintf("      Race:                 ");
-'   gotoxy(1, 7); cprintf("Profession:                 Level:      ");
-'   gotoxy(1, 8); cprintf(" Condition:                 Life:         ?Alive?:   ");
-'
-'    highvideo();
-'    gotoxy(4, 10);  cprintf("Attributes                                   Spell Points");
-'    gotoxy(49, 15); cprintf("More Edit Stuff...");
-'    lowvideo();
-'
-'    gotoxy(7, 11);  cprintf("STR       Experience                   Fire       Earth     ");
-'    gotoxy(7, 12);  cprintf("INT       Monster Kills                Water      Mental    ");
-'    gotoxy(7, 13);  cprintf("PIE       Gold Pieces                  Air        Divine    ");
-'    gotoxy(7, 14);  cprintf("VIT       ");
-'    gotoxy(7, 15); cprintf("DEX          Hit Points");
-'    gotoxy(7, 16); cprintf("SPD          Stamina                         Skills   ");
-'    gotoxy(7, 17); cprintf("PER          Capacity                        Items    ");
-'    gotoxy(7, 18); cprintf("KAR                                          SwagBag  ");
-'    gotoxy(7, 19); cprintf("                                             Spells   ");
-'
-'   textattr(displaycolor + (BLACK << 4));
-'    lowvideo();
-'
-'   gotoxy(GENDd_XY); cprintf("%u", cp->Gender);
-'   gotoxy(GEND_XY);  cprintf("%-6.6s", cp->Gender ? "Female" : "Male");
-'   gotoxy(RACEd_XY); cprintf("%u", cp->Race);
-'   gotoxy(RACE_XY);  cprintf("%-9.9s", RaceMap[cp->Race]);
-'   gotoxy(PROFd_XY); cprintf("%u", cp->Profession);
-'   gotoxy(PROF_XY);  cprintf("%-9.9s", ProfessionMap[cp->Profession]);
-'   gotoxy(LEVEL_XY); cprintf("%d", cp->Level);
-'   gotoxy(CONDd_XY); cprintf("%u", cp->ConditionCode);
-'   gotoxy(COND_XY);  cprintf("%-9.9s", ConditionMap[cp->ConditionCode]);
-'   gotoxy(LIVES_XY); cprintf("%d", cp->Lives);
-'   gotoxy(ALIVE_XY); cprintf("%u", cp->Alive);
-'
-'   gotoxy(STR_XY);   cprintf("%u", cp->Attributes.STR);
-'   gotoxy(INT_XY);   cprintf("%u", cp->Attributes.INT);
-'   gotoxy(PIE_XY);   cprintf("%u", cp->Attributes.PIE);
-'   gotoxy(VIT_XY);   cprintf("%u", cp->Attributes.VIT);
-'   gotoxy(DEX_XY);   cprintf("%u", cp->Attributes.DEX);
-'   gotoxy(SPD_XY);   cprintf("%u", cp->Attributes.SPD);
-'   gotoxy(PER_XY);   cprintf("%u", cp->Attributes.PER);
-'   gotoxy(KAR_XY);   cprintf("%u", cp->Attributes.KAR);
-'   gotoxy(EXP_XY);   cprintf("%ld", cp->EXP);
-'   gotoxy(MKS_XY);   cprintf("%ld", cp->MKS);
-'   gotoxy(GP_XY);    cprintf("%ld", cp->GP);
-'   gotoxy(HP_XY);    cprintf("%d", cp->HP.Maximum);
-'   gotoxy(STA_XY);   cprintf("%d", cp->STA.Maximum);
-'   gotoxy(CC_XY);    cprintf("%d", cp->CC.Maximum);
-'   gotoxy(FIRE_XY);  cprintf("%d", cp->SpellPoints.Fire.Maximum);
-'   gotoxy(WATER_XY); cprintf("%d", cp->SpellPoints.Water.Maximum);
-'   gotoxy(AIR_XY);   cprintf("%d", cp->SpellPoints.Air.Maximum);
-'   gotoxy(EARTH_XY); cprintf("%d", cp->SpellPoints.Earth.Maximum);
-'   gotoxy(MENTAL_XY);cprintf("%d", cp->SpellPoints.Mental.Maximum);
-'   gotoxy(DIVINE_XY);cprintf("%d", cp->SpellPoints.Divine.Maximum);
-'   gotoxy(SKILLS_XY);  cprintf("N");
-'   gotoxy(ITEMS_XY);   cprintf("N");
-'   gotoxy(SWAG_XY);    cprintf("N");
-'   gotoxy(SPELLS_XY);  cprintf("N");
-'
-'   cp->Gender = GetNewI1(GENDd_XY, 1, cp->Gender, 1);
-'   gotoxy(GEND_XY);  cprintf("%-6.6s", cp->Gender ? "Female" : "Male");
-'   cp->Race = GetNewI1(RACEd_XY, 2, cp->Race, RaceMapMax);
-'   gotoxy(RACE_XY);  cprintf("%-9.9s", RaceMap[cp->Race]);
-'   cp->Profession = GetNewI1(PROFd_XY, 2, cp->Profession, ProfessionMapMax);
-'   gotoxy(PROF_XY);  cprintf("%-9.9s", ProfessionMap[cp->Profession]);
-'   cp->ConditionCode = GetNewI1(CONDd_XY, 2, cp->ConditionCode, ConditionMapMax);
-'   gotoxy(COND_XY);  cprintf("%-9.9s", ConditionMap[cp->ConditionCode]);
-'   cp->Level = GetNewI2(LEVEL_XY, 3, cp->Level, 999);
-'   cp->Lives = GetNewI2(LIVES_XY, 3, cp->Lives, 999);
-'   cp->Alive = GetNewI1(ALIVE_XY, 2, cp->Alive, MAX_I1);
-'
-'   cp->Attributes.STR = GetNewI1(STR_XY, 2, cp->Attributes.STR, 99);
-'   cp->Attributes.INT = GetNewI1(INT_XY, 2, cp->Attributes.INT, 99);
-'   cp->Attributes.PIE = GetNewI1(PIE_XY, 2, cp->Attributes.PIE, 99);
-'   cp->Attributes.VIT = GetNewI1(VIT_XY, 2, cp->Attributes.VIT, 99);
-'   cp->Attributes.DEX = GetNewI1(DEX_XY, 2, cp->Attributes.DEX, 99);
-'   cp->Attributes.SPD = GetNewI1(SPD_XY, 2, cp->Attributes.SPD, 99);
-'   cp->Attributes.PER = GetNewI1(PER_XY, 2, cp->Attributes.PER, 99);
-'   cp->Attributes.KAR = GetNewI1(KAR_XY, 2, cp->Attributes.KAR, 99);
-'   cp->EXP = GetNewI4(EXP_XY, 10, cp->EXP, MAX_I4);
-'   cp->MKS = GetNewI4(MKS_XY, 10, cp->MKS, MAX_I4);
-'   cp->GP =  GetNewI4(GP_XY, 10, cp->GP, (long int)(MAX_I4/6));
-'   cp->HP.Maximum =  GetNewI2(HP_XY, 4, cp->HP.Maximum, 9999);
-'   cp->STA.Maximum = GetNewI2(STA_XY, 4, cp->STA.Maximum, 9999);
-'   cp->CC.Maximum =  GetNewI2(CC_XY, 4, cp->CC.Maximum, 9999);
-'   cp->SpellPoints.Fire.Maximum = GetNewI2(FIRE_XY, 3,
-'                                cp->SpellPoints.Fire.Maximum, 999);
-'   cp->SpellPoints.Water.Maximum = GetNewI2(WATER_XY, 3,
-'                                 cp->SpellPoints.Water.Maximum, 999);
-'   cp->SpellPoints.Air.Maximum = GetNewI2(AIR_XY, 3,
-'                               cp->SpellPoints.Air.Maximum, 999);
-'   cp->SpellPoints.Mental.Maximum = GetNewI2(EARTH_XY, 3,
-'                                  cp->SpellPoints.Earth.Maximum, 999);
-'   cp->SpellPoints.Mental.Maximum = GetNewI2(MENTAL_XY, 3,
-'                                  cp->SpellPoints.Mental.Maximum, 999);
-'   cp->SpellPoints.Divine.Maximum = GetNewI2(DIVINE_XY, 3,
-'                                  cp->SpellPoints.Divine.Maximum, 999);
-'    gettext(1, 1, 80, 24, MainEditMenuPage);
-'
-'   DoSkills = YesNo(SKILLS_XY, 'N');
-'   DoItems  = YesNo(ITEMS_XY, 'N');
-'   DoSwagBag= YesNo(SWAG_XY, 'N');
-'   DoSpells = YesNo(SPELLS_XY, 'N');
-'
-'   if (!Query("continue", ""))
-'      goto AGAIN;
-'
-'   if (DoSkills)
-'   {
-'      EditSkills(cp);
-'      puttext(1, 1, 80, 24, MainEditMenuPage);
-'   }
-'   if (DoItems)
-'   {
-'      EditItems(cp);
-'      puttext(1, 1, 80, 24, MainEditMenuPage);
-'   }
-'   if (DoSwagBag)
-'   {
-'      EditSwagBag(cp);
-'      puttext(1, 1, 80, 24, MainEditMenuPage);
-'   }
-'   if (DoSpells)
-'   {
-'      EditSpells1(cp);
-'      EditSpells2(cp);
-'      puttext(1, 1, 80, 24, MainEditMenuPage);
-'   }
-'
-'   WriteChanges = Query("write", "changes to disk");
-'   if (WriteChanges)
-'   {
-'      if (!WriteDBS(FileName, Buffer, FileSize))
-'         SystemError("Unable to write saved game to disk");
-'    }
-'
-'EXIT_LABEL:
-'   printf("\n");
-'   return;
-'}
-'
-'void CharacterMenu(void)
-'{
-'    int     choice = -1,
-'                i = 0,
-'            menu = 0;
-'    char        c   =   ' ',
-'            Temp[11];
-'    SCREEN_BUFFER   CharMenuPage;
-'
-'   memset(Temp, NULL, 11);
-'
-'    /* Format the Main Menu Screen. */
-'
-'    clrscr();
-'   header("Character Menu");
-'
-'    for (menu = 0, i = 1; menu < 6 && strcmp(Party[menu]->Name, ""); menu++, i++)
-'   {
-'        gotoxy(35, i + 10); clreol();
-'        textattr(selectcolor + (BLACK << 4));
-'        highvideo();    cprintf("%d)", i);
-'        textattr(menucolor + (BLACK << 4));
-'        lowvideo();     cprintf(" %s", Party[menu]->Name);
-'    }
-'
-'    gettext(1, 1, 80, 24, CharMenuPage);
-'
-'    while (choice != 99)
-'   {
-'        gotoxy(1, Y_PROMPT);
-'        textattr(promptcolor + (BLACK << 4));   highvideo();
-'
-'        cprintf("Edit Character: ");    lowvideo();
-'        cprintf(" (ESC to quit ");
-'
-'        textattr(headercolor + (BLACK << 4));   highvideo();
-'
-'        cprintf("%s", Program.Name);    lowvideo();
-'        cprintf("): ");               textattr(promptcolor + (BLACK << 4));
-'
-'        c = wgetch();
-'      Temp[0] = c;
-'        Switch ((choice = atoi(Temp)))
-'      {
-'            Case 0:
-'              Switch (C)
-'              {
-'                  case RETURN:
-'                  Case Escape:
-'                  case 'Q':
-'                  case 'q':
-'                       choice = 99;
-'                       break;
-'default:
-'                             cprintf("%c", BELL);
-'                       continue;
-'                       break;
-'              };
-'                  break;
-'         Case 1:
-'         Case 2:
-'         Case 3:
-'         Case 4:
-'         Case 5:
-'         Case 6:
-'               gettext(1, 1, 80, 24, CharMenuPage);
-'              EditCharacter(Party[choice-1]);
-'               puttext(1, 1, 80, 24, CharMenuPage);
-'              break;
-'default:
-'              cprintf("%c", BELL);
-'              continue;
-'              break;
-'        }
-'   }
-'
-'EXIT_LABEL:
-'   free(Buffer);
-'   return;
-'};
-'
-'void MainMenu(Char * FileName, Char * CharacterName)
-'{
-'    int     i = 0;
-'    char        *p = NULL;
-'    SCREEN_BUFFER   MainMenuPage;
-'
-'    /* Format the Main Menu Screen. */
-'
-'    clrscr();
-'   header("Saved Game");
-'
-'    gettext(1, 1, 80, 24, MainMenuPage);
-'
-'GetFileName:
-'    While (!strcmp(FileName, ""))
-'   {
-'       puttext(1, 1, 80, 24, MainMenuPage);
-'        gotoxy(1, Y_PROMPT-1);  clreol();
-'        textattr(promptcolor + (BLACK << 4));   highvideo();
-'
-'        cprintf("Enter Wizardry Saved Game File Name"); lowvideo();
-'
-'        gotoxy(1, Y_PROMPT);    clreol();
-'        cprintf("(ESC to quit ");
-'
-'        textattr(headercolor + (BLACK << 4));   highvideo();
-'
-'        cprintf("%s", Program.Name);    lowvideo();
-'        cprintf("): ");
-'
-'        textattr(promptcolor + (BLACK << 4));
-'
-'        gotoxy(24, Y_PROMPT);
-'        i = input(FileName, 40);
-'      strupr(FileName);
-'        Switch (i)
-'      {
-'            case RETURN:
-'         case TAB:
-'              if (!strcmp(FileName, ""))
-'                 goto EXIT_LABEL;
-'                  break;
-'         Case Escape:
-'              goto EXIT_LABEL;
-'              break;
-'default:
-'              cprintf("%c", BELL);
-'              continue;
-'              break;
-'        };
-'
-'        gotoxy(1, Y_PROMPT-1);  clreol();
-'        gotoxy(1, Y_PROMPT);    clreol();
-'    };
-'
-'   if (!ReadDBS(FileName, &Buffer, &FileSize))
-'   {
-'      strcpy(FileName, "");
-'      goto GetFileName;
-'   }
-'   gotoxy(1, 3);  clreol();
-'    textattr(displaycolor + (BLACK << 4));  lowvideo();
-'    cprintf("Saved Game: ");                highvideo();
-'    cprintf("%s", FileName);
-'    gettext(1, 1, 80, 24, MainMenuPage);
-'
-'GetCharacterName:
-'    While (!strcmp(CharacterName, ""))
-'   {
-'       puttext(1, 1, 80, 24, MainMenuPage);
-'        gotoxy(1, Y_PROMPT);  clreol();
-'        textattr(promptcolor + (BLACK << 4));   highvideo();
-'        cprintf("Enter First Character Name");  lowvideo();
-'        cprintf(" (ESC to quit ");
-'        textattr(headercolor + (BLACK << 4));   highvideo();
-'        cprintf("%s", Program.Name);    lowvideo();
-'        textattr(promptcolor + (BLACK << 4));
-'        cprintf("): ");
-'
-'        gotoxy(51, Y_PROMPT);
-'        i = input(CharacterName, 7);
-'      strupr(CharacterName);
-'        Switch (i)
-'      {
-'            case RETURN:
-'         case TAB:
-'              if (!strcmp(CharacterName, ""))
-'                 goto EXIT_LABEL;
-'                  break;
-'         Case Escape:
-'              goto EXIT_LABEL;
-'              break;
-'default:
-'              cprintf("%c", BELL);
-'              continue;
-'              break;
-'        };
-'
-'        gotoxy(1, Y_PROMPT);    clreol();
-'    };
-'
-'    gotoxy(1, Y_PROMPT);  clreol();
-'    textattr(promptcolor + (BLACK << 4));   lowvideo();
-'    cprintf("   Searching for \"");
-'   highvideo();          cprintf("%s", CharacterName);
-'   lowvideo();           cprintf("\"...");
-'
-'   for (p = Buffer; p < Buffer+FileSize && strcmp(p, CharacterName); p++);
-'   if (!p || strcmp(p, CharacterName))
-'   {
-'      PrintError("Could not find \"%s\"", CharacterName);
-'      strcpy(CharacterName, "");
-'      goto GetCharacterName;
-'   }
-'    gotoxy(1, Y_PROMPT);  clreol();
-'    textattr(promptcolor + (BLACK << 4));   highvideo();
-'   cprintf("Found \"%s\" @ byte position %d (%d bytes)...", CharacterName, p-Buffer+1, sizeof(struct Character));
-'   for (i = 0; i < 6 && p < Buffer+FileSize; i++, p += sizeof(struct Character))
-'       Party[i] = (struct Character *)p;
-'    lowvideo(); gotoxy(1, Y_PROMPT);    clreol();
-'
-'   While (True)
-'   {
-'       gettext(1, 1, 80, 24, MainMenuPage);
-'      CharacterMenu();
-'       puttext(1, 1, 80, 24, MainMenuPage);
-'      if (!Query("edit", "more characters"))
-'         break;
-'      strcpy(FileName, "");
-'      strcpy(CharacterName, "");
-'      goto GetFileName;
-'   }
-'
-'EXIT_LABEL:
-'   return;
-'};
-'
-'int main(int argc, char **argv)
-'{
-'   short i;
-'   char Args[513],
-'        Temp[33];
-'
-'   strcpy(FileName, "");
-'   strcpy(CharacterName, "");
-'   for (i = 0; i < 6; i++) Party[i] = NULL;
-'
-'   strcpy(Program.Name, "WIZEDIT");
-'   strcpy(Program.Title, "Wizardry VII: Crusaders of the Dark Savant");
-'   Program.Version = 1;
-'   Program.Revision = 1;
-'   Program.ScreenMode = TRUE;
-'
-'    textmode(C80);
-'    window(1, 1, 80, 24);
-'    clrscr();
-'
-'   strcpy(Args, strupr(argv[0]));
-'   for (i = 1; i <= argc; i++)
-'   {
-'      sprintf(Temp, " %s", strupr(argv[i]));
-'      strcat(Args, Temp);
-'   }
-'
-'   Switch (argc)
-'   {
-'      Case 2:
-'           strcpy(FileName, strupr(argv[1]));
-'           break;
-'      Case 3:
-'           strcpy(FileName, strupr(argv[1]));
-'           strcpy(CharacterName, strupr(argv[2]));
-'           break;
-'default:
-'              break;
-'   }
-'
-'   MainMenu(FileName, CharacterName);
-'    normvideo();
-'   clrscr();
-'   exit(0);
-'}
-
+Private Sub cmdCancel_Click()
+    cmdExit.Visible = True
+    
+    cmdOK.Visible = False
+    cmdCancel.Visible = False
+    cmdExit.Enabled = True
+End Sub
+Private Sub cmdExit_Click()
+    Unload Me
+End Sub
+Private Sub cmdOK_Click()
+    Unload Me
+End Sub
 Private Sub Form_Activate()
     Dim i As Integer
     
@@ -2524,31 +2081,24 @@ Private Sub Form_Activate()
             txtPER.Text = .PER
             txtKAR.Text = .KAR
             
+            txtLVL.Text = Format(.Level, "#,##0")
+            txtLives.Text = Format(.Lives, "#,##0")
+            txtAge.Text = Format(.Age, "#,##0")
+            
             txtHP.Text = Format(.HP.Maximum, "#,##0")
-            'txtexp.Text = .EXP
-            'txtmks.Text = .MKS
-'            Debug.Print "Name:              " & vbTab & .Name
-'            Debug.Print "Unknown Region #1 (4 bytes): "
-'            Debug.Print strHex(.Unknown1, 4) & vbCrLf
-'
-'            Debug.Print vbCrLf & "Secondary Statistics..."
-'            Debug.Print "Experience Points: " & vbTab & .EXP & vbTab & "0x" & Hex(.EXP)
-'            Debug.Print "Monster Kills:     " & vbTab & .MKS & vbTab & "0x" & Hex(.MKS)
-'            Debug.Print "Gold Pieces:       " & vbTab & .GP & vbTab & "0x" & Hex(.GP)
-'            Debug.Print "Hit Points:        " & vbTab & strPoints(.HP)
-'            Debug.Print "Stamina:           " & vbTab & strPoints(.STA)
-'            Debug.Print "Carrying Capacity: " & vbTab & strPoints(.CC)
-'            Debug.Print "Level:             " & vbTab & .Level
-'            Debug.Print "Lives:             " & vbTab & .Lives
-'
-'            Debug.Print vbCrLf & "Spell Points..."
-'            Debug.Print "Fire:              " & vbTab & strPoints(.FireSpellPoints)
-'            Debug.Print "Water:             " & vbTab & strPoints(.WaterSpellPoints)
-'            Debug.Print "Air:               " & vbTab & strPoints(.AirSpellPoints)
-'            Debug.Print "Earth:             " & vbTab & strPoints(.EarthSpellPoints)
-'            Debug.Print "Mental:            " & vbTab & strPoints(.MentalSpellPoints)
-'            Debug.Print "Divine:            " & vbTab & strPoints(.DivineSpellPoints)
-'
+            txtSTM.Text = Format(.STM.Maximum, "#,##0")
+            txtCC.Text = Format(.CC.Maximum / 10, "#,##0.0")
+            txtEXP.Text = Format(.EXP, "#,##0")
+            txtMKS.Text = Format(.MKS, "#,##0")
+            txtGP.Text = Format(.GP, "#,##0")
+
+            txtFireSP.Text = Format(.FireSpellPoints.Maximum, "#,##0")
+            txtWaterSP.Text = Format(.WaterSpellPoints.Maximum, "#,##0")
+            txtAirSP.Text = Format(.AirSpellPoints.Maximum, "#,##0")
+            txtEarthSP.Text = Format(.EarthSpellPoints.Maximum, "#,##0")
+            txtMentalSP.Text = Format(.MentalSpellPoints.Maximum, "#,##0")
+            txtDivineSP.Text = Format(.DivineSpellPoints.Maximum, "#,##0")
+            
 '            Debug.Print vbCrLf & "List of Items (not stowed)..."
 '            For i = 1 To 10
 '                Debug.Print strItem(.ItemList(i))
@@ -2561,16 +2111,6 @@ Private Sub Form_Activate()
 '
 '            Debug.Print vbCrLf & "Unknown Region #2 (64 bytes):"
 '            Debug.Print strHex(.Unknown2, 64) & vbCrLf
-'
-'            Debug.Print vbCrLf & "Basic Statistics..."
-'            Debug.Print "Strength:          " & vbTab & .STR       '
-'            Debug.Print "Intellegence:      " & vbTab & .INT
-'            Debug.Print "Piety:             " & vbTab & .PIE
-'            Debug.Print "Vitality:          " & vbTab & .VIT
-'            Debug.Print "Dexterity:         " & vbTab & .DEX
-'            Debug.Print "Speed:             " & vbTab & .SPD
-'            Debug.Print "Personality:       " & vbTab & .PER
-'            Debug.Print "Karma:             " & vbTab & .KAR
 '
 '            Debug.Print vbCrLf & "Weaponry Skills..."
 '            Debug.Print "Wand:              " & vbTab & .Wand
@@ -2668,11 +2208,43 @@ End Sub
 Private Sub Form_Load()
     Me.Picture = frmMain.Picture
     picBasic.Picture = frmMain.Picture
+    picWizardryLogo.Picture = frmMain.picWizardryLogo.Picture
+    cmdOK.Picture = frmMain.cmdOK.Picture
+    cmdCancel.Picture = frmMain.cmdCancel.Picture
+    cmdExit.Picture = frmMain.cmdExit.Picture
     
     Call PopulateCondition(cboCondition)
     Call PopulateGender(cboGender)
     Call PopulateProfession(cboProfession)
     Call PopulateRace(cboRace)
+End Sub
+Private Sub txtAge_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtAge_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtAge_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtAirSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtAirSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtAirSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtCC_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtCC_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtCC_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+    txtCC.Text = Format(txtCC.Text, "#,##0.0")
 End Sub
 Private Sub txtDEX_GotFocus()
     TextSelected
@@ -2681,7 +2253,52 @@ Private Sub txtDEX_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtDEX_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
+End Sub
+Private Sub txtDivineSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtDivineSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtDivineSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtEarthSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtEarthSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtEarthSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtEXP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtEXP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtEXP_Validate(Cancel As Boolean)
+    Cancel = ValidateI4()
+End Sub
+Private Sub txtFireSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtFireSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtFireSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtGP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtGP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtGP_Validate(Cancel As Boolean)
+    Cancel = ValidateI4()
 End Sub
 Private Sub txtHP_GotFocus()
     TextSelected
@@ -2699,7 +2316,7 @@ Private Sub txtINT_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtINT_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
 End Sub
 Private Sub txtKAR_GotFocus()
     TextSelected
@@ -2708,7 +2325,43 @@ Private Sub txtKAR_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtKAR_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
+End Sub
+Private Sub txtLives_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtLives_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtLives_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtLVL_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtLVL_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtLVL_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtMentalSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtMentalSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtMentalSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub txtMKS_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtMKS_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtMKS_Validate(Cancel As Boolean)
+    Cancel = ValidateI4()
 End Sub
 Private Sub txtPER_GotFocus()
     TextSelected
@@ -2717,7 +2370,7 @@ Private Sub txtPER_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtPER_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
 End Sub
 Private Sub txtPIE_GotFocus()
     TextSelected
@@ -2726,7 +2379,7 @@ Private Sub txtPIE_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtPIE_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
 End Sub
 Private Sub txtSPD_GotFocus()
     TextSelected
@@ -2735,7 +2388,16 @@ Private Sub txtSPD_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtSPD_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
+End Sub
+Private Sub txtSTM_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtSTM_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtSTM_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
 End Sub
 Private Sub txtSTR_GotFocus()
     TextSelected
@@ -2744,7 +2406,7 @@ Private Sub txtSTR_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtSTR_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
 End Sub
 Private Sub txtVIT_GotFocus()
     TextSelected
@@ -2753,32 +2415,85 @@ Private Sub txtVIT_KeyPress(KeyAscii As Integer)
     KeyAscii = ChkINumber(KeyAscii, True)
 End Sub
 Private Sub txtVIT_Validate(Cancel As Boolean)
-    Cancel = ValidateAttribute()
+    Cancel = ValidateByte()
+End Sub
+Private Sub txtWaterSP_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtWaterSP_KeyPress(KeyAscii As Integer)
+    KeyAscii = ChkINumber(KeyAscii, True)
+End Sub
+Private Sub txtWaterSP_Validate(Cancel As Boolean)
+    Cancel = ValidateI2()
+End Sub
+Private Sub udAge_Change()
+    Call ValidateI2(txtAge)
+End Sub
+Private Sub udAirSP_Change()
+    Call ValidateI2(txtAirSP)
+End Sub
+Private Sub udCC_Change()
+    Call ValidateI2(txtCC)
+    txtCC.Text = Format(txtCC.Text, "#,##0.0")
 End Sub
 Private Sub udDEX_Change()
-    Call ValidateAttribute(txtDEX)
+    Call ValidateByte(txtDEX)
+End Sub
+Private Sub udDivineSP_Change()
+    Call ValidateI2(txtDivineSP)
+End Sub
+Private Sub udEarthSP_Change()
+    Call ValidateI2(txtEarthSP)
+End Sub
+Private Sub udEXP_Change()
+    Call ValidateI4(txtEXP)
+End Sub
+Private Sub udFireSP_Change()
+    Call ValidateI2(txtFireSP)
+End Sub
+Private Sub udGP_Change()
+    Call ValidateI4(txtGP)
 End Sub
 Private Sub udHP_Change()
     Call ValidateI2(txtHP)
 End Sub
 Private Sub udINT_Change()
-    Call ValidateAttribute(txtINT)
+    Call ValidateByte(txtINT)
 End Sub
 Private Sub udKAR_Change()
-    Call ValidateAttribute(txtKAR)
+    Call ValidateByte(txtKAR)
+End Sub
+Private Sub udLives_Change()
+    Call ValidateI2(txtLives)
+End Sub
+Private Sub udLVL_Change()
+    Call ValidateI2(txtLVL)
+End Sub
+Private Sub udMentalSP_Change()
+    Call ValidateI2(txtMentalSP)
+End Sub
+Private Sub udMKS_Change()
+    Call ValidateI4(txtMKS)
 End Sub
 Private Sub udPER_Change()
-    Call ValidateAttribute(txtPER)
+    Call ValidateByte(txtPER)
 End Sub
 Private Sub udPIE_Change()
-    Call ValidateAttribute(txtPIE)
+    Call ValidateByte(txtPIE)
 End Sub
 Private Sub udSPD_Change()
-    Call ValidateAttribute(txtSPD)
+    Call ValidateByte(txtSPD)
+End Sub
+Private Sub udSTM_Change()
+    Call ValidateI2(txtSTM)
 End Sub
 Private Sub udSTR_Change()
-    Call ValidateAttribute(txtSTR)
+    Call ValidateByte(txtSTR)
 End Sub
 Private Sub udVIT_Change()
-    Call ValidateAttribute(txtVIT)
+    Call ValidateByte(txtVIT)
 End Sub
+Private Sub udWaterSP_Change()
+    Call ValidateI2(txtWaterSP)
+End Sub
+

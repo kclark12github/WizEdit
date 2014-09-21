@@ -53,7 +53,7 @@ Public Sub SaveWizEditSetting(Key As String, Value As String, Data As Variant)
         Call VbRegSetValue(HKEY_CURRENT_USER, KeyPath, Value, REG_SZ, Data)
     End If
 End Sub
-Public Function ValidateAttribute(Optional x As Control = Nothing) As Boolean
+Public Function ValidateByte(Optional x As Control = Nothing) As Boolean
     Const iLimit As Byte = 99
     Dim fCancel As Boolean
     Dim ctl As Control
@@ -69,7 +69,7 @@ Public Function ValidateAttribute(Optional x As Control = Nothing) As Boolean
         End If
     End With
     Set ctl = Nothing
-    ValidateAttribute = fCancel
+    ValidateByte = fCancel
 End Function
 Public Function ValidateI2(Optional x As Control = Nothing) As Boolean
     Dim iLimit As Long
@@ -97,7 +97,7 @@ Public Function ValidateI4(Optional x As Control = Nothing) As Boolean
     fCancel = False
     If x Is Nothing Then Set ctl = Screen.ActiveControl Else Set ctl = x
     With ctl
-        iLimit = (2 ^ 32) - 1
+        iLimit = (2 ^ 31) - 1
         If Val(.Text) < 1 Or CLng(Val(.Text)) > iLimit Then
             fCancel = True
             Call Beep
