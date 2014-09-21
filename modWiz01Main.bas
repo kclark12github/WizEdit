@@ -31,31 +31,32 @@ Type Wiz01Points
 End Type
 
 Type Wiz01Character
-    NameLength As Byte                  'Pascal Varying Length String Format...
+    NameLength As Byte                  '0x1D800   Pascal Varying Length String Format...
     Name As String * 15                 '
-    PasswordLength As Byte              'Pascal Varying Length String Format...
+    PasswordLength As Byte              '0x1D810   Pascal Varying Length String Format...
     Password As String * 15             '
     
-    Out As Integer                      '00 00 = No; 01 00 = Yes;
-    Race As Integer
-    Profession As Integer
-    AgeInWeeks As Integer
-    Status As Integer
-    Alignment As Integer
-    Statistics As Long
-    Unknown1(1 To 4) As Byte
-    GP As Long
-    Unknown2(1 To 2) As Byte
-    ItemCount As Integer
-    ItemList(1 To 8) As Wiz01Item       'List of Items (stowing not an option in Wiz01...)
-    EXP As Long
-    Unknown3(1 To 2) As Byte
-    LVL As Wiz01Points
-    HP As Wiz01Points
-    SpellBooks(1 To 8) As Byte         'Need to mask as bits...
-    MageSpellPoints(1 To 7) As Integer
-    PriestSpellPoints(1 To 7) As Integer
-    Unknown4(1 To 34) As Byte
+    Out As Integer                      '0x1D820    00 00 = No; 01 00 = Yes;
+    Race As Integer                     '0x1D822    01 00 = Human
+    Profession As Integer               '0x1D824    06 00 = Lord
+    AgeInWeeks As Integer               '0x1D826    0C 03 = Weeks Alive...
+    Status As Integer                   '0x1D828    00 00 = OK
+    Alignment As Integer                '0x1D82A    02 00 = Neutral
+    Statistics As Long                  '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
+    Unknown1(1 To 4) As Byte            '0x1D830
+    GP As Long                          '0x1D834
+    Unknown2(1 To 2) As Byte            '0x1D838
+    ItemCount As Integer                '0x1D83A
+    ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
+    EXP As Long                         '0x1D87C
+    Unknown3(1 To 2) As Byte            '0x1D880
+    LVL As Wiz01Points                  '0x1D882
+    HP As Wiz01Points                   '0x1D886
+    SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
+    MageSpellPoints(1 To 7) As Integer  '0x1D882
+    PriestSpellPoints(1 To 7) As Integer '0x1D890
+    Unknown4(1 To 34) As Byte           '0x1D89D
+                                        '0x1D8C0    Next Character Record...
 End Type
 Private ItemList(0 To Wiz01ItemMapMax) As String
 Private Spells(0 To Wiz01SpellMapMax) As String
@@ -304,7 +305,7 @@ Public Sub InitializeWiz01ItemList()
     ItemList(77) = "Shield -2"
     ItemList(78) = "Cursed Helmet"
     ItemList(79) = "Breast Plate +2"
-    ItemList(80) = "Silver Gloves"
+    ItemList(80) = "Gloves of Silver"
     ItemList(81) = "Evil +3 Sword"
     ItemList(82) = "+3 Evil Short Sword"
     ItemList(83) = "Thieves Dagger"
@@ -585,37 +586,6 @@ Public Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As S
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
     strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
 End Function
-Private Sub Test()
-    Dim i As Long
-    Dim iChar As Integer
-    Dim Offset As Long
-    Dim Unit As Integer
-    Dim Data As Long
-    Dim errorCode As Long
-    
-    On Error GoTo ErrorHandler
-    Unit = FreeFile
-    Open "Test.dat" For Binary Access Read Write Lock Read Write As #Unit
-    For i = 1 To 3
-        Get #Unit, , Data
-        Debug.Print "Data: " & Hex(Data)
-        Debug.Print vbTab & "STR: " & ((Data \ (2 ^ 0)) And &H1F)
-        Debug.Print vbTab & "INT: " & ((Data \ (2 ^ 5)) And &H1F)
-        Debug.Print vbTab & "PIE: " & ((Data \ (2 ^ 10)) And &H1F)
-        Debug.Print vbTab & "VIT: " & ((Data \ (2 ^ 16)) And &H1F)
-        Debug.Print vbTab & "AGL: " & ((Data \ (2 ^ 21)) And &H1F)
-        Debug.Print vbTab & "LUC: " & ((Data \ (2 ^ 26)) And &H1F)
-    Next i
-    Close #Unit
-
-ExitSub:
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Test"
-    Exit Sub
-    Resume Next
-End Sub
 Public Sub TestSpells()
     Dim i As Long
     Dim iChar As Integer
@@ -690,6 +660,30 @@ ExitSub:
     
 ErrorHandler:
     MsgBox Err.Description, vbExclamation, "WriteWiz01"
+    Exit Sub
+    Resume Next
+End Sub
+Public Sub Test()
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim Data As Single
+    Dim errorCode As Long
+    
+    Data = 846681
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open "Test2.dat" For Binary Access Read Write Lock Read Write As #Unit
+    Put #Unit, , Data
+    'Get #Unit, , Data
+    Close #Unit
+
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Test"
     Exit Sub
     Resume Next
 End Sub

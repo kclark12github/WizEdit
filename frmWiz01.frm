@@ -22,747 +22,56 @@ Begin VB.Form frmWiz01
       BackColor       =   &H00404040&
       ForeColor       =   &H80000008&
       Height          =   4452
-      Index           =   2
-      Left            =   120
-      ScaleHeight     =   4428
-      ScaleWidth      =   7008
-      TabIndex        =   108
-      TabStop         =   0   'False
-      Top             =   1020
-      Width           =   7032
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   8
-         Left            =   2100
-         TabIndex        =   49
-         ToolTipText     =   "Identified?"
-         Top             =   3792
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   7
-         Left            =   2100
-         TabIndex        =   45
-         ToolTipText     =   "Identified?"
-         Top             =   3372
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   6
-         Left            =   2100
-         TabIndex        =   41
-         ToolTipText     =   "Identified?"
-         Top             =   2952
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   5
-         Left            =   2100
-         TabIndex        =   37
-         ToolTipText     =   "Identified?"
-         Top             =   2532
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   4
-         Left            =   2100
-         TabIndex        =   33
-         ToolTipText     =   "Identified?"
-         Top             =   2112
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   3
-         Left            =   2100
-         TabIndex        =   29
-         ToolTipText     =   "Identified?"
-         Top             =   1692
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   2
-         Left            =   2100
-         TabIndex        =   25
-         ToolTipText     =   "Identified?"
-         Top             =   1272
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   8
-         Left            =   1800
-         TabIndex        =   48
-         ToolTipText     =   "Cursed?"
-         Top             =   3792
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   7
-         Left            =   1800
-         TabIndex        =   44
-         ToolTipText     =   "Cursed?"
-         Top             =   3372
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   6
-         Left            =   1800
-         TabIndex        =   40
-         ToolTipText     =   "Cursed?"
-         Top             =   2952
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   5
-         Left            =   1800
-         TabIndex        =   36
-         ToolTipText     =   "Cursed?"
-         Top             =   2532
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   4
-         Left            =   1800
-         TabIndex        =   32
-         ToolTipText     =   "Cursed?"
-         Top             =   2112
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   3
-         Left            =   1800
-         TabIndex        =   28
-         ToolTipText     =   "Cursed?"
-         Top             =   1692
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   2
-         Left            =   1800
-         TabIndex        =   24
-         ToolTipText     =   "Cursed?"
-         Top             =   1272
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   8
-         Left            =   1500
-         TabIndex        =   47
-         ToolTipText     =   "Equipped?"
-         Top             =   3792
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   7
-         Left            =   1500
-         TabIndex        =   43
-         ToolTipText     =   "Equipped?"
-         Top             =   3372
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   6
-         Left            =   1500
-         TabIndex        =   39
-         ToolTipText     =   "Equipped?"
-         Top             =   2952
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   5
-         Left            =   1500
-         TabIndex        =   35
-         ToolTipText     =   "Equipped?"
-         Top             =   2532
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   4
-         Left            =   1500
-         TabIndex        =   31
-         ToolTipText     =   "Equipped?"
-         Top             =   2112
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   3
-         Left            =   1500
-         TabIndex        =   27
-         ToolTipText     =   "Equipped?"
-         Top             =   1692
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   2
-         Left            =   1500
-         TabIndex        =   23
-         ToolTipText     =   "Equipped?"
-         Top             =   1272
-         Width           =   204
-      End
-      Begin VB.CheckBox chkEquipped 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   1
-         Left            =   1500
-         TabIndex        =   19
-         ToolTipText     =   "Equipped?"
-         Top             =   840
-         Width           =   204
-      End
-      Begin VB.CheckBox chkCursed 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   1
-         Left            =   1800
-         TabIndex        =   20
-         ToolTipText     =   "Cursed?"
-         Top             =   840
-         Width           =   204
-      End
-      Begin VB.CheckBox chkIdentified 
-         BackColor       =   &H00000000&
-         ForeColor       =   &H0000FFFF&
-         Height          =   312
-         Index           =   1
-         Left            =   2100
-         TabIndex        =   21
-         ToolTipText     =   "Identified?"
-         Top             =   840
-         Width           =   204
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   1
-         ItemData        =   "frmWiz01.frx":1CCA
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CCC
-         Style           =   2  'Dropdown List
-         TabIndex        =   22
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #1..."
-         Top             =   828
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   8
-         ItemData        =   "frmWiz01.frx":1CCE
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CD0
-         Style           =   2  'Dropdown List
-         TabIndex        =   50
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #8..."
-         Top             =   3780
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   7
-         ItemData        =   "frmWiz01.frx":1CD2
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CD4
-         Style           =   2  'Dropdown List
-         TabIndex        =   46
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #7..."
-         Top             =   3360
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   6
-         ItemData        =   "frmWiz01.frx":1CD6
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CD8
-         Style           =   2  'Dropdown List
-         TabIndex        =   42
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #6..."
-         Top             =   2940
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   5
-         ItemData        =   "frmWiz01.frx":1CDA
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CDC
-         Style           =   2  'Dropdown List
-         TabIndex        =   38
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #5..."
-         Top             =   2520
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   4
-         ItemData        =   "frmWiz01.frx":1CDE
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CE0
-         Style           =   2  'Dropdown List
-         TabIndex        =   34
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #4..."
-         Top             =   2100
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   3
-         ItemData        =   "frmWiz01.frx":1CE2
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CE4
-         Style           =   2  'Dropdown List
-         TabIndex        =   30
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #3..."
-         Top             =   1680
-         Width           =   2712
-      End
-      Begin VB.ComboBox cboItem 
-         BackColor       =   &H00808080&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.6
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   336
-         Index           =   2
-         ItemData        =   "frmWiz01.frx":1CE6
-         Left            =   2520
-         List            =   "frmWiz01.frx":1CE8
-         Style           =   2  'Dropdown List
-         TabIndex        =   26
-         Tag             =   "TabStop"
-         ToolTipText     =   "Item Carried in slot #2..."
-         Top             =   1260
-         Width           =   2712
-      End
-      Begin VB.Label lbl8i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "8"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   149
-         Top             =   3804
-         Width           =   144
-      End
-      Begin VB.Label lbl7i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "7"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   148
-         Top             =   3384
-         Width           =   144
-      End
-      Begin VB.Label lbl6i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "6"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   147
-         Top             =   2964
-         Width           =   144
-      End
-      Begin VB.Label lbl5i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "5"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   146
-         Top             =   2544
-         Width           =   144
-      End
-      Begin VB.Label lbl4i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "4"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   145
-         Top             =   2124
-         Width           =   144
-      End
-      Begin VB.Label lbl3i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "3"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   144
-         Top             =   1704
-         Width           =   144
-      End
-      Begin VB.Label lbl2i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "2"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   143
-         Top             =   1284
-         Width           =   144
-      End
-      Begin VB.Label lblItemNumber 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "#"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   16.2
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   384
-         Left            =   1200
-         TabIndex        =   142
-         Top             =   420
-         Width           =   156
-      End
-      Begin VB.Label lbl1i 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "1"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   1200
-         TabIndex        =   141
-         Top             =   852
-         Width           =   144
-      End
-      Begin VB.Label lblIdentified 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "?"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   2100
-         TabIndex        =   120
-         ToolTipText     =   "Identified?"
-         Top             =   480
-         Width           =   108
-      End
-      Begin VB.Label lblCursed 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "-"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   432
-         Left            =   1800
-         TabIndex        =   119
-         ToolTipText     =   "Cursed?"
-         Top             =   360
-         Width           =   168
-      End
-      Begin VB.Label lblEquipped 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "*"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   432
-         Left            =   1500
-         TabIndex        =   118
-         ToolTipText     =   "Equipped?"
-         Top             =   480
-         Width           =   144
-      End
-      Begin VB.Label lblItemList 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Item List:"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   360
-         TabIndex        =   117
-         Top             =   120
-         Width           =   1008
-      End
-   End
-   Begin VB.PictureBox picFrames 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00404040&
-      ForeColor       =   &H80000008&
-      Height          =   4452
       Index           =   1
       Left            =   120
       ScaleHeight     =   4428
       ScaleWidth      =   7008
-      TabIndex        =   72
+      TabIndex        =   74
       TabStop         =   0   'False
       Top             =   1020
       Width           =   7032
+      Begin VB.TextBox txtPassword 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   1200
+         MaxLength       =   15
+         TabIndex        =   5
+         Text            =   "Password"
+         ToolTipText     =   "Character Password..."
+         Top             =   480
+         Width           =   2076
+      End
+      Begin VB.TextBox txtName 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   1200
+         MaxLength       =   15
+         TabIndex        =   4
+         Text            =   "Name"
+         ToolTipText     =   "Character Name..."
+         Top             =   60
+         Width           =   2076
+      End
       Begin VB.TextBox txtAge 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00808080&
@@ -780,8 +89,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   16
-         Text            =   "frmWiz01.frx":1CEA
+         TabIndex        =   18
+         Text            =   "frmWiz01.frx":1CCA
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   2940
          Width           =   996
@@ -803,8 +112,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   14
-         Text            =   "frmWiz01.frx":1CED
+         TabIndex        =   16
+         Text            =   "frmWiz01.frx":1CCD
          ToolTipText     =   "Level..."
          Top             =   2100
          Width           =   996
@@ -826,8 +135,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   13
          MultiLine       =   -1  'True
-         TabIndex        =   18
-         Text            =   "frmWiz01.frx":1CF0
+         TabIndex        =   20
+         Text            =   "frmWiz01.frx":1CD0
          ToolTipText     =   "Gold Pieces..."
          Top             =   3720
          Width           =   1476
@@ -849,8 +158,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   13
          MultiLine       =   -1  'True
-         TabIndex        =   13
-         Text            =   "frmWiz01.frx":1CF3
+         TabIndex        =   15
+         Text            =   "frmWiz01.frx":1CD3
          ToolTipText     =   "Experience Points..."
          Top             =   1680
          Width           =   1476
@@ -872,8 +181,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   15
-         Text            =   "frmWiz01.frx":1CF6
+         TabIndex        =   17
+         Text            =   "frmWiz01.frx":1CD6
          ToolTipText     =   "Hit Points (automatically ""topped-off"")..."
          Top             =   2520
          Width           =   996
@@ -893,7 +202,7 @@ Begin VB.Form frmWiz01
          Height          =   336
          Left            =   4320
          Style           =   2  'Dropdown List
-         TabIndex        =   17
+         TabIndex        =   19
          ToolTipText     =   "Character's Status (i.e. OK, Afraid, Poisoned, etc.)..."
          Top             =   3360
          Width           =   1632
@@ -911,9 +220,9 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         Left            =   1440
+         Left            =   4980
          Style           =   2  'Dropdown List
-         TabIndex        =   6
+         TabIndex        =   8
          Tag             =   "TabStop"
          ToolTipText     =   "Character's Profession (i.e. Fighter, Mage, etc.)..."
          Top             =   780
@@ -932,11 +241,11 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz01.frx":1CF9
-         Left            =   1440
-         List            =   "frmWiz01.frx":1D00
+         ItemData        =   "frmWiz01.frx":1CD9
+         Left            =   4980
+         List            =   "frmWiz01.frx":1CE0
          Style           =   2  'Dropdown List
-         TabIndex        =   4
+         TabIndex        =   6
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
          Top             =   60
          Width           =   1692
@@ -944,7 +253,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPIE 
          Height          =   360
          Left            =   2400
-         TabIndex        =   94
+         TabIndex        =   96
          TabStop         =   0   'False
          Top             =   2520
          Width           =   240
@@ -953,7 +262,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196636
+         BuddyDispid     =   196635
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -981,8 +290,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   9
-         Text            =   "frmWiz01.frx":1D0B
+         TabIndex        =   11
+         Text            =   "frmWiz01.frx":1CEB
          ToolTipText     =   "Piety..."
          Top             =   2520
          Width           =   396
@@ -1004,8 +313,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   12
-         Text            =   "frmWiz01.frx":1D0E
+         TabIndex        =   14
+         Text            =   "frmWiz01.frx":1CEE
          ToolTipText     =   "Speed..."
          Top             =   3780
          Width           =   396
@@ -1027,8 +336,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   11
-         Text            =   "frmWiz01.frx":1D11
+         TabIndex        =   13
+         Text            =   "frmWiz01.frx":1CF1
          ToolTipText     =   "Dexterity..."
          Top             =   3360
          Width           =   396
@@ -1050,8 +359,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   10
-         Text            =   "frmWiz01.frx":1D14
+         TabIndex        =   12
+         Text            =   "frmWiz01.frx":1CF4
          ToolTipText     =   "Vitality..."
          Top             =   2940
          Width           =   396
@@ -1073,8 +382,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   8
-         Text            =   "frmWiz01.frx":1D17
+         TabIndex        =   10
+         Text            =   "frmWiz01.frx":1CF7
          ToolTipText     =   "Intelligence..."
          Top             =   2100
          Width           =   396
@@ -1093,12 +402,12 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz01.frx":1D1A
-         Left            =   1440
-         List            =   "frmWiz01.frx":1D24
+         ItemData        =   "frmWiz01.frx":1CFA
+         Left            =   4980
+         List            =   "frmWiz01.frx":1D04
          Locked          =   -1  'True
          Style           =   2  'Dropdown List
-         TabIndex        =   5
+         TabIndex        =   7
          Tag             =   "TabStop"
          ToolTipText     =   "Character's Gender (Male/Female)..."
          Top             =   420
@@ -1121,8 +430,8 @@ Begin VB.Form frmWiz01
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   7
-         Text            =   "frmWiz01.frx":1D36
+         TabIndex        =   9
+         Text            =   "frmWiz01.frx":1D16
          ToolTipText     =   "Strength..."
          Top             =   1680
          Width           =   396
@@ -1130,7 +439,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udSTR 
          Height          =   360
          Left            =   2400
-         TabIndex        =   92
+         TabIndex        =   94
          TabStop         =   0   'False
          Top             =   1680
          Width           =   240
@@ -1139,7 +448,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196642
+         BuddyDispid     =   196641
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1153,7 +462,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udINT 
          Height          =   360
          Left            =   2400
-         TabIndex        =   93
+         TabIndex        =   95
          TabStop         =   0   'False
          Top             =   2100
          Width           =   240
@@ -1162,7 +471,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196640
+         BuddyDispid     =   196639
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -1176,7 +485,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udVIT 
          Height          =   360
          Left            =   2400
-         TabIndex        =   95
+         TabIndex        =   97
          TabStop         =   0   'False
          Top             =   2940
          Width           =   240
@@ -1185,7 +494,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196639
+         BuddyDispid     =   196638
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1197,7 +506,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udAGL 
          Height          =   360
          Left            =   2400
-         TabIndex        =   96
+         TabIndex        =   98
          TabStop         =   0   'False
          Top             =   3360
          Width           =   240
@@ -1206,7 +515,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAGL"
-         BuddyDispid     =   196638
+         BuddyDispid     =   196637
          OrigLeft        =   2400
          OrigTop         =   3360
          OrigRight       =   2640
@@ -1220,7 +529,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udLCK 
          Height          =   360
          Left            =   2400
-         TabIndex        =   97
+         TabIndex        =   99
          TabStop         =   0   'False
          Top             =   3780
          Width           =   240
@@ -1229,7 +538,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLCK"
-         BuddyDispid     =   196637
+         BuddyDispid     =   196636
          OrigLeft        =   2400
          OrigTop         =   3780
          OrigRight       =   2640
@@ -1243,7 +552,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udHP 
          Height          =   360
          Left            =   5280
-         TabIndex        =   99
+         TabIndex        =   101
          TabStop         =   0   'False
          Top             =   2520
          Width           =   240
@@ -1265,7 +574,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udEXP 
          Height          =   360
          Left            =   5760
-         TabIndex        =   100
+         TabIndex        =   102
          TabStop         =   0   'False
          Top             =   1680
          Width           =   240
@@ -1287,7 +596,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udGP 
          Height          =   360
          Left            =   5760
-         TabIndex        =   101
+         TabIndex        =   103
          TabStop         =   0   'False
          Top             =   3720
          Width           =   240
@@ -1309,7 +618,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udLVL 
          Height          =   360
          Left            =   5280
-         TabIndex        =   102
+         TabIndex        =   104
          TabStop         =   0   'False
          Top             =   2100
          Width           =   240
@@ -1332,7 +641,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udAge 
          Height          =   360
          Left            =   5280
-         TabIndex        =   103
+         TabIndex        =   105
          TabStop         =   0   'False
          Top             =   2940
          Width           =   240
@@ -1352,6 +661,46 @@ Begin VB.Form frmWiz01
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
+      Begin VB.Label lblPassword 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Password:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   60
+         TabIndex        =   156
+         Top             =   516
+         Width           =   1068
+      End
+      Begin VB.Label lblName 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Name:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   468
+         TabIndex        =   155
+         Top             =   96
+         Width           =   660
+      End
       Begin VB.Label lbl2Stats 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
@@ -1368,7 +717,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3012
-         TabIndex        =   91
+         TabIndex        =   93
          Top             =   1380
          Width           =   2148
       End
@@ -1388,7 +737,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   180
-         TabIndex        =   90
+         TabIndex        =   92
          Top             =   1380
          Width           =   1608
       End
@@ -1407,8 +756,8 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   88
+         Left            =   3600
+         TabIndex        =   90
          Top             =   444
          Width           =   780
       End
@@ -1428,7 +777,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1320
-         TabIndex        =   86
+         TabIndex        =   88
          Top             =   3816
          Width           =   540
       End
@@ -1448,7 +797,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1080
-         TabIndex        =   85
+         TabIndex        =   87
          Top             =   3396
          Width           =   780
       End
@@ -1468,7 +817,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   960
-         TabIndex        =   84
+         TabIndex        =   86
          Top             =   2976
          Width           =   900
       End
@@ -1488,7 +837,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1224
-         TabIndex        =   83
+         TabIndex        =   85
          Top             =   2556
          Width           =   636
       End
@@ -1508,7 +857,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   600
-         TabIndex        =   82
+         TabIndex        =   84
          Top             =   2136
          Width           =   1260
       End
@@ -1528,7 +877,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   936
-         TabIndex        =   81
+         TabIndex        =   83
          Top             =   1716
          Width           =   924
       End
@@ -1548,7 +897,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3048
-         TabIndex        =   80
+         TabIndex        =   82
          Top             =   2556
          Width           =   1164
       End
@@ -1568,7 +917,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3684
-         TabIndex        =   79
+         TabIndex        =   81
          Top             =   3756
          Width           =   528
       End
@@ -1588,7 +937,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3012
-         TabIndex        =   78
+         TabIndex        =   80
          Top             =   1716
          Width           =   1200
       End
@@ -1608,7 +957,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3660
-         TabIndex        =   77
+         TabIndex        =   79
          Top             =   2976
          Width           =   456
       End
@@ -1628,7 +977,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3600
-         TabIndex        =   76
+         TabIndex        =   78
          Top             =   2136
          Width           =   624
       End
@@ -1648,7 +997,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3492
-         TabIndex        =   75
+         TabIndex        =   77
          Top             =   3360
          Width           =   720
       End
@@ -1667,8 +1016,8 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   74
+         Left            =   3600
+         TabIndex        =   76
          Top             =   804
          Width           =   1188
       End
@@ -1687,8 +1036,8 @@ Begin VB.Form frmWiz01
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   73
+         Left            =   3600
+         TabIndex        =   75
          Top             =   84
          Width           =   576
       End
@@ -1702,10 +1051,46 @@ Begin VB.Form frmWiz01
       Left            =   120
       ScaleHeight     =   4428
       ScaleWidth      =   7008
-      TabIndex        =   107
+      TabIndex        =   109
       TabStop         =   0   'False
       Top             =   1020
       Width           =   7032
+      Begin VB.CommandButton cmdPriestNone 
+         Caption         =   "None"
+         Height          =   252
+         Left            =   5400
+         TabIndex        =   154
+         TabStop         =   0   'False
+         Top             =   2400
+         Width           =   552
+      End
+      Begin VB.CommandButton cmdPriestAll 
+         Caption         =   "All"
+         Height          =   252
+         Left            =   4800
+         TabIndex        =   153
+         TabStop         =   0   'False
+         Top             =   2400
+         Width           =   552
+      End
+      Begin VB.CommandButton cmdMageNone 
+         Caption         =   "None"
+         Height          =   252
+         Left            =   1680
+         TabIndex        =   152
+         TabStop         =   0   'False
+         Top             =   2400
+         Width           =   552
+      End
+      Begin VB.CommandButton cmdMageAll 
+         Caption         =   "All"
+         Height          =   252
+         Left            =   1080
+         TabIndex        =   151
+         TabStop         =   0   'False
+         Top             =   2400
+         Width           =   552
+      End
       Begin VB.TextBox txtPriest7 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00808080&
@@ -1723,8 +1108,8 @@ Begin VB.Form frmWiz01
          Left            =   6000
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   66
-         Text            =   "frmWiz01.frx":1D39
+         TabIndex        =   68
+         Text            =   "frmWiz01.frx":1D19
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -1746,8 +1131,8 @@ Begin VB.Form frmWiz01
          Left            =   5160
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   65
-         Text            =   "frmWiz01.frx":1D3F
+         TabIndex        =   67
+         Text            =   "frmWiz01.frx":1D1F
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -1769,8 +1154,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   64
-         Text            =   "frmWiz01.frx":1D45
+         TabIndex        =   66
+         Text            =   "frmWiz01.frx":1D25
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -1792,8 +1177,8 @@ Begin VB.Form frmWiz01
          Left            =   6000
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   59
-         Text            =   "frmWiz01.frx":1D4B
+         TabIndex        =   61
+         Text            =   "frmWiz01.frx":1D2B
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -1815,8 +1200,8 @@ Begin VB.Form frmWiz01
          Left            =   5160
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   58
-         Text            =   "frmWiz01.frx":1D51
+         TabIndex        =   60
+         Text            =   "frmWiz01.frx":1D31
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -1838,8 +1223,8 @@ Begin VB.Form frmWiz01
          Left            =   4320
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   57
-         Text            =   "frmWiz01.frx":1D57
+         TabIndex        =   59
+         Text            =   "frmWiz01.frx":1D37
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -1861,8 +1246,8 @@ Begin VB.Form frmWiz01
          Left            =   3480
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   63
-         Text            =   "frmWiz01.frx":1D5D
+         TabIndex        =   65
+         Text            =   "frmWiz01.frx":1D3D
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -1884,8 +1269,8 @@ Begin VB.Form frmWiz01
          Left            =   3480
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   56
-         Text            =   "frmWiz01.frx":1D63
+         TabIndex        =   58
+         Text            =   "frmWiz01.frx":1D43
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -1907,8 +1292,8 @@ Begin VB.Form frmWiz01
          Left            =   2640
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   62
-         Text            =   "frmWiz01.frx":1D69
+         TabIndex        =   64
+         Text            =   "frmWiz01.frx":1D49
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -1930,8 +1315,8 @@ Begin VB.Form frmWiz01
          Left            =   2640
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   55
-         Text            =   "frmWiz01.frx":1D6F
+         TabIndex        =   57
+         Text            =   "frmWiz01.frx":1D4F
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -1951,8 +1336,8 @@ Begin VB.Form frmWiz01
          Height          =   1776
          Left            =   4140
          Style           =   1  'Checkbox
-         TabIndex        =   52
-         Top             =   840
+         TabIndex        =   54
+         Top             =   540
          Width           =   2472
       End
       Begin VB.ListBox lstMageSpells 
@@ -1970,8 +1355,8 @@ Begin VB.Form frmWiz01
          Height          =   1776
          Left            =   480
          Style           =   1  'Checkbox
-         TabIndex        =   51
-         Top             =   840
+         TabIndex        =   53
+         Top             =   540
          Width           =   2472
       End
       Begin VB.TextBox txtPriest2 
@@ -1991,8 +1376,8 @@ Begin VB.Form frmWiz01
          Left            =   1800
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   61
-         Text            =   "frmWiz01.frx":1D75
+         TabIndex        =   63
+         Text            =   "frmWiz01.frx":1D55
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -2014,8 +1399,8 @@ Begin VB.Form frmWiz01
          Left            =   1800
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   54
-         Text            =   "frmWiz01.frx":1D7B
+         TabIndex        =   56
+         Text            =   "frmWiz01.frx":1D5B
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3420
          Width           =   576
@@ -2037,8 +1422,8 @@ Begin VB.Form frmWiz01
          Left            =   960
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   60
-         Text            =   "frmWiz01.frx":1D81
+         TabIndex        =   62
+         Text            =   "frmWiz01.frx":1D61
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3900
          Width           =   576
@@ -2060,8 +1445,8 @@ Begin VB.Form frmWiz01
          Left            =   960
          MaxLength       =   3
          MultiLine       =   -1  'True
-         TabIndex        =   53
-         Text            =   "frmWiz01.frx":1D87
+         TabIndex        =   55
+         Text            =   "frmWiz01.frx":1D67
          ToolTipText     =   "Wand && Dagger..."
          Top             =   3444
          Width           =   576
@@ -2069,7 +1454,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage1 
          Height          =   360
          Left            =   1500
-         TabIndex        =   113
+         TabIndex        =   114
          TabStop         =   0   'False
          Top             =   3444
          Width           =   240
@@ -2078,7 +1463,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage1"
-         BuddyDispid     =   196685
+         BuddyDispid     =   196674
          OrigLeft        =   2400
          OrigTop         =   3444
          OrigRight       =   2640
@@ -2091,7 +1476,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest1 
          Height          =   360
          Left            =   1500
-         TabIndex        =   114
+         TabIndex        =   115
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2100,7 +1485,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest1"
-         BuddyDispid     =   196684
+         BuddyDispid     =   196673
          OrigLeft        =   2400
          OrigTop         =   3900
          OrigRight       =   2640
@@ -2113,7 +1498,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage2 
          Height          =   360
          Left            =   2340
-         TabIndex        =   115
+         TabIndex        =   116
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2122,7 +1507,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage2"
-         BuddyDispid     =   196683
+         BuddyDispid     =   196672
          OrigLeft        =   3300
          OrigTop         =   3420
          OrigRight       =   3540
@@ -2135,7 +1520,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest2 
          Height          =   360
          Left            =   2340
-         TabIndex        =   116
+         TabIndex        =   117
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2144,7 +1529,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest2"
-         BuddyDispid     =   196682
+         BuddyDispid     =   196671
          OrigLeft        =   3240
          OrigTop         =   3900
          OrigRight       =   3480
@@ -2157,7 +1542,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage3 
          Height          =   360
          Left            =   3180
-         TabIndex        =   131
+         TabIndex        =   132
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2166,7 +1551,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage3"
-         BuddyDispid     =   196679
+         BuddyDispid     =   196668
          OrigLeft        =   4140
          OrigTop         =   3420
          OrigRight       =   4380
@@ -2179,7 +1564,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest3 
          Height          =   360
          Left            =   3180
-         TabIndex        =   132
+         TabIndex        =   133
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2188,7 +1573,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest3"
-         BuddyDispid     =   196678
+         BuddyDispid     =   196667
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2201,7 +1586,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage4 
          Height          =   360
          Left            =   4020
-         TabIndex        =   133
+         TabIndex        =   134
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2210,7 +1595,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage4"
-         BuddyDispid     =   196677
+         BuddyDispid     =   196666
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2223,7 +1608,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest4 
          Height          =   360
          Left            =   4020
-         TabIndex        =   134
+         TabIndex        =   135
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2232,7 +1617,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest4"
-         BuddyDispid     =   196676
+         BuddyDispid     =   196665
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2245,7 +1630,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage5 
          Height          =   360
          Left            =   4860
-         TabIndex        =   135
+         TabIndex        =   136
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2254,7 +1639,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage5"
-         BuddyDispid     =   196675
+         BuddyDispid     =   196664
          OrigLeft        =   5760
          OrigTop         =   3420
          OrigRight       =   6000
@@ -2265,7 +1650,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage6 
          Height          =   360
          Left            =   5700
-         TabIndex        =   136
+         TabIndex        =   137
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2274,7 +1659,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage6"
-         BuddyDispid     =   196674
+         BuddyDispid     =   196663
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2287,7 +1672,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udMage7 
          Height          =   360
          Left            =   6540
-         TabIndex        =   137
+         TabIndex        =   138
          TabStop         =   0   'False
          Top             =   3420
          Width           =   240
@@ -2296,7 +1681,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage7"
-         BuddyDispid     =   196673
+         BuddyDispid     =   196662
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2309,7 +1694,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest5 
          Height          =   360
          Left            =   4860
-         TabIndex        =   138
+         TabIndex        =   139
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2318,7 +1703,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest5"
-         BuddyDispid     =   196672
+         BuddyDispid     =   196661
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2331,7 +1716,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest6 
          Height          =   360
          Left            =   5700
-         TabIndex        =   139
+         TabIndex        =   140
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2340,7 +1725,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest6"
-         BuddyDispid     =   196671
+         BuddyDispid     =   196660
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2353,7 +1738,7 @@ Begin VB.Form frmWiz01
       Begin MSComCtl2.UpDown udPriest7 
          Height          =   360
          Left            =   6540
-         TabIndex        =   140
+         TabIndex        =   141
          TabStop         =   0   'False
          Top             =   3900
          Width           =   240
@@ -2362,7 +1747,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest7"
-         BuddyDispid     =   196670
+         BuddyDispid     =   196659
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2388,7 +1773,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6300
-         TabIndex        =   130
+         TabIndex        =   131
          Top             =   3060
          Width           =   144
       End
@@ -2408,7 +1793,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   5460
-         TabIndex        =   129
+         TabIndex        =   130
          Top             =   3060
          Width           =   144
       End
@@ -2428,7 +1813,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   4620
-         TabIndex        =   128
+         TabIndex        =   129
          Top             =   3060
          Width           =   144
       End
@@ -2448,7 +1833,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   60
-         TabIndex        =   127
+         TabIndex        =   128
          Top             =   2760
          Width           =   1332
       End
@@ -2468,7 +1853,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   192
-         TabIndex        =   126
+         TabIndex        =   127
          Top             =   3120
          Width           =   624
       End
@@ -2488,7 +1873,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1260
-         TabIndex        =   125
+         TabIndex        =   126
          Top             =   3060
          Width           =   144
       End
@@ -2508,7 +1893,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   2940
-         TabIndex        =   124
+         TabIndex        =   125
          Top             =   3060
          Width           =   144
       End
@@ -2528,7 +1913,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   2100
-         TabIndex        =   123
+         TabIndex        =   124
          Top             =   3060
          Width           =   144
       End
@@ -2548,7 +1933,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3780
-         TabIndex        =   122
+         TabIndex        =   123
          Top             =   3060
          Width           =   144
       End
@@ -2568,29 +1953,9 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   108
-         TabIndex        =   121
+         TabIndex        =   122
          Top             =   3960
          Width           =   708
-      End
-      Begin VB.Label lblSpellBooks 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Spell Books:"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   60
-         TabIndex        =   112
-         Top             =   120
-         Width           =   1272
       End
       Begin VB.Label lblPriestSpells 
          AutoSize        =   -1  'True
@@ -2608,8 +1973,8 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   4140
-         TabIndex        =   111
-         Top             =   420
+         TabIndex        =   113
+         Top             =   120
          Width           =   1392
       End
       Begin VB.Label lblMagePoints 
@@ -2628,7 +1993,7 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   180
-         TabIndex        =   110
+         TabIndex        =   112
          Top             =   3480
          Width           =   636
       End
@@ -2648,9 +2013,742 @@ Begin VB.Form frmWiz01
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   480
-         TabIndex        =   109
-         Top             =   420
+         TabIndex        =   111
+         Top             =   120
          Width           =   1320
+      End
+   End
+   Begin VB.PictureBox picFrames 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00404040&
+      ForeColor       =   &H80000008&
+      Height          =   4452
+      Index           =   2
+      Left            =   120
+      ScaleHeight     =   4428
+      ScaleWidth      =   7008
+      TabIndex        =   110
+      TabStop         =   0   'False
+      Top             =   1020
+      Width           =   7032
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   8
+         Left            =   2100
+         TabIndex        =   51
+         ToolTipText     =   "Identified?"
+         Top             =   3792
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   7
+         Left            =   2100
+         TabIndex        =   47
+         ToolTipText     =   "Identified?"
+         Top             =   3372
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   6
+         Left            =   2100
+         TabIndex        =   43
+         ToolTipText     =   "Identified?"
+         Top             =   2952
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   5
+         Left            =   2100
+         TabIndex        =   39
+         ToolTipText     =   "Identified?"
+         Top             =   2532
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   4
+         Left            =   2100
+         TabIndex        =   35
+         ToolTipText     =   "Identified?"
+         Top             =   2112
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   3
+         Left            =   2100
+         TabIndex        =   31
+         ToolTipText     =   "Identified?"
+         Top             =   1692
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   2
+         Left            =   2100
+         TabIndex        =   27
+         ToolTipText     =   "Identified?"
+         Top             =   1272
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   8
+         Left            =   1800
+         TabIndex        =   50
+         ToolTipText     =   "Cursed?"
+         Top             =   3792
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   7
+         Left            =   1800
+         TabIndex        =   46
+         ToolTipText     =   "Cursed?"
+         Top             =   3372
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   6
+         Left            =   1800
+         TabIndex        =   42
+         ToolTipText     =   "Cursed?"
+         Top             =   2952
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   5
+         Left            =   1800
+         TabIndex        =   38
+         ToolTipText     =   "Cursed?"
+         Top             =   2532
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   4
+         Left            =   1800
+         TabIndex        =   34
+         ToolTipText     =   "Cursed?"
+         Top             =   2112
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   3
+         Left            =   1800
+         TabIndex        =   30
+         ToolTipText     =   "Cursed?"
+         Top             =   1692
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   2
+         Left            =   1800
+         TabIndex        =   26
+         ToolTipText     =   "Cursed?"
+         Top             =   1272
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   8
+         Left            =   1500
+         TabIndex        =   49
+         ToolTipText     =   "Equipped?"
+         Top             =   3792
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   7
+         Left            =   1500
+         TabIndex        =   45
+         ToolTipText     =   "Equipped?"
+         Top             =   3372
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   6
+         Left            =   1500
+         TabIndex        =   41
+         ToolTipText     =   "Equipped?"
+         Top             =   2952
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   5
+         Left            =   1500
+         TabIndex        =   37
+         ToolTipText     =   "Equipped?"
+         Top             =   2532
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   4
+         Left            =   1500
+         TabIndex        =   33
+         ToolTipText     =   "Equipped?"
+         Top             =   2112
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   3
+         Left            =   1500
+         TabIndex        =   29
+         ToolTipText     =   "Equipped?"
+         Top             =   1692
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   2
+         Left            =   1500
+         TabIndex        =   25
+         ToolTipText     =   "Equipped?"
+         Top             =   1272
+         Width           =   204
+      End
+      Begin VB.CheckBox chkEquipped 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   1
+         Left            =   1500
+         TabIndex        =   21
+         ToolTipText     =   "Equipped?"
+         Top             =   840
+         Width           =   204
+      End
+      Begin VB.CheckBox chkCursed 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   1
+         Left            =   1800
+         TabIndex        =   22
+         ToolTipText     =   "Cursed?"
+         Top             =   840
+         Width           =   204
+      End
+      Begin VB.CheckBox chkIdentified 
+         BackColor       =   &H00000000&
+         ForeColor       =   &H0000FFFF&
+         Height          =   312
+         Index           =   1
+         Left            =   2100
+         TabIndex        =   23
+         ToolTipText     =   "Identified?"
+         Top             =   840
+         Width           =   204
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   1
+         ItemData        =   "frmWiz01.frx":1D6D
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D6F
+         Style           =   2  'Dropdown List
+         TabIndex        =   24
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #1..."
+         Top             =   828
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   8
+         ItemData        =   "frmWiz01.frx":1D71
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D73
+         Style           =   2  'Dropdown List
+         TabIndex        =   52
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #8..."
+         Top             =   3780
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   7
+         ItemData        =   "frmWiz01.frx":1D75
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D77
+         Style           =   2  'Dropdown List
+         TabIndex        =   48
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #7..."
+         Top             =   3360
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   6
+         ItemData        =   "frmWiz01.frx":1D79
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D7B
+         Style           =   2  'Dropdown List
+         TabIndex        =   44
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #6..."
+         Top             =   2940
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   5
+         ItemData        =   "frmWiz01.frx":1D7D
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D7F
+         Style           =   2  'Dropdown List
+         TabIndex        =   40
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #5..."
+         Top             =   2520
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   4
+         ItemData        =   "frmWiz01.frx":1D81
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D83
+         Style           =   2  'Dropdown List
+         TabIndex        =   36
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #4..."
+         Top             =   2100
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   3
+         ItemData        =   "frmWiz01.frx":1D85
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D87
+         Style           =   2  'Dropdown List
+         TabIndex        =   32
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #3..."
+         Top             =   1680
+         Width           =   2712
+      End
+      Begin VB.ComboBox cboItem 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Index           =   2
+         ItemData        =   "frmWiz01.frx":1D89
+         Left            =   2520
+         List            =   "frmWiz01.frx":1D8B
+         Style           =   2  'Dropdown List
+         TabIndex        =   28
+         Tag             =   "TabStop"
+         ToolTipText     =   "Item Carried in slot #2..."
+         Top             =   1260
+         Width           =   2712
+      End
+      Begin VB.Label lbl8i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "8"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   150
+         Top             =   3804
+         Width           =   144
+      End
+      Begin VB.Label lbl7i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "7"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   149
+         Top             =   3384
+         Width           =   144
+      End
+      Begin VB.Label lbl6i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "6"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   148
+         Top             =   2964
+         Width           =   144
+      End
+      Begin VB.Label lbl5i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "5"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   147
+         Top             =   2544
+         Width           =   144
+      End
+      Begin VB.Label lbl4i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "4"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   146
+         Top             =   2124
+         Width           =   144
+      End
+      Begin VB.Label lbl3i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "3"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   145
+         Top             =   1704
+         Width           =   144
+      End
+      Begin VB.Label lbl2i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "2"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   144
+         Top             =   1284
+         Width           =   144
+      End
+      Begin VB.Label lblItemNumber 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "#"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   16.2
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   384
+         Left            =   1200
+         TabIndex        =   143
+         Top             =   420
+         Width           =   156
+      End
+      Begin VB.Label lbl1i 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "1"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   1200
+         TabIndex        =   142
+         Top             =   852
+         Width           =   144
+      End
+      Begin VB.Label lblIdentified 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "?"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   2100
+         TabIndex        =   121
+         ToolTipText     =   "Identified?"
+         Top             =   480
+         Width           =   108
+      End
+      Begin VB.Label lblCursed 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "-"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   432
+         Left            =   1800
+         TabIndex        =   120
+         ToolTipText     =   "Cursed?"
+         Top             =   360
+         Width           =   168
+      End
+      Begin VB.Label lblEquipped 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "*"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   432
+         Left            =   1500
+         TabIndex        =   119
+         ToolTipText     =   "Equipped?"
+         Top             =   480
+         Width           =   144
+      End
+      Begin VB.Label lblItemList 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Item List:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   360
+         TabIndex        =   118
+         Top             =   120
+         Width           =   1008
       End
    End
    Begin VB.PictureBox picWizardryLogo 
@@ -2660,7 +2758,7 @@ Begin VB.Form frmWiz01
       Left            =   3660
       ScaleHeight     =   372
       ScaleWidth      =   1920
-      TabIndex        =   104
+      TabIndex        =   106
       TabStop         =   0   'False
       Top             =   5520
       Width           =   1968
@@ -2681,7 +2779,7 @@ Begin VB.Form frmWiz01
       MaskColor       =   &H00FF00FF&
       Picture         =   "frmWiz01.frx":1D8D
       Style           =   1  'Graphical
-      TabIndex        =   68
+      TabIndex        =   70
       Top             =   2460
       UseMaskColor    =   -1  'True
       Width           =   1212
@@ -2693,7 +2791,7 @@ Begin VB.Form frmWiz01
       MaskColor       =   &H00FF00FF&
       Picture         =   "frmWiz01.frx":32DC
       Style           =   1  'Graphical
-      TabIndex        =   67
+      TabIndex        =   69
       Top             =   2460
       Width           =   1212
    End
@@ -2705,7 +2803,7 @@ Begin VB.Form frmWiz01
       Left            =   7680
       MaskColor       =   &H00FF00FF&
       Style           =   1  'Graphical
-      TabIndex        =   70
+      TabIndex        =   72
       Top             =   2940
       Width           =   1212
    End
@@ -2717,7 +2815,7 @@ Begin VB.Form frmWiz01
       Picture         =   "frmWiz01.frx":4839
       ScaleHeight     =   2004
       ScaleWidth      =   1332
-      TabIndex        =   98
+      TabIndex        =   100
       TabStop         =   0   'False
       Top             =   120
       Width           =   1380
@@ -2730,7 +2828,7 @@ Begin VB.Form frmWiz01
       Picture         =   "frmWiz01.frx":5043
       ScaleHeight     =   324
       ScaleWidth      =   1104
-      TabIndex        =   89
+      TabIndex        =   91
       TabStop         =   0   'False
       Top             =   660
       Width           =   1152
@@ -2763,7 +2861,7 @@ Begin VB.Form frmWiz01
       Picture         =   "frmWiz01.frx":1E865
       ScaleHeight     =   324
       ScaleWidth      =   1104
-      TabIndex        =   105
+      TabIndex        =   107
       TabStop         =   0   'False
       Top             =   660
       Width           =   1152
@@ -2795,15 +2893,15 @@ Begin VB.Form frmWiz01
       Left            =   2400
       Picture         =   "frmWiz01.frx":38087
       ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   106
+      ScaleWidth      =   1464
+      TabIndex        =   108
       TabStop         =   0   'False
       Top             =   660
-      Width           =   1152
+      Width           =   1512
       Begin VB.Label lblSpells 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Spells:"
+         Caption         =   "Spell Books:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -2818,7 +2916,7 @@ Begin VB.Form frmWiz01
          Left            =   60
          TabIndex        =   3
          Top             =   0
-         Width           =   1032
+         Width           =   1272
       End
    End
    Begin VB.ComboBox cboCharacter 
@@ -2882,7 +2980,7 @@ Begin VB.Form frmWiz01
       Align           =   2  'Align Bottom
       Height          =   252
       Left            =   0
-      TabIndex        =   87
+      TabIndex        =   89
       Top             =   6168
       Width           =   9288
       _ExtentX        =   16383
@@ -2932,7 +3030,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "9:00 PM"
+            TextSave        =   "12:13 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -2961,7 +3059,7 @@ Begin VB.Form frmWiz01
       Left            =   7680
       MaskColor       =   &H00FF00FF&
       Style           =   1  'Graphical
-      TabIndex        =   69
+      TabIndex        =   71
       Top             =   2940
       Width           =   1212
    End
@@ -2981,7 +3079,7 @@ Begin VB.Form frmWiz01
       ForeColor       =   &H0000FFFF&
       Height          =   288
       Left            =   120
-      TabIndex        =   71
+      TabIndex        =   73
       Top             =   264
       Width           =   1020
    End
@@ -3081,7 +3179,7 @@ Private Sub cmdEdit_Click()
     Call EnableFields
     Select Case ActiveTab
         Case 1
-            cboRace.SetFocus
+            txtName.SetFocus
         Case 2
             chkEquipped(1).SetFocus
         Case 3
@@ -3096,6 +3194,34 @@ Private Sub cmdExit_Click()
 End Sub
 Private Sub cmdExit_GotFocus()
     TextSelected
+End Sub
+Private Sub cmdMageAll_Click()
+    Dim i As Integer
+    For i = 0 To lstMageSpells.ListCount - 1
+        lstMageSpells.Selected(i) = True
+    Next i
+    lstMageSpells.ListIndex = -1
+End Sub
+Private Sub cmdMageNone_Click()
+    Dim i As Integer
+    For i = 0 To lstMageSpells.ListCount - 1
+        lstMageSpells.Selected(i) = False
+    Next i
+    lstMageSpells.ListIndex = -1
+End Sub
+Private Sub cmdPriestAll_Click()
+    Dim i As Integer
+    For i = 0 To lstPriestSpells.ListCount - 1
+        lstPriestSpells.Selected(i) = True
+    Next i
+    lstPriestSpells.ListIndex = -1
+End Sub
+Private Sub cmdPriestNone_Click()
+    Dim i As Integer
+    For i = 0 To lstPriestSpells.ListCount - 1
+        lstPriestSpells.Selected(i) = False
+    Next i
+    lstPriestSpells.ListIndex = -1
 End Sub
 Private Sub cmdSave_Click()
     'Move data from screen controls back into Characters array...
@@ -3125,6 +3251,12 @@ Private Sub DisableFields()
     
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
+            Case "CommandButton"
+                Select Case ctl.Name
+                    Case "cmdMageAll", "cmdMageNone", "cmdPriestAll", "cmdPriestNone"
+                        ctl.Enabled = False
+                    Case Else
+                End Select
             Case "UpDown"
                 ctl.Enabled = False
             Case "ListBox"
@@ -3168,6 +3300,12 @@ Private Sub EnableFields()
     
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
+            Case "CommandButton"
+                Select Case ctl.Name
+                    Case "cmdMageAll", "cmdMageNone", "cmdPriestAll", "cmdPriestNone"
+                        ctl.Enabled = True
+                    Case Else
+                End Select
             Case "UpDown"
                 ctl.Enabled = True
             Case "ListBox"
@@ -3276,8 +3414,12 @@ Private Sub LoadCharacter(iCharacter As Integer)
     Dim SpellNumber As Integer
     Dim bString As String
     Dim ctl As Control
+    Dim fTemp As Single
     
     With Characters(iCharacter)
+        txtName.Text = Trim(Left(.Name, .NameLength))
+        txtPassword.Text = Trim(Left(.Password, .PasswordLength))
+        
         cboStatus.ListIndex = .Status
         cboGender.ListIndex = -1
         cboProfession.ListIndex = .Profession
@@ -3417,7 +3559,7 @@ Private Sub picTabs_Click(Index As Integer)
     On Error Resume Next
     Select Case Index
         Case 1
-            cboRace.SetFocus
+            txtName.SetFocus
         Case 2
             chkEquipped(1).SetFocus
         Case 3
@@ -3586,6 +3728,24 @@ Private Sub txtMage7_KeyPress(KeyAscii As Integer)
 End Sub
 Private Sub txtMage7_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
+End Sub
+Private Sub txtName_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtName_KeyPress(KeyAscii As Integer)
+    KeyAscii = UpCase(KeyAscii)
+End Sub
+Private Sub txtName_Validate(Cancel As Boolean)
+    txtName.Text = UCase(txtName.Text)
+End Sub
+Private Sub txtPassword_GotFocus()
+    TextSelected
+End Sub
+Private Sub txtPassword_KeyPress(KeyAscii As Integer)
+    KeyAscii = UpCase(KeyAscii)
+End Sub
+Private Sub txtPassword_Validate(Cancel As Boolean)
+    txtPassword.Text = UCase(txtPassword.Text)
 End Sub
 Private Sub txtPIE_GotFocus()
     TextSelected
@@ -3760,6 +3920,11 @@ Private Sub UnloadCharacter(iCharacter As Integer)
     Dim ctl As Control
     
     With Characters(iCharacter)
+        .Name = Trim(txtName.Text)
+        .NameLength = Len(Trim(txtName.Text))
+        .Password = Trim(txtPassword.Text)
+        .PasswordLength = Len(Trim(txtPassword.Text))
+        
         .Status = cboStatus.ListIndex
         .Profession = cboProfession.ListIndex
         .Race = cboRace.ListIndex
@@ -3808,12 +3973,36 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         .PriestSpellPoints(6) = CInt(txtPriest6.Text)
         .PriestSpellPoints(7) = CInt(txtPriest7.Text)
         
+        .ItemCount = 0
         For i = 1 To Wiz01ItemListMax
             .ItemList(i).ItemCode = cboItem(i).ListIndex
+            If .ItemList(i).ItemCode > 0 Then .ItemCount = .ItemCount + 1
             If chkIdentified(i).Value = vbChecked Then .ItemList(i).Identified = 1 Else .ItemList(i).Identified = 0
             If chkEquipped(i).Value = vbChecked Then .ItemList(i).Equipped = 1 Else .ItemList(i).Equipped = 0
             If chkCursed(i).Value = vbChecked Then .ItemList(i).Cursed = -1 Else .ItemList(i).Cursed = 0
         Next i
     End With
+End Sub
+Private Sub Test()
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim Data As Single
+    Dim errorCode As Long
+    
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open "Test.dat" For Binary Access Read Write Lock Read Write As #Unit
+    Get #Unit, , Data
+    Close #Unit
+
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Test"
+    Exit Sub
+    Resume Next
 End Sub
 

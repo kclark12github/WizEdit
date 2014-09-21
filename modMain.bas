@@ -94,4 +94,11 @@ Public Function ValidateI4(Optional x As Control = Nothing) As Boolean
     Set ctl = Nothing
     ValidateI4 = fCancel
 End Function
+Public Function UpCase(uKey As Integer) As Integer
+    If uKey > 96 And uKey < 123 Then
+        UpCase = uKey - 32
+    Else
+        UpCase = uKey
+    End If
+End Function
 
