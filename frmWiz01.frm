@@ -2931,7 +2931,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "1:40 AM"
+            TextSave        =   "1:41 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3283,11 +3283,9 @@ Private Sub Form_Activate()
     Dim i As Integer
     
     'Populate Form with data from disk...
-    Debug.Print "DataFile: " & DataFile
     Call ReadWiz01(DataFile, Characters)
     For i = 1 To Wiz01CharactersMax
-        Debug.Print "Character[" & i & "]: " & Trim(Characters(i).Name)
-        If Trim(Characters(i).Name) <> vbNullString Then cboCharacter.AddItem Characters(i).Name, i - 1
+        If Trim(Characters(i).Name) <> vbNullString Then cboCharacter.AddItem Trim(Characters(i).Name), i - 1
     Next i
     
     cmdEdit.Visible = False

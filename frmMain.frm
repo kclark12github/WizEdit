@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:22 PM"
+            TextSave        =   "1:45 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -486,6 +486,7 @@ Private Sub cmdBrowse_Click()
         Call SaveWizEditSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
         cmdOK.SetFocus
     End If
+    
     Exit Sub
     
 ErrorHandler:
@@ -533,6 +534,9 @@ Private Sub cmdOK_Click()
             dPath = CurDir
             Call SaveWizEditSetting("Environment", "UWAPath" & Scenario, dPath)
         End If
+    Else
+        'txtFile.Text = ParsePath(txtFile.Text, FileNameBaseExt)
+        Call SaveWizEditSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
     End If
     
     Select Case Scenario
