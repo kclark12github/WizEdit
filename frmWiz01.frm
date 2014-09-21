@@ -953,7 +953,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196619
+         BuddyDispid     =   196636
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -1139,7 +1139,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196625
+         BuddyDispid     =   196642
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1162,7 +1162,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196623
+         BuddyDispid     =   196640
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -1185,7 +1185,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196622
+         BuddyDispid     =   196639
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1206,7 +1206,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAGL"
-         BuddyDispid     =   196621
+         BuddyDispid     =   196638
          OrigLeft        =   2400
          OrigTop         =   3360
          OrigRight       =   2640
@@ -1229,7 +1229,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLCK"
-         BuddyDispid     =   196620
+         BuddyDispid     =   196637
          OrigLeft        =   2400
          OrigTop         =   3780
          OrigRight       =   2640
@@ -1252,7 +1252,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196614
+         BuddyDispid     =   196631
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1274,7 +1274,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEXP"
-         BuddyDispid     =   196613
+         BuddyDispid     =   196630
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1296,7 +1296,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtGP"
-         BuddyDispid     =   196612
+         BuddyDispid     =   196629
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1318,7 +1318,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196611
+         BuddyDispid     =   196628
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1341,7 +1341,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196610
+         BuddyDispid     =   196627
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -2686,11 +2686,12 @@ Begin VB.Form frmWiz01
       UseMaskColor    =   -1  'True
       Width           =   1212
    End
-   Begin VB.CommandButton cmdOK 
+   Begin VB.CommandButton cmdSave 
       Appearance      =   0  'Flat
       Height          =   432
       Left            =   7680
       MaskColor       =   &H00FF00FF&
+      Picture         =   "frmWiz01.frx":32DC
       Style           =   1  'Graphical
       TabIndex        =   67
       Top             =   2460
@@ -2713,7 +2714,7 @@ Begin VB.Form frmWiz01
       BackColor       =   &H00000000&
       Height          =   2052
       Left            =   7560
-      Picture         =   "frmWiz01.frx":32DC
+      Picture         =   "frmWiz01.frx":4839
       ScaleHeight     =   2004
       ScaleWidth      =   1332
       TabIndex        =   98
@@ -2726,7 +2727,7 @@ Begin VB.Form frmWiz01
       Height          =   372
       Index           =   1
       Left            =   120
-      Picture         =   "frmWiz01.frx":3AE6
+      Picture         =   "frmWiz01.frx":5043
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   89
@@ -2759,7 +2760,7 @@ Begin VB.Form frmWiz01
       Height          =   372
       Index           =   2
       Left            =   1260
-      Picture         =   "frmWiz01.frx":1D308
+      Picture         =   "frmWiz01.frx":1E865
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   105
@@ -2792,7 +2793,7 @@ Begin VB.Form frmWiz01
       Height          =   372
       Index           =   3
       Left            =   2400
-      Picture         =   "frmWiz01.frx":36B2A
+      Picture         =   "frmWiz01.frx":38087
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   106
@@ -2852,7 +2853,7 @@ Begin VB.Form frmWiz01
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz01.frx":5034C
+            Picture         =   "frmWiz01.frx":518A9
             Key             =   "Wiz01"
             Object.Tag             =   "Wiz01"
          EndProperty
@@ -2871,7 +2872,7 @@ Begin VB.Form frmWiz01
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz01.frx":52028
+            Picture         =   "frmWiz01.frx":53585
             Key             =   "Wiz01"
             Object.Tag             =   "Wiz01"
          EndProperty
@@ -2931,7 +2932,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "1:41 AM"
+            TextSave        =   "12:11 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3017,7 +3018,7 @@ Private Sub cboCharacter_Click()
     SelectedCharacter = cboCharacter.ListIndex + 1
     With Characters(SelectedCharacter)
         cboStatus.ListIndex = .Status
-        cboGender.ListIndex = 0
+        cboGender.ListIndex = -1
         cboProfession.ListIndex = .Profession
         cboRace.ListIndex = .Race
         
@@ -3101,7 +3102,7 @@ Private Sub ClearFields()
     Else
         cmdEdit.Visible = True
     End If
-    cmdOK.Visible = False
+    cmdSave.Visible = False
     cmdCancel.Visible = False
     cmdExit.Visible = True
     
@@ -3149,6 +3150,7 @@ Private Sub chkIdentified_GotFocus(Index As Integer)
     TextSelected
 End Sub
 Private Sub cmdCancel_Click()
+    'Verify Cancel if fields have changed...
     Call DisableFields
     Call picTabs_Click(1)
     cboCharacter.SetFocus
@@ -3176,7 +3178,7 @@ End Sub
 Private Sub cmdExit_GotFocus()
     TextSelected
 End Sub
-Private Sub cmdOK_Click()
+Private Sub cmdSave_Click()
     'Move data from screen controls back into Characters array...
     'Write Data back to DataFile...
     Call DisableFields
@@ -3190,7 +3192,7 @@ Private Sub DisableFields()
     Else
         cmdEdit.Visible = True
     End If
-    cmdOK.Visible = False
+    cmdSave.Visible = False
     cmdCancel.Visible = False
     cmdExit.Visible = True
     
@@ -3233,7 +3235,7 @@ Private Sub EnableFields()
     Dim ctl As Control
     
     cmdEdit.Visible = False
-    cmdOK.Visible = True
+    cmdSave.Visible = True
     cmdCancel.Visible = True
     cmdExit.Visible = False
     
@@ -3276,7 +3278,7 @@ Private Sub EnableFields()
         End Select
     Next ctl
 End Sub
-Private Sub cmdOK_GotFocus()
+Private Sub cmdSave_GotFocus()
     TextSelected
 End Sub
 Private Sub Form_Activate()
@@ -3289,10 +3291,10 @@ Private Sub Form_Activate()
     Next i
     
     cmdEdit.Visible = False
-    cboCharacter.ListIndex = -1
     Call DisableFields
     Call ClearFields
     Call picTabs_Click(1)
+    If cboCharacter.ListCount > 0 Then cboCharacter.ListIndex = 0
 End Sub
 Private Sub Form_Load()
     Dim i As Integer
@@ -3304,7 +3306,6 @@ Private Sub Form_Load()
     Next i
     'picWiz01.Picture = frmMain.picWiz01.Picture
     picWizardryLogo.Picture = frmMain.picWizardryLogo.Picture
-    cmdOK.Picture = frmMain.cmdOK.Picture
     cmdCancel.Picture = frmMain.cmdCancel.Picture
     cmdExit.Picture = frmMain.cmdExit.Picture
     
