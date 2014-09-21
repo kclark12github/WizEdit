@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:45 PM"
+            TextSave        =   "8:56 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -460,7 +460,7 @@ Private Sub cmdOK_Click()
             frmWiz07.Caption = picWiz07.ToolTipText
             frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07").ExtractIcon
             frmWiz07.picWiz07.Visible = True
-            frmWiz07.picWiz07Gold.Visible = False
+            frmWiz07.picWiz07.Picture = picWiz07.Picture
             frmWiz07.Show vbModal
         Case "07G"
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
@@ -468,8 +468,8 @@ Private Sub cmdOK_Click()
             frmWiz07.DataFile = dPath & "\" & txtFile.Text
             frmWiz07.Caption = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
             frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07g").ExtractIcon
-            frmWiz07.picWiz07.Visible = False
             frmWiz07.picWiz07Gold.Visible = True
+            frmWiz07.picWiz07Gold.Picture = picWiz07g.Picture
             frmWiz07.Show vbModal
         Case Else
             MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption

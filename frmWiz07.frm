@@ -322,7 +322,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSkillsWeaponry"
-         BuddyDispid     =   196710
+         BuddyDispid     =   196622
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -345,7 +345,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSkillsPhysical"
-         BuddyDispid     =   196713
+         BuddyDispid     =   196620
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -368,7 +368,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSkillsPersonal"
-         BuddyDispid     =   196718
+         BuddyDispid     =   196618
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -391,7 +391,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSkillsAcademia"
-         BuddyDispid     =   196722
+         BuddyDispid     =   196616
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -915,7 +915,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196641
+         BuddyDispid     =   196650
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -1144,7 +1144,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196649
+         BuddyDispid     =   196658
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1167,7 +1167,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196647
+         BuddyDispid     =   196656
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -1190,7 +1190,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196646
+         BuddyDispid     =   196655
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1211,7 +1211,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDEX"
-         BuddyDispid     =   196645
+         BuddyDispid     =   196654
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1232,7 +1232,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSPD"
-         BuddyDispid     =   196644
+         BuddyDispid     =   196653
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1253,7 +1253,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPER"
-         BuddyDispid     =   196643
+         BuddyDispid     =   196652
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1274,7 +1274,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtKAR"
-         BuddyDispid     =   196642
+         BuddyDispid     =   196651
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1295,7 +1295,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196637
+         BuddyDispid     =   196645
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1318,7 +1318,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTM"
-         BuddyDispid     =   196636
+         BuddyDispid     =   196644
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1341,7 +1341,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtCC"
-         BuddyDispid     =   196635
+         BuddyDispid     =   196643
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1364,7 +1364,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEXP"
-         BuddyDispid     =   196634
+         BuddyDispid     =   196642
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1387,7 +1387,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMKS"
-         BuddyDispid     =   196633
+         BuddyDispid     =   196641
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1410,7 +1410,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtGP"
-         BuddyDispid     =   196632
+         BuddyDispid     =   196640
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1433,7 +1433,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196631
+         BuddyDispid     =   196639
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1456,7 +1456,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLives"
-         BuddyDispid     =   196630
+         BuddyDispid     =   196638
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1479,7 +1479,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196629
+         BuddyDispid     =   196637
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1502,7 +1502,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtFireSP"
-         BuddyDispid     =   196628
+         BuddyDispid     =   196636
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1525,7 +1525,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtWaterSP"
-         BuddyDispid     =   196627
+         BuddyDispid     =   196635
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1548,7 +1548,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAirSP"
-         BuddyDispid     =   196626
+         BuddyDispid     =   196634
          OrigLeft        =   8460
          OrigTop         =   2940
          OrigRight       =   8700
@@ -1569,7 +1569,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEarthSP"
-         BuddyDispid     =   196625
+         BuddyDispid     =   196633
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1592,7 +1592,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMentalSP"
-         BuddyDispid     =   196624
+         BuddyDispid     =   196632
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1615,7 +1615,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDivineSP"
-         BuddyDispid     =   196623
+         BuddyDispid     =   196631
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -2305,12 +2305,12 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2064
       Left            =   9600
-      Picture         =   "frmWiz07.frx":32B4
       ScaleHeight     =   2016
       ScaleWidth      =   1344
       TabIndex        =   76
       TabStop         =   0   'False
       Top             =   3960
+      Visible         =   0   'False
       Width           =   1392
    End
    Begin VB.PictureBox picTabs 
@@ -2318,7 +2318,7 @@ Begin VB.Form frmWiz07
       Height          =   372
       Index           =   1
       Left            =   120
-      Picture         =   "frmWiz07.frx":3CFF
+      Picture         =   "frmWiz07.frx":32B4
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   64
@@ -2351,7 +2351,7 @@ Begin VB.Form frmWiz07
       Height          =   372
       Index           =   2
       Left            =   1272
-      Picture         =   "frmWiz07.frx":1D521
+      Picture         =   "frmWiz07.frx":1CAD6
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   95
@@ -2384,7 +2384,7 @@ Begin VB.Form frmWiz07
       Height          =   372
       Index           =   3
       Left            =   2424
-      Picture         =   "frmWiz07.frx":36D43
+      Picture         =   "frmWiz07.frx":362F8
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   97
@@ -2417,7 +2417,7 @@ Begin VB.Form frmWiz07
       Height          =   372
       Index           =   4
       Left            =   3576
-      Picture         =   "frmWiz07.frx":50565
+      Picture         =   "frmWiz07.frx":4FB1A
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   99
@@ -2450,7 +2450,7 @@ Begin VB.Form frmWiz07
       Height          =   372
       Index           =   5
       Left            =   4728
-      Picture         =   "frmWiz07.frx":69D87
+      Picture         =   "frmWiz07.frx":6933C
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   101
@@ -2544,12 +2544,12 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2076
       Left            =   9420
-      Picture         =   "frmWiz07.frx":835A9
       ScaleHeight     =   2028
       ScaleWidth      =   1668
       TabIndex        =   32
       TabStop         =   0   'False
       Top             =   3960
+      Visible         =   0   'False
       Width           =   1716
    End
    Begin MSComctlLib.ImageList imgIcons32 
@@ -2565,12 +2565,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":8447C
+            Picture         =   "frmWiz07.frx":82B5E
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":86158
+            Picture         =   "frmWiz07.frx":8483A
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -2589,12 +2589,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":86474
+            Picture         =   "frmWiz07.frx":84B56
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":88150
+            Picture         =   "frmWiz07.frx":86832
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -2654,7 +2654,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:45 PM"
+            TextSave        =   "8:56 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3156,6 +3156,8 @@ Private Sub Form_Load()
         picFrames(i).Picture = frmMain.Picture
     Next i
     picWizardryLogo.Picture = frmMain.picWizardryLogo.Picture
+    picWiz07.Picture = frmMain.picWiz07.Picture
+    
     cmdOK.Picture = frmMain.cmdOK.Picture
     cmdCancel.Picture = frmMain.cmdCancel.Picture
     cmdExit.Picture = frmMain.cmdExit.Picture
