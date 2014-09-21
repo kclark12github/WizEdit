@@ -40,7 +40,7 @@ Type Wiz01Character
     AgeInWeeks As Integer
     Status As Integer
     Alignment As Integer
-    Characteristics As Long
+    Statistics As Long
     Unknown1(1 To 4) As Byte
     GP As Long
     Unknown2(1 To 2) As Byte
@@ -160,16 +160,13 @@ Public Sub DumpWiz01(ByVal strFile As String)
             Debug.Print "Gold Pieces:        " & vbTab & .GP & vbTab & "0x" & Hex(.GP)
             Debug.Print "Experience Points:  " & vbTab & .EXP & vbTab & "0x" & Hex(.EXP)
 
-    '    Characteristics As Long
-    '        Debug.Print vbCrLf & "Basic Statistics..."
-    '        Debug.Print "Strength:          " & vbTab & .STR       '
-    '        Debug.Print "Intellegence:      " & vbTab & .INT
-    '        Debug.Print "Piety:             " & vbTab & .PIE
-    '        Debug.Print "Vitality:          " & vbTab & .VIT
-    '        Debug.Print "Dexterity:         " & vbTab & .DEX
-    '        Debug.Print "Speed:             " & vbTab & .SPD
-    '        Debug.Print "Personality:       " & vbTab & .PER
-    '        Debug.Print "Karma:             " & vbTab & .KAR
+            Debug.Print vbCrLf & "Basic Statistics..."
+            Debug.Print "Strength:          " & vbTab & icvtStatistic(.Statistics, 1)
+            Debug.Print "Intellegence:      " & vbTab & icvtStatistic(.Statistics, 2)
+            Debug.Print "Piety:             " & vbTab & icvtStatistic(.Statistics, 3)
+            Debug.Print "Vitality:          " & vbTab & icvtStatistic(.Statistics, 4)
+            Debug.Print "Agility:           " & vbTab & icvtStatistic(.Statistics, 5)
+            Debug.Print "Luck:              " & vbTab & icvtStatistic(.Statistics, 6)
 
             Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
             For j = 1 To .ItemCount
@@ -386,5 +383,53 @@ Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As 
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
     strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
 End Function
+Private Function icvtStatistic(xStatistics As Long, WhichStat As Integer) As Integer
+    Select Case WhichStat
+        Case 1  'Strength
+            icvtStatistic = ((xStatistics \ (2 ^ 0)) And &H1F)
+        Case 2  'Intelligence
+            icvtStatistic = ((xStatistics \ (2 ^ 5)) And &H1F)
+        Case 3  'Piety
+            icvtStatistic = ((xStatistics \ (2 ^ 10)) And &H1F)
+        Case 4  'Vitality
+            icvtStatistic = ((xStatistics \ (2 ^ 16)) And &H1F)
+        Case 5  'Agility
+            icvtStatistic = ((xStatistics \ (2 ^ 21)) And &H1F)
+        Case 6  'Luck
+            icvtStatistic = ((xStatistics \ (2 ^ 26)) And &H1F)
+        Case Else
+            icvtStatistic = 0
+    End Select
+End Function
+Private Sub Test()
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim Data As Long
+    Dim errorCode As Long
+    
+    On Error GoTo ErrorHandler
+    Unit = FreeFile
+    Open "Test.dat" For Binary Access Read Write Lock Read Write As #Unit
+    For i = 1 To 3
+        Get #Unit, , Data
+        Debug.Print "Data: " & Hex(Data)
+        Debug.Print vbTab & "STR: " & ((Data \ (2 ^ 0)) And &H1F)
+        Debug.Print vbTab & "INT: " & ((Data \ (2 ^ 5)) And &H1F)
+        Debug.Print vbTab & "PIE: " & ((Data \ (2 ^ 10)) And &H1F)
+        Debug.Print vbTab & "VIT: " & ((Data \ (2 ^ 16)) And &H1F)
+        Debug.Print vbTab & "AGL: " & ((Data \ (2 ^ 21)) And &H1F)
+        Debug.Print vbTab & "LUC: " & ((Data \ (2 ^ 26)) And &H1F)
+    Next i
+    Close #Unit
 
+ExitSub:
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Test"
+    Exit Sub
+    Resume Next
+End Sub
 
