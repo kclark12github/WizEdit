@@ -3097,18 +3097,18 @@ Begin VB.Form frmWiz03
       Left            =   7560
       Picture         =   "frmWiz03.frx":4882
       ScaleHeight     =   2016
-      ScaleWidth      =   1356
+      ScaleWidth      =   1344
       TabIndex        =   105
       TabStop         =   0   'False
       Top             =   120
-      Width           =   1404
+      Width           =   1392
    End
    Begin VB.PictureBox picTabs 
       BackColor       =   &H00000000&
       Height          =   372
       Index           =   1
       Left            =   120
-      Picture         =   "frmWiz03.frx":51C4
+      Picture         =   "frmWiz03.frx":5033
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   96
@@ -3141,7 +3141,7 @@ Begin VB.Form frmWiz03
       Height          =   372
       Index           =   2
       Left            =   1260
-      Picture         =   "frmWiz03.frx":1E9E6
+      Picture         =   "frmWiz03.frx":1E855
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   110
@@ -3174,7 +3174,7 @@ Begin VB.Form frmWiz03
       Height          =   372
       Index           =   3
       Left            =   2400
-      Picture         =   "frmWiz03.frx":38208
+      Picture         =   "frmWiz03.frx":38077
       ScaleHeight     =   324
       ScaleWidth      =   1464
       TabIndex        =   111
@@ -3234,7 +3234,7 @@ Begin VB.Form frmWiz03
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz03.frx":51A2A
+            Picture         =   "frmWiz03.frx":51899
             Key             =   "Wiz03"
             Object.Tag             =   "Wiz03"
          EndProperty
@@ -3253,7 +3253,7 @@ Begin VB.Form frmWiz03
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz03.frx":53706
+            Picture         =   "frmWiz03.frx":53575
             Key             =   "Wiz03"
             Object.Tag             =   "Wiz03"
          EndProperty
@@ -3313,7 +3313,7 @@ Begin VB.Form frmWiz03
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "11:32 PM"
+            TextSave        =   "12:18 AM"
             Key             =   "Time"
          EndProperty
       EndProperty

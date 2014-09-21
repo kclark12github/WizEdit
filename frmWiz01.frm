@@ -3313,7 +3313,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "11:23 PM"
+            TextSave        =   "12:16 AM"
             Key             =   "Time"
          EndProperty
       EndProperty

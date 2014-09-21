@@ -338,7 +338,7 @@ Public Function Wiz02GetSpell(i As Integer) As String
     Wiz02GetSpell = Spells(i)
 End Function
 Public Sub Wiz02InitializeItemList()
-    ItemList(0) = "Special: Broken Item"
+    ItemList(0) = "Misc: Broken Item"
     ItemList(1) = "Weapon: Long Sword"
     ItemList(2) = "Weapon: Short Sword"
     ItemList(3) = "Weapon: Anointed Mace"
@@ -383,7 +383,7 @@ Public Sub Wiz02InitializeItemList()
     ItemList(42) = "Weapon: Long Sword +2"
     ItemList(43) = "Weapon: Short Sword +2"
     ItemList(44) = "Weapon: Mace +2"
-    ItemList(45) = "Magic: Scroll Of Lomilw"
+    ItemList(45) = "Magic: Scroll Of Lomilwa"
     ItemList(46) = "Magic: Scroll Of Dilto"
     ItemList(47) = "Gauntlets: Copper Gloves"
     ItemList(48) = "Armor: Leather +2"
@@ -455,16 +455,16 @@ Public Sub Wiz02InitializeItemList()
     ItemList(107) = "Armor: +5 Plate"
     ItemList(108) = "Weapon: Staff of Curing"
     ItemList(109) = "Magic: Ring of Regen"
-    ItemList(110) = "Magic: Metamorph  Ring"
-    ItemList(111) = "Special: Stone Stone"
-    ItemList(112) = "Special: Dreamer's Stone"
-    ItemList(113) = "Special: Damien Stone"
+    ItemList(110) = "Magic: Metamorph Ring"
+    ItemList(111) = "Misc: Stone Stone"
+    ItemList(112) = "Misc: Dreamer's Stone"
+    ItemList(113) = "Misc: Damien Stone"
     ItemList(114) = "Weapon: Great Mage Wand"
-    ItemList(115) = "Magic: Coin of Power"
-    ItemList(116) = "Special: Stone of Youth"
-    ItemList(117) = "Special: Mind Stone"
-    ItemList(118) = "Special: Stone of Piety"
-    ItemList(119) = "Special: Blarney Stone"
+    ItemList(115) = "Misc: Coin of Power"
+    ItemList(116) = "Misc: Stone of Youth"
+    ItemList(117) = "Misc: Mind Stone"
+    ItemList(118) = "Misc: Stone of Piety"
+    ItemList(119) = "Misc: Blarney Stone"
     ItemList(120) = "Magic: Amulet of Skill"
     ItemList(121) = "Magic: Amulet of Skill"
     ItemList(122) = "Weapon: Great Mage Wand"
@@ -798,7 +798,7 @@ Public Sub Wiz02Read(ByVal strFile As String, xCharacters() As Wiz02Character)
     
 ExitSub:
     Close #Unit
-    Call SaveRegSetting("Environment", "UWAPath01", ParsePath(strFile, DrvDirNoSlash))
+    Call SaveRegSetting("Environment", "UWAPath02", ParsePath(strFile, DrvDirNoSlash))
     Call SaveRegSetting("Environment", "Wiz02DataFile", ParsePath(strFile, FileNameBaseExt))
     Exit Sub
     

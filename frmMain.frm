@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "11:30 PM"
+            TextSave        =   "12:18 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -213,7 +213,7 @@ Begin VB.Form frmMain
       ScaleHeight     =   1488
       ScaleWidth      =   984
       TabIndex        =   3
-      ToolTipText     =   "Wizardry 03 - Legacy of Llylgamn"
+      ToolTipText     =   "Wizardry 03 - Legacy of Llylgamyn"
       Top             =   1680
       Width           =   1032
    End

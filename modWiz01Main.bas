@@ -338,7 +338,7 @@ Public Function Wiz01GetSpell(i As Integer) As String
     Wiz01GetSpell = Spells(i)
 End Function
 Public Sub Wiz01InitializeItemList()
-    ItemList(0) = "Special: Broken Item"
+    ItemList(0) = "Misc: Broken Item"
     ItemList(1) = "Weapon: Long Sword"
     ItemList(2) = "Weapon: Short Sword"
     ItemList(3) = "Weapon: Anointed Mace"
@@ -383,7 +383,7 @@ Public Sub Wiz01InitializeItemList()
     ItemList(42) = "Weapon: Long Sword +2"
     ItemList(43) = "Weapon: Short Sword +2"
     ItemList(44) = "Weapon: Mace +2"
-    ItemList(45) = "Magic: Scroll Of Lomilw"
+    ItemList(45) = "Magic: Scroll Of Lomilwa"
     ItemList(46) = "Magic: Scroll Of Dilto"
     ItemList(47) = "Gauntlets: Copper Gloves"
     ItemList(48) = "Armor: Leather +2"
