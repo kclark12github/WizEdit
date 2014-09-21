@@ -1,7 +1,7 @@
 Attribute VB_Name = "libDeviceCaps"
 'libDeviceCaps - libDeviceCaps.bas
 '   GetDeviceCaps Interface...
-'   Copyright © 2000, SunGard Investor Accounting Systems
+'   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:

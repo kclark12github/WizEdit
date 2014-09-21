@@ -1,7 +1,7 @@
 Attribute VB_Name = "libShell"
 'libShell - libShell.bas
 '   Shell Interface...
-'   Copyright © 2000, SunGard Investor Accounting Systems
+'   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:

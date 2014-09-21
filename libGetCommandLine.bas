@@ -1,7 +1,7 @@
 Attribute VB_Name = "libGetCommandLine"
 'libGetCommandLine - libGetCommandLine.bas
 '   Library Get Command Line Module...
-'   Copyright © 2000, SunGard Investor Accounting Systems
+'   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:

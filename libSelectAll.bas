@@ -1,7 +1,7 @@
 Attribute VB_Name = "libSelectAll"
 'SelectAll - SelectAll.bas
 '   Generic TextBox Control Routines...
-'   Copyright © 2000, SunGard Investor Accounting Systems
+'   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:
