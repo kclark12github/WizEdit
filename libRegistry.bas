@@ -10,6 +10,7 @@ Attribute VB_Name = "libRegistry"
 '   03/02/99    None        Ken Clark       Incorporated into FiRRe;
 '=================================================================================================================================
 Option Explicit
+Global Const gstrRegPath As String = "Software\Sage Software\"
 
 '---------------------------------------------------
 '-- VbRegMod.Bas
@@ -115,6 +116,28 @@ Public Const OpenErr = "Error: Opening Registry Key!"
 Public Const DeleteErr = "Error: Deleteing Key!"
 Public Const CreateErr = "Error: Creating Key!"
 Public Const QueryErr = "Error: Querying Value!"
+Public Function GetRegSetting(Key As String, Value As String, vDefault As Variant) As Variant
+    GetRegSetting = VbRegQueryValue(HKEY_CURRENT_USER, gstrRegPath & App.EXEName & "\" & Key, Value)
+    If GetRegSetting = vbNullString Then GetRegSetting = vDefault
+End Function
+Public Sub SaveRegSetting(Key As String, Value As String, Data As Variant)
+    Dim CurrentValue As Variant
+    Dim Token As String
+    Dim KeyPath As String
+    Dim i As Integer
+    
+    CurrentValue = GetRegSetting(Key, Value, vbNullString)
+    KeyPath = gstrRegPath & App.EXEName & "\" & Key
+    If CurrentValue = vbNullString Then
+        Call VbRegCreateKey(HKEY_CURRENT_USER, KeyPath)
+    End If
+    
+    If CurrentValue <> Data Then
+        'Although this routine accepts a Variant as the data, it really stores the
+        'data in the registry as a string (REG_SZ)...
+        Call VbRegSetValue(HKEY_CURRENT_USER, KeyPath, Value, REG_SZ, Data)
+    End If
+End Sub
 Private Function cvtKey(RootKey As Long) As String
     Select Case RootKey
         Case HKEY_CLASSES_ROOT

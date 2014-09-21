@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "1:45 AM"
+            TextSave        =   "12:01 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -480,10 +480,10 @@ Private Sub cmdBrowse_Click()
     If dPath <> vbNullString Then
         'If (GetAttr(dPath) And vbDirectory) <> vbDirectory Then dPath = Mid(dPath, 1, InStrRev(dPath, "\") - 1)
         dPath = ParsePath(txtFile.Text, DrvDirNoSlash)
-        Call SaveWizEditSetting("Environment", "UWAPath" & Scenario, dPath)
+        Call SaveRegSetting("Environment", "UWAPath" & Scenario, dPath)
         
         txtFile.Text = ParsePath(txtFile.Text, FileNameBaseExt)
-        Call SaveWizEditSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
+        Call SaveRegSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
         cmdOK.SetFocus
     End If
     
@@ -532,11 +532,11 @@ Private Sub cmdOK_Click()
             Exit Sub
         Else
             dPath = CurDir
-            Call SaveWizEditSetting("Environment", "UWAPath" & Scenario, dPath)
+            Call SaveRegSetting("Environment", "UWAPath" & Scenario, dPath)
         End If
     Else
         'txtFile.Text = ParsePath(txtFile.Text, FileNameBaseExt)
-        Call SaveWizEditSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
+        Call SaveRegSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
     End If
     
     Select Case Scenario
@@ -600,7 +600,7 @@ Private Sub EnableFields(ByVal strCaption As String)
     
     fScenarioSelected = True
 
-    dFileName = GetWizEditSetting("Environment", "Wiz" & Scenario & "DataFile", vbNullString)
+    dFileName = GetRegSetting("Environment", "Wiz" & Scenario & "DataFile", vbNullString)
     If dFileName = vbNullString Then
         Select Case Scenario
             Case "01", "02", "03", "04", "05"
@@ -616,16 +616,16 @@ Private Sub EnableFields(ByVal strCaption As String)
     'See if we know where UWA is installed... If not, use defaults from UWA...
     Select Case Scenario
         Case "01", "02", "03", "04", "05"
-            dPath = GetWizEditSetting("Environment", "UWAPath" & Scenario, "C:\WIZARD15")
+            dPath = GetRegSetting("Environment", "UWAPath" & Scenario, "C:\WIZARD15")
             dFilter = "Saved Games (SAVE?.DSK)|SAVE?.DSK|All Files (*.*)|*.*"
         Case "06"
-            dPath = GetWizEditSetting("Environment", "UWAPath" & Scenario, "C:\BANE")
+            dPath = GetRegSetting("Environment", "UWAPath" & Scenario, "C:\BANE")
             dFilter = "Saved Games (*.DBS)|*.DBS|All Files (*.*)|*.*"
         Case "07"
-            dPath = GetWizEditSetting("Environment", "UWAPath" & Scenario, "C:\DSAVANT")
+            dPath = GetRegSetting("Environment", "UWAPath" & Scenario, "C:\DSAVANT")
             dFilter = "Saved Games (*.DBS)|*.DBS|All Files (*.*)|*.*"
         Case "07G"
-            dPath = GetWizEditSetting("Environment", "UWAPath" & Scenario, "C:\Sirtech\WizGold")
+            dPath = GetRegSetting("Environment", "UWAPath" & Scenario, "C:\Sirtech\WizGold")
             dFilter = "Saved Games (*.GLD)|*.GLD|All Files (*.*)|*.*"
     End Select
 End Sub
