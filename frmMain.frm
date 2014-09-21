@@ -144,7 +144,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "3:03 PM"
+            TextSave        =   "11:22 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -445,6 +445,15 @@ Private Sub cmdOK_Click()
     End If
     
     Select Case Scenario
+        Case "01"
+            Call DumpWiz01(dPath & "\" & txtFile.Text)
+'            Load frmWiz01
+'            frmWiz01.DataFile = dPath & "\" & txtFile.Text
+'            frmWiz01.Caption = picWiz01.ToolTipText
+'            frmWiz01.Icon = frmWiz01.imgIcons32.ListImages("Wiz01").ExtractIcon
+'            frmWiz01.picWiz01.Visible = True
+'            frmWiz01.picWiz01Gold.Visible = False
+'            frmWiz01.Show vbModal
         Case "07"
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
             Load frmWiz07
