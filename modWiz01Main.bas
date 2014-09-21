@@ -421,6 +421,24 @@ Public Function IsSpellCaster(x As Integer) As Boolean
             IsSpellCaster = False
     End Select
 End Function
+Public Function lkupWiz01ItemByCbo(x As Integer, cbo As ComboBox) As Integer
+    Dim i As Integer
+    For i = 0 To cbo.ListCount - 1
+        If ItemList(x) = cbo.List(i) Then
+            lkupWiz01ItemByCbo = i
+            Exit Function
+        End If
+    Next i
+End Function
+Public Function lkupWiz01ItemByName(x As String) As Integer
+    Dim i As Integer
+    For i = 0 To Wiz01ItemMapMax
+        If ItemList(i) = x Then
+            lkupWiz01ItemByName = i
+            Exit Function
+        End If
+    Next i
+End Function
 Public Sub PopulateWiz01Alignment(x As ComboBox)
     Dim i As Byte
     With x
@@ -435,7 +453,7 @@ Public Sub PopulateWiz01Item(x As ComboBox)
     With x
         .Clear
         For i = 0 To Wiz01ItemMapMax
-            .AddItem ItemList(i), i
+            .AddItem ItemList(i)    ', i    'Removed to allow ComboBox to be Sorted
         Next i
     End With
 End Sub

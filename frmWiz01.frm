@@ -3159,7 +3159,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:49 AM"
+            TextSave        =   "9:50 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3649,7 +3649,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
             cboItem(i).ListIndex = -1
         Next i
         For i = 1 To .ItemCount
-            cboItem(i).ListIndex = .ItemList(i).ItemCode
+            cboItem(i).ListIndex = lkupWiz01ItemByCbo(.ItemList(i).ItemCode, cboItem(i))
             If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
             If .ItemList(i).Equipped = 1 Then chkEquipped(i).Value = vbChecked Else chkEquipped(i).Value = vbUnchecked
             If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
@@ -4259,7 +4259,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         
         .ItemCount = 0
         For i = 1 To Wiz01ItemListMax
-            .ItemList(i).ItemCode = cboItem(i).ListIndex
+            .ItemList(i).ItemCode = lkupWiz01ItemByName(cboItem(i).Text)
             If .ItemList(i).ItemCode > 0 Then .ItemCount = .ItemCount + 1
             If chkIdentified(i).Value = vbChecked Then .ItemList(i).Identified = 1 Else .ItemList(i).Identified = 0
             If chkEquipped(i).Value = vbChecked Then .ItemList(i).Equipped = 1 Else .ItemList(i).Equipped = 0
