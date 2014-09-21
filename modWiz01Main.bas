@@ -18,6 +18,7 @@ Global Const Wiz01ItemListMax As Integer = 8
 Global Const Wiz01ItemMapMin As Integer = 0
 Global Const Wiz01ItemMapMax As Integer = 100
 Global Const Wiz01AlignmentMapMax As Integer = 3
+Global Const Wiz01HonorsMapMax As Integer = 1
 Global Const Wiz01RaceMapMax As Integer = 5
 Global Const Wiz01ProfessionMapMax As Integer = 7
 Global Const Wiz01StatusMapMax As Integer = 7
@@ -86,6 +87,16 @@ Private Function strAlignment(ByVal x As Integer) As String
             strAlignment = "Evil"
         Case Else
             strAlignment = "Unknown"
+    End Select
+End Function
+Private Function strHonors(ByVal x As Integer) As String
+    Select Case x
+        Case 0
+            strHonors = vbNullString
+        Case 1
+            strHonors = "> Chevron of Trebor"
+        Case Else
+            strHonors = "Unknown"
     End Select
 End Function
 Private Function strStatus(ByVal x As Integer) As String
@@ -277,18 +288,19 @@ Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
         Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
         Debug.Print "Status:             " & vbTab & strStatus(.Status)
         Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
+        Debug.Print "Honors:             " & vbTab & strHonors(.Honors)
         Debug.Print "Level:              " & vbTab & strPoints(.LVL)
         Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
         Debug.Print "Gold Pieces:        " & vbTab & I6toD(.GP)
         Debug.Print "Experience Points:  " & vbTab & I6toD(.EXP)
         Debug.Print "Armor Class:        " & vbTab & .AC
-        If .Honors > 0 Then
-            Select Case .Honors
-                Case 1
-                    Debug.Print "Honors:             " & vbTab & """" > """"
-                Case Else
-            End Select
-        End If
+'        If .Honors > 0 Then
+'            Select Case .Honors
+'                Case 1
+'                    Debug.Print "Honors:             " & vbTab & """" > """"
+'                Case Else
+'            End Select
+'        End If
         
         Debug.Print vbCrLf & "Basic Statistics..."
         Debug.Print "Strength:           " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 1)
@@ -555,6 +567,15 @@ Public Sub Wiz01PopulateAlignment(x As ComboBox)
         Next i
     End With
 End Sub
+Public Sub Wiz01PopulateHonors(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz01HonorsMapMax
+            .AddItem strHonors(i), CInt(i)
+        Next i
+    End With
+End Sub
 Public Sub Wiz01PopulateItem(x As ComboBox)
     Dim i As Integer
     With x
@@ -627,6 +648,7 @@ Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
             
         Print #oUnit, "Name:               " & vbTab & Left(.Name, .NameLength)
         Print #oUnit, "Password:           " & vbTab & Left(.Password, .PasswordLength)
+        Print #oUnit, "Honors:             " & vbTab & strHonors(.Honors)
 
         If .Out = 1 Then
             Print #oUnit, "On Expidition:      " & vbTab & "YES"

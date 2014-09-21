@@ -29,6 +29,26 @@ Begin VB.Form frmWiz02
       TabStop         =   0   'False
       Top             =   1020
       Width           =   7032
+      Begin VB.ComboBox cboHonors 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Left            =   1668
+         Style           =   2  'Dropdown List
+         TabIndex        =   170
+         ToolTipText     =   "Honors Earned..."
+         Top             =   1320
+         Width           =   1632
+      End
       Begin VB.TextBox txtDown 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00808080&
@@ -776,6 +796,26 @@ Begin VB.Form frmWiz02
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
+      Begin VB.Label lblHonors 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Honors:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   720
+         TabIndex        =   171
+         Top             =   1344
+         Width           =   828
+      End
       Begin VB.Label lblD 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
@@ -1273,7 +1313,7 @@ Begin VB.Form frmWiz02
          Height          =   288
          Left            =   3492
          TabIndex        =   82
-         Top             =   3660
+         Top             =   3684
          Width           =   720
       End
       Begin VB.Label lblProfession 
@@ -3313,7 +3353,7 @@ Begin VB.Form frmWiz02
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:16 AM"
+            TextSave        =   "12:35 PM"
             Key             =   "Time"
          EndProperty
       EndProperty

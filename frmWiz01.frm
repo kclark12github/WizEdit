@@ -29,6 +29,26 @@ Begin VB.Form frmWiz01
       TabStop         =   0   'False
       Top             =   1020
       Width           =   7032
+      Begin VB.ComboBox cboHonors 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         Left            =   1008
+         Style           =   2  'Dropdown List
+         TabIndex        =   170
+         ToolTipText     =   "Honors Earned..."
+         Top             =   1320
+         Width           =   2292
+      End
       Begin VB.TextBox txtDown 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00808080&
@@ -51,7 +71,7 @@ Begin VB.Form frmWiz01
          TabStop         =   0   'False
          Text            =   "frmWiz01.frx":1CCA
          ToolTipText     =   "Down..."
-         Top             =   1140
+         Top             =   1308
          Width           =   396
       End
       Begin VB.TextBox txtNorth 
@@ -76,7 +96,7 @@ Begin VB.Form frmWiz01
          TabStop         =   0   'False
          Text            =   "frmWiz01.frx":1CCD
          ToolTipText     =   "North..."
-         Top             =   1140
+         Top             =   1308
          Width           =   396
       End
       Begin VB.TextBox txtEast 
@@ -101,7 +121,7 @@ Begin VB.Form frmWiz01
          TabStop         =   0   'False
          Text            =   "frmWiz01.frx":1CD0
          ToolTipText     =   "East..."
-         Top             =   1140
+         Top             =   1308
          Width           =   396
       End
       Begin VB.TextBox txtAC 
@@ -151,7 +171,7 @@ Begin VB.Form frmWiz01
          TabIndex        =   9
          Tag             =   "TabStop"
          ToolTipText     =   "Character's Alignment (Good, Neutral, or Evil)..."
-         Top             =   780
+         Top             =   912
          Width           =   1932
       End
       Begin VB.CheckBox chkOut 
@@ -384,7 +404,7 @@ Begin VB.Form frmWiz01
          TabIndex        =   8
          Tag             =   "TabStop"
          ToolTipText     =   "Character's Profession (i.e. Fighter, Mage, etc.)..."
-         Top             =   420
+         Top             =   492
          Width           =   1932
       End
       Begin VB.ComboBox cboRace 
@@ -406,7 +426,7 @@ Begin VB.Form frmWiz01
          Style           =   2  'Dropdown List
          TabIndex        =   7
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
-         Top             =   60
+         Top             =   72
          Width           =   1932
       End
       Begin MSComCtl2.UpDown udPIE 
@@ -421,7 +441,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196625
+         BuddyDispid     =   196628
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -569,7 +589,7 @@ Begin VB.Form frmWiz01
          TabIndex        =   13
          Tag             =   "TabStop"
          ToolTipText     =   "Character's Gender (Male/Female)..."
-         Top             =   420
+         Top             =   492
          Width           =   1692
       End
       Begin VB.TextBox txtSTR 
@@ -607,7 +627,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196631
+         BuddyDispid     =   196634
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -630,7 +650,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196629
+         BuddyDispid     =   196632
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -653,7 +673,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196628
+         BuddyDispid     =   196631
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -674,7 +694,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAGL"
-         BuddyDispid     =   196627
+         BuddyDispid     =   196630
          OrigLeft        =   2400
          OrigTop         =   3360
          OrigRight       =   2640
@@ -697,7 +717,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLCK"
-         BuddyDispid     =   196626
+         BuddyDispid     =   196629
          OrigLeft        =   2400
          OrigTop         =   3780
          OrigRight       =   2640
@@ -720,7 +740,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196620
+         BuddyDispid     =   196623
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -742,7 +762,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196617
+         BuddyDispid     =   196620
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -765,7 +785,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196616
+         BuddyDispid     =   196619
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -775,6 +795,26 @@ Begin VB.Form frmWiz01
          SyncBuddy       =   -1  'True
          BuddyProperty   =   0
          Enabled         =   -1  'True
+      End
+      Begin VB.Label lblHonors 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Honors:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   60
+         TabIndex        =   171
+         Top             =   1344
+         Width           =   828
       End
       Begin VB.Label lblD 
          AutoSize        =   -1  'True
@@ -793,7 +833,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   6240
          TabIndex        =   169
-         Top             =   1176
+         Top             =   1344
          Width           =   180
       End
       Begin VB.Label lblN 
@@ -813,7 +853,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   5460
          TabIndex        =   168
-         Top             =   1176
+         Top             =   1344
          Width           =   204
       End
       Begin VB.Label lblE 
@@ -833,7 +873,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   4740
          TabIndex        =   167
-         Top             =   1176
+         Top             =   1344
          Width           =   168
       End
       Begin VB.Label lblLocation 
@@ -853,7 +893,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3480
          TabIndex        =   166
-         Top             =   1200
+         Top             =   1344
          Width           =   960
       End
       Begin VB.Label lblAC 
@@ -893,7 +933,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3600
          TabIndex        =   163
-         Top             =   804
+         Top             =   936
          Width           =   1116
       End
       Begin VB.Label lblOut 
@@ -1033,7 +1073,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3600
          TabIndex        =   95
-         Top             =   444
+         Top             =   516
          Width           =   780
       End
       Begin VB.Label lblLCK 
@@ -1273,7 +1313,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3492
          TabIndex        =   82
-         Top             =   3660
+         Top             =   3684
          Width           =   720
       End
       Begin VB.Label lblProfession 
@@ -1293,7 +1333,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3600
          TabIndex        =   81
-         Top             =   444
+         Top             =   516
          Width           =   1188
       End
       Begin VB.Label lblRace 
@@ -1313,7 +1353,7 @@ Begin VB.Form frmWiz01
          Height          =   288
          Left            =   3600
          TabIndex        =   80
-         Top             =   84
+         Top             =   96
          Width           =   576
       End
    End
@@ -2479,7 +2519,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage1"
-         BuddyDispid     =   196699
+         BuddyDispid     =   196706
          OrigLeft        =   2400
          OrigTop         =   3444
          OrigRight       =   2640
@@ -2501,7 +2541,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest1"
-         BuddyDispid     =   196698
+         BuddyDispid     =   196705
          OrigLeft        =   2400
          OrigTop         =   3900
          OrigRight       =   2640
@@ -2523,7 +2563,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage2"
-         BuddyDispid     =   196697
+         BuddyDispid     =   196704
          OrigLeft        =   3300
          OrigTop         =   3420
          OrigRight       =   3540
@@ -2545,7 +2585,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest2"
-         BuddyDispid     =   196696
+         BuddyDispid     =   196703
          OrigLeft        =   3240
          OrigTop         =   3900
          OrigRight       =   3480
@@ -2567,7 +2607,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage3"
-         BuddyDispid     =   196693
+         BuddyDispid     =   196700
          OrigLeft        =   4140
          OrigTop         =   3420
          OrigRight       =   4380
@@ -2589,7 +2629,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest3"
-         BuddyDispid     =   196692
+         BuddyDispid     =   196699
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2611,7 +2651,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage4"
-         BuddyDispid     =   196691
+         BuddyDispid     =   196698
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2633,7 +2673,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest4"
-         BuddyDispid     =   196690
+         BuddyDispid     =   196697
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2655,7 +2695,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage5"
-         BuddyDispid     =   196689
+         BuddyDispid     =   196696
          OrigLeft        =   5760
          OrigTop         =   3420
          OrigRight       =   6000
@@ -2675,7 +2715,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage6"
-         BuddyDispid     =   196688
+         BuddyDispid     =   196695
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2697,7 +2737,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMage7"
-         BuddyDispid     =   196687
+         BuddyDispid     =   196694
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2719,7 +2759,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest5"
-         BuddyDispid     =   196686
+         BuddyDispid     =   196693
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2741,7 +2781,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest6"
-         BuddyDispid     =   196685
+         BuddyDispid     =   196692
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -2763,7 +2803,7 @@ Begin VB.Form frmWiz01
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPriest7"
-         BuddyDispid     =   196684
+         BuddyDispid     =   196691
          OrigLeft        =   5340
          OrigTop         =   324
          OrigRight       =   5580
@@ -3313,7 +3353,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:16 AM"
+            TextSave        =   "12:52 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3719,6 +3759,7 @@ Private Sub Form_Load()
     Call Wiz01InitializeItemList
     Call Wiz01InitializeSpells
     
+    Call Wiz01PopulateHonors(cboHonors)
     Call Wiz01PopulateStatus(cboStatus)
     Call Wiz01PopulateProfession(cboProfession)
     Call Wiz01PopulateAlignment(cboAlignment)
@@ -3772,7 +3813,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
         cboAlignment.ListIndex = .Alignment
         cboGender.ListIndex = -1
         cboProfession.ListIndex = .Profession
-        
+        cboHonors.ListIndex = .Honors
         cboRace.ListIndex = .Race
         
         txtSTR.Text = Wiz01cvtStatisticToInt(.Statistics, 1)
@@ -4541,6 +4582,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         .Profession = cboProfession.ListIndex
         .Alignment = cboAlignment.ListIndex
         .Race = cboRace.ListIndex
+        .Honors = cboHonors.ListIndex
         
         .Statistics = Wiz01cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
         
