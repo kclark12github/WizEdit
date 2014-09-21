@@ -3150,7 +3150,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "1:38 AM"
+            TextSave        =   "9:14 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3218,6 +3218,27 @@ Private SelectedCharacter As Integer
 Private ActiveTab As Integer
 Private Characters(1 To Wiz01CharactersMax) As Wiz01Character
 Private SaveCharacter As Wiz01Character
+Private Sub cboAlignment_Validate(Cancel As Boolean)
+    Cancel = False
+    Select Case cboAlignment.Text
+        Case "Good"
+            Select Case cboProfession.Text
+                Case "Thief", "Ninja"
+                    Cancel = True
+            End Select
+        Case "Neutral"
+            Select Case cboProfession.Text
+                Case "Priest", "Bishop", "Lord", "Ninja"
+                    Cancel = True
+            End Select
+        Case "Evil"
+            Select Case cboProfession.Text
+                Case "Samurai", "Lord"
+                    Cancel = True
+            End Select
+    End Select
+    If Cancel Then Call MsgBox(cboProfession.Text & " may not be of " & cboAlignment.Text & " alignment.", vbExclamation, Me.Caption)
+End Sub
 Private Sub cboCharacter_Click()
     sbStatus.Panels("Message").Text = vbNullString
     sbStatus.Panels("Status").Text = vbNullString
@@ -3554,22 +3575,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
         cboAlignment.ListIndex = .Alignment
         cboGender.ListIndex = -1
         cboProfession.ListIndex = .Profession
-        If IsLord(.Profession) Then
-            udMage1.Max = 4
-            udMage2.Max = 2
-            udMage3.Max = 2
-            udMage4.Max = 3
-            udMage5.Max = 3
-            udMage6.Max = 4
-            udMage7.Max = 3
-            udPriest1.Max = 4
-            udPriest2.Max = 2
-            udPriest3.Max = 2
-            udPriest4.Max = 3
-            udPriest5.Max = 3
-            udPriest6.Max = 4
-            udPriest7.Max = 3
-        End If
+        
         cboRace.ListIndex = .Race
         
         txtSTR.Text = cvtStatisticToInt(.Statistics, 1)
@@ -3625,6 +3631,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
         txtPriest6.Text = .PriestSpellPoints(6)
         txtMage7.Text = .MageSpellPoints(7)
         txtPriest7.Text = .PriestSpellPoints(7)
+        ResetSpellPointMax
         
         For i = 1 To Wiz01ItemListMax
             cboItem(i).ListIndex = -1
@@ -3744,6 +3751,76 @@ End Sub
 Private Sub picWizardryLogo_GotFocus()
     TextSelected
 End Sub
+Private Sub ResetSpellPointMax()
+    Dim cClass As Integer
+    
+    cClass = Characters(SelectedCharacter).Profession
+    udMage1.Max = 0
+    udMage2.Max = 0
+    udMage3.Max = 0
+    udMage4.Max = 0
+    udMage5.Max = 0
+    udMage6.Max = 0
+    udMage7.Max = 0
+    udPriest1.Max = 0
+    udPriest2.Max = 0
+    udPriest3.Max = 0
+    udPriest4.Max = 0
+    udPriest5.Max = 0
+    udPriest6.Max = 0
+    udPriest7.Max = 0
+    
+    If IsMage(cClass) Then
+        udMage1.Max = 9
+        udMage2.Max = 9
+        udMage3.Max = 9
+        udMage4.Max = 9
+        udMage5.Max = 9
+        udMage6.Max = 9
+        udMage7.Max = 9
+    End If
+    If IsPriest(cClass) Then
+        udPriest1.Max = 9
+        udPriest2.Max = 9
+        udPriest3.Max = 9
+        udPriest4.Max = 9
+        udPriest5.Max = 9
+        udPriest6.Max = 9
+        udPriest7.Max = 9
+    End If
+    If IsSamurai(cClass) Then  '?
+        udMage1.Max = 4
+        udMage2.Max = 2
+        udMage3.Max = 2
+        udMage4.Max = 3
+        udMage5.Max = 3
+        udMage6.Max = 4
+        udMage7.Max = 3
+    ElseIf IsLord(cClass) Then
+        udPriest1.Max = 4
+        udPriest2.Max = 2
+        udPriest3.Max = 2
+        udPriest4.Max = 3
+        udPriest5.Max = 3
+        udPriest6.Max = 4
+        udPriest7.Max = 3
+    End If
+    
+    txtMage1.Text = udMage1.Max
+    txtMage2.Text = udMage2.Max
+    txtMage3.Text = udMage3.Max
+    txtMage4.Text = udMage4.Max
+    txtMage5.Text = udMage5.Max
+    txtMage6.Text = udMage6.Max
+    txtMage7.Text = udMage7.Max
+    txtPriest1.Text = udPriest1.Max
+    txtPriest2.Text = udPriest2.Max
+    txtPriest3.Text = udPriest3.Max
+    txtPriest4.Text = udPriest4.Max
+    txtPriest5.Text = udPriest5.Max
+    txtPriest6.Text = udPriest6.Max
+    txtPriest7.Text = udPriest7.Max
+End Sub
 Private Sub txtAge_Change()
     If Trim(txtAge.Text) = vbNullString Then Exit Sub
     txtYears.Text = Format(CInt(txtAge.Text) \ 52, "#,##0")
@@ -3837,6 +3914,7 @@ End Sub
 Private Sub txtMage1_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage1.Text) > udMage1.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage2_GotFocus()
     TextSelected
@@ -3847,6 +3925,7 @@ End Sub
 Private Sub txtMage2_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage2.Text) > udMage2.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage3_GotFocus()
     TextSelected
@@ -3857,6 +3936,7 @@ End Sub
 Private Sub txtMage3_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage3.Text) > udMage3.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage4_GotFocus()
     TextSelected
@@ -3867,6 +3947,7 @@ End Sub
 Private Sub txtMage4_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage4.Text) > udMage4.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage5_GotFocus()
     TextSelected
@@ -3877,6 +3958,7 @@ End Sub
 Private Sub txtMage5_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage5.Text) > udMage5.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage6_GotFocus()
     TextSelected
@@ -3887,6 +3969,7 @@ End Sub
 Private Sub txtMage6_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage6.Text) > udMage6.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtMage7_GotFocus()
     TextSelected
@@ -3897,6 +3980,7 @@ End Sub
 Private Sub txtMage7_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtMage7.Text) > udMage7.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtName_GotFocus()
     TextSelected
@@ -3934,6 +4018,7 @@ End Sub
 Private Sub txtPriest1_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest1.Text) > udPriest1.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest2_GotFocus()
     TextSelected
@@ -3944,6 +4029,7 @@ End Sub
 Private Sub txtPriest2_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest2.Text) > udPriest2.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest3_GotFocus()
     TextSelected
@@ -3954,6 +4040,7 @@ End Sub
 Private Sub txtPriest3_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest3.Text) > udPriest3.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest4_GotFocus()
     TextSelected
@@ -3964,6 +4051,7 @@ End Sub
 Private Sub txtPriest4_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest4.Text) > udPriest4.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest5_GotFocus()
     TextSelected
@@ -3974,6 +4062,7 @@ End Sub
 Private Sub txtPriest5_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest5.Text) > udPriest5.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest6_GotFocus()
     TextSelected
@@ -3984,6 +4073,7 @@ End Sub
 Private Sub txtPriest6_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest6.Text) > udPriest6.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtPriest7_GotFocus()
     TextSelected
@@ -3994,6 +4084,7 @@ End Sub
 Private Sub txtPriest7_Validate(Cancel As Boolean)
     Cancel = ValidateI2()
     If CInt(txtPriest7.Text) > udPriest7.Max Then Cancel = True
+    If Cancel Then Beep
 End Sub
 Private Sub txtSTR_GotFocus()
     TextSelected
@@ -4039,12 +4130,6 @@ Private Sub udMage6_Change()
 End Sub
 Private Sub udMage7_Change()
     Call ValidateI2(txtMage7)
-End Sub
-Private Sub udEXP_Change()
-    Call ValidateI4(txtEXP)
-End Sub
-Private Sub udGP_Change()
-    Call ValidateI4(txtGP)
 End Sub
 Private Sub udHP_Change()
     Call ValidateI2(txtHP)

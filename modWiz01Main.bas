@@ -52,7 +52,7 @@ Type Wiz01Character
     GP(1 To 3) As Integer               '0x1D834
     ItemCount As Integer                '0x1D83A
     ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
-    EXP(1 To 3) As Integer               '0x1D87C
+    EXP(1 To 3) As Integer              '0x1D87C
     LVL As Wiz01Points                  '0x1D882
     HP As Wiz01Points                   '0x1D886
     SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
@@ -60,7 +60,10 @@ Type Wiz01Character
     PriestSpellPoints(1 To 7) As Integer '0x1D8A0
     Unknown2(1 To 2) As Byte            '0x1D8AE
     AC As Integer                       '0x1D8B0
-    Unknown3(1 To 30) As Byte           '0x1D8B2
+    Unknown3(1 To 24) As Byte           '0x1D8B2
+    Location As Integer                 '0x1D8CA    Some sort of packed variable...
+    Down As Integer                     '0x1D8CC    Seems to be a simple 2-byte integer...
+    Honors As Integer                   '0x1D8CE    Need more testing, but 1 = ">"
                                         '0x1D8D0    Next Character Record...
 End Type
 Private ItemList(0 To Wiz01ItemMapMax) As String
@@ -385,8 +388,38 @@ Public Sub InitializeWiz01Spells()
     Spells(49) = "Malikto"
     Spells(50) = "Kadorto"
 End Sub
+Public Function IsBishop(x As Integer) As Boolean
+    IsBishop = (strProfession(x) = "Bishop")
+End Function
+Public Function IsMage(x As Integer) As Boolean
+    Select Case strProfession(x)
+        Case "Bishop", "Mage", "Samurai"
+            IsMage = True
+        Case Else
+            IsMage = False
+    End Select
+End Function
+Public Function IsPriest(x As Integer) As Boolean
+    Select Case strProfession(x)
+        Case "Bishop", "Priest", "Lord"
+            IsPriest = True
+        Case Else
+            IsPriest = False
+    End Select
+End Function
 Public Function IsLord(x As Integer) As Boolean
     IsLord = (strProfession(x) = "Lord")
+End Function
+Public Function IsSamurai(x As Integer) As Boolean
+    IsSamurai = (strProfession(x) = "Samurai")
+End Function
+Public Function IsSpellCaster(x As Integer) As Boolean
+    Select Case strProfession(x)
+        Case "Mage", "Priest", "Bishop", "Lord", "Samurai"
+            IsSpellCaster = True
+        Case Else
+            IsSpellCaster = False
+    End Select
 End Function
 Public Sub PopulateWiz01Alignment(x As ComboBox)
     Dim i As Byte

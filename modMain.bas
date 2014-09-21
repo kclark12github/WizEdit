@@ -59,11 +59,18 @@ Public Sub DtoI6test2()
     Debug.Print Data(3) & Data(2) & Data(1)
 End Sub
 Public Sub DtoI6(ByVal x As Double, Data() As Integer)
-    Data(3) = CInt(x / 100000000#)
-    x = x - (Data(3) * 100000000#)
-    Data(2) = CInt(x / 10000#)
-    x = x - (Data(2) * 10000#)
-    Data(1) = x
+    Dim r1 As Double
+    Dim r2 As Double
+    Dim r3 As Double
+    
+    r3 = x \ 100000000#
+    Data(3) = CInt(r3)
+    x = x - (r3 * 100000000#)
+    r2 = x \ 10000#
+    Data(2) = r2
+    x = x - (r2 * 10000#)
+    r1 = x
+    Data(1) = r1
 End Sub
 Public Function I6toD(Data() As Integer) As Double
     Dim r1 As Double
