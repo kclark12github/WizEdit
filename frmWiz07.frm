@@ -2655,7 +2655,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "11:29 PM"
+            TextSave        =   "2:34 AM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -2749,7 +2749,7 @@ Private Sub cboCharacter_Click()
         
         txtLVL.Text = Format(.Level, "#,##0")
         txtLives.Text = Format(.Lives, "#,##0")
-        txtAge.Text = Format(.Age, "#,##0")
+        txtAge.Text = Format(.AgeInWeeks \ 52, "#,##0")
         
         txtHP.Text = Format(.HP.Maximum, "#,##0")
         txtSTM.Text = Format(.STM.Maximum, "#,##0")

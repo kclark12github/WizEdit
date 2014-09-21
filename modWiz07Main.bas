@@ -346,7 +346,7 @@ Type Wiz07Character
     Race As Byte
     Gender As Byte
     Profession As Byte
-    Age As Byte                         '??? Under Investigation...
+    AgeInWeeks As Byte
     ConditionCode As Byte               '??? Under Investigation...
     Unknown5(1 To 12) As Byte           '???
 End Type
@@ -581,7 +581,7 @@ Public Sub DumpWiz07(ByVal strFile As String)
         Debug.Print "Race:              " & vbTab & strRace(.Race)
         Debug.Print "Gender:            " & vbTab & strGender(.Gender)
         Debug.Print "Profession:        " & vbTab & strProfession(.Profession)
-        Debug.Print "Age?:              " & vbTab & .Age
+        Debug.Print "Age:               " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
         Debug.Print "ConditionCode:     " & vbTab & strCondition(.ConditionCode)
         
         Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"

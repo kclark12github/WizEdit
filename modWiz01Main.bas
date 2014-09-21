@@ -37,8 +37,8 @@ Type Wiz01Character
     Out As Integer                      '00 00 = No; 01 00 = Yes;
     Race As Integer
     Profession As Integer
-    Age As Integer
-    ConditionCode As Integer
+    AgeInWeeks As Integer
+    Status As Integer
     Alignment As Integer
     Characteristics As Long
     Unknown1(1 To 4) As Byte
@@ -50,16 +50,71 @@ Type Wiz01Character
     Unknown3(1 To 2) As Byte
     LVL As Wiz01Points
     HP As Wiz01Points
-    Unknown4(1 To 70) As Byte
+    SpellBooks(1 To 8) As Byte         'Need to mask as bits...
+    Unknown4(1 To 62) As Byte
 End Type
+Private Spells(1 To 49) As String
 Public Sub DumpWiz01(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
+    Dim k As Long
     Dim iChar As Long
     Dim Unit As Integer
     Dim Offset As Long
     Dim errorCode As Long
     Dim xCharacters(1 To 20) As Wiz01Character
+    
+    'Mage Spell Book...
+    Spells(1) = "HALITO"
+    Spells(2) = "MOGREF"
+    Spells(3) = "KATINO"
+    Spells(4) = "DUMAPIC"
+    Spells(5) = "DILTO"
+    Spells(6) = "SOPIC"
+    Spells(7) = "MAHALITO"
+    Spells(8) = "MOLITO"
+    Spells(9) = "MORLIS"
+    Spells(10) = "DALTO"
+    Spells(11) = "LAHALITO"
+    Spells(12) = "MAMORLIS"
+    Spells(13) = "MAKANITO"
+    Spells(14) = "MADALTO"
+    Spells(15) = "LAKANITO"
+    Spells(16) = "ZILWAN"
+    Spells(17) = "MASOPIC"
+    Spells(18) = "HAMAN"
+    Spells(19) = "MALOR"
+    Spells(20) = "MAHAMAN"
+    Spells(21) = "TILTOWAIT"
+    'Priest Spell Book...
+    Spells(22) = "KALKI"
+    Spells(23) = "DIOS"
+    Spells(24) = "BADIOS"
+    Spells(25) = "MILWA"
+    Spells(26) = "PORFIC"
+    Spells(27) = "MATU"
+    Spells(28) = "CALFO"
+    Spells(29) = "MANIFO"
+    Spells(30) = "MONTINO"
+    Spells(31) = "DIALKO"
+    Spells(32) = "LATUMAPIC"
+    Spells(33) = "BAMATU"
+    Spells(34) = "DIAL"
+    Spells(35) = "BADIAL"
+    Spells(36) = "LATUMOFIS"
+    Spells(37) = "MAPORFIC"
+    Spells(38) = "DIALMA"
+    Spells(39) = "BADIALMA"
+    Spells(40) = "LITOKAN"
+    Spells(41) = "KANDI"
+    Spells(42) = "DI"
+    Spells(43) = "BADI"
+    Spells(44) = "LORTO"
+    Spells(45) = "MADI"
+    Spells(46) = "MABADI"
+    Spells(47) = "LOKTOFEIT"
+    Spells(48) = "MALIKTO"
+    Spells(49) = "KADORTO"
     
     On Error GoTo ErrorHandler
     Unit = FreeFile
@@ -94,8 +149,8 @@ Public Sub DumpWiz01(ByVal strFile As String)
 
             Debug.Print "Race:               " & vbTab & strRace(.Race)
             Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
-            Debug.Print "Age?:               " & vbTab & .Age
-            Debug.Print "ConditionCode:      " & vbTab & strCondition(.ConditionCode)
+            Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
+            Debug.Print "Status:             " & vbTab & strStatus(.Status)
             Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
             Debug.Print "Level:              " & vbTab & strPoints(.LVL)
             Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
@@ -118,6 +173,13 @@ Public Sub DumpWiz01(ByVal strFile As String)
                 Debug.Print strItem(.ItemList(j))
             Next j
 
+            Debug.Print vbCrLf & "SpellBooks..."
+            For j = 1 To 8
+                For k = 1 To 8
+                    Debug.Print vbTab & strSpell(((j - 1) * 8) + k, .SpellBooks(j), k - 1)
+                Next k
+            Next j
+        
             Debug.Print " "
             Debug.Print "Unknown Region #1 (4 bytes): "
             Debug.Print strHex(.Unknown1, 4) & vbCrLf
@@ -128,8 +190,8 @@ Public Sub DumpWiz01(ByVal strFile As String)
             Debug.Print "Unknown Region #3 (2 bytes): "
             Debug.Print strHex(.Unknown3, 2) & vbCrLf
 
-            Debug.Print "Unknown Region #4 (70 bytes): "
-            Debug.Print strHex(.Unknown4, 70) & vbCrLf
+            Debug.Print "Unknown Region #4 (62 bytes): "
+            Debug.Print strHex(.Unknown4, 62) & vbCrLf
         End With
 
 NextCharacter:
@@ -148,16 +210,7 @@ Public Sub PopulateCondition(x As ComboBox)
     With x
         .Clear
         For i = 0 To Wiz01ConditionMapMax
-            .AddItem strCondition(i), CInt(i)
-        Next i
-    End With
-End Sub
-Public Sub PopulateGender(x As ComboBox)
-    Dim i As Byte
-    With x
-        .Clear
-        For i = 0 To 1
-            .AddItem strGender(i), CInt(i)
+            .AddItem strStatus(i), CInt(i)
         Next i
     End With
 End Sub
@@ -234,26 +287,26 @@ Private Function strAlignment(ByVal x As Integer) As String
             strAlignment = "Unknown"
     End Select
 End Function
-Private Function strCondition(ByVal x As Integer) As String
+Private Function strStatus(ByVal x As Integer) As String
     Select Case x
         Case 0
-            strCondition = "OK"
+            strStatus = "OK"
         Case 1
-            strCondition = "Afraid"
+            strStatus = "Afraid"
         Case 2
-            strCondition = "Asleep"
+            strStatus = "Asleep"
         Case 3
-            strCondition = "Paralyzed"
+            strStatus = "Paralyzed"
         Case 4
-            strCondition = "Stoned"
+            strStatus = "Stoned"
         Case 5
-            strCondition = "Dead"
+            strStatus = "Dead"
         Case 6
-            strCondition = "Ashes"
+            strStatus = "Ashes"
         Case 7
-            strCondition = "Lost"
+            strStatus = "Lost"
         Case Else
-            strCondition = "Unknown"
+            strStatus = "Unknown"
     End Select
 End Function
 Private Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
