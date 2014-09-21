@@ -1,0 +1,141 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <alloc.h>
+#include <io.h>
+#include <conio.h>
+
+#include <wizardry.h>
+#include <input.h>
+
+char *GetDateString(void);
+char *GetTimeString(void);
+
+#define TRUE (0l == 0l)
+#define FALSE (0l != 0l)
+
+struct ProgramInfo Program;
+struct ItemMaster
+{
+   char                   Name[22];
+   long                   Value;
+   unsigned char          Unknown1[8];
+   unsigned char          SpellCode;
+   unsigned char          SpellLevel;
+   short                  Weight;
+   unsigned char          Unknown2[18];
+   short                  PictureCode;
+   unsigned char          Unknown3[14];
+};
+FILE *InputFile = NULL,
+     *OutputFile = NULL;
+
+int main(int argc, char **argv)
+{
+   short i = 0;
+   long  Bytes = 0;
+   char  Args[513],
+         Temp[513],
+         InputFileName[133],
+         OutputFileName[133],
+         *p = NULL;
+   struct ItemMaster Ip;
+
+   normvideo();
+
+   strcpy(Program.Name, "WIZDATA");
+   strcpy(Program.Title, "Wizardry VII: Crusaders of the Dark Savant");
+   Program.Version = 1;
+   Program.Revision = 1;
+   Program.ScreenMode = FALSE;
+   printf("[%s; %s\t%s %s]\n", Program.Name, Program.Title,
+         GetDateString(), GetTimeString());
+   strcpy(Args, strupr(argv[0]));
+   for (i = 1; i <= argc; i++)
+   {
+      sprintf(Temp, " %s", strupr(argv[i]));
+      strcat(Args, Temp);
+   }
+   strcpy(InputFileName, argv[1]);
+   strcpy(OutputFileName, argv[2]);
+
+   if (argc < 3 || strstr(Args, "/?") || strstr(Args, "/H"))
+   {
+      printf("Usage: WIZDATA <input-file> <output-file>\n");
+      printf("Where <input-file> is the name of the SCENARIO.DBS file containing the\n");
+      printf("definitions of the ItemCodes used by WIZEDIT and WIZPRINT, and \n");
+      printf("<output-file> is the name of the data file produced by this utility.\n");
+      goto EXIT_LABEL;
+   }
+
+   if (!(OutputFile = fopen(OutputFileName, "w")))
+   {
+      SystemError("Cannot open data file, %s.", OutputFileName);
+      goto EXIT_LABEL;
+   }
+
+   if (!(InputFile = fopen(InputFileName, "rb")))
+   {
+      SystemError("Cannot open data file, %s.", InputFileName);
+      goto EXIT_LABEL;
+   }
+   fseek(InputFile, 896l, SEEK_SET);
+
+   fprintf(OutputFile, "struct ItemMap\n");
+   fprintf(OutputFile, "{\n");
+   fprintf(OutputFile, "   char          Name[21];\n");
+   fprintf(OutputFile, "/*   short         ItemCode;\n");
+   fprintf(OutputFile, " *   long          Value;\n");
+   fprintf(OutputFile, " *  short         Weight;\n");
+   fprintf(OutputFile, " *  unsigned char SpellCode;\n");
+   fprintf(OutputFile, " *  unsigned char SpellLevel;\n");
+   fprintf(OutputFile, " *  short         PictureCode;\n");
+   fprintf(OutputFile, "*/\n");
+   fprintf(OutputFile, "} Items[] = {\n");
+
+   for (i = 0; i <= ItemMapMax; i++)
+   {
+      if ((Bytes = fread((void *)&Ip, 1, sizeof(struct ItemMaster), InputFile)) != sizeof(struct ItemMaster))
+      {
+         PrintError("Read only %ld of %ld bytes from %s.",
+                   Bytes, sizeof(struct ItemMaster), InputFileName);
+         goto EXIT_LABEL;
+      }
+
+      strcpy(Temp, Ip.Name);
+      p = strstr(Temp, "=");
+      if (p)
+      {
+         *p = 0;
+         strcat(Temp, "of ");
+         p = strstr(Ip.Name, "=");
+         strcat(Temp, p+1);
+      }
+
+      p = strstr(Temp, "/");
+      if (p) *p = ' ';
+
+      for (p = strstr(Temp, "  "); *(p+1); p++)
+         *(p+1) = *(p+2);
+
+      printf("\t%s\n", Temp);
+      fprintf(OutputFile,
+         "/* %3d (0x%04X) */ {\"%-20.20s\" /*,%10ld, %2d, 0x%04X, %2d, %2d */ }%s\n",
+              i, i,
+              Temp, Ip.Value, Ip.Weight, Ip.PictureCode,
+              Ip.SpellCode, Ip.SpellLevel,
+              (i < ItemMapMax) ? "," : "");
+      fprintf(OutputFile, "/*\n");
+      HexDumpf(OutputFile, Ip.Unknown1, sizeof(Ip.Unknown1));
+      HexDumpf(OutputFile, Ip.Unknown2, sizeof(Ip.Unknown2));
+      HexDumpf(OutputFile, Ip.Unknown3, sizeof(Ip.Unknown3));
+      fprintf(OutputFile, "*/\n");
+   }
+   fprintf(OutputFile, "};\n");
+
+EXIT_LABEL:
+   fclose(InputFile);
+   fclose(OutputFile);
+   normvideo();
+   exit(0);
+}

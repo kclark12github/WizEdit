@@ -1,0 +1,332 @@
+#include <stdio.h>
+#include <dos.h>
+#include <bios.h>
+#include <stdlib.h>
+#include <string.h>
+#include <io.h>
+#include <conio.h>
+#include <ctype.h>
+
+#define TRUE (0l == 0l)
+#define FALSE (0l != 0l)
+
+/* Service Codes Accepted by "biosdisk()" */
+#define DISK_RESET               0
+#define DISK_LAST_STATUS         1
+#define DISK_READ                2
+#define DISK_WRITE               3
+#define DISK_VERIFY              4
+#define DISK_FORMAT              5
+
+/* Error Codes Returned by "biosdisk()" */
+#define DISKERR_NONE             0x00
+#define DISKERR_UNKNOWN          0x01
+#define DISKERR_UNFORMATED       0x02
+#define DISKERR_WRITE_PROTECT    0x03
+#define DISKERR_SECTOR_NOT_FOUND 0x04
+#define DISKERR_RESET_FAILED     0x05
+#define DISKERR_DMA_ERROR        0x08
+#define DISKERR_DMA_EXCEEDED     0x09
+#define DISKERR_CRC_ERROR        0x10
+#define DISKERR_CONTROL_ERROR    0x20
+#define DISKERR_TRACK_NOT_FOUND  0x40
+#define DISKERR_DRIVE_TIMEOUT    0x80
+
+#define SECTOR_SIZE              512
+
+struct text_info t_info;
+
+int BreakHandler(void)
+{
+   gotoxy(1, 6);	clreol();
+   textattr(RED  + (BLACK << 4));
+	highvideo();   cprintf("**** ERROR: ");
+   lowvideo();    cprintf("User requested ");
+	highvideo();   cprintf("Break");
+   lowvideo();    cprintf(" detected. Program aborted.");
+   gotoxy(1, 8);
+   normvideo();
+/*   textattr(t_info.normattr);*/
+   exit(0);
+
+   return TRUE;
+}
+
+void HandleDiskError(int Drive, int Status)
+{
+   switch (Status)
+   {
+      case DISKERR_NONE:
+           return;
+      default:
+           gotoxy(1, 6);	clreol();
+           textattr(RED  + (BLACK << 4));
+	        highvideo();   cprintf("**** ERROR: ");
+           lowvideo();    cprintf("Cannot Read from Drive ");
+	        highvideo();   cprintf("%c", 'A'+Drive);
+           lowvideo();    cprintf("; Status: ");
+	        highvideo();   cprintf("%X", Status);
+           gotoxy(6, 7);	clreol();
+           switch(Status)
+           {
+              case DISKERR_UNKNOWN:
+                   cprintf("Command not known to Diskette I/O system.");
+                   break;
+              case DISKERR_UNFORMATED:
+                   cprintf("Diskette is not formatted.");
+                   break;
+              case DISKERR_WRITE_PROTECT:
+                   cprintf("Could not write because diskette is \"write-protected\".");
+                   break;
+              case DISKERR_SECTOR_NOT_FOUND:
+                   cprintf("Could not find specified sector.");
+                   break;
+              case DISKERR_RESET_FAILED:
+                   cprintf("Reset Failed.");
+                   break;
+              case DISKERR_DMA_ERROR:
+                   cprintf("DMA (Direct Memory Access) transfer error.");
+                   break;
+              case DISKERR_DMA_EXCEEDED:
+                   cprintf("DMA (Direct Memory Access) transfer exceeds 64K boundry.");
+                   break;
+              case DISKERR_CRC_ERROR:
+                   cprintf("Diskette controller detected CRC error.");
+                   break;
+              case DISKERR_CONTROL_ERROR:
+                   cprintf("Diskette controller failed.");
+                   break;
+              case DISKERR_TRACK_NOT_FOUND:
+                   cprintf("Could not move to selected track.");
+                   break;
+              case DISKERR_DRIVE_TIMEOUT:
+                   cprintf("Drive is not OnLine.");
+                   break;
+              default:
+                   break;
+           }
+           break;
+   }
+
+   gotoxy(1, 8);
+   normvideo();
+/*   textattr(t_info.normattr);*/
+   exit(0);
+}
+
+void DumpSector(FILE *FileUnit, unsigned char *p, int Bytes)
+{
+   short      i,
+              BytesPerRow = 24,
+              BytesOutput = 0,
+              TotalBytesOutput = 0;
+   unsigned char c;
+
+   while (TotalBytesOutput < Bytes)
+   {
+      for (i = 0, BytesOutput = 0;
+          i < BytesPerRow && TotalBytesOutput < Bytes; i++)
+      {
+         if (FileUnit)
+            fprintf(FileUnit, "%02X", *(p+i));
+         else
+            printf("%02X", *(p+i));
+
+         BytesOutput++;
+         TotalBytesOutput++;
+
+         if (!((i+1) % 4) && BytesOutput < BytesPerRow)
+         {
+            if (FileUnit)
+               fprintf(FileUnit, " ");
+            else
+               printf(" ");
+         }
+      }
+
+      for (i = BytesOutput; i < BytesPerRow && BytesOutput < BytesPerRow; i++)
+      {
+         if (FileUnit)
+            fprintf(FileUnit, "  ");
+         else
+            printf("  ");
+         if (!((i+1) % 4) && i < BytesPerRow-1)
+         {
+            if (FileUnit)
+               fprintf(FileUnit, " ");
+            else
+               printf(" ");
+         }
+      }
+
+      if (FileUnit)
+         fprintf(FileUnit, "|");
+      else
+         printf("|");
+
+      for (i = 0; i < BytesOutput; i++)
+      {
+         c = *(p+i);
+         if (!isascii(c) || iscntrl(c))
+         {
+            c = (*(p+i) & 0x7F);
+            if (!isascii(c) || iscntrl(c))
+               c = '.';
+         }
+
+         if (FileUnit)
+            fprintf(FileUnit, "%c", c);
+         else
+            printf("%c", c);
+      }
+      if (FileUnit)
+         fprintf(FileUnit, "\n");
+      else
+         printf("\n");
+      p += BytesOutput;
+   }
+}
+
+int main(int argc, char **argv)
+{
+   int   i, j, Start,
+         Retry = 0,
+         Drive = 0,
+         Head = 0,
+         Track = 0,
+         MaxTrack = 79,
+         Sector = 1,
+         MaxSector = 18,
+         nSectors = 1,
+         SectorsPerFile = 20,
+         SectorsOutput = 0,
+         FileNumber = 1;
+   unsigned       c, Status = 0;
+   char  Buffer[SECTOR_SIZE+1],
+         OutputFileName[13],
+         ErrorBuffer[81];
+   FILE *OutputFile = NULL;
+
+   setcbrk(TRUE);
+   ctrlbrk(BreakHandler);
+
+   gettextinfo(&t_info);
+
+   clrscr();
+   textattr(GREEN + (BLACK << 4));
+   lowvideo();    cprintf("[");
+   highvideo();   cprintf("DISKDUMP");
+   lowvideo();    cprintf("       Disk Analysis Utility      Version ");
+   highvideo();   cprintf("1.0");
+   lowvideo();    cprintf("]\n\n");
+
+   if (argc > 1 && !strcmp(argv[1], "B"))
+      Drive = 1;
+
+   sprintf(OutputFileName, "DISK_%d.TXT", FileNumber);
+
+   gotoxy(3, 3);	clreol();
+   lowvideo();    cprintf("Reading disk ");
+   textattr(BROWN + (BLACK << 4));
+   highvideo();   cprintf("%c", 'A'+Drive);
+   textattr(GREEN + (BLACK << 4));
+   lowvideo();    cprintf("; Output File: ");
+   textattr(CYAN + (BLACK << 4));
+   highvideo();   cprintf("%s", OutputFileName);
+   textattr(GREEN + (BLACK << 4));
+   lowvideo();    cprintf("...\n\n");
+
+   if ((Status = biosdisk(DISK_RESET,
+      Drive, Head, Track, Sector, nSectors, Buffer)) != 0)
+   {
+      printf("**** Error: Cannot Reset Drive Controller; Status: %X\n", Status);
+      goto EXIT_LABEL;
+   }
+
+   if (!(OutputFile = fopen(OutputFileName, "w")))
+   {
+      printf("**** Error: Cannot open output file, %s.", OutputFileName);
+      goto EXIT_LABEL;
+   }
+
+   Status = DISKERR_NONE;
+   for (Track = 0;
+       Track <= MaxTrack && Status != DISKERR_SECTOR_NOT_FOUND;
+       Track++)
+   {
+       Status = DISKERR_NONE;
+       for (Sector = 1;
+           Sector <= MaxSector && Status != DISKERR_SECTOR_NOT_FOUND;
+           Sector++)
+       {
+           Status = DISKERR_NONE;
+           for (Retry = 0;
+               Retry <= 3 && Status != DISKERR_SECTOR_NOT_FOUND;
+               Retry++)
+           {
+               if (!(Status = biosdisk(DISK_VERIFY,
+                        Drive, Head, Track, Sector, nSectors, Buffer)))
+               {
+                  /* Overflow into a secondary file if too big... */
+
+                  if (!(SectorsOutput % SectorsPerFile) && SectorsOutput)
+                  {
+                     fclose(OutputFile);
+                     FileNumber++;
+                     sprintf(OutputFileName, "DISK_%d.TXT", FileNumber);
+                     if (!(OutputFile = fopen(OutputFileName, "w")))
+                     {
+                        printf("**** Error: Cannot open output file, %s.", OutputFileName);
+                        goto EXIT_LABEL;
+                     }
+
+                     gotoxy(3, 3);	clreol();
+                     lowvideo();    cprintf("Reading disk ");
+                     textattr(BROWN + (BLACK << 4));
+                     highvideo();   cprintf("%c", 'A'+Drive);
+                     textattr(GREEN + (BLACK << 4));
+                     lowvideo();    cprintf("; Output File: ");
+                     textattr(CYAN + (BLACK << 4));
+                     highvideo();   cprintf("%s", OutputFileName);
+                     textattr(GREEN + (BLACK << 4));
+                     lowvideo();    cprintf("...\n\n");
+                  }
+
+                  if (!(Status = biosdisk(DISK_READ,
+                              Drive, Head, Track, Sector, nSectors, Buffer)))
+                  {
+   	               gotoxy(1, 5);	clreol();
+                     textattr(CYAN  + (BLACK << 4));
+                     lowvideo();    cprintf("Reading ");
+                     textattr(GREEN + (BLACK << 4));
+                     lowvideo();    cprintf("Track ");
+	                  highvideo();   cprintf("%d ", Track);
+	                  textattr(BROWN + (BLACK << 4));
+                     lowvideo();    cprintf("Sector ");
+	                  highvideo();   cprintf("%d", Sector);
+                     textattr(CYAN  + (BLACK << 4));
+                     lowvideo();    cprintf("...");
+
+                     fprintf(OutputFile,
+                                "\nHex Dump of Track %d Sector %d Hex %X:\n",
+                                Track, Sector, Sector);
+                     DumpSector(OutputFile, (unsigned char *)Buffer,
+                                            SECTOR_SIZE);
+                     SectorsOutput++;
+                     break;
+                  }
+               }
+           }
+           if (Status && Status != DISKERR_SECTOR_NOT_FOUND)
+              HandleDiskError(Drive, Status);
+       }
+       Status = DISKERR_NONE;
+   }
+
+EXIT_LABEL:
+   fclose(OutputFile);
+   gotoxy(1, 8);
+/*   textattr(t_info.normattr);*/
+   normvideo();
+   exit(0);
+}

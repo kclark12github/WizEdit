@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <dos.h>
+#include <bios.h>
+#include <stdlib.h>
+#include <string.h>
+#include <io.h>
+#include <conio.h>
+#include <ctype.h>
+
+#define TRUE (0l == 0l)
+#define FALSE (0l != 0l)
+#define DOS_DISPCHAR 2
+#define DISK_RESET 0
+#define DISK_READ 2
+#define DISK_VERIFY 2
+#define SectorSize 512
+
+void DumpSector(FILE *FileUnit, unsigned char *p, int Bytes)
+{
+   short      i,
+              BytesPerRow = 24,
+              BytesOutput = 0,
+              TotalBytesOutput = 0;
+   unsigned char c;
+
+   while (TotalBytesOutput < Bytes)
+   {
+      for (i = 0, BytesOutput = 0;
+          i < BytesPerRow && TotalBytesOutput < Bytes; i++)
+      {
+         if (FileUnit)
+            fprintf(FileUnit, "%02X", *(p+i));
+         else
+            printf("%02X", *(p+i));
+
+         BytesOutput++;
+         TotalBytesOutput++;
+
+         if (!((i+1) % 4) && BytesOutput < BytesPerRow)
+         {
+            if (FileUnit)
+               fprintf(FileUnit, " ");
+            else
+               printf(" ");
+         }
+      }
+
+      for (i = BytesOutput; i < BytesPerRow && BytesOutput < BytesPerRow; i++)
+      {
+         if (FileUnit)
+            fprintf(FileUnit, "  ");
+         else
+            printf("  ");
+         if (!((i+1) % 4) && i < BytesPerRow-1)
+         {
+            if (FileUnit)
+               fprintf(FileUnit, " ");
+            else
+               printf(" ");
+         }
+      }
+
+      if (FileUnit)
+         fprintf(FileUnit, "|");
+      else
+         printf("|");
+
+      for (i = 0; i < BytesOutput; i++)
+      {
+         if (isascii(*(p+i)) && !iscntrl(*(p+i)))
+            c = *(p+i);
+         else
+            c = '.';
+
+         if (FileUnit)
+            fprintf(FileUnit, "%c", c);
+         else
+            printf("%c", c);
+      }
+      if (FileUnit)
+         fprintf(FileUnit, "\n");
+      else
+         printf("\n");
+      p += BytesOutput;
+   }
+}
+
+int main(int argc, char **argv)
+{
+   int   i, j, Start,
+         Retry = 0,
+         Drive = 0,
+         Head = 0,
+         Track = 0,
+         Sector = 1,
+         nSectors = 1;
+   unsigned       c, Status = 0;
+   char  Buffer[SectorSize+1],
+         *OutputFileName = "DISK.DMP";
+   FILE *OutputFile = NULL;
+
+   normvideo();
+   if (argc > 1 && !strcmp(argv[1], "B"))
+      Drive = 1;
+
+   if ((Status = biosdisk(DISK_RESET,
+      Drive, Head, Track, Sector, nSectors, Buffer)) != 0)
+   {
+      printf("**** Error: Cannot Reset Drive Controller; Status: %X\n", Status);
+      goto EXIT_LABEL;
+   }
+
+   if (!(OutputFile = fopen(OutputFileName, "w")))
+   {
+      printf("**** Error: Cannot open output file, %s.", OutputFileName);
+      goto EXIT_LABEL;
+   }
+
+   for (Track = 1; Track <= 40; Track++)
+   {
+       for (Sector = 1; Sector <= 9; Sector++)
+       {
+           for (Retry = 0; Retry <=3; Retry++)
+           {
+               if (!(Status = biosdisk(DISK_VERIFY,
+                        Drive, Head, Track, Sector, nSectors, Buffer)))
+               {
+                  if (!(Status = biosdisk(DISK_READ,
+                              Drive, Head, Track, Sector, nSectors, Buffer)))
+                  {
+                     printf("Reading Track %d Sector %d\n", Track, Sector);
+                     fprintf(OutputFile, "\nHex Dump of Track %d Sector %d Hex %X:\n",
+                                Track, Sector, Sector);
+                     DumpSector(OutputFile, (unsigned char *)Buffer, SectorSize);
+                     break;
+                  }
+               }
+           }
+           if (Status != 4)
+              printf("**** Error: Cannot Read from Drive %c; Status: %X\n",
+                'A'+Drive, Status);
+       }
+   }
+
+EXIT_LABEL:
+   fclose(OutputFile);
+   normvideo();
+   exit(0);
+}

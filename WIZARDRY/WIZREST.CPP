@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <io.h>
+#include <conio.h>
+
+#include <wizardry.h>
+#include <input.h>
+
+char *GetDateString(void);
+char *GetTimeString(void);
+
+#define TRUE (0l == 0l)
+#define FALSE (0l != 0l)
+
+struct ProgramInfo Program;
+char *Buffer = NULL;
+long FileSize = 0;
+
+void RestoreCharacter(void *CharacterBuffer)
+{
+   struct Character *cp = (struct Character *)CharacterBuffer;
+
+   printf("\nUpdating: %s\n", cp->Name);
+
+   cp->HP.Current = cp->HP.Maximum;
+   printf("   Hit Points:\t%d of %d\n", cp->HP.Current, cp->HP.Maximum);
+
+   cp->STA.Current = cp->STA.Maximum;
+   printf("   Stamina:   \t%d of %d\n", cp->STA.Current, cp->STA.Maximum);
+
+   printf("Spell Points:\n");
+
+   cp->SpellPoints.Fire.Current = cp->SpellPoints.Fire.Maximum;
+   cp->SpellPoints.Earth.Current = cp->SpellPoints.Earth.Maximum;
+   printf("   Fire:  \t%d of %d\tEarth: \t%d of %d\n",
+      cp->SpellPoints.Fire.Current, cp->SpellPoints.Fire.Maximum,
+      cp->SpellPoints.Earth.Current, cp->SpellPoints.Earth.Maximum);
+
+   cp->SpellPoints.Water.Current = cp->SpellPoints.Water.Maximum;
+   cp->SpellPoints.Mental.Current = cp->SpellPoints.Mental.Maximum;
+   printf("   Water: \t%d of %d\tMental:\t%d of %d\n",
+      cp->SpellPoints.Water.Current, cp->SpellPoints.Water.Maximum,
+      cp->SpellPoints.Mental.Current, cp->SpellPoints.Mental.Maximum);
+
+   cp->SpellPoints.Air.Current = cp->SpellPoints.Air.Maximum;
+   cp->SpellPoints.Divine.Current = cp->SpellPoints.Divine.Maximum;
+   printf("   Air:   \t%d of %d\tDivine:\t%d of %d\n",
+      cp->SpellPoints.Air.Current, cp->SpellPoints.Air.Maximum,
+      cp->SpellPoints.Divine.Current, cp->SpellPoints.Divine.Maximum);
+
+EXIT_LABEL:
+   printf("\n");
+   return;
+}
+
+int main(int argc, char **argv)
+{
+   short i;
+   char Args[513],
+        Temp[33],
+        FileName[133],
+        CharacterName[8];
+   char *p = NULL;
+
+   normvideo();
+
+   strcpy(Program.Name, "WIZREST");
+   strcpy(Program.Title, "Wizardry VII: Crusaders of the Dark Savant");
+   Program.Version = 1;
+   Program.Revision = 1;
+   Program.ScreenMode = FALSE;
+   printf("[%s; %s\t%s %s]\n", Program.Name, Program.Title,
+         GetDateString(), GetTimeString());
+   strcpy(Args, strupr(argv[0]));
+   for (i = 1; i <= argc; i++)
+   {
+      sprintf(Temp, " %s", strupr(argv[i]));
+      strcat(Args, Temp);
+   }
+
+   if (argc < 3)
+   {
+      printf("**** Error: Must specify WIZARDRY (.DBS) file name.\n");
+      printf("     Usage: WIZREST wizardry.DBS <first/lead-character>\n");
+      goto EXIT_LABEL;
+   }
+   strcpy(FileName, strupr(argv[1]));
+   strcpy(CharacterName, strupr(argv[2]));
+
+   if (!ReadDBS(FileName, &Buffer, &FileSize))
+      goto EXIT_LABEL;
+
+   printf("   Searching for \"%s\"...\n", CharacterName);
+   for (p = Buffer; p < Buffer+FileSize && strcmp(p, CharacterName); p++);
+   if (!p)
+   {
+      PrintError("Could not find \"%s\"...\n", CharacterName);
+      goto EXIT_LABEL;
+   }
+   printf("Found \"%s\" @ byte position %d (%d bytes)...\n\n", CharacterName, p-Buffer+1, sizeof(struct Character));
+
+   for (i = 1; i <= 6; i++, p += sizeof(struct Character))
+      RestoreCharacter((void *)p);
+
+   if (!WriteDBS(FileName, Buffer, FileSize))
+      goto EXIT_LABEL;
+
+EXIT_LABEL:
+   printf("\n");
+   free(Buffer);
+   normvideo();
+   exit(0);
+}

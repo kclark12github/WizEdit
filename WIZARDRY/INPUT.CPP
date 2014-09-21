@@ -1,0 +1,737 @@
+/* INPUT.C
+		This procedure takes reads a string from the current cursor position
+	on the text screen and returns it through the "is" input string pointer.
+	The length of the resultant string is required through "sic" (i.e. Size
+	In Characters). The string read will automatically left justified. Each
+	character read is echoed to the screen upon being read. Either the TAB
+	or RETURN characters are returned as the value of the function.
+
+	Arguements:
+		is			Input string.
+					Type: char *
+
+		sic		Size of returned string (in characters or bytes).
+					Type: int
+
+	Returned Value:
+		TAB		If the TAB character is entered to terminate input.
+		RETURN	If the RETURN character is entered to terminate input.
+
+	*/
+
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <dos.h>
+
+#include <input.h>
+
+extern int	titlecolor;
+extern int	headercolor;
+extern int	promptcolor;
+extern int	errorcolor;
+extern int	warningcolor;
+extern int	selectcolor;
+extern int	menucolor;
+extern int	datecolor;
+extern int	timecolor;
+extern int	screencolor;
+extern int	inputcolor;
+extern int	displaycolor;
+
+int input(char *is, int sic)
+{
+	struct text_info current_text_info;
+	char	underscore	=	'_',		/* Field delimitter.							*/
+			*c_p,							/* Character pointer.						*/
+			*substr_p,					/* Local string buffer.						*/
+			*raw_buffer_p,				/* Local character buffer.					*/
+			*utility_p,					/* Ulility string pointer.					*/
+			return_char	=	TAB;		/* Return character (defaults to TAB).	*/
+	int   i,								/* Utility index.								*/
+			x0,	y,						/* Original coordinates.					*/
+			xC,							/* Current coordinates.						*/
+			l0,	lC,					/* Original and Current string lengths.*/
+			iC		=	0,					/* Input string index.						*/
+			ichar1,
+			ichar2,
+			done	=	0;					/* Process termination flag.				*/
+
+		gettextinfo(&current_text_info);
+		textattr(inputcolor + (BLACK << 4));
+
+	/* Save current cursor position for later use. */
+
+	x0 = wherex();						/* Current X position of cursor.		*/
+	y  = wherey();						/* Current Y position of cursor. 	*/
+
+	substr_p = (char *)calloc(80, 1);		/* Allocate local string buffer.		*/
+	memset(substr_p, NULL, 80);
+	strncpy(substr_p, is, strlen(is));	/* Unload "is" into "substr".	*/
+
+	/* "raw_buffer" is dimensioned by 2 to allow us to use "cputs()" to
+		echo each character to the screen. Note: To use "cputs()" the
+		string must be null terminated. */
+
+	raw_buffer_p = (char *)calloc(2, 1);
+	memset(raw_buffer_p, NULL, 2);
+	utility_p = (char *)calloc(2, 1);
+	memset(utility_p, NULL, 2);
+
+	/* Overwrite the field with underscore characters to delimit field. */
+
+	for (i = 1; i <= sic; i++) putch(underscore);
+
+	/* Fill the field with the current value of the field. */
+
+	gotoxy(x0, y);
+	highvideo();
+	cputs(is);
+	lowvideo();
+	gotoxy(x0, y);
+
+	iC = 0;						/* Current string index.               */
+	l0 = strlen(is);			/* Set original length.                */
+	lC = l0;						/* Set current length to original.     */
+	xC = x0;
+
+	if (l0 > sic)
+   {
+		gotoxy(1, Y_ERROR);	clreol();
+		highvideo();
+		textattr(errorcolor + (BLACK << 4));
+		cprintf("**** ERROR: Length of input string exceeds maximum.\a");
+		lowvideo();
+		textattr(inputcolor + (BLACK << 4));
+		return(NULL);
+	};
+
+	for (done = 0; !done;)
+   {
+		*raw_buffer_p = NULL;
+		*(raw_buffer_p + 1) = NULL;
+
+		*raw_buffer_p = wgetch();	/* Input a character and echo to screen. */
+
+		/* If the first byte is zero, then call "getch()" to retrieve the
+			second byte (Note: This will not prompt the user for input). */
+
+		if (*raw_buffer_p == NULL)
+			*(raw_buffer_p + 1) = wgetch();
+
+		switch (*raw_buffer_p)
+      {
+			case NULL:
+			     switch(*(raw_buffer_p + 1))
+              {
+			         case RARROW:
+						     if (iC < lC)
+                       {
+							      xC++;
+									gotoxy(xC, y);
+									iC++;
+							  }
+							  else
+							      cprintf("\a");
+							  break;
+						case LARROW:
+						     if (iC >= 0)
+                       {
+							      xC--;
+									gotoxy(xC, y);
+									iC--;
+							  }
+							  else
+							      cprintf("\a");
+							  break;
+						case BACKTAB:
+						     if (iC == 0)
+                          iC = 1;
+							  done = 1;
+							  return_char = *raw_buffer_p;
+							  break;
+						default:
+						     break;
+				  };
+				  break;
+			case TAB:
+			case RETURN:
+			case ESCAPE:
+			     if (iC == 0)
+                 iC = 1;
+				  done = 1;
+				  return_char = *raw_buffer_p;
+				  break;
+			case BACKSPACE:
+			     if (iC > 0)
+              {
+				      xC--;
+						gotoxy(xC, y);
+						iC--;
+						for (i = iC; i < lC; i++)
+                  {
+						   *(substr_p + i) = *(substr_p + i + 1);
+							*utility_p = *(substr_p + i);
+
+							if (*utility_p == NULL)
+                     {
+                        *raw_buffer_p = underscore;
+								highvideo();
+								cputs(raw_buffer_p);
+								lowvideo();
+							}
+							else
+                     {
+							   highvideo();
+								cputs(utility_p);
+								lowvideo();
+							};
+						};
+						gotoxy(xC, y);
+						lC--;
+				  }
+				  else
+				      cprintf("\a");
+				  break;
+			default:
+
+			     /* Check if this is a printable character.	*/
+
+				  if (*raw_buffer_p > LOWCHAR & *raw_buffer_p < HIGHCHAR)
+              {
+
+				      /*	Insert this character at the "iC'th" position in the
+                     local buffer.	*/
+
+						*(substr_p + iC) = *raw_buffer_p;
+						iC++;
+						xC++;
+
+						/* Only increment "lC" if this character appeared at the
+                     end of the	string.	*/
+
+						if (iC > lC)
+                     lC++;
+
+						highvideo();
+						cputs(raw_buffer_p);
+						lowvideo();
+
+						/* If "iC" reaches "sic" then the cursor is at
+						   the last position and we're out of space, so
+						   we must be done.	*/
+
+						if (iC >= sic)
+                     done = 1;
+				  };
+				  break;
+			};
+		};
+
+	/* By the time we get this far, the following variables have this
+		meaning:
+			"xC" is worthless
+			"iC" is worthless
+			"lC" is the new length of the input string
+	*/
+
+	memset(is, NULL, sic+1);
+
+	/* Strip off any leading spaces before returning input string. */
+
+	for (c_p = substr_p; *c_p == ' '; c_p++);
+
+	/* Unload SUBSTR back into the "is" input string. */
+
+	if (strlen(c_p) > 0)
+   {
+		strncpy(is, c_p, lC);
+		xC = x0 + lC;
+	}
+	else
+   {
+		c_p = is;
+		*c_p =  ' ';
+		c_p++;
+		*c_p = NULL;
+	};
+
+	gotoxy(xC, y);
+	for (iC = 1; iC <= (sic - lC); iC++) cprintf(" ");
+	textattr(current_text_info.attribute +	(BLACK << 4));
+
+/*	gotoxy(1, Y_INFO);
+ *	clreol();
+ *	cprintf("Returned string is \"%s\".", is);
+*/
+
+	free(substr_p);
+	free(raw_buffer_p);
+	free(utility_p);
+
+	return(return_char);
+};
+
+void PrintWarning(char *WarningString,...)
+{
+   va_list Args;
+   char WarningBuffer[81];
+
+   va_start(Args, WarningString);
+   vsprintf(WarningBuffer, WarningString, Args);
+
+   if (Program.ScreenMode)
+   {
+     	gotoxy(1, Y_ERROR);	clreol();
+	   textattr(warningcolor + (BLACK << 4));	highvideo();
+	   cprintf("**** WARNING: %s \a", WarningBuffer);
+	   textattr(screencolor + (BLACK << 4));	lowvideo();
+      sleep(2);
+      gotoxy(1, Y_ERROR);  clreol();
+   }
+   else
+   {
+	   textattr(warningcolor + (BLACK << 4));	highvideo();
+   	cprintf("**** WARNING: %s\n", WarningBuffer);
+      normvideo();
+   }
+}
+
+void PrintError(char *ErrorString,...)
+{
+   va_list Args;
+   char ErrorBuffer[81];
+
+   va_start(Args, ErrorString);
+   vsprintf(ErrorBuffer, ErrorString, Args);
+
+   if (Program.ScreenMode)
+   {
+   	gotoxy(1, Y_ERROR);	clreol();
+	   textattr(errorcolor + (BLACK << 4));	highvideo();
+	   cprintf("**** ERROR: %s \a", ErrorBuffer);
+	   textattr(screencolor + (BLACK << 4));	lowvideo();
+      sleep(2);
+      gotoxy(1, Y_ERROR);  clreol();
+   }
+   else
+   {
+	   textattr(errorcolor + (BLACK << 4));	highvideo();
+   	cprintf("**** ERROR: %s\n", ErrorBuffer);
+      normvideo();
+   }
+}
+
+void SystemError(char *ErrorString,...)
+{
+   va_list Args;
+   char ErrorBuffer[81],
+        *SystemErrorString;
+
+   va_start(Args, ErrorString);
+   vsprintf(ErrorBuffer, ErrorString, Args);
+
+	SystemErrorString = _strerror(ErrorBuffer);
+	PrintError(SystemErrorString);
+};
+
+void updatetime(void)
+{
+	struct	date	today;
+	struct	time	now;
+	char		*ampm;
+
+	textattr(BLACK + (BLACK << 4));
+	getdate(&today);
+	gotodate();
+	textattr(datecolor + (BLACK << 4));
+	cprintf("%s", GetDateString());
+
+	gototime();
+	textattr(timecolor + (BLACK << 4));
+	cprintf("%s", GetTimeString());
+	textattr(BLACK + (BLACK << 4));
+};
+
+char wgetch(void)
+{
+	int x0,	y0;
+	struct text_info current_text_info;
+
+	/* Save current cursor position for later use. */
+
+	x0 = wherex();		y0 = wherey();
+	gettextinfo(&current_text_info);
+
+	do
+   {
+		updatetime();
+		gotoxy(x0, y0);
+	}	while (!key_pressed());
+
+	textattr(current_text_info.attribute);
+	return(getch());
+};
+
+void header(char *ScreenName)
+{
+	gotoxy(1, 1);	clreol();
+	textattr(headercolor + (BLACK << 4));
+	highvideo();	gotoxy(1, 1);
+	cprintf("%s %d.%d", Program.Name, Program.Version, Program.Revision);
+
+	lowvideo();
+	gotoxy(1, 2);	clreol();
+	textattr(titlecolor + (BLACK << 4));
+   highvideo();	cprintf(Program.Title);	lowvideo();
+
+	lowvideo();		gotoxy(33, 1);
+	textattr(displaycolor + (BLACK << 4));
+   highvideo();	cprintf(ScreenName);	lowvideo();
+
+	updatetime();
+};
+
+int YesNo(int X, int Y, char OldValue)
+{
+   char  NewValue = 0;
+   short int   Success = FALSE,
+               Status = FALSE;
+   char        Temp[11];
+
+AGAIN:
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();
+   while(!Success)
+   {
+      NewValue = OldValue;
+      sprintf(Temp, "%c", OldValue);
+		gotoxy(X, Y);
+		Status = input(Temp, 1);
+		switch(Status)
+      {
+			case ESCAPE:
+              Success = TRUE;
+              break;
+			case RETURN:
+			case TAB:
+              Success = TRUE;
+              if (strcmp(Temp, ""))
+              {
+                  NewValue = Temp[0];
+                  switch(NewValue)
+                  {
+				         case 'y':
+                          NewValue = 'Y';
+						   case 'Y':
+							     break;
+						   case 'n':
+                          NewValue = 'N';
+						   case 'N':
+							     break;
+						   default:
+                             Success = FALSE;
+                             printf("\a");
+                             goto AGAIN;
+                             break;
+				      }
+              }
+			default:
+                 break;
+		}
+	}
+	gotoxy(X, Y);
+	textattr(displaycolor + (BLACK << 4));
+	lowvideo();
+   cprintf("%c", NewValue);
+   return (NewValue == 'Y');
+}
+
+char cQuery(char *operation, char *rectype)
+{
+	char response[2];
+	int x, y;
+
+	gotoxy(1, Y_PROMPT);
+	textattr(promptcolor + (BLACK << 4));	cprintf("OK to ");
+	textattr(titlecolor + (BLACK << 4));
+	highvideo();				cprintf(operation);		lowvideo();
+	textattr(promptcolor + (BLACK << 4));
+	cprintf(" %s (", rectype);
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();				cprintf("Y");		lowvideo();
+	textattr(promptcolor + (BLACK << 4));
+	cprintf("/");
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();				cprintf("N");		lowvideo();
+	textattr(promptcolor + (BLACK << 4));
+	cprintf(")? ");
+	x = wherex();	y = wherey();
+
+   if (YesNo(x, y, 'N'))
+      return 'Y';
+   return 'N';
+};
+
+int Query(char *operation, char *rectype)
+{
+	return (cQuery(operation, rectype) == 'Y');
+};
+
+unsigned char GetNewI1(int X, int Y, int Width,
+         unsigned char OldValue, unsigned char Limit)
+{
+   unsigned char  NewValue = 0;
+   short int   Success = FALSE,
+               Status = FALSE;
+   unsigned short int i2 = 0;
+   char        Temp[11];
+
+AGAIN:
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();
+   while(!Success)
+   {
+      NewValue = OldValue;
+      itoa(OldValue, Temp, 10);
+		gotoxy(X, Y);
+		Status = input(Temp, Width);
+		switch(Status)
+      {
+			case ESCAPE:
+              Success = TRUE;
+              break;
+			case RETURN:
+			case TAB:
+              Success = TRUE;
+              if (strcmp(Temp, ""))
+              {
+                  i2 = atoi(Temp);
+                  NewValue = (unsigned char)i2;
+                  if (NewValue > Limit)
+                  {
+                     Success = FALSE;
+                     PrintWarning("New value (%u) exceeds the WIZEDIT limit (%u)", NewValue, Limit);
+                     goto AGAIN;
+                  }
+              }
+			default:
+                 break;
+		}
+	}
+	gotoxy(X, Y);
+	textattr(displaycolor + (BLACK << 4));
+	lowvideo();
+   sprintf(Temp, "%u", NewValue);
+   cprintf("%s", Temp);
+   for (Status = strlen(Temp); Status <= Width; Status++) cprintf(" ");
+   return NewValue;
+}
+
+unsigned short int GetNewI2(int X, int Y, int Width,
+         unsigned short int OldValue, unsigned short int Limit)
+{
+   short int   Success = FALSE,
+               Status = FALSE;
+   unsigned short int NewValue = 0;
+   unsigned long int TempValue = 0;
+   char        Temp[11];
+
+AGAIN:
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();
+   while(!Success)
+   {
+      NewValue = OldValue;
+      TempValue = OldValue;
+      ultoa(TempValue, Temp, 10);
+		gotoxy(X, Y);
+		Status = input(Temp, Width);
+		switch(Status)
+      {
+			case ESCAPE:
+              Success = TRUE;
+              break;
+			case RETURN:
+			case TAB:
+              Success = TRUE;
+              if (strcmp(Temp, ""))
+              {
+                  NewValue = atoi(Temp);
+                  if (NewValue > Limit)
+                  {
+                     Success = FALSE;
+                     PrintWarning("New value (%d) exceeds the WIZEDIT limit (%d)", NewValue, Limit);
+                     goto AGAIN;
+                  }
+              }
+			default:
+                 break;
+		}
+	}
+	gotoxy(X, Y);
+	textattr(displaycolor + (BLACK << 4));
+	lowvideo();
+   sprintf(Temp, "%u", NewValue);
+   cprintf("%s", Temp);
+   for (Status = strlen(Temp); Status <= Width; Status++) cprintf(" ");
+   return NewValue;
+}
+
+unsigned long int GetNewI4(int X, int Y, int Width,
+         unsigned long int OldValue, unsigned long int Limit)
+{
+   short int   Success = FALSE,
+               Status = FALSE;
+   unsigned long int NewValue = 0;
+   char        Temp[11];
+
+AGAIN:
+	textattr(inputcolor + (BLACK << 4));
+	highvideo();
+   while(!Success)
+   {
+      NewValue = OldValue;
+      ultoa(OldValue, Temp, 10);
+		gotoxy(X, Y);
+		Status = input(Temp, Width);
+		switch(Status)
+      {
+			case ESCAPE:
+              Success = TRUE;
+              break;
+			case RETURN:
+			case TAB:
+              Success = TRUE;
+              if (strcmp(Temp, ""))
+              {
+                  NewValue = atol(Temp);
+                  if (NewValue > Limit)
+                  {
+                     Success = FALSE;
+                     PrintWarning("New value (%ld) exceeds the WIZEDIT limit (%ld)", NewValue, Limit);
+                     goto AGAIN;
+                  }
+              }
+			default:
+                 break;
+		}
+	}
+	gotoxy(X, Y);
+	textattr(displaycolor + (BLACK << 4));
+	lowvideo();
+   sprintf(Temp, "%lu", NewValue);
+   cprintf("%s", Temp);
+   for (Status = strlen(Temp); Status <= Width; Status++) cprintf(" ");
+   return NewValue;
+}
+
+/* ----------------------------------------------------------------------
+   Embedded Assembler Code...
+*/
+
+void disable_cga(void)	{
+	asm	push	ax				/* Save the AX & DX registers	*/
+	asm   push	dx
+	asm	mov	dx,3dah		/* DX=Video status port			*/
+disable_cga1:
+	asm	in		al,dx			/* Wait for vertical retrace	*/
+	asm	and	al,8
+	asm	jz		disable_cga1
+	asm	mov	dl,0d8h		/*	DX=Video select register port	*/
+	asm	mov	al,25h		/* Disable the video				*/
+	asm	out	dx,al
+	asm	pop	dx				/*	Restore the register			*/
+	asm	pop	ax
+	}
+
+void enable_cga(void)	{
+	int	bios_data	=	0x40;
+	int	crt_mode_set=	0x65;
+
+	asm	push	ax						/* Save the AX, BX, DX & DS registers	*/
+	asm	push	bx
+	asm   push	dx
+	asm	push	ds
+	asm	mov	ax,bios_data		/* Set the data segnent						*/
+	asm	mov	ds,ax
+	asm	mov	bx,crt_mode_set	/* BX=Video mode set value pointer		*/
+	asm	mov	al,[bx]				/* AL=Video mode set value					*/
+	asm	mov	dx,03d8h				/*	DX=Video select register port			*/
+	asm	out	dx,al					/* Reenable the video mode					*/
+	asm	pop	ds
+	asm	pop	dx
+	asm	pop	bx
+	asm	pop	ax
+	}
+
+int	key_pressed(void)	{
+	int key_is_pressed	=	1;
+
+	asm	push	ax				/* Save the AX & DX registers	*/
+	asm   push	dx
+	asm	mov	dx,3dah		/* DX = Video status port		*/
+
+wait_key:
+	asm	in		al,dx			/* Wait for vertical retrace	*/
+	asm	and	al,8
+	asm	jz		wait_key
+	asm	mov	ah,01h
+	asm	int	16h			/* Is key pressed?				*/
+	asm	jz		return_false
+
+	goto return_true;
+
+return_false:
+	key_is_pressed = 0;
+	goto restore_registers;
+
+return_true:
+	key_is_pressed = 1;
+
+restore_registers:
+	asm	pop	dx
+	asm	pop	ax
+
+	return(key_is_pressed);
+	}
+
+void	gotodate(void)	{
+	asm	push	ax				/* Save the AX & DX registers	*/
+	asm   push	dx
+	asm	mov	dx,3dah		/* DX = Video status port		*/
+
+vertical_wait:
+	asm	in		al,dx			/* Wait for vertical retrace	*/
+	asm	and	al,8
+	asm	jz		vertical_wait
+
+	disable_cga();
+	gotoxy(68, 1);
+	enable_cga();
+
+restore_registers:
+	asm	pop	dx
+	asm	pop	ax
+	}
+
+void	gototime(void)	{
+	asm	push	ax				/* Save the AX & DX registers	*/
+	asm   push	dx
+	asm	mov	dx,3dah		/* DX = Video status port		*/
+
+vertical_wait:
+	asm	in		al,dx			/* Wait for vertical retrace	*/
+	asm	and	al,8
+	asm	jz		vertical_wait
+
+	disable_cga();
+	gotoxy(68, 2);
+	enable_cga();
+
+restore_registers:
+	asm	pop	dx
+	asm	pop	ax
+	}

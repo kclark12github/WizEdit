@@ -1,0 +1,44 @@
+/* DATESTUF.CPP
+   Date Functions...
+*/
+
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <dos.h>
+
+char *GetTimeString()
+{
+	struct	time	now;
+	char		*ampm;
+   static char TimeString[12];
+
+	gettime(&now);
+	if (now.ti_hour > 12)
+   {
+		now.ti_hour -= 12;
+		ampm = "PM";
+	}
+	else
+   {
+		if (now.ti_hour == 0)
+			now.ti_hour = 12;
+		ampm = "AM";
+	};
+
+	sprintf(TimeString, "%02d:%02d:%02d %s", now.ti_hour, now.ti_min, now.ti_sec, ampm);
+	return TimeString;
+}
+
+char *GetDateString()
+{
+	struct	date	today;
+   static char DateString[10];
+
+	getdate(&today);
+	sprintf(DateString, "%02d/%02d/%02d", today.da_mon, today.da_day,	today.da_year);
+   return DateString;
+}
+
