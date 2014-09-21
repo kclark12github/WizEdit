@@ -75,7 +75,8 @@ Private ItemList(0 To Wiz01ItemMapMax) As String
 Private Spells(0 To Wiz01SpellMapMax) As String
 Private Function Dumapic(xCharacter As Wiz01Character) As String
     With xCharacter
-        Dumapic = "Party is facing ???? " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
+        ' Always seems to be facing North when Quiting from within the Maze...
+        Dumapic = "Facing North; " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
     End With
 End Function
 Public Function GetSpell(i As Integer) As String
