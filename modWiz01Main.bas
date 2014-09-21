@@ -10,9 +10,6 @@ Attribute VB_Name = "modWiz01Main"
 '=================================================================================================================================
 Option Explicit
 
-'Public Declare Sub DtoTP6 Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByVal x As Double, ByRef TP6buffer() As Byte)
-'Public Declare Function TP6toD Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByRef TP6buffer() As Byte) As Double
-
 Global Const Wiz01CharactersMax As Integer = 20
 Global Const Wiz01ItemListMax As Integer = 8
 Global Const Wiz01ItemMapMax As Integer = 100
@@ -68,6 +65,11 @@ Type Wiz01Character
 End Type
 Private ItemList(0 To Wiz01ItemMapMax) As String
 Private Spells(0 To Wiz01SpellMapMax) As String
+Private Function Dumapic(xCharacter As Wiz01Character) As String
+    With xCharacter
+        Dumapic = "Party is facing ???? " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down from the steps leading to the castle"
+    End With
+End Function
 Public Sub DumpWiz01(xCharacter As Wiz01Character)
     Dim i As Long
     Dim j As Long
@@ -139,6 +141,7 @@ Public Sub DumpWiz01(xCharacter As Wiz01Character)
         strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
         Debug.Print strTemp
             
+        Debug.Print Dumapic(xCharacter)
         Debug.Print "Unknown Region #1 (4 bytes): "
         Debug.Print strHex(.Unknown1, 4) '& vbCrLf
         Debug.Print "Unknown Region #2 (2 bytes): "
