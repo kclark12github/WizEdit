@@ -328,115 +328,14 @@ Type Character
     Thaumaturgy As Byte
     Kirijutsu As Byte
     
-    Unknown3(1 To 36) As Byte           '???
+    Unknown3a(1 To 28) As Byte           '???
+    NaturalArmorClass As Byte
+    Unknown3b(1 To 7) As Byte            '???
     
     'Temporary until I figure out how best to do these bit-strings...
     Aptitude(1 To 96) As Byte           'Aptitude - I don't remember how I determined this...
     SpellBooks(1 To 12) As Byte         'Need to mask as bits...
     
-    'Fire Spell Book...
-'Global Const maskWiz07EnergyBlast = &H1
-'Global Const maskWiz07BlindingFlash = &H2
-'Global Const maskWiz07PsionicFire = &H3
-'Global Const maskWiz07Fireball = &H4
-'Global Const maskWiz07FireShield = &H5
-'Global Const maskWiz07DazzlingLights = &H6
-'Global Const maskWiz07FireBomb = &H7
-'Global Const maskWiz07Lightning = &H8
-'Global Const maskWiz07PrismicMissile = &H9
-'Global Const maskWiz07Firestorm = &HA
-'Global Const maskWiz07NuclearBlast = &HB
-    'Water Spell Book...
-'      unsigned ChillingTouch     : 1;
-'      unsigned Stamina           : 1;
-'      unsigned Terror            : 1;
-'      unsigned Weaken            : 1;
-'      unsigned Slow              : 1;
-'      unsigned Haste             : 1;
-'      unsigned CureParalysis     : 1;
-'      unsigned IceShield         : 1;
-'      unsigned Restfull          : 1;
-'      unsigned IceBall           : 1;
-'      unsigned Paralyze          : 1;
-'      unsigned Superman          : 1;
-'      unsigned Deepfreeze        : 1;
-'      unsigned DrainingCloud     : 1;
-'      unsigned CureDisease       : 1;
-    'Air Spell Book...
-'      unsigned Poison            : 1;
-'      unsigned MissileShield     : 1;
-'      unsigned ShrillSound       : 1;
-'      unsigned StinkBomb         : 1;
-'      unsigned AirPocket         : 1;
-'      unsigned Silence           : 1;
-'      unsigned PoisonGas         : 1;
-'      unsigned CurePoison        : 1;
-'      unsigned Whirlwind         : 1;
-'      unsigned PurifyAir         : 1;
-'      unsigned DeadlyPoison      : 1;
-'      unsigned Levitate          : 1;
-'      unsigned ToxicVapors       : 1;
-'      unsigned NoxiousFumes      : 1;
-'      unsigned Asphyxiation      : 1;
-'      unsigned DeadlyAir         : 1;
-'      unsigned DeathCloud        : 1;
-    'Earth Spell Book...
-'      unsigned AcidSplash        : 1;
-'      unsigned ItchingSkin       : 1;
-'      unsigned ArmorShield       : 1;
-'      unsigned Direction         : 1;
-'      unsigned KnockKnock        : 1;
-'      unsigned Blades            : 1;
-'      unsigned Armorplate        : 1;
-'      unsigned Web               : 1;
-'      unsigned WhippingRocks     : 1;
-'      unsigned AcidBomb          : 1;
-'      unsigned Armormelt         : 1;
-'      unsigned Crush             : 1;
-'      unsigned CreateLife        : 1;
-'      unsigned CureStone         : 1;
-    'Mental Spell Book...
-'      unsigned MentalAttack      : 1;
-'      unsigned Sleep             : 1;
-'      unsigned Bless             : 1;
-'      unsigned Charm             : 1;
-'      unsigned CureLesserCnd     : 1;
-'      unsigned DivineTrap        : 1;
-'      unsigned DetectSecret      : 1;
-'      unsigned Identify          : 1;
-'      unsigned Confusion         : 1;
-'      unsigned Watchbells        : 1;
-'      unsigned HoldMonsters      : 1;
-'      unsigned Mindread          : 1;
-'      unsigned SaneMind          : 1;
-'      unsigned PsionicBlast      : 1;
-'      unsigned Illusion          : 1;
-'      unsigned WizardsEye        : 1;
-'      unsigned Spooks            : 1;
-'      unsigned Death             : 1;
-'      unsigned LocateObject      : 1;
-'      unsigned MindFlay          : 1;
-'      unsigned FindPerson        : 1;
-    '? Spell Book...
-'      unsigned HealWounds        : 1;
-'      unsigned MakeWounds        : 1;
-'      unsigned MagicMissile      : 1;
-'      unsigned DispellUndead     : 1;
-'      unsigned EnchantedBlade    : 1;
-'      unsigned Blink             : 1;
-'      unsigned MagicScreen       : 1;
-'      unsigned Conjuration       : 1;
-'      unsigned AntiMagic         : 1;
-'      unsigned RemoveCurse       : 1;
-'      unsigned Healfull          : 1;
-'      unsigned Lifesteal         : 1;
-'      unsigned AstralGate        : 1;
-'      unsigned ZapUndead         : 1;
-'      unsigned Recharge          : 1;
-'      unsigned WordOfDeath       : 1;
-'      unsigned Resurrection      : 1;
-'      unsigned DeathWish         : 1;
-
     Unknown4(1 To 12) As Byte           '???
     PictureCode As Byte
     Race As Byte
@@ -447,32 +346,122 @@ Type Character
     Unknown5(1 To 12) As Byte           '???
 End Type
 
-'#define ItemMapMax 569
-'#define RaceMapMax 10
-'#define ProfessionMapMax 13
-'#define ConditionMapMax 11
-'#define SpellMapMax 95
-Global Const Wiz07ItemMapMax = 569
-Global Const Wiz07RaceMapMax = 10
-Global Const Wiz07ProfessionMapMax = 13
-Global Const Wiz07ConditionMapMax = 11
-Global Const Wiz07SpellMapMax = 95
-
-'extern char *RaceMap[];
-'extern char *ProfessionMap[];
-'extern char *ConditionMap[];
-'extern char *SpellMap[];
-'
-'/* Function Prototypes */
-'
-'int ReadDBS(char *FileName, char **Buffer, long int *FileSize);
-'int WriteDBS(char *FileName, char *Buffer, long int FileSize);
-'char *MapItemCode(short int Code);
-'void HexDump(unsigned char *p, int Bytes);
-'void HexDumpf(FILE *FileUnit, unsigned char *p, int Bytes);
-'
-'
 Private Spells(1 To 96) As String
+Private Function strCondition(ByVal x As Byte) As String
+'char *ConditionMap[] = {"OK","Asleep","Blinded","Dead","Poisoned","Stoned","Insane","Afraid","Nauseated","Paralyzed","Irritated","Diseased"};
+    Select Case x
+        Case 0
+            strCondition = "OK"
+        Case 1
+            strCondition = "Asleep"
+        Case 2
+            strCondition = "Blinded"
+        Case 3
+            strCondition = "Dead"
+        Case 4
+            strCondition = "Poisoned"
+        Case 5
+            strCondition = "Stoned"
+        Case 6
+            strCondition = "Insane"
+        Case 7
+            strCondition = "Afraid"
+        Case 8
+            strCondition = "Nauseated"
+        Case 9
+            strCondition = "Paralyzed"
+        Case 10
+            strCondition = "Irritated"
+        Case 11
+            strCondition = "Diseased"
+        Case Else
+            strCondition = "Unknown"
+    End Select
+End Function
+Private Function strGender(ByVal x As Byte) As String
+    Select Case x
+        Case 0
+            strGender = "Male"
+        Case 1
+            strGender = "Female"
+        Case Else
+            strGender = "Unknown"
+    End Select
+End Function
+Private Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
+    Dim i As Integer
+
+    strHex = ""
+    For i = 1 To nBytes
+        strHex = strHex & Format(Hex(xBytes(i)), "00")
+        If i Mod 4 = 0 Then strHex = strHex & " "
+        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
+    Next i
+End Function
+Private Function strProfession(ByVal x As Byte) As String
+'char *ProfessionMap[] = {"Fighter","Mage","Priest","Thief","Ranger","Alchemist","Bard","Psionic","Valkyrie","Bishop","Lord","Samurai","Monk","Ninja"};
+    Select Case x
+        Case 0
+            strProfession = "Fighter"
+        Case 1
+            strProfession = "Mage"
+        Case 2
+            strProfession = "Priest"
+        Case 3
+            strProfession = "Thief"
+        Case 4
+            strProfession = "Ranger"
+        Case 5
+            strProfession = "Alchemist"
+        Case 6
+            strProfession = "Bard"
+        Case 7
+            strProfession = "Psionic"
+        Case 8
+            strProfession = "Valkyrie"
+        Case 9
+            strProfession = "Bishop"
+        Case 10
+            strProfession = "Lord"
+        Case 11
+            strProfession = "Samurai"
+        Case 12
+            strProfession = "Monk"
+        Case 13
+            strProfession = "Ninja"
+        Case Else
+            strProfession = "Unknown"
+    End Select
+End Function
+Private Function strRace(ByVal x As Byte) As String
+'char *RaceMap[] = {"Human","Elf","Dwarf","Gnome","Hobbit","Faerie","Lizardman","Dracon","Rawulf","Felpurr","Mook"};
+    Select Case x
+        Case 0
+            strRace = "Human"
+        Case 1
+            strRace = "Elf"
+        Case 2
+            strRace = "Dwarf"
+        Case 3
+            strRace = "Gnome"
+        Case 4
+            strRace = "Hobbit"
+        Case 5
+            strRace = "Faerie"
+        Case 6
+            strRace = "Lizardman"
+        Case 7
+            strRace = "Dracon"
+        Case 8
+            strRace = "Rawulf"
+        Case 9
+            strRace = "Felpurr"
+        Case 10
+            strRace = "Mook"
+        Case Else
+            strRace = "Unknown"
+    End Select
+End Function
 Private Function strItem(x As Item) As String
     strItem = vbTab & "Code: " & x.ItemCode
 End Function
@@ -482,7 +471,7 @@ End Function
 Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
     Dim Temp As String
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
-    strSpell = Temp & " " & Spells(Spell) & vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
+    strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
 End Function
 Public Sub DumpWiz07(ByVal strFile As String)
     Dim i As Long
@@ -602,7 +591,8 @@ Public Sub DumpWiz07(ByVal strFile As String)
 
     With Sunwolf
         Debug.Print "Name:              " & vbTab & .Name
-        Debug.Print "Unknown Region #1: " & vbTab & Hex(.Unknown1(1)) & " " & Hex(.Unknown1(2)) & " " & Hex(.Unknown1(3)) & " " & Hex(.Unknown1(4))
+        Debug.Print "Unknown Region #1 (4 bytes): "
+        Debug.Print strHex(.Unknown1, 4) & vbCrLf
         
         Debug.Print vbCrLf & "Secondary Statistics..."
         Debug.Print "Experience Points: " & vbTab & .EXP & vbTab & "0x" & Hex(.EXP)
@@ -615,12 +605,12 @@ Public Sub DumpWiz07(ByVal strFile As String)
         Debug.Print "Lives:             " & vbTab & .Lives
         
         Debug.Print vbCrLf & "Spell Points..."
-        Debug.Print "Fire" & vbTab & strPoints(.FireSpellPoints)
-        Debug.Print "Water" & vbTab & strPoints(.WaterSpellPoints)
-        Debug.Print "Air" & vbTab & strPoints(.AirSpellPoints)
-        Debug.Print "Earth" & vbTab & strPoints(.EarthSpellPoints)
-        Debug.Print "Mental" & vbTab & strPoints(.MentalSpellPoints)
-        Debug.Print "Divine" & vbTab & strPoints(.DivineSpellPoints)
+        Debug.Print "Fire:              " & vbTab & strPoints(.FireSpellPoints)
+        Debug.Print "Water:             " & vbTab & strPoints(.WaterSpellPoints)
+        Debug.Print "Air:               " & vbTab & strPoints(.AirSpellPoints)
+        Debug.Print "Earth:             " & vbTab & strPoints(.EarthSpellPoints)
+        Debug.Print "Mental:            " & vbTab & strPoints(.MentalSpellPoints)
+        Debug.Print "Divine:            " & vbTab & strPoints(.DivineSpellPoints)
         
         Debug.Print vbCrLf & "List of Items (not stowed)..."
         For i = 1 To 10
@@ -632,8 +622,8 @@ Public Sub DumpWiz07(ByVal strFile As String)
             Debug.Print strItem(.SwagBag(i))
         Next i
         
-        Debug.Print vbCrLf & "Unknown Region #2 (64 bytes) [not shown]"
-        'Unknown2(64) As Byte                '???
+        Debug.Print vbCrLf & "Unknown Region #2 (64 bytes):"
+        Debug.Print strHex(.Unknown2, 64) & vbCrLf
         
         Debug.Print vbCrLf & "Basic Statistics..."
         Debug.Print "Strength:          " & vbTab & .STR       '
@@ -687,35 +677,52 @@ Public Sub DumpWiz07(ByVal strFile As String)
         Debug.Print "Thaumaturgy:       " & vbTab & .Thaumaturgy
         Debug.Print "Kirijutsu:         " & vbTab & .Kirijutsu
         
-        Debug.Print vbCrLf & "Unknown Region #3 (36 bytes) [not shown]"
-        'Unknown3(36) As Byte                '???
+        Debug.Print vbCrLf & "Unknown Region #3a (28 bytes):"
+        Debug.Print strHex(.Unknown3a, 28) & vbCrLf
         
-        Debug.Print vbCrLf & "Aptitute (96 bytes) [not shown]"
-        'Aptitude(96) As Byte                'Aptitude - I don't remember how I determined this...
+        Debug.Print "'Natural' Armor Class:" & vbTab & .NaturalArmorClass
+        
+        Debug.Print vbCrLf & "Unknown Region #3b (7 bytes):"
+        Debug.Print strHex(.Unknown3b, 7) & vbCrLf
+        
+        Debug.Print vbCrLf & "Aptitute (96 bytes):"
+        Debug.Print strHex(.Aptitude, 96) & vbCrLf   'Aptitude - I don't remember how I determined this...
         
         Debug.Print vbCrLf & "SpellBooks..."
-        'For j = 1 To 12
-        '    Debug.Print vbTab & ".SpellBooks(" & j & "): " & Hex(.SpellBooks(j))
-        'Next j
-        'Debug.Print " "
         For j = 1 To 12
             For i = 1 To 8
                 Debug.Print vbTab & strSpell(((j - 1) * 8) + i, .SpellBooks(j), i - 1)
             Next i
         Next j
     
-        Debug.Print vbCrLf & "Unknown Region #4 (12 bytes) [not shown]"
-        'Unknown4(12) As Byte                '???
+        Debug.Print vbCrLf & "Unknown Region #4 (12 bytes):"
+        Debug.Print strHex(.Unknown4, 12) & vbCrLf
         
         Debug.Print "PictureCode:       " & vbTab & .PictureCode
-        Debug.Print "Race:              " & vbTab & .Race
-        Debug.Print "Gender:            " & vbTab & .Gender
-        Debug.Print "Profession:        " & vbTab & .Profession
+        Debug.Print "Race:              " & vbTab & strRace(.Race)
+        Debug.Print "Gender:            " & vbTab & strGender(.Gender)
+        Debug.Print "Profession:        " & vbTab & strProfession(.Profession)
         Debug.Print "?Alive?:           " & vbTab & .Alive
-        Debug.Print "ConditionCode:     " & vbTab & .ConditionCode
+        Debug.Print "ConditionCode:     " & vbTab & strCondition(.ConditionCode)
         
-        Debug.Print vbCrLf & "Unknown Region #5 (12 bytes) [not shown]"
-        'Unknown5(12) As Byte                '???
+        Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"
+        Debug.Print strHex(.Unknown5, 12) & vbCrLf
+    
+        Debug.Print "Unknown Recap:"
+        Debug.Print "Unknown Region #1 (4 bytes): "
+        Debug.Print strHex(.Unknown1, 4) & vbCrLf
+        Debug.Print vbCrLf & "Unknown Region #2 (64 bytes):"
+        Debug.Print strHex(.Unknown2, 64) & vbCrLf
+        Debug.Print vbCrLf & "Unknown Region #3a (28 bytes):"
+        Debug.Print strHex(.Unknown3a, 28) & vbCrLf
+        Debug.Print vbCrLf & "Unknown Region #3b (7 bytes):"
+        Debug.Print strHex(.Unknown3b, 7) & vbCrLf
+        Debug.Print vbCrLf & "Unknown Region #4 (12 bytes):"
+        Debug.Print strHex(.Unknown4, 12) & vbCrLf
+        Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"
+        Debug.Print strHex(.Unknown5, 12) & vbCrLf
+        Debug.Print vbCrLf & "Aptitute (96 bytes):"
+        Debug.Print strHex(.Aptitude, 96) & vbCrLf   'Aptitude - I don't remember how I determined this...
     End With
     Close #Unit
     
@@ -727,3 +734,4 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
+
