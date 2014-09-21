@@ -1,5 +1,5 @@
-Attribute VB_Name = "modWiz01Main"
-'modWiz01Main - modWiz01Main.bas
+Attribute VB_Name = "modWiz03Main"
+'modWiz03Main - modWiz03Main.bas
 '   Main module for Proving Grounds of the Mad Overlord...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
@@ -10,37 +10,37 @@ Attribute VB_Name = "modWiz01Main"
 '=================================================================================================================================
 Option Explicit
 
-Global Const Wiz01ScenarioName As String = "PROVING GROUNDS OF THE MAD OVERLORD!"
-Global Const Wiz01ScenarioDataOffset As Long = &H1D401
-Global Const Wiz01CharacterDataOffset As Long = &H1D801
-Global Const Wiz01CharactersMax As Integer = 20
-Global Const Wiz01ItemListMax As Integer = 8
-Global Const Wiz01ItemMapMax As Integer = 100
-Global Const Wiz01AlignmentMapMax As Integer = 3
-Global Const Wiz01RaceMapMax As Integer = 5
-Global Const Wiz01ProfessionMapMax As Integer = 7
-Global Const Wiz01StatusMapMax As Integer = 7
-Global Const Wiz01SpellLevelMax As Integer = 7
-Global Const Wiz01SpellMapMax As Integer = 50
+Global Const Wiz03ScenarioName As String = "THE LEGACY OF LLYLGAMYN"
+Global Const Wiz03ScenarioDataOffset As Long = &H1DA01
+Global Const Wiz03CharacterDataOffset As Long = &H1DE01
+Global Const Wiz03CharactersMax As Integer = 20
+Global Const Wiz03ItemListMax As Integer = 8
+Global Const Wiz03ItemMapMax As Integer = 129
+Global Const Wiz03AlignmentMapMax As Integer = 3
+Global Const Wiz03RaceMapMax As Integer = 5
+Global Const Wiz03ProfessionMapMax As Integer = 7
+Global Const Wiz03StatusMapMax As Integer = 7
+Global Const Wiz03SpellLevelMax As Integer = 7
+Global Const Wiz03SpellMapMax As Integer = 50
 
-Type Wiz01ScenarioTag
+Type Wiz03ScenarioTag
     Length As Byte
     Name As String * 48
 End Type
 
-Type Wiz01Item
+Type Wiz03Item
     Equipped As Integer
     Cursed As Integer
     Identified As Integer
     ItemCode As Integer
 End Type
 
-Type Wiz01Points
+Type Wiz03Points
     Current As Integer
     Maximum As Integer
 End Type
 
-Type Wiz01Character
+Type Wiz03Character
     NameLength As Byte                  '0x1D800   Pascal Varying Length String Format...
     Name As String * 15                 '
     PasswordLength As Byte              '0x1D810   Pascal Varying Length String Format...
@@ -56,10 +56,10 @@ Type Wiz01Character
     Unknown1(1 To 4) As Byte            '0x1D830
     GP(1 To 3) As Integer               '0x1D834
     ItemCount As Integer                '0x1D83A
-    ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
+    ItemList(1 To 8) As Wiz03Item       '0x1D83C    List of Items (stowing not an option in Wiz03...)
     EXP(1 To 3) As Integer              '0x1D87C
-    LVL As Wiz01Points                  '0x1D882
-    HP As Wiz01Points                   '0x1D886
+    LVL As Wiz03Points                  '0x1D882
+    HP As Wiz03Points                   '0x1D886
     SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
     MageSpellPoints(1 To 7) As Integer  '0x1D892
     PriestSpellPoints(1 To 7) As Integer '0x1D8A0
@@ -71,8 +71,8 @@ Type Wiz01Character
     Honors As Integer                   '0x1D8CE    Need more testing, but 1 = ">"
                                         '0x1D8D0    Next Character Record...
 End Type
-Private ItemList(0 To Wiz01ItemMapMax) As String
-Private Spells(0 To Wiz01SpellMapMax) As String
+Private ItemList(0 To Wiz03ItemMapMax) As String
+Private Spells(0 To Wiz03SpellMapMax) As String
 Private Function strAlignment(ByVal x As Integer) As String
     Select Case x
         Case 0
@@ -147,7 +147,7 @@ Private Function strRace(ByVal x As Byte) As String
             strRace = "Unknown"
     End Select
 End Function
-Private Function strItem(x As Wiz01Item) As String
+Private Function strItem(x As Wiz03Item) As String
 '    strItem = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "
 '    If x.Identified Then strItem = strItem & "; Identified"
 '    If x.Equipped Then strItem = strItem & "; **EQUIPPED**"
@@ -163,7 +163,7 @@ Private Function strItem(x As Wiz01Item) As String
     End If
     strItem = strItem & ItemList(x.ItemCode)
 End Function
-Private Function strPoints(x As Wiz01Points) As String
+Private Function strPoints(x As Wiz03Points) As String
     strPoints = x.Current & "/" & x.Maximum
 End Function
 Public Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
@@ -171,85 +171,13 @@ Public Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As S
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
     strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
 End Function
-Public Sub Wiz01cvtBstrToSpells(bString As String, Data() As Byte)
-    Dim i As Long
-    Dim iByte As Integer
-    Dim iOffset As Integer
-    
-    'First clear the target area...
-    For i = 1 To UBound(Data)
-        Data(i) = 0
-    Next i
-    
-    'Now inch through the bit-string setting the appropriate bits in the appropriate bytes...
-    For i = 0 To (UBound(Data) * 8) - 1
-        iOffset = i Mod 8
-        iByte = (i \ 8) + 1
-        If Mid(bString, i + 1, 1) = "1" Then
-            Data(iByte) = (Data(iByte) Or (2 ^ iOffset))
-        End If
-    Next i
-    
-ExitSub:
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01cvtSpellsToBstr"
-    Exit Sub
-    Resume Next
-End Sub
-Public Function Wiz01cvtSpellsToBstr(Data() As Byte) As String
-    Dim i As Long
-    Dim iChar As Integer
-    Dim Offset As Long
-    Dim Unit As Integer
-    Dim errorCode As Long
-    Dim bString As String
-    
-    bString = vbNullString
-    For i = 1 To UBound(Data)
-        For Offset = 0 To 7
-            If (Data(i) And 2 ^ Offset) = 2 ^ Offset Then bString = bString & "1" Else bString = bString & "0"
-        Next Offset
-    Next i
-    Wiz01cvtSpellsToBstr = bString
-    
-ExitSub:
-    Exit Function
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01cvtSpellsToBstr"
-    Exit Function
-    Resume Next
-End Function
-Public Function Wiz01cvtStatisticsToLong(Stat1 As String, Stat2 As String, Stat3 As String, Stat4 As String, Stat5 As String, Stat6 As String) As Long
-    Wiz01cvtStatisticsToLong = (CLng(Stat1) * (2 ^ 0)) + (CLng(Stat2) * (2 ^ 5)) + (CLng(Stat3) * (2 ^ 10)) + (CLng(Stat4) * (2 ^ 16)) + (CLng(Stat5) * (2 ^ 21)) + (CLng(Stat6) * (2 ^ 26))
-End Function
-Public Function Wiz01cvtStatisticToInt(xStatistics As Long, WhichStat As Integer) As Integer
-    Select Case WhichStat
-        Case 1  'Strength
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 0)) And &H1F)
-        Case 2  'Intelligence
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 5)) And &H1F)
-        Case 3  'Piety
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 10)) And &H1F)
-        Case 4  'Vitality
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 16)) And &H1F)
-        Case 5  'Agility
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 21)) And &H1F)
-        Case 6  'Luck
-            Wiz01cvtStatisticToInt = ((xStatistics \ (2 ^ 26)) And &H1F)
-        Case Else
-            Wiz01cvtStatisticToInt = 0
-    End Select
-End Function
-Private Function Wiz01Dumapic(xCharacter As Wiz01Character) As String
+Private Function Wiz03Dumapic(xCharacter As Wiz03Character) As String
     With xCharacter
         ' Always seems to be facing North when Quiting from within the Maze...
-        Wiz01Dumapic = "Facing North; " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
+        Wiz03Dumapic = "Facing North; " & (.Location \ 100) & " East; " & (.Location Mod 100) & " North; " & .Down & " Down"  ' from the steps leading to the castle"
     End With
 End Function
-Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
+Public Sub Wiz03DumpCharacter(xCharacter As Wiz03Character)
     Dim i As Long
     Dim j As Long
     Dim k As Long
@@ -269,7 +197,7 @@ Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
         Else
             Debug.Print "On Expidition:      " & vbTab & "NO"
         End If
-        Debug.Print Wiz01Dumapic(xCharacter)
+        Debug.Print Wiz03Dumapic(xCharacter)
 
         Debug.Print "Race:               " & vbTab & strRace(.Race)
         Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
@@ -290,12 +218,12 @@ Public Sub Wiz01DumpCharacter(xCharacter As Wiz01Character)
         End If
         
         Debug.Print vbCrLf & "Basic Statistics..."
-        Debug.Print "Strength:           " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 1)
-        Debug.Print "Intellegence:       " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 2)
-        Debug.Print "Piety:              " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 3)
-        Debug.Print "Vitality:           " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 4)
-        Debug.Print "Agility:            " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 5)
-        Debug.Print "Luck:               " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 6)
+        Debug.Print "Strength:           " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 1)
+        Debug.Print "Intellegence:       " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 2)
+        Debug.Print "Piety:              " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 3)
+        Debug.Print "Vitality:           " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 4)
+        Debug.Print "Agility:            " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 5)
+        Debug.Print "Luck:               " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 6)
 
         Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
         For i = 1 To .ItemCount
@@ -329,14 +257,86 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01DumpCharacter"
+    MsgBox Err.Description, vbExclamation, "Wiz03DumpCharacter"
     Exit Sub
     Resume Next
 End Sub
-Public Function Wiz01GetSpell(i As Integer) As String
-    Wiz01GetSpell = Spells(i)
+Public Sub Wiz03cvtBstrToSpells(bString As String, Data() As Byte)
+    Dim i As Long
+    Dim iByte As Integer
+    Dim iOffset As Integer
+
+    'First clear the target area...
+    For i = 1 To UBound(Data)
+        Data(i) = 0
+    Next i
+
+    'Now inch through the bit-string setting the appropriate bits in the appropriate bytes...
+    For i = 0 To (UBound(Data) * 8) - 1
+        iOffset = i Mod 8
+        iByte = (i \ 8) + 1
+        If Mid(bString, i + 1, 1) = "1" Then
+            Data(iByte) = (Data(iByte) Or (2 ^ iOffset))
+        End If
+    Next i
+
+ExitSub:
+    Exit Sub
+
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Wiz03cvtSpellsToBstr"
+    Exit Sub
+    Resume Next
+End Sub
+Public Function Wiz03cvtSpellsToBstr(Data() As Byte) As String
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim errorCode As Long
+    Dim bString As String
+
+    bString = vbNullString
+    For i = 1 To UBound(Data)
+        For Offset = 0 To 7
+            If (Data(i) And 2 ^ Offset) = 2 ^ Offset Then bString = bString & "1" Else bString = bString & "0"
+        Next Offset
+    Next i
+    Wiz03cvtSpellsToBstr = bString
+
+ExitSub:
+    Exit Function
+
+ErrorHandler:
+    MsgBox Err.Description, vbExclamation, "Wiz03cvtSpellsToBstr"
+    Exit Function
+    Resume Next
 End Function
-Public Sub Wiz01InitializeItemList()
+Public Function Wiz03cvtStatisticsToLong(Stat1 As String, Stat2 As String, Stat3 As String, Stat4 As String, Stat5 As String, Stat6 As String) As Long
+    Wiz03cvtStatisticsToLong = (CLng(Stat1) * (2 ^ 0)) + (CLng(Stat2) * (2 ^ 5)) + (CLng(Stat3) * (2 ^ 10)) + (CLng(Stat4) * (2 ^ 16)) + (CLng(Stat5) * (2 ^ 21)) + (CLng(Stat6) * (2 ^ 26))
+End Function
+Public Function Wiz03cvtStatisticToInt(xStatistics As Long, WhichStat As Integer) As Integer
+    Select Case WhichStat
+        Case 1  'Strength
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 0)) And &H1F)
+        Case 2  'Intelligence
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 5)) And &H1F)
+        Case 3  'Piety
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 10)) And &H1F)
+        Case 4  'Vitality
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 16)) And &H1F)
+        Case 5  'Agility
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 21)) And &H1F)
+        Case 6  'Luck
+            Wiz03cvtStatisticToInt = ((xStatistics \ (2 ^ 26)) And &H1F)
+        Case Else
+            Wiz03cvtStatisticToInt = 0
+    End Select
+End Function
+Public Function Wiz03GetSpell(i As Integer) As String
+    Wiz03GetSpell = Spells(i)
+End Function
+Public Sub Wiz03InitializeItemList()
     ItemList(0) = "Special: Broken Item"
     ItemList(1) = "Weapon: Long Sword"
     ItemList(2) = "Weapon: Short Sword"
@@ -431,15 +431,51 @@ Public Sub Wiz01InitializeItemList()
     ItemList(91) = "Magic: Ring of Healing"
     ItemList(92) = "Magic: Ring Pro Undead"
     ItemList(93) = "Magic: Deadly Ring"
-    ItemList(94) = "Special: Werdna's Amulet"
-    ItemList(95) = "Special: Statuette/Bear"
-    ItemList(96) = "Special: Statuette/Frog"
-    ItemList(97) = "Special: Bronze Key"
-    ItemList(98) = "Special: Silver Key"
-    ItemList(99) = "Special: Gold Key"
-    ItemList(100) = "Special: Blue Ribbon"
+'    ItemList(94) = "Special: Werdna's Amulet"
+'    ItemList(95) = "Special: Statuette/Bear"
+'    ItemList(96) = "Special: Statuette/Frog"
+'    ItemList(97) = "Special: Bronze Key"
+'    ItemList(98) = "Special: Silver Key"
+'    ItemList(99) = "Special: Gold Key"
+'    ItemList(100) = "Special: Blue Ribbon"
+    ItemList(94) = "Magic: Rod of Raising"
+    ItemList(95) = "Magic: Amulet of Cover"
+    ItemList(96) = "Armor: +3 Robe"
+    ItemList(97) = "Gauntlets: Winter Mittens"
+    ItemList(98) = "Magic: Necklace Pro Magic"
+    ItemList(99) = "Weapon: Staff of Light"
+    ItemList(100) = "Weapon: +5 Long Sword"
+    ItemList(101) = "Weapon: Sword of Swinging"
+    ItemList(102) = "Weapon: Priest Puncher"
+    ItemList(103) = "Weapon: Priest Mace"
+    ItemList(104) = "Weapon: Short Sword of Swinging"
+    ItemList(105) = "Magic: Ring Pro Fire"
+    ItemList(106) = "Armor: Cursed +1 Plate"
+    ItemList(107) = "Armor: +5 Plate"
+    ItemList(108) = "Weapon: Staff of Curing"
+    ItemList(109) = "Magic: Ring of Regen"
+    ItemList(110) = "Magic: Metamorph  Ring"
+    ItemList(111) = "Special: Stone Stone"
+    ItemList(112) = "Special: Dreamer's Stone"
+    ItemList(113) = "Special: Damien Stone"
+    ItemList(114) = "Weapon: Great Mage Wand"
+    ItemList(115) = "Magic: Coin of Power"
+    ItemList(116) = "Special: Stone of Youth"
+    ItemList(117) = "Special: Mind Stone"
+    ItemList(118) = "Special: Stone of Piety"
+    ItemList(119) = "Special: Blarney Stone"
+    ItemList(120) = "Magic: Amulet of Skill"
+    ItemList(121) = "Magic: Amulet of Skill"
+    ItemList(122) = "Weapon: Great Mage Wand"
+    ItemList(123) = "Magic: Coin of Power"
+    ItemList(124) = "Weapon: Staff of Gnilda"
+    ItemList(125) = "Special: Hrathnir"
+    ItemList(126) = "Special: KOD's Helm"
+    ItemList(127) = "Special: KOD's Shield"
+    ItemList(128) = "Special: KOD's Gauntlets"
+    ItemList(129) = "Special: KOD's Armor"
 End Sub
-Public Sub Wiz01InitializeSpells()
+Public Sub Wiz03InitializeSpells()
     'Mage Spell Book...
     Spells(0) = "Unknown"
     Spells(1) = "Halito"
@@ -494,94 +530,94 @@ Public Sub Wiz01InitializeSpells()
     Spells(49) = "Malikto"
     Spells(50) = "Kadorto"
 End Sub
-Public Function Wiz01IsBishop(x As Integer) As Boolean
-    Wiz01IsBishop = (strProfession(x) = "Bishop")
+Public Function Wiz03IsBishop(x As Integer) As Boolean
+    Wiz03IsBishop = (strProfession(x) = "Bishop")
 End Function
-Public Function Wiz01IsMage(x As Integer) As Boolean
+Public Function Wiz03IsMage(x As Integer) As Boolean
     Select Case strProfession(x)
         Case "Bishop", "Mage", "Samurai"
-            Wiz01IsMage = True
+            Wiz03IsMage = True
         Case Else
-            Wiz01IsMage = False
+            Wiz03IsMage = False
     End Select
 End Function
-Public Function Wiz01IsPriest(x As Integer) As Boolean
+Public Function Wiz03IsPriest(x As Integer) As Boolean
     Select Case strProfession(x)
         Case "Bishop", "Priest", "Lord"
-            Wiz01IsPriest = True
+            Wiz03IsPriest = True
         Case Else
-            Wiz01IsPriest = False
+            Wiz03IsPriest = False
     End Select
 End Function
-Public Function Wiz01IsLord(x As Integer) As Boolean
-    Wiz01IsLord = (strProfession(x) = "Lord")
+Public Function Wiz03IsLord(x As Integer) As Boolean
+    Wiz03IsLord = (strProfession(x) = "Lord")
 End Function
-Public Function Wiz01IsSamurai(x As Integer) As Boolean
-    Wiz01IsSamurai = (strProfession(x) = "Samurai")
+Public Function Wiz03IsSamurai(x As Integer) As Boolean
+    Wiz03IsSamurai = (strProfession(x) = "Samurai")
 End Function
-Public Function Wiz01IsSpellCaster(x As Integer) As Boolean
+Public Function Wiz03IsSpellCaster(x As Integer) As Boolean
     Select Case strProfession(x)
         Case "Mage", "Priest", "Bishop", "Lord", "Samurai"
-            Wiz01IsSpellCaster = True
+            Wiz03IsSpellCaster = True
         Case Else
-            Wiz01IsSpellCaster = False
+            Wiz03IsSpellCaster = False
     End Select
 End Function
-Public Function Wiz01lkupItemByCbo(x As Integer, cbo As ComboBox) As Integer
+Public Function Wiz03lkupItemByCbo(x As Integer, cbo As ComboBox) As Integer
     Dim i As Integer
     For i = 0 To cbo.ListCount - 1
         If ItemList(x) = cbo.List(i) Then
-            Wiz01lkupItemByCbo = i
+            Wiz03lkupItemByCbo = i
             Exit Function
         End If
     Next i
 End Function
-Public Function Wiz01lkupItemByName(x As String) As Integer
+Public Function Wiz03lkupItemByName(x As String) As Integer
     Dim i As Integer
-    For i = 0 To Wiz01ItemMapMax
+    For i = 0 To Wiz03ItemMapMax
         If ItemList(i) = x Then
-            Wiz01lkupItemByName = i
+            Wiz03lkupItemByName = i
             Exit Function
         End If
     Next i
 End Function
-Public Sub Wiz01PopulateAlignment(x As ComboBox)
+Public Sub Wiz03PopulateAlignment(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01AlignmentMapMax
+        For i = 0 To Wiz03AlignmentMapMax
             .AddItem strAlignment(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateItem(x As ComboBox)
+Public Sub Wiz03PopulateItem(x As ComboBox)
     Dim i As Integer
     With x
         .Clear
-        For i = 0 To Wiz01ItemMapMax
+        For i = 0 To Wiz03ItemMapMax
             .AddItem ItemList(i)    ', i    'Removed to allow ComboBox to be Sorted
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateProfession(x As ComboBox)
+Public Sub Wiz03PopulateProfession(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01ProfessionMapMax
+        For i = 0 To Wiz03ProfessionMapMax
             .AddItem strProfession(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateRace(x As ComboBox)
+Public Sub Wiz03PopulateRace(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01RaceMapMax
+        For i = 0 To Wiz03RaceMapMax
             .AddItem strRace(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateSpellBooks(lstMageSpells As ListBox, lstPriestSpells As ListBox)
+Public Sub Wiz03PopulateSpellBooks(lstMageSpells As ListBox, lstPriestSpells As ListBox)
     Dim i As Integer
     With lstMageSpells
         .Clear
@@ -597,16 +633,16 @@ Public Sub Wiz01PopulateSpellBooks(lstMageSpells As ListBox, lstPriestSpells As 
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateStatus(x As ComboBox)
+Public Sub Wiz03PopulateStatus(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01StatusMapMax
+        For i = 0 To Wiz03StatusMapMax
             .AddItem strStatus(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
+Public Sub Wiz03PrintCharacter(oUnit As Integer, xCharacter As Wiz03Character)
     Dim i As Long
     Dim j As Long
     Dim k As Long
@@ -635,7 +671,7 @@ Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
         If .Location = 0 Then
             Print #oUnit, "Location:           " & vbTab & "Castle"
         Else
-            Print #oUnit, "Location:           " & vbTab & Wiz01Dumapic(xCharacter)
+            Print #oUnit, "Location:           " & vbTab & Wiz03Dumapic(xCharacter)
         End If
 
         Print #oUnit, "Race:               " & vbTab & strRace(.Race)
@@ -657,12 +693,12 @@ Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
         End If
         
         Print #oUnit, vbCrLf & "Basic Statistics..."
-        Print #oUnit, "Strength:           " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 1)
-        Print #oUnit, "Intellegence:       " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 2)
-        Print #oUnit, "Piety:              " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 3)
-        Print #oUnit, "Vitality:           " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 4)
-        Print #oUnit, "Agility:            " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 5)
-        Print #oUnit, "Luck:               " & vbTab & Wiz01cvtStatisticToInt(.Statistics, 6)
+        Print #oUnit, "Strength:           " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 1)
+        Print #oUnit, "Intellegence:       " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 2)
+        Print #oUnit, "Piety:              " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 3)
+        Print #oUnit, "Vitality:           " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 4)
+        Print #oUnit, "Agility:            " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 5)
+        Print #oUnit, "Luck:               " & vbTab & Wiz03cvtStatisticToInt(.Statistics, 6)
 
         Print #oUnit, vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
         For i = 1 To .ItemCount
@@ -670,25 +706,25 @@ Public Sub Wiz01PrintCharacter(oUnit As Integer, xCharacter As Wiz01Character)
         Next i
 
         Print #oUnit, vbCrLf & "SpellBooks..."
-        bString = Wiz01cvtSpellsToBstr(.SpellBooks)
+        bString = Wiz03cvtSpellsToBstr(.SpellBooks)
         
         Print #oUnit, "Mage:               " & vbTab & "Priest:"
         i = i
-        Do While i <= Wiz01SpellMapMax
-            If i + 21 > Wiz01SpellMapMax Then Exit Do
+        Do While i <= Wiz03SpellMapMax
+            If i + 21 > Wiz03SpellMapMax Then Exit Do
             MageSpell = String(20, " ")
             PriestSpell = String(20, " ")
             If i <= 21 Then
                 If Mid(bString, i + 1, 1) = "1" Then
-                    MageSpell = "[X] " & Wiz01GetSpell(CInt(i))
+                    MageSpell = "[X] " & Wiz03GetSpell(CInt(i))
                 Else
-                    MageSpell = "[ ] " & Wiz01GetSpell(CInt(i))
+                    MageSpell = "[ ] " & Wiz03GetSpell(CInt(i))
                 End If
             End If
             If Mid(bString, i + 1 + 21, 1) = "1" Then
-                PriestSpell = "[X] " & Wiz01GetSpell(CInt(i + 21))
+                PriestSpell = "[X] " & Wiz03GetSpell(CInt(i + 21))
             Else
-                PriestSpell = "[ ] " & Wiz01GetSpell(CInt(i + 21))
+                PriestSpell = "[ ] " & Wiz03GetSpell(CInt(i + 21))
             End If
             Print #oUnit, MageSpell & vbTab & PriestSpell
             i = i + 1
@@ -721,17 +757,17 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01PrintCharacter"
+    MsgBox Err.Description, vbExclamation, "Wiz03PrintCharacter"
     Exit Sub
     Resume Next
 End Sub
-Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
+Public Sub Wiz03Read(ByVal strFile As String, xCharacters() As Wiz03Character)
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
     Dim errorCode As Long
-    Dim ScenarioName As Wiz01ScenarioTag
+    Dim ScenarioName As Wiz03ScenarioTag
     
     'Proving Grounds of the Mad Overlord supports up to 20 characters...
     'The layout is a little funky in that the Character structure seems
@@ -744,7 +780,7 @@ Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
-    Offset = Wiz01CharacterDataOffset
+    Offset = Wiz03CharacterDataOffset
     For i = 1 To 5
         iChar = (i * 4) - 3
         Get #Unit, Offset, xCharacters(iChar)
@@ -762,43 +798,43 @@ Public Sub Wiz01Read(ByVal strFile As String, xCharacters() As Wiz01Character)
 ExitSub:
     Close #Unit
     Call SaveRegSetting("Environment", "UWAPath01", ParsePath(strFile, DrvDirNoSlash))
-    Call SaveRegSetting("Environment", "Wiz01DataFile", ParsePath(strFile, FileNameBaseExt))
+    Call SaveRegSetting("Environment", "Wiz03DataFile", ParsePath(strFile, FileNameBaseExt))
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01Read"
+    MsgBox Err.Description, vbExclamation, "Wiz03Read"
     Exit Sub
     Resume Next
 End Sub
-Public Function Wiz01ValidateScenario(xFileName As String) As Boolean
+Public Function Wiz03ValidateScenario(xFileName As String) As Boolean
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
     Dim errorCode As Long
-    Dim ScenarioName As Wiz01ScenarioTag
+    Dim ScenarioName As Wiz03ScenarioTag
     
-    Wiz01ValidateScenario = False
+    Wiz03ValidateScenario = False
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open xFileName For Binary Access Read Lock Read As #Unit
-    Get #Unit, Wiz01ScenarioDataOffset, ScenarioName
-    If Left(ScenarioName.Name, ScenarioName.Length) <> Wiz01ScenarioName Then
+    Get #Unit, Wiz03ScenarioDataOffset, ScenarioName
+    If Left(ScenarioName.Name, ScenarioName.Length) <> Wiz03ScenarioName Then
         Call MsgBox("Save game file specified is not a valid Ultimate Wizardry Archives: Proving Grounds of the Mad Overlord! save game file.", vbExclamation, Screen.ActiveForm.Caption)
         GoTo ExitSub
     End If
-    Wiz01ValidateScenario = True
+    Wiz03ValidateScenario = True
 
 ExitSub:
     Close #Unit
     Exit Function
     
 ErrorHandler:
-    Call MsgBox(Err.Description, vbExclamation, "Wiz01ValidateScenario")
+    Call MsgBox(Err.Description, vbExclamation, "Wiz03ValidateScenario")
     Exit Function
     Resume Next
 End Function
-Public Sub Wiz01Write(ByVal strFile As String, xCharacters() As Wiz01Character)
+Public Sub Wiz03Write(ByVal strFile As String, xCharacters() As Wiz03Character)
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
@@ -816,7 +852,7 @@ Public Sub Wiz01Write(ByVal strFile As String, xCharacters() As Wiz01Character)
     On Error GoTo ErrorHandler
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
-    Offset = Wiz01CharacterDataOffset
+    Offset = Wiz03CharacterDataOffset
     For i = 1 To 5
         iChar = (i * 4) - 3
         Put #Unit, Offset, xCharacters(iChar)
@@ -831,7 +867,7 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Wiz01Write"
+    MsgBox Err.Description, vbExclamation, "Wiz03Write"
     Exit Sub
     Resume Next
 End Sub

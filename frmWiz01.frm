@@ -3313,7 +3313,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:32 PM"
+            TextSave        =   "11:23 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3716,17 +3716,17 @@ Private Sub Form_Load()
     cboGender.Visible = False
     lblGender.Visible = False
     
-    Call InitializeWiz01ItemList
-    Call InitializeWiz01Spells
+    Call Wiz01InitializeItemList
+    Call Wiz01InitializeSpells
     
-    Call PopulateWiz01Status(cboStatus)
-    Call PopulateWiz01Profession(cboProfession)
-    Call PopulateWiz01Alignment(cboAlignment)
-    Call PopulateWiz01Race(cboRace)
+    Call Wiz01PopulateStatus(cboStatus)
+    Call Wiz01PopulateProfession(cboProfession)
+    Call Wiz01PopulateAlignment(cboAlignment)
+    Call Wiz01PopulateRace(cboRace)
     For i = 1 To Wiz01ItemListMax
-        Call PopulateWiz01Item(cboItem(i))
+        Call Wiz01PopulateItem(cboItem(i))
     Next i
-    Call PopulateWiz01SpellBooks(lstMageSpells, lstPriestSpells)
+    Call Wiz01PopulateSpellBooks(lstMageSpells, lstPriestSpells)
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
     frmMain.MainCancel
@@ -3775,12 +3775,12 @@ Private Sub LoadCharacter(iCharacter As Integer)
         
         cboRace.ListIndex = .Race
         
-        txtSTR.Text = cvtStatisticToInt(.Statistics, 1)
-        txtINT.Text = cvtStatisticToInt(.Statistics, 2)
-        txtPIE.Text = cvtStatisticToInt(.Statistics, 3)
-        txtVIT.Text = cvtStatisticToInt(.Statistics, 4)
-        txtAGL.Text = cvtStatisticToInt(.Statistics, 5)
-        txtLCK.Text = cvtStatisticToInt(.Statistics, 6)
+        txtSTR.Text = Wiz01cvtStatisticToInt(.Statistics, 1)
+        txtINT.Text = Wiz01cvtStatisticToInt(.Statistics, 2)
+        txtPIE.Text = Wiz01cvtStatisticToInt(.Statistics, 3)
+        txtVIT.Text = Wiz01cvtStatisticToInt(.Statistics, 4)
+        txtAGL.Text = Wiz01cvtStatisticToInt(.Statistics, 5)
+        txtLCK.Text = Wiz01cvtStatisticToInt(.Statistics, 6)
         
         txtLVL.Text = Format(.LVL.Maximum, "#,##0")
         txtAge.Text = Format(.AgeInWeeks, "#,##0")
@@ -3795,7 +3795,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
         txtGP.Text = Format(I6toD(.GP), "#,##0")
     
         'SpellBooks...
-        bString = cvtSpellsToBstr(.SpellBooks)
+        bString = Wiz01cvtSpellsToBstr(.SpellBooks)
         For i = 1 To Wiz01SpellMapMax
             If i <= 21 Then
                 If Mid(bString, i + 1, 1) = "1" Then
@@ -3832,7 +3832,7 @@ Private Sub LoadCharacter(iCharacter As Integer)
             cboItem(i).ListIndex = -1
         Next i
         For i = 1 To .ItemCount
-            cboItem(i).ListIndex = lkupWiz01ItemByCbo(.ItemList(i).ItemCode, cboItem(i))
+            cboItem(i).ListIndex = Wiz01lkupItemByCbo(.ItemList(i).ItemCode, cboItem(i))
             If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
             If .ItemList(i).Equipped = 1 Then chkEquipped(i).Value = vbChecked Else chkEquipped(i).Value = vbUnchecked
             If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
@@ -4075,7 +4075,7 @@ Private Sub ResetSpellPointMax()
     udPriest6.Max = 0
     udPriest7.Max = 0
     
-    If IsMage(cClass) Then
+    If Wiz01IsMage(cClass) Then
         udMage1.Max = 9
         udMage2.Max = 9
         udMage3.Max = 9
@@ -4084,7 +4084,7 @@ Private Sub ResetSpellPointMax()
         udMage6.Max = 9
         udMage7.Max = 9
     End If
-    If IsPriest(cClass) Then
+    If Wiz01IsPriest(cClass) Then
         udPriest1.Max = 9
         udPriest2.Max = 9
         udPriest3.Max = 9
@@ -4093,7 +4093,7 @@ Private Sub ResetSpellPointMax()
         udPriest6.Max = 9
         udPriest7.Max = 9
     End If
-    If IsSamurai(cClass) Then  '?
+    If Wiz01IsSamurai(cClass) Then  '?
         udMage1.Max = 4
         udMage2.Max = 2
         udMage3.Max = 2
@@ -4101,7 +4101,7 @@ Private Sub ResetSpellPointMax()
         udMage5.Max = 3
         udMage6.Max = 4
         udMage7.Max = 3
-    ElseIf IsLord(cClass) Then  'Usually, you get to be a Lord after being a Bishop, so I'll give you Mage points too...!
+    ElseIf Wiz01IsLord(cClass) Then  'Usually, you get to be a Lord after being a Bishop, so I'll give you Mage points too...!
         udMage1.Max = 4
         udMage2.Max = 2
         udMage3.Max = 2
@@ -4542,7 +4542,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         .Alignment = cboAlignment.ListIndex
         .Race = cboRace.ListIndex
         
-        .Statistics = cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
+        .Statistics = Wiz01cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
         
         .LVL.Maximum = CInt(txtLVL.Text)
         .LVL.Current = .LVL.Maximum
@@ -4572,7 +4572,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
                 End If
             End If
         Next i
-        Call cvtBstrToSpells(bString, .SpellBooks)
+        Call Wiz01cvtBstrToSpells(bString, .SpellBooks)
         
         .MageSpellPoints(1) = CInt(txtMage1.Text)
         .MageSpellPoints(2) = CInt(txtMage2.Text)
@@ -4591,7 +4591,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         
         .ItemCount = 0
         For i = 1 To Wiz01ItemListMax
-            .ItemList(i).ItemCode = lkupWiz01ItemByName(cboItem(i).Text)
+            .ItemList(i).ItemCode = Wiz01lkupItemByName(cboItem(i).Text)
             If .ItemList(i).ItemCode > 0 Then .ItemCount = .ItemCount + 1
             If chkIdentified(i).Value = vbChecked Then .ItemList(i).Identified = 1 Else .ItemList(i).Identified = 0
             If chkEquipped(i).Value = vbChecked Then .ItemList(i).Equipped = 1 Else .ItemList(i).Equipped = 0
@@ -4599,26 +4599,3 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         Next i
     End With
 End Sub
-Private Sub xTest()
-    Dim i As Long
-    Dim iChar As Integer
-    Dim Offset As Long
-    Dim Unit As Integer
-    Dim Data As Single
-    Dim errorCode As Long
-    
-    On Error GoTo ErrorHandler
-    Unit = FreeFile
-    Open "Test.dat" For Binary Access Read Write Lock Read Write As #Unit
-    Get #Unit, , Data
-    Close #Unit
-
-ExitSub:
-    Exit Sub
-    
-ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "Test"
-    Exit Sub
-    Resume Next
-End Sub
-

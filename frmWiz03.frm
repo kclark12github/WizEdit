@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Begin VB.Form frmWiz02 
+Begin VB.Form frmWiz03 
    BackColor       =   &H00000000&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Wizardry 02 - The Knight of Diamonds"
@@ -9,7 +9,7 @@ Begin VB.Form frmWiz02
    ClientLeft      =   36
    ClientTop       =   492
    ClientWidth     =   9288
-   Icon            =   "frmWiz02.frx":0000
+   Icon            =   "frmWiz03.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -49,7 +49,7 @@ Begin VB.Form frmWiz02
          MultiLine       =   -1  'True
          TabIndex        =   12
          TabStop         =   0   'False
-         Text            =   "frmWiz02.frx":1CCA
+         Text            =   "frmWiz03.frx":1CCA
          ToolTipText     =   "Down..."
          Top             =   1140
          Width           =   396
@@ -74,7 +74,7 @@ Begin VB.Form frmWiz02
          MultiLine       =   -1  'True
          TabIndex        =   11
          TabStop         =   0   'False
-         Text            =   "frmWiz02.frx":1CCD
+         Text            =   "frmWiz03.frx":1CCD
          ToolTipText     =   "North..."
          Top             =   1140
          Width           =   396
@@ -99,7 +99,7 @@ Begin VB.Form frmWiz02
          MultiLine       =   -1  'True
          TabIndex        =   10
          TabStop         =   0   'False
-         Text            =   "frmWiz02.frx":1CD0
+         Text            =   "frmWiz03.frx":1CD0
          ToolTipText     =   "East..."
          Top             =   1140
          Width           =   396
@@ -125,7 +125,7 @@ Begin VB.Form frmWiz02
          MultiLine       =   -1  'True
          TabIndex        =   164
          TabStop         =   0   'False
-         Text            =   "frmWiz02.frx":1CD3
+         Text            =   "frmWiz03.frx":1CD3
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   900
          Width           =   576
@@ -144,9 +144,9 @@ Begin VB.Form frmWiz02
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz02.frx":1CD6
+         ItemData        =   "frmWiz03.frx":1CD6
          Left            =   4980
-         List            =   "frmWiz02.frx":1CE0
+         List            =   "frmWiz03.frx":1CE0
          Style           =   2  'Dropdown List
          TabIndex        =   9
          Tag             =   "TabStop"
@@ -184,7 +184,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   160
-         Text            =   "frmWiz02.frx":1CF2
+         Text            =   "frmWiz03.frx":1CF2
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   3240
          Width           =   396
@@ -249,7 +249,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   23
-         Text            =   "frmWiz02.frx":1CF5
+         Text            =   "frmWiz03.frx":1CF5
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   3240
          Width           =   996
@@ -272,7 +272,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   21
-         Text            =   "frmWiz02.frx":1CF8
+         Text            =   "frmWiz03.frx":1CF8
          ToolTipText     =   "Level..."
          Top             =   2400
          Width           =   996
@@ -295,7 +295,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   16
          MultiLine       =   -1  'True
          TabIndex        =   25
-         Text            =   "frmWiz02.frx":1CFB
+         Text            =   "frmWiz03.frx":1CFB
          ToolTipText     =   "Gold Pieces..."
          Top             =   4020
          Width           =   1836
@@ -318,7 +318,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   16
          MultiLine       =   -1  'True
          TabIndex        =   20
-         Text            =   "frmWiz02.frx":1D0D
+         Text            =   "frmWiz03.frx":1D0D
          ToolTipText     =   "Experience Points..."
          Top             =   1980
          Width           =   1836
@@ -341,7 +341,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   22
-         Text            =   "frmWiz02.frx":1D1F
+         Text            =   "frmWiz03.frx":1D1F
          ToolTipText     =   "Hit Points (automatically ""topped-off"")..."
          Top             =   2820
          Width           =   996
@@ -400,9 +400,9 @@ Begin VB.Form frmWiz02
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz02.frx":1D22
+         ItemData        =   "frmWiz03.frx":1D22
          Left            =   4980
-         List            =   "frmWiz02.frx":1D29
+         List            =   "frmWiz03.frx":1D29
          Style           =   2  'Dropdown List
          TabIndex        =   7
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
@@ -450,7 +450,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   16
-         Text            =   "frmWiz02.frx":1D34
+         Text            =   "frmWiz03.frx":1D34
          ToolTipText     =   "Piety..."
          Top             =   2820
          Width           =   396
@@ -473,7 +473,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   19
-         Text            =   "frmWiz02.frx":1D37
+         Text            =   "frmWiz03.frx":1D37
          ToolTipText     =   "Speed..."
          Top             =   4080
          Width           =   396
@@ -496,7 +496,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   18
-         Text            =   "frmWiz02.frx":1D3A
+         Text            =   "frmWiz03.frx":1D3A
          ToolTipText     =   "Dexterity..."
          Top             =   3660
          Width           =   396
@@ -519,7 +519,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   17
-         Text            =   "frmWiz02.frx":1D3D
+         Text            =   "frmWiz03.frx":1D3D
          ToolTipText     =   "Vitality..."
          Top             =   3240
          Width           =   396
@@ -542,7 +542,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   15
-         Text            =   "frmWiz02.frx":1D40
+         Text            =   "frmWiz03.frx":1D40
          ToolTipText     =   "Intelligence..."
          Top             =   2400
          Width           =   396
@@ -561,9 +561,9 @@ Begin VB.Form frmWiz02
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz02.frx":1D43
+         ItemData        =   "frmWiz03.frx":1D43
          Left            =   4980
-         List            =   "frmWiz02.frx":1D4D
+         List            =   "frmWiz03.frx":1D4D
          Locked          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   13
@@ -590,7 +590,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   14
-         Text            =   "frmWiz02.frx":1D5F
+         Text            =   "frmWiz03.frx":1D5F
          ToolTipText     =   "Strength..."
          Top             =   1980
          Width           =   396
@@ -1608,9 +1608,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   1
-         ItemData        =   "frmWiz02.frx":1D62
+         ItemData        =   "frmWiz03.frx":1D62
          Left            =   2520
-         List            =   "frmWiz02.frx":1D64
+         List            =   "frmWiz03.frx":1D64
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   29
@@ -1633,9 +1633,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   8
-         ItemData        =   "frmWiz02.frx":1D66
+         ItemData        =   "frmWiz03.frx":1D66
          Left            =   2520
-         List            =   "frmWiz02.frx":1D68
+         List            =   "frmWiz03.frx":1D68
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   57
@@ -1658,9 +1658,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   7
-         ItemData        =   "frmWiz02.frx":1D6A
+         ItemData        =   "frmWiz03.frx":1D6A
          Left            =   2520
-         List            =   "frmWiz02.frx":1D6C
+         List            =   "frmWiz03.frx":1D6C
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   53
@@ -1683,9 +1683,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   6
-         ItemData        =   "frmWiz02.frx":1D6E
+         ItemData        =   "frmWiz03.frx":1D6E
          Left            =   2520
-         List            =   "frmWiz02.frx":1D70
+         List            =   "frmWiz03.frx":1D70
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   49
@@ -1708,9 +1708,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   5
-         ItemData        =   "frmWiz02.frx":1D72
+         ItemData        =   "frmWiz03.frx":1D72
          Left            =   2520
-         List            =   "frmWiz02.frx":1D74
+         List            =   "frmWiz03.frx":1D74
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   45
@@ -1733,9 +1733,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   4
-         ItemData        =   "frmWiz02.frx":1D76
+         ItemData        =   "frmWiz03.frx":1D76
          Left            =   2520
-         List            =   "frmWiz02.frx":1D78
+         List            =   "frmWiz03.frx":1D78
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   41
@@ -1758,9 +1758,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   3
-         ItemData        =   "frmWiz02.frx":1D7A
+         ItemData        =   "frmWiz03.frx":1D7A
          Left            =   2520
-         List            =   "frmWiz02.frx":1D7C
+         List            =   "frmWiz03.frx":1D7C
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   37
@@ -1783,9 +1783,9 @@ Begin VB.Form frmWiz02
          ForeColor       =   &H0000FFFF&
          Height          =   336
          Index           =   2
-         ItemData        =   "frmWiz02.frx":1D7E
+         ItemData        =   "frmWiz03.frx":1D7E
          Left            =   2520
-         List            =   "frmWiz02.frx":1D80
+         List            =   "frmWiz03.frx":1D80
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   33
@@ -2125,7 +2125,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   73
-         Text            =   "frmWiz02.frx":1D82
+         Text            =   "frmWiz03.frx":1D82
          ToolTipText     =   "Level 7 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2148,7 +2148,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   72
-         Text            =   "frmWiz02.frx":1D88
+         Text            =   "frmWiz03.frx":1D88
          ToolTipText     =   "Level 6 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2171,7 +2171,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   71
-         Text            =   "frmWiz02.frx":1D8E
+         Text            =   "frmWiz03.frx":1D8E
          ToolTipText     =   "Level 5 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2194,7 +2194,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   66
-         Text            =   "frmWiz02.frx":1D94
+         Text            =   "frmWiz03.frx":1D94
          ToolTipText     =   "Level 7 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2217,7 +2217,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   65
-         Text            =   "frmWiz02.frx":1D9A
+         Text            =   "frmWiz03.frx":1D9A
          ToolTipText     =   "Level 6 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2240,7 +2240,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   64
-         Text            =   "frmWiz02.frx":1DA0
+         Text            =   "frmWiz03.frx":1DA0
          ToolTipText     =   "Level 5 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2263,7 +2263,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   70
-         Text            =   "frmWiz02.frx":1DA6
+         Text            =   "frmWiz03.frx":1DA6
          ToolTipText     =   "Level 4 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2286,7 +2286,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   63
-         Text            =   "frmWiz02.frx":1DAC
+         Text            =   "frmWiz03.frx":1DAC
          ToolTipText     =   "Level 4 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2309,7 +2309,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   69
-         Text            =   "frmWiz02.frx":1DB2
+         Text            =   "frmWiz03.frx":1DB2
          ToolTipText     =   "Level 3 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2332,7 +2332,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   62
-         Text            =   "frmWiz02.frx":1DB8
+         Text            =   "frmWiz03.frx":1DB8
          ToolTipText     =   "Level 3 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2393,7 +2393,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   68
-         Text            =   "frmWiz02.frx":1DBE
+         Text            =   "frmWiz03.frx":1DBE
          ToolTipText     =   "Level 2 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2416,7 +2416,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   61
-         Text            =   "frmWiz02.frx":1DC4
+         Text            =   "frmWiz03.frx":1DC4
          ToolTipText     =   "Level 2 Mage Spell Points..."
          Top             =   3420
          Width           =   576
@@ -2439,7 +2439,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   67
-         Text            =   "frmWiz02.frx":1DCA
+         Text            =   "frmWiz03.frx":1DCA
          ToolTipText     =   "Level 1 Priest Spell Points..."
          Top             =   3900
          Width           =   576
@@ -2462,7 +2462,7 @@ Begin VB.Form frmWiz02
          MaxLength       =   1
          MultiLine       =   -1  'True
          TabIndex        =   60
-         Text            =   "frmWiz02.frx":1DD0
+         Text            =   "frmWiz03.frx":1DD0
          ToolTipText     =   "Level 1 Mage Spell Points..."
          Top             =   3444
          Width           =   576
@@ -3060,7 +3060,7 @@ Begin VB.Form frmWiz02
       Height          =   432
       Left            =   7680
       MaskColor       =   &H00FF00FF&
-      Picture         =   "frmWiz02.frx":1DD6
+      Picture         =   "frmWiz03.frx":1DD6
       Style           =   1  'Graphical
       TabIndex        =   75
       Top             =   2460
@@ -3072,7 +3072,7 @@ Begin VB.Form frmWiz02
       Height          =   432
       Left            =   7680
       MaskColor       =   &H00FF00FF&
-      Picture         =   "frmWiz02.frx":3325
+      Picture         =   "frmWiz03.frx":3325
       Style           =   1  'Graphical
       TabIndex        =   74
       Top             =   2460
@@ -3090,12 +3090,12 @@ Begin VB.Form frmWiz02
       Top             =   2940
       Width           =   1212
    End
-   Begin VB.PictureBox picWiz02 
+   Begin VB.PictureBox picWiz03 
       AutoSize        =   -1  'True
       BackColor       =   &H00000000&
       Height          =   2064
       Left            =   7560
-      Picture         =   "frmWiz02.frx":4882
+      Picture         =   "frmWiz03.frx":4882
       ScaleHeight     =   2016
       ScaleWidth      =   1356
       TabIndex        =   105
@@ -3108,7 +3108,7 @@ Begin VB.Form frmWiz02
       Height          =   372
       Index           =   1
       Left            =   120
-      Picture         =   "frmWiz02.frx":51C4
+      Picture         =   "frmWiz03.frx":51C4
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   96
@@ -3141,7 +3141,7 @@ Begin VB.Form frmWiz02
       Height          =   372
       Index           =   2
       Left            =   1260
-      Picture         =   "frmWiz02.frx":1E9E6
+      Picture         =   "frmWiz03.frx":1E9E6
       ScaleHeight     =   324
       ScaleWidth      =   1104
       TabIndex        =   110
@@ -3174,7 +3174,7 @@ Begin VB.Form frmWiz02
       Height          =   372
       Index           =   3
       Left            =   2400
-      Picture         =   "frmWiz02.frx":38208
+      Picture         =   "frmWiz03.frx":38208
       ScaleHeight     =   324
       ScaleWidth      =   1464
       TabIndex        =   111
@@ -3234,9 +3234,9 @@ Begin VB.Form frmWiz02
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz02.frx":51A2A
-            Key             =   "Wiz02"
-            Object.Tag             =   "Wiz02"
+            Picture         =   "frmWiz03.frx":51A2A
+            Key             =   "Wiz03"
+            Object.Tag             =   "Wiz03"
          EndProperty
       EndProperty
    End
@@ -3253,9 +3253,9 @@ Begin VB.Form frmWiz02
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz02.frx":53706
-            Key             =   "Wiz02"
-            Object.Tag             =   "Wiz02"
+            Picture         =   "frmWiz03.frx":53706
+            Key             =   "Wiz03"
+            Object.Tag             =   "Wiz03"
          EndProperty
       EndProperty
    End
@@ -3391,7 +3391,7 @@ Begin VB.Form frmWiz02
       End
    End
 End
-Attribute VB_Name = "frmWiz02"
+Attribute VB_Name = "frmWiz03"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -3403,8 +3403,8 @@ Public DataFile As String
 Private SaveMessage As String
 Private SelectedCharacter As Integer
 Private ActiveTab As Integer
-Private Characters(1 To Wiz02CharactersMax) As Wiz02Character
-Private SaveCharacter As Wiz02Character
+Private Characters(1 To Wiz03CharactersMax) As Wiz03Character
+Private SaveCharacter As Wiz03Character
 Private Sub cboAlignment_Validate(Cancel As Boolean)
     Cancel = False
     Select Case cboAlignment.Text
@@ -3562,13 +3562,13 @@ End Sub
 Private Sub cmdSave_Click()
     'Move data from screen controls back into Characters array...
     'Debug.Print String(80, "=") & vbCrLf & "Before:"
-    'Call DumpWiz02(Characters(SelectedCharacter))
+    'Call DumpWiz03(Characters(SelectedCharacter))
     Call UnloadCharacter(SelectedCharacter)
     'Debug.Print String(80, "=") & vbCrLf & "After:"
-    'Call Wiz02DumpCharacter(Characters(SelectedCharacter))
+    'Call Wiz03DumpCharacter(Characters(SelectedCharacter))
     
     'Write Data back to DataFile...
-    Call Wiz02Write(DataFile, Characters)
+    Call Wiz03Write(DataFile, Characters)
     
     Call DisableFields
     Call picTabs_Click(1)
@@ -3689,8 +3689,8 @@ Private Sub Form_Activate()
     Dim i As Integer
     
     'Populate Form with data from disk...
-    Call Wiz02Read(DataFile, Characters)
-    For i = 1 To Wiz02CharactersMax
+    Call Wiz03Read(DataFile, Characters)
+    For i = 1 To Wiz03CharactersMax
         If Trim(Characters(i).Name) <> vbNullString Then cboCharacter.AddItem Trim(Characters(i).Name), i - 1
     Next i
     
@@ -3708,7 +3708,7 @@ Private Sub Form_Load()
         picTabs(i).Picture = frmMain.Picture
         picFrames(i).Picture = frmMain.Picture
     Next i
-    'picWiz02.Picture = frmMain.picWiz02.Picture
+    'picWiz03.Picture = frmMain.picWiz03.Picture
     picWizardryLogo.Picture = frmMain.picWizardryLogo.Picture
     cmdCancel.Picture = frmMain.cmdCancel.Picture
     cmdExit.Picture = frmMain.cmdExit.Picture
@@ -3716,17 +3716,17 @@ Private Sub Form_Load()
     cboGender.Visible = False
     lblGender.Visible = False
     
-    Call Wiz02InitializeItemList
-    Call Wiz02InitializeSpells
+    Call Wiz03InitializeItemList
+    Call Wiz03InitializeSpells
     
-    Call Wiz02PopulateStatus(cboStatus)
-    Call Wiz02PopulateProfession(cboProfession)
-    Call Wiz02PopulateAlignment(cboAlignment)
-    Call Wiz02PopulateRace(cboRace)
-    For i = 1 To Wiz02ItemListMax
-        Call Wiz02PopulateItem(cboItem(i))
+    Call Wiz03PopulateStatus(cboStatus)
+    Call Wiz03PopulateProfession(cboProfession)
+    Call Wiz03PopulateAlignment(cboAlignment)
+    Call Wiz03PopulateRace(cboRace)
+    For i = 1 To Wiz03ItemListMax
+        Call Wiz03PopulateItem(cboItem(i))
     Next i
-    Call Wiz02PopulateSpellBooks(lstMageSpells, lstPriestSpells)
+    Call Wiz03PopulateSpellBooks(lstMageSpells, lstPriestSpells)
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
     frmMain.MainCancel
@@ -3775,12 +3775,12 @@ Private Sub LoadCharacter(iCharacter As Integer)
         
         cboRace.ListIndex = .Race
         
-        txtSTR.Text = Wiz02cvtStatisticToInt(.Statistics, 1)
-        txtINT.Text = Wiz02cvtStatisticToInt(.Statistics, 2)
-        txtPIE.Text = Wiz02cvtStatisticToInt(.Statistics, 3)
-        txtVIT.Text = Wiz02cvtStatisticToInt(.Statistics, 4)
-        txtAGL.Text = Wiz02cvtStatisticToInt(.Statistics, 5)
-        txtLCK.Text = Wiz02cvtStatisticToInt(.Statistics, 6)
+        txtSTR.Text = Wiz03cvtStatisticToInt(.Statistics, 1)
+        txtINT.Text = Wiz03cvtStatisticToInt(.Statistics, 2)
+        txtPIE.Text = Wiz03cvtStatisticToInt(.Statistics, 3)
+        txtVIT.Text = Wiz03cvtStatisticToInt(.Statistics, 4)
+        txtAGL.Text = Wiz03cvtStatisticToInt(.Statistics, 5)
+        txtLCK.Text = Wiz03cvtStatisticToInt(.Statistics, 6)
         
         txtLVL.Text = Format(.LVL.Maximum, "#,##0")
         txtAge.Text = Format(.AgeInWeeks, "#,##0")
@@ -3795,8 +3795,8 @@ Private Sub LoadCharacter(iCharacter As Integer)
         txtGP.Text = Format(I6toD(.GP), "#,##0")
     
         'SpellBooks...
-        bString = Wiz02cvtSpellsToBstr(.SpellBooks)
-        For i = 1 To Wiz02SpellMapMax
+        bString = Wiz03cvtSpellsToBstr(.SpellBooks)
+        For i = 1 To Wiz03SpellMapMax
             If i <= 21 Then
                 If Mid(bString, i + 1, 1) = "1" Then
                     lstMageSpells.Selected(i - 1) = True
@@ -3828,11 +3828,11 @@ Private Sub LoadCharacter(iCharacter As Integer)
         txtPriest7.Text = .PriestSpellPoints(7)
         ResetSpellPointMax
         
-        For i = 1 To Wiz02ItemListMax
+        For i = 1 To Wiz03ItemListMax
             cboItem(i).ListIndex = -1
         Next i
         For i = 1 To .ItemCount
-            cboItem(i).ListIndex = Wiz02lkupItemByCbo(.ItemList(i).ItemCode, cboItem(i))
+            cboItem(i).ListIndex = Wiz03lkupItemByCbo(.ItemList(i).ItemCode, cboItem(i))
             If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
             If .ItemList(i).Equipped = 1 Then chkEquipped(i).Value = vbChecked Else chkEquipped(i).Value = vbUnchecked
             If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
@@ -3929,7 +3929,7 @@ Private Sub mnuOptionsPrint_Click()
     oUnit = FreeFile
     Open xOutput For Output Access Write Lock Read Write As #oUnit
     For i = 1 To UBound(Characters)
-        If Trim(Characters(i).Name) <> vbNullString Then Call Wiz02PrintCharacter(oUnit, Characters(i))
+        If Trim(Characters(i).Name) <> vbNullString Then Call Wiz03PrintCharacter(oUnit, Characters(i))
     Next i
     Close #oUnit
     
@@ -4050,7 +4050,7 @@ Private Sub picTabs_LostFocus(Index As Integer)
     End Select
     sbStatus.Panels("Message").Text = SaveMessage
 End Sub
-Private Sub picWiz02_GotFocus()
+Private Sub picWiz03_GotFocus()
     TextSelected
 End Sub
 Private Sub picWizardryLogo_GotFocus()
@@ -4075,7 +4075,7 @@ Private Sub ResetSpellPointMax()
     udPriest6.Max = 0
     udPriest7.Max = 0
     
-    If Wiz02IsMage(cClass) Then
+    If Wiz03IsMage(cClass) Then
         udMage1.Max = 9
         udMage2.Max = 9
         udMage3.Max = 9
@@ -4084,7 +4084,7 @@ Private Sub ResetSpellPointMax()
         udMage6.Max = 9
         udMage7.Max = 9
     End If
-    If Wiz02IsPriest(cClass) Then
+    If Wiz03IsPriest(cClass) Then
         udPriest1.Max = 9
         udPriest2.Max = 9
         udPriest3.Max = 9
@@ -4093,7 +4093,7 @@ Private Sub ResetSpellPointMax()
         udPriest6.Max = 9
         udPriest7.Max = 9
     End If
-    If Wiz02IsSamurai(cClass) Then  '?
+    If Wiz03IsSamurai(cClass) Then  '?
         udMage1.Max = 4
         udMage2.Max = 2
         udMage3.Max = 2
@@ -4101,7 +4101,7 @@ Private Sub ResetSpellPointMax()
         udMage5.Max = 3
         udMage6.Max = 4
         udMage7.Max = 3
-    ElseIf Wiz02IsLord(cClass) Then  'Usually, you get to be a Lord after being a Bishop, so I'll give you Mage points too...!
+    ElseIf Wiz03IsLord(cClass) Then  'Usually, you get to be a Lord after being a Bishop, so I'll give you Mage points too...!
         udMage1.Max = 4
         udMage2.Max = 2
         udMage3.Max = 2
@@ -4542,7 +4542,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         .Alignment = cboAlignment.ListIndex
         .Race = cboRace.ListIndex
         
-        .Statistics = Wiz02cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
+        .Statistics = Wiz03cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
         
         .LVL.Maximum = CInt(txtLVL.Text)
         .LVL.Current = .LVL.Maximum
@@ -4557,7 +4557,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
     
         'SpellBooks...
         bString = String(UBound(.SpellBooks) * 8, "0")
-        For i = 1 To Wiz02SpellMapMax
+        For i = 1 To Wiz03SpellMapMax
             If i <= 21 Then
                 If lstMageSpells.Selected(i - 1) Then
                     Mid(bString, i + 1, 1) = "1"
@@ -4572,7 +4572,7 @@ Private Sub UnloadCharacter(iCharacter As Integer)
                 End If
             End If
         Next i
-        Call Wiz02cvtBstrToSpells(bString, .SpellBooks)
+        Call Wiz03cvtBstrToSpells(bString, .SpellBooks)
         
         .MageSpellPoints(1) = CInt(txtMage1.Text)
         .MageSpellPoints(2) = CInt(txtMage2.Text)
@@ -4590,8 +4590,8 @@ Private Sub UnloadCharacter(iCharacter As Integer)
         .PriestSpellPoints(7) = CInt(txtPriest7.Text)
         
         .ItemCount = 0
-        For i = 1 To Wiz02ItemListMax
-            .ItemList(i).ItemCode = Wiz02lkupItemByName(cboItem(i).Text)
+        For i = 1 To Wiz03ItemListMax
+            .ItemList(i).ItemCode = Wiz03lkupItemByName(cboItem(i).Text)
             If .ItemList(i).ItemCode > 0 Then .ItemCount = .ItemCount + 1
             If chkIdentified(i).Value = vbChecked Then .ItemList(i).Identified = 1 Else .ItemList(i).Identified = 0
             If chkEquipped(i).Value = vbChecked Then .ItemList(i).Equipped = 1 Else .ItemList(i).Equipped = 0
