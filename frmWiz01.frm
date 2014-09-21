@@ -2932,7 +2932,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:11 AM"
+            TextSave        =   "9:00 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3000,12 +3000,6 @@ Private SelectedCharacter As Integer
 Private ActiveTab As Integer
 Private Characters(1 To Wiz01CharactersMax) As Wiz01Character
 Private Sub cboCharacter_Click()
-    Dim i As Integer
-    Dim j As Integer
-    Dim SpellNumber As Integer
-    Dim bString As String
-    Dim ctl As Control
-    
     sbStatus.Panels("Message").Text = vbNullString
     sbStatus.Panels("Status").Text = vbNullString
     
@@ -3016,82 +3010,7 @@ Private Sub cboCharacter_Click()
     End If
     cmdEdit.Visible = True
     SelectedCharacter = cboCharacter.ListIndex + 1
-    With Characters(SelectedCharacter)
-        cboStatus.ListIndex = .Status
-        cboGender.ListIndex = -1
-        cboProfession.ListIndex = .Profession
-        cboRace.ListIndex = .Race
-        
-        txtSTR.Text = icvtStatistic(.Statistics, 1)
-        txtINT.Text = icvtStatistic(.Statistics, 2)
-        txtPIE.Text = icvtStatistic(.Statistics, 3)
-        txtVIT.Text = icvtStatistic(.Statistics, 4)
-        txtAGL.Text = icvtStatistic(.Statistics, 5)
-        txtLCK.Text = icvtStatistic(.Statistics, 6)
-        
-        txtLVL.Text = Format(.LVL.Maximum, "#,##0")
-        txtAge.Text = Format(.AgeInWeeks \ 52, "#,##0")
-        
-        txtHP.Text = Format(.HP.Maximum, "#,##0")
-        txtEXP.Text = Format(.EXP, "#,##0")
-        txtGP.Text = Format(.GP, "#,##0")
-    
-        'SpellBooks...
-        bString = icvtSpellsToBin(.SpellBooks)
-        For i = 1 To Wiz01SpellMapMax
-'            If Mid(bString, i + 1, 1) = "1" Then
-'                Debug.Print "[X] " & GetSpell(i)
-'            Else
-'                Debug.Print "[ ] " & GetSpell(i)
-'            End If
-            If i <= 21 Then
-                If Mid(bString, i + 1, 1) = "1" Then
-                    lstMageSpells.Selected(i - 1) = True
-                Else
-                    lstMageSpells.Selected(i - 1) = False
-                End If
-            Else
-                If Mid(bString, i + 1, 1) = "1" Then
-                    lstPriestSpells.Selected(i - 1 - 21) = True
-                Else
-                    lstPriestSpells.Selected(i - 1 - 21) = False
-                End If
-            End If
-        Next i
-        
-        txtMage1.Text = .MageSpellPoints(1)
-        txtPriest1.Text = .PriestSpellPoints(1)
-        txtMage2.Text = .MageSpellPoints(2)
-        txtPriest2.Text = .PriestSpellPoints(2)
-        txtMage3.Text = .MageSpellPoints(3)
-        txtPriest3.Text = .PriestSpellPoints(3)
-        txtMage4.Text = .MageSpellPoints(4)
-        txtPriest4.Text = .PriestSpellPoints(4)
-        txtMage5.Text = .MageSpellPoints(5)
-        txtPriest5.Text = .PriestSpellPoints(5)
-        txtMage6.Text = .MageSpellPoints(6)
-        txtPriest6.Text = .PriestSpellPoints(6)
-        txtMage7.Text = .MageSpellPoints(7)
-        txtPriest7.Text = .PriestSpellPoints(7)
-        
-        For i = 1 To Wiz01ItemListMax
-            cboItem(i).ListIndex = .ItemList(i).ItemCode
-            If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
-            If .ItemList(i).Equipped = 1 Then
-                chkEquipped(i).Value = vbChecked
-            Else
-                'Assume an empty slot if the item's 0 and not equipped...
-                If .ItemList(i).ItemCode = 0 Then cboItem(i).ListIndex = -1
-                chkEquipped(i).Value = vbUnchecked
-            End If
-            If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
-        Next i
-        
-        sbStatus.Panels("Status").Text = .Name
-        sbStatus.Panels("Message").Text = "Level " & .LVL.Maximum & " " & cboProfession.List(cboProfession.ListIndex) & "..."
-        lstMageSpells.ListIndex = -1
-        lstPriestSpells.ListIndex = -1
-    End With
+    Call LoadCharacter(SelectedCharacter)
 End Sub
 Private Sub ClearFields()
     Dim ctl As Control
@@ -3180,7 +3099,15 @@ Private Sub cmdExit_GotFocus()
 End Sub
 Private Sub cmdSave_Click()
     'Move data from screen controls back into Characters array...
+    'Debug.Print String(80, "=") & vbCrLf & "Before:"
+    'Call DumpWiz01(Characters(SelectedCharacter))
+    Call UnloadCharacter(SelectedCharacter)
+    'Debug.Print String(80, "=") & vbCrLf & "After:"
+    'Call DumpWiz01(Characters(SelectedCharacter))
+    
     'Write Data back to DataFile...
+    Call WriteWiz01(DataFile, Characters)
+    
     Call DisableFields
     Call picTabs_Click(1)
 End Sub
@@ -3342,6 +3269,90 @@ Private Sub lstPriestSpells_GotFocus()
 End Sub
 Private Sub lstPriestSpells_LostFocus()
     lstPriestSpells.ListIndex = -1
+End Sub
+Private Sub LoadCharacter(iCharacter As Integer)
+    Dim i As Integer
+    Dim j As Integer
+    Dim SpellNumber As Integer
+    Dim bString As String
+    Dim ctl As Control
+    
+    With Characters(iCharacter)
+        cboStatus.ListIndex = .Status
+        cboGender.ListIndex = -1
+        cboProfession.ListIndex = .Profession
+        cboRace.ListIndex = .Race
+        
+        txtSTR.Text = cvtStatisticToInt(.Statistics, 1)
+        txtINT.Text = cvtStatisticToInt(.Statistics, 2)
+        txtPIE.Text = cvtStatisticToInt(.Statistics, 3)
+        txtVIT.Text = cvtStatisticToInt(.Statistics, 4)
+        txtAGL.Text = cvtStatisticToInt(.Statistics, 5)
+        txtLCK.Text = cvtStatisticToInt(.Statistics, 6)
+        
+        txtLVL.Text = Format(.LVL.Maximum, "#,##0")
+        txtAge.Text = Format(.AgeInWeeks \ 52, "#,##0")
+        
+        txtHP.Text = Format(.HP.Maximum, "#,##0")
+        txtEXP.Text = Format(.EXP, "#,##0")
+        txtGP.Text = Format(.GP, "#,##0")
+    
+        'SpellBooks...
+        bString = cvtSpellsToBstr(.SpellBooks)
+        For i = 1 To Wiz01SpellMapMax
+'            If Mid(bString, i + 1, 1) = "1" Then
+'                Debug.Print "[X] " & GetSpell(i)
+'            Else
+'                Debug.Print "[ ] " & GetSpell(i)
+'            End If
+            If i <= 21 Then
+                If Mid(bString, i + 1, 1) = "1" Then
+                    lstMageSpells.Selected(i - 1) = True
+                Else
+                    lstMageSpells.Selected(i - 1) = False
+                End If
+            Else
+                If Mid(bString, i + 1, 1) = "1" Then
+                    lstPriestSpells.Selected(i - 1 - 21) = True
+                Else
+                    lstPriestSpells.Selected(i - 1 - 21) = False
+                End If
+            End If
+        Next i
+        
+        txtMage1.Text = .MageSpellPoints(1)
+        txtPriest1.Text = .PriestSpellPoints(1)
+        txtMage2.Text = .MageSpellPoints(2)
+        txtPriest2.Text = .PriestSpellPoints(2)
+        txtMage3.Text = .MageSpellPoints(3)
+        txtPriest3.Text = .PriestSpellPoints(3)
+        txtMage4.Text = .MageSpellPoints(4)
+        txtPriest4.Text = .PriestSpellPoints(4)
+        txtMage5.Text = .MageSpellPoints(5)
+        txtPriest5.Text = .PriestSpellPoints(5)
+        txtMage6.Text = .MageSpellPoints(6)
+        txtPriest6.Text = .PriestSpellPoints(6)
+        txtMage7.Text = .MageSpellPoints(7)
+        txtPriest7.Text = .PriestSpellPoints(7)
+        
+        For i = 1 To Wiz01ItemListMax
+            cboItem(i).ListIndex = .ItemList(i).ItemCode
+            If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
+            If .ItemList(i).Equipped = 1 Then
+                chkEquipped(i).Value = vbChecked
+            Else
+                'Assume an empty slot if the item's 0 and not equipped...
+                If .ItemList(i).ItemCode = 0 Then cboItem(i).ListIndex = -1
+                chkEquipped(i).Value = vbUnchecked
+            End If
+            If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
+        Next i
+        
+        sbStatus.Panels("Status").Text = .Name
+        sbStatus.Panels("Message").Text = "Level " & .LVL.Maximum & " " & cboProfession.List(cboProfession.ListIndex) & "..."
+        lstMageSpells.ListIndex = -1
+        lstPriestSpells.ListIndex = -1
+    End With
 End Sub
 Private Sub picFrames_GotFocus(Index As Integer)
     TextSelected
@@ -3740,5 +3751,69 @@ Private Sub udSTR_Change()
 End Sub
 Private Sub udVIT_Change()
     Call ValidateByte(txtVIT)
+End Sub
+Private Sub UnloadCharacter(iCharacter As Integer)
+    Dim i As Integer
+    Dim j As Integer
+    Dim SpellNumber As Integer
+    Dim bString As String
+    Dim ctl As Control
+    
+    With Characters(iCharacter)
+        .Status = cboStatus.ListIndex
+        .Profession = cboProfession.ListIndex
+        .Race = cboRace.ListIndex
+        
+        .Statistics = cvtStatisticsToLong(txtSTR.Text, txtINT.Text, txtPIE.Text, txtVIT.Text, txtAGL.Text, txtLCK.Text)
+        
+        .LVL.Maximum = CInt(txtLVL.Text)
+        .LVL.Current = .LVL.Maximum
+        .AgeInWeeks = CInt(txtAge.Text * 52)
+        .HP.Maximum = CInt(txtHP.Text)
+        .HP.Current = .HP.Maximum
+        .EXP = CLng(txtEXP.Text)
+        .GP = CLng(txtGP.Text)
+    
+        'SpellBooks...
+        bString = String(UBound(.SpellBooks) * 8, "0")
+        For i = 1 To Wiz01SpellMapMax
+            If i <= 21 Then
+                If lstMageSpells.Selected(i - 1) Then
+                    Mid(bString, i + 1, 1) = "1"
+                Else
+                    Mid(bString, i + 1, 1) = "0"
+                End If
+            Else
+                If lstPriestSpells.Selected(i - 1 - 21) Then
+                    Mid(bString, i + 1, 1) = "1"
+                Else
+                    Mid(bString, i + 1, 1) = "0"
+                End If
+            End If
+        Next i
+        Call cvtBstrToSpells(bString, .SpellBooks)
+        
+        .MageSpellPoints(1) = CInt(txtMage1.Text)
+        .MageSpellPoints(2) = CInt(txtMage2.Text)
+        .MageSpellPoints(3) = CInt(txtMage3.Text)
+        .MageSpellPoints(4) = CInt(txtMage4.Text)
+        .MageSpellPoints(5) = CInt(txtMage5.Text)
+        .MageSpellPoints(6) = CInt(txtMage6.Text)
+        .MageSpellPoints(7) = CInt(txtMage7.Text)
+        .PriestSpellPoints(1) = CInt(txtPriest1.Text)
+        .PriestSpellPoints(2) = CInt(txtPriest2.Text)
+        .PriestSpellPoints(3) = CInt(txtPriest3.Text)
+        .PriestSpellPoints(4) = CInt(txtPriest4.Text)
+        .PriestSpellPoints(5) = CInt(txtPriest5.Text)
+        .PriestSpellPoints(6) = CInt(txtPriest6.Text)
+        .PriestSpellPoints(7) = CInt(txtPriest7.Text)
+        
+        For i = 1 To Wiz01ItemListMax
+            .ItemList(i).ItemCode = cboItem(i).ListIndex
+            If chkIdentified(i).Value = vbChecked Then .ItemList(i).Identified = 1 Else .ItemList(i).Identified = 0
+            If chkEquipped(i).Value = vbChecked Then .ItemList(i).Equipped = 1 Else .ItemList(i).Equipped = 0
+            If chkCursed(i).Value = vbChecked Then .ItemList(i).Cursed = -1 Else .ItemList(i).Cursed = 0
+        Next i
+    End With
 End Sub
 

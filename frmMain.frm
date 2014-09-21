@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:01 AM"
+            TextSave        =   "7:33 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -480,10 +480,7 @@ Private Sub cmdBrowse_Click()
     If dPath <> vbNullString Then
         'If (GetAttr(dPath) And vbDirectory) <> vbDirectory Then dPath = Mid(dPath, 1, InStrRev(dPath, "\") - 1)
         dPath = ParsePath(txtFile.Text, DrvDirNoSlash)
-        Call SaveRegSetting("Environment", "UWAPath" & Scenario, dPath)
-        
         txtFile.Text = ParsePath(txtFile.Text, FileNameBaseExt)
-        Call SaveRegSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
         cmdOK.SetFocus
     End If
     
@@ -532,11 +529,7 @@ Private Sub cmdOK_Click()
             Exit Sub
         Else
             dPath = CurDir
-            Call SaveRegSetting("Environment", "UWAPath" & Scenario, dPath)
         End If
-    Else
-        'txtFile.Text = ParsePath(txtFile.Text, FileNameBaseExt)
-        Call SaveRegSetting("Environment", "Wiz" & Scenario & "DataFile", txtFile.Text)
     End If
     
     Select Case Scenario
