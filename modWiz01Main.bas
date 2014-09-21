@@ -69,6 +69,7 @@ Public Sub DumpWiz01(ByVal strFile As String)
     Dim errorCode As Long
     Dim xCharacters(1 To 20) As Wiz01Character
     Dim strTemp As String
+    Dim bString As String
     
     On Error GoTo ErrorHandler
     Unit = FreeFile
@@ -84,7 +85,9 @@ Public Sub DumpWiz01(ByVal strFile As String)
     Next i
     Close #Unit
     
-    For i = 7 To 7 '20
+    InitializeWiz01ItemList
+    InitializeWiz01Spells
+    For i = 1 To 20
         Debug.Print String(80, "=")
         Debug.Print "Character #" & i
         With xCharacters(i)
@@ -93,71 +96,73 @@ Public Sub DumpWiz01(ByVal strFile As String)
             .Name = Replace(.Name, Chr(0), " ")
             
             Debug.Print "Name:               " & vbTab & Left(.Name, .NameLength)
-            Debug.Print "Password:           " & vbTab & Left(.Password, .PasswordLength)
-
-            If .Out = 1 Then
-                Debug.Print "Out (Left in Maze): " & vbTab & "YES"
-            Else
-                Debug.Print "Out (Left in Maze): " & vbTab & "NO"
-            End If
-
-            Debug.Print "Race:               " & vbTab & strRace(.Race)
-            Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
-            Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
-            Debug.Print "Status:             " & vbTab & strStatus(.Status)
-            Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
-            Debug.Print "Level:              " & vbTab & strPoints(.LVL)
-            Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
-            Debug.Print "Gold Pieces:        " & vbTab & .GP & vbTab & "0x" & Hex(.GP)
-            Debug.Print "Experience Points:  " & vbTab & .EXP & vbTab & "0x" & Hex(.EXP)
-
-            Debug.Print vbCrLf & "Basic Statistics..."
-            Debug.Print "Strength:           " & vbTab & icvtStatistic(.Statistics, 1)
-            Debug.Print "Intellegence:       " & vbTab & icvtStatistic(.Statistics, 2)
-            Debug.Print "Piety:              " & vbTab & icvtStatistic(.Statistics, 3)
-            Debug.Print "Vitality:           " & vbTab & icvtStatistic(.Statistics, 4)
-            Debug.Print "Agility:            " & vbTab & icvtStatistic(.Statistics, 5)
-            Debug.Print "Luck:               " & vbTab & icvtStatistic(.Statistics, 6)
-
-            Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
-            For j = 1 To .ItemCount
-                Debug.Print strItem(.ItemList(j))
-            Next j
-
-            Debug.Print vbCrLf & "SpellBooks..."
-            For j = 1 To 8
-                For k = 1 To 8
-                    If ((j - 1) * 8) + k <= UBound(Spells) Then Debug.Print vbTab & strSpell(((j - 1) * 8) + k, .SpellBooks(j), k - 1)
-                Next k
-            Next j
-        
-            Debug.Print " "
-            strTemp = "Mage Spell Points:    " & vbTab
-            For j = 1 To 7
-                strTemp = strTemp & .MageSpellPoints(j) & "/"
-            Next j
-            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
-            Debug.Print strTemp
+'            Debug.Print "Password:           " & vbTab & Left(.Password, .PasswordLength)
+'
+'            If .Out = 1 Then
+'                Debug.Print "Out (Left in Maze): " & vbTab & "YES"
+'            Else
+'                Debug.Print "Out (Left in Maze): " & vbTab & "NO"
+'            End If
+'
+'            Debug.Print "Race:               " & vbTab & strRace(.Race)
+'            Debug.Print "Profession:         " & vbTab & strProfession(.Profession)
+'            Debug.Print "Age:                " & vbTab & .AgeInWeeks \ 52 & " (" & .AgeInWeeks & " weeks)"
+'            Debug.Print "Status:             " & vbTab & strStatus(.Status)
+'            Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
+'            Debug.Print "Level:              " & vbTab & strPoints(.LVL)
+'            Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
+'            Debug.Print "Gold Pieces:        " & vbTab & .GP
+'            Debug.Print "Experience Points:  " & vbTab & .EXP
+'
+'            Debug.Print vbCrLf & "Basic Statistics..."
+'            Debug.Print "Strength:           " & vbTab & icvtStatistic(.Statistics, 1)
+'            Debug.Print "Intellegence:       " & vbTab & icvtStatistic(.Statistics, 2)
+'            Debug.Print "Piety:              " & vbTab & icvtStatistic(.Statistics, 3)
+'            Debug.Print "Vitality:           " & vbTab & icvtStatistic(.Statistics, 4)
+'            Debug.Print "Agility:            " & vbTab & icvtStatistic(.Statistics, 5)
+'            Debug.Print "Luck:               " & vbTab & icvtStatistic(.Statistics, 6)
+'
+'            Debug.Print vbCrLf & "List of Items (Currently carrying " & .ItemCount & " items)..."
+'            For j = 1 To .ItemCount
+'                Debug.Print strItem(.ItemList(j))
+'            Next j
+'
+'            Debug.Print vbCrLf & "SpellBooks..."
+'            bString = icvtSpellsToBin(.SpellBooks)
+'            For j = 1 To Wiz01SpellMapMax
+'                If Mid(bString, j + 1, 1) = "1" Then
+'                    Debug.Print "[X] " & GetSpell(CInt(j))
+'                Else
+'                    Debug.Print "[ ] " & GetSpell(CInt(j))
+'                End If
+'            Next j
+'
+'            Debug.Print " "
+'            strTemp = "Mage Spell Points:    " & vbTab
+'            For j = 1 To 7
+'                strTemp = strTemp & .MageSpellPoints(j) & "/"
+'            Next j
+'            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+'            Debug.Print strTemp
+'
+'            strTemp = "Priest Spell Points:  " & vbTab
+'            For j = 1 To 7
+'                strTemp = strTemp & .PriestSpellPoints(j) & "/"
+'            Next j
+'            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+'            Debug.Print strTemp
             
-            strTemp = "Priest Spell Points:  " & vbTab
-            For j = 1 To 7
-                strTemp = strTemp & .PriestSpellPoints(j) & "/"
-            Next j
-            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
-            Debug.Print strTemp
-            
-            Debug.Print " "
             Debug.Print "Unknown Region #1 (4 bytes): "
-            Debug.Print strHex(.Unknown1, 4) & vbCrLf
+            Debug.Print strHex(.Unknown1, 4) '& vbCrLf
 
             Debug.Print "Unknown Region #2 (2 bytes): "
-            Debug.Print strHex(.Unknown2, 2) & vbCrLf
+            Debug.Print strHex(.Unknown2, 2) '& vbCrLf
 
             Debug.Print "Unknown Region #3 (2 bytes): "
-            Debug.Print strHex(.Unknown3, 2) & vbCrLf
+            Debug.Print strHex(.Unknown3, 2) '& vbCrLf
 
             Debug.Print "Unknown Region #4 (34 bytes): "
-            Debug.Print strHex(.Unknown4, 34) & vbCrLf
+            Debug.Print strHex(.Unknown4, 34) '& vbCrLf
         End With
 
 NextCharacter:
@@ -501,7 +506,7 @@ Private Function strStatus(ByVal x As Integer) As String
         Case 6
             strStatus = "Ashes"
         Case 7
-            strStatus = "Lost"
+            strStatus = "Lost/Deleted"
         Case Else
             strStatus = "Unknown"
     End Select
@@ -555,10 +560,20 @@ Private Function strRace(ByVal x As Byte) As String
     End Select
 End Function
 Private Function strItem(x As Wiz01Item) As String
-    strItem = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "
-    If x.Identified Then strItem = strItem & "; Identified"
-    If x.Equipped Then strItem = strItem & "; **EQUIPPED**"
-    If x.Cursed Then strItem = strItem & "; --CURSED--"
+'    strItem = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "
+'    If x.Identified Then strItem = strItem & "; Identified"
+'    If x.Equipped Then strItem = strItem & "; **EQUIPPED**"
+'    If x.Cursed Then strItem = strItem & "; --CURSED--"
+
+    strItem = vbTab
+    If x.Cursed Then
+        strItem = strItem & "-"
+    ElseIf x.Equipped Then
+        strItem = strItem & "*"
+    Else
+        strItem = strItem & " "
+    End If
+    strItem = strItem & ItemList(x.ItemCode)
 End Function
 Private Function strPoints(x As Wiz01Points) As String
     strPoints = x.Current & "/" & x.Maximum

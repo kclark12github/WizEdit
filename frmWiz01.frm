@@ -2931,7 +2931,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:36 PM"
+            TextSave        =   "11:57 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3076,7 +3076,13 @@ Private Sub cboCharacter_Click()
         For i = 1 To Wiz01ItemListMax
             cboItem(i).ListIndex = .ItemList(i).ItemCode
             If .ItemList(i).Identified = 1 Then chkIdentified(i).Value = vbChecked Else chkIdentified(i).Value = vbUnchecked
-            If .ItemList(i).Equipped = 1 Then chkEquipped(i).Value = vbChecked Else chkEquipped(i).Value = vbUnchecked
+            If .ItemList(i).Equipped = 1 Then
+                chkEquipped(i).Value = vbChecked
+            Else
+                'Assume an empty slot if the item's 0 and not equipped...
+                If .ItemList(i).ItemCode = 0 Then cboItem(i).ListIndex = -1
+                chkEquipped(i).Value = vbUnchecked
+            End If
             If .ItemList(i).Cursed = -1 Then chkCursed(i).Value = vbChecked Else chkCursed(i).Value = vbUnchecked
         Next i
         
