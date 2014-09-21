@@ -649,6 +649,64 @@ Public Sub PopulateRace(x As ComboBox)
         Next i
     End With
 End Sub
+Public Sub PopulateSkillsAcademia(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "Artifacts"
+        .AddItem "Mythology"
+        .AddItem "Mapping"
+        .AddItem "Scribe"
+        .AddItem "Diplomacy"
+        .AddItem "Alchemy"
+        .AddItem "Theology"
+        .AddItem "Theosophy"
+        .AddItem "Thaumaturgy"
+        .AddItem "Kirijutsu"
+    End With
+End Sub
+Public Sub PopulateSkillsPersonal(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "Firearms"
+        .AddItem "Reflextion"
+        .AddItem "Snake Speed"
+        .AddItem "Eagle Eye"
+        .AddItem "Power Strike"
+        .AddItem "Mind Control"
+    End With
+End Sub
+Public Sub PopulateSkillsPhysical(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "Swimming"
+        .AddItem "Climbing"
+        .AddItem "Scouting"
+        .AddItem "Music"
+        .AddItem "Oratory"
+        .AddItem "Legerdemain"
+        .AddItem "Skulduggery"
+        .AddItem "Ninjutsu"
+    End With
+End Sub
+Public Sub PopulateSkillsWeaponry(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "Wand & Dagger"
+        .AddItem "Sword"
+        .AddItem "Axe"
+        .AddItem "Mace & Flail"
+        .AddItem "Pole & Staff"
+        .AddItem "Throwing"
+        .AddItem "Sling"
+        .AddItem "Bows"
+        .AddItem "Shield"
+        .AddItem "Hands & Feet"
+    End With
+End Sub
 Public Sub ReadWiz07(ByVal strFile As String, xCharacters() As Character)
     Dim i As Long
     Dim j As Long

@@ -21,49 +21,29 @@ Begin VB.Form frmWiz07
       AutoSize        =   -1  'True
       BackColor       =   &H00000000&
       Height          =   420
-      Left            =   4272
+      Left            =   4260
       ScaleHeight     =   372
       ScaleWidth      =   1920
       TabIndex        =   92
       TabStop         =   0   'False
-      Top             =   4920
+      Top             =   5700
       Width           =   1968
    End
-   Begin VB.CommandButton cmdEdit 
+   Begin VB.PictureBox picFrames 
       Appearance      =   0  'Flat
-      BeginProperty Font 
-         Name            =   "Heidelberg"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   432
-      Left            =   9720
-      MaskColor       =   &H00FF00FF&
-      Picture         =   "frmWiz07.frx":1CCA
-      Style           =   1  'Graphical
-      TabIndex        =   28
-      Top             =   2460
-      UseMaskColor    =   -1  'True
-      Width           =   1212
-   End
-   Begin VB.PictureBox picPortrait 
       BackColor       =   &H00000000&
-      Height          =   2076
-      Left            =   9420
-      ScaleHeight     =   2028
-      ScaleWidth      =   1668
-      TabIndex        =   93
+      ForeColor       =   &H80000008&
+      Height          =   5112
+      Index           =   2
+      Left            =   120
+      ScaleHeight     =   5088
+      ScaleWidth      =   9108
+      TabIndex        =   103
       TabStop         =   0   'False
-      Top             =   120
-      Width           =   1716
-      Begin VB.Label lblPortrait 
-         AutoSize        =   -1  'True
-         BackColor       =   &H00000000&
-         Caption         =   "Character Portrait..."
+      Top             =   1020
+      Width           =   9132
+      Begin VB.TextBox txtSkillsAcademiaDesc 
+         BackColor       =   &H00808080&
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   7.8
@@ -73,64 +53,359 @@ Begin VB.Form frmWiz07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00FFFFFF&
-         Height          =   192
-         Left            =   60
-         TabIndex        =   94
-         Top             =   900
-         Width           =   1608
+         ForeColor       =   &H0000C0C0&
+         Height          =   552
+         Left            =   1380
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   126
+         TabStop         =   0   'False
+         Top             =   3960
+         Width           =   7272
       End
-   End
-   Begin VB.CommandButton cmdOK 
-      Appearance      =   0  'Flat
-      Height          =   432
-      Left            =   9720
-      MaskColor       =   &H00FF00FF&
-      Style           =   1  'Graphical
-      TabIndex        =   29
-      Top             =   2460
-      Width           =   1212
-   End
-   Begin VB.CommandButton cmdCancel 
-      Appearance      =   0  'Flat
-      Cancel          =   -1  'True
-      Height          =   432
-      Left            =   9720
-      MaskColor       =   &H00FF00FF&
-      Style           =   1  'Graphical
-      TabIndex        =   30
-      Top             =   2940
-      Width           =   1212
-   End
-   Begin VB.PictureBox picWiz07 
-      AutoSize        =   -1  'True
-      BackColor       =   &H00000000&
-      Height          =   2064
-      Left            =   9600
-      Picture         =   "frmWiz07.frx":3219
-      ScaleHeight     =   2016
-      ScaleWidth      =   1344
-      TabIndex        =   76
-      TabStop         =   0   'False
-      Top             =   3960
-      Width           =   1392
-   End
-   Begin VB.PictureBox picTabs 
-      BackColor       =   &H00000000&
-      Height          =   372
-      Index           =   1
-      Left            =   120
-      Picture         =   "frmWiz07.frx":3C64
-      ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   64
-      TabStop         =   0   'False
-      Top             =   660
-      Width           =   1152
-      Begin VB.Label lblStats 
+      Begin VB.TextBox txtSkillsPersonalDesc 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   7.8
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000C0C0&
+         Height          =   552
+         Left            =   1380
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   125
+         TabStop         =   0   'False
+         Top             =   2880
+         Width           =   7272
+      End
+      Begin VB.TextBox txtSkillsPhysicalDesc 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   7.8
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000C0C0&
+         Height          =   552
+         Left            =   1380
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   124
+         TabStop         =   0   'False
+         Top             =   1800
+         Width           =   7272
+      End
+      Begin VB.TextBox txtSkillsWeaponryDesc 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   7.8
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000C0C0&
+         Height          =   552
+         Left            =   1380
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   123
+         TabStop         =   0   'False
+         Top             =   720
+         Width           =   7272
+      End
+      Begin VB.ComboBox cboSkillsAcademia 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         ItemData        =   "frmWiz07.frx":1CCA
+         Left            =   1380
+         List            =   "frmWiz07.frx":1CCC
+         Style           =   2  'Dropdown List
+         TabIndex        =   118
+         ToolTipText     =   "Character's Academia Skills..."
+         Top             =   3552
+         Width           =   2712
+      End
+      Begin VB.TextBox txtSkillsAcademia 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4140
+         MaxLength       =   3
+         MultiLine       =   -1  'True
+         TabIndex        =   116
+         Text            =   "frmWiz07.frx":1CCE
+         ToolTipText     =   "Wand && Dagger..."
+         Top             =   3540
+         Width           =   576
+      End
+      Begin VB.ComboBox cboSkillsPersonal 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         ItemData        =   "frmWiz07.frx":1CD4
+         Left            =   1380
+         List            =   "frmWiz07.frx":1CD6
+         Style           =   2  'Dropdown List
+         TabIndex        =   115
+         ToolTipText     =   "Character's Personal Skills..."
+         Top             =   2472
+         Width           =   2712
+      End
+      Begin VB.TextBox txtSkillsPersonal 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4140
+         MaxLength       =   3
+         MultiLine       =   -1  'True
+         TabIndex        =   113
+         Text            =   "frmWiz07.frx":1CD8
+         ToolTipText     =   "Wand && Dagger..."
+         Top             =   2460
+         Width           =   576
+      End
+      Begin VB.ComboBox cboSkillsPhysical 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         ItemData        =   "frmWiz07.frx":1CDE
+         Left            =   1380
+         List            =   "frmWiz07.frx":1CE0
+         Style           =   2  'Dropdown List
+         TabIndex        =   112
+         ToolTipText     =   "Character's Physical Skills..."
+         Top             =   1392
+         Width           =   2712
+      End
+      Begin VB.TextBox txtSkillsPhysical 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4140
+         MaxLength       =   3
+         MultiLine       =   -1  'True
+         TabIndex        =   110
+         Text            =   "frmWiz07.frx":1CE2
+         ToolTipText     =   "Wand && Dagger..."
+         Top             =   1380
+         Width           =   576
+      End
+      Begin VB.ComboBox cboSkillsWeaponry 
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   336
+         ItemData        =   "frmWiz07.frx":1CE8
+         Left            =   1380
+         List            =   "frmWiz07.frx":1CEA
+         Style           =   2  'Dropdown List
+         TabIndex        =   109
+         ToolTipText     =   "Character's Weaponry Skills..."
+         Top             =   336
+         Width           =   2712
+      End
+      Begin VB.TextBox txtSkillsWeaponry 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00808080&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.6
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   360
+         Left            =   4140
+         MaxLength       =   3
+         MultiLine       =   -1  'True
+         TabIndex        =   107
+         Text            =   "frmWiz07.frx":1CEC
+         ToolTipText     =   "Wand && Dagger..."
+         Top             =   324
+         Width           =   576
+      End
+      Begin MSComCtl2.UpDown udSkillsWeaponry 
+         Height          =   360
+         Left            =   4680
+         TabIndex        =   119
+         TabStop         =   0   'False
+         Top             =   324
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtSkillsWeaponry"
+         BuddyDispid     =   196710
+         OrigLeft        =   5340
+         OrigTop         =   324
+         OrigRight       =   5580
+         OrigBottom      =   684
+         Max             =   99
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown udSkillsPhysical 
+         Height          =   360
+         Left            =   4680
+         TabIndex        =   120
+         TabStop         =   0   'False
+         Top             =   1380
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtSkillsPhysical"
+         BuddyDispid     =   196713
+         OrigLeft        =   5340
+         OrigTop         =   324
+         OrigRight       =   5580
+         OrigBottom      =   684
+         Max             =   99
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown usSkillsPersonal 
+         Height          =   360
+         Left            =   4680
+         TabIndex        =   121
+         TabStop         =   0   'False
+         Top             =   2460
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtSkillsPersonal"
+         BuddyDispid     =   196718
+         OrigLeft        =   5340
+         OrigTop         =   324
+         OrigRight       =   5580
+         OrigBottom      =   684
+         Max             =   99
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin MSComCtl2.UpDown usSkillsAcademia 
+         Height          =   360
+         Left            =   4680
+         TabIndex        =   122
+         TabStop         =   0   'False
+         Top             =   3540
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   635
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtSkillsAcademia"
+         BuddyDispid     =   196722
+         OrigLeft        =   5340
+         OrigTop         =   324
+         OrigRight       =   5580
+         OrigBottom      =   684
+         Max             =   99
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   0
+         Enabled         =   -1  'True
+      End
+      Begin VB.Label lblSkillsAcademia 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Statistics:"
+         Caption         =   "Academia:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -142,28 +417,15 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   0
-         TabIndex        =   65
-         Top             =   0
+         Left            =   216
+         TabIndex        =   117
+         Top             =   3576
          Width           =   1032
       End
-   End
-   Begin VB.PictureBox picTabs 
-      BackColor       =   &H00000000&
-      Height          =   372
-      Index           =   2
-      Left            =   1272
-      Picture         =   "frmWiz07.frx":1D486
-      ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   95
-      TabStop         =   0   'False
-      Top             =   660
-      Width           =   1152
-      Begin VB.Label lblSkills 
+      Begin VB.Label lblSkillsPersonal 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Skills:"
+         Caption         =   "Personal:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -175,28 +437,15 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   96
-         Top             =   0
-         Width           =   1032
+         Left            =   252
+         TabIndex        =   114
+         Top             =   2496
+         Width           =   996
       End
-   End
-   Begin VB.PictureBox picTabs 
-      BackColor       =   &H00000000&
-      Height          =   372
-      Index           =   3
-      Left            =   2424
-      Picture         =   "frmWiz07.frx":36CA8
-      ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   97
-      TabStop         =   0   'False
-      Top             =   660
-      Width           =   1152
-      Begin VB.Label lblItems 
+      Begin VB.Label lblSkillsPhysical 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Items:"
+         Caption         =   "Physical:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -208,28 +457,15 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   60
-         TabIndex        =   98
-         Top             =   0
-         Width           =   1032
+         Left            =   300
+         TabIndex        =   111
+         Top             =   1416
+         Width           =   948
       End
-   End
-   Begin VB.PictureBox picTabs 
-      BackColor       =   &H00000000&
-      Height          =   372
-      Index           =   4
-      Left            =   3576
-      Picture         =   "frmWiz07.frx":504CA
-      ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   99
-      TabStop         =   0   'False
-      Top             =   660
-      Width           =   1152
-      Begin VB.Label lblSwagBag 
+      Begin VB.Label lblSkillsWeaponry 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Swag Bag:"
+         Caption         =   "Weaponry:"
          BeginProperty Font 
             Name            =   "Heidelberg"
             Size            =   12
@@ -241,43 +477,10 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   288
-         Left            =   0
-         TabIndex        =   100
-         Top             =   0
-         Width           =   1032
-      End
-   End
-   Begin VB.PictureBox picTabs 
-      BackColor       =   &H00000000&
-      Height          =   372
-      Index           =   5
-      Left            =   4728
-      Picture         =   "frmWiz07.frx":69CEC
-      ScaleHeight     =   324
-      ScaleWidth      =   1104
-      TabIndex        =   101
-      TabStop         =   0   'False
-      Top             =   660
-      Width           =   1152
-      Begin VB.Label lblSpells 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Spells:"
-         BeginProperty Font 
-            Name            =   "Heidelberg"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H0000FFFF&
-         Height          =   288
-         Left            =   60
-         TabIndex        =   102
-         Top             =   0
-         Width           =   1032
+         Left            =   120
+         TabIndex        =   108
+         Top             =   360
+         Width           =   1128
       End
    End
    Begin VB.PictureBox picFrames 
@@ -311,7 +514,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   27
-         Text            =   "frmWiz07.frx":8350E
+         Text            =   "frmWiz07.frx":1CF2
          ToolTipText     =   "Divine Spell Points (automatically ""topped-off"")..."
          Top             =   3780
          Width           =   996
@@ -334,7 +537,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   26
-         Text            =   "frmWiz07.frx":83511
+         Text            =   "frmWiz07.frx":1CF5
          ToolTipText     =   "Mental Spell Points (automatically ""topped-off"")..."
          Top             =   3360
          Width           =   996
@@ -357,7 +560,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   25
-         Text            =   "frmWiz07.frx":83514
+         Text            =   "frmWiz07.frx":1CF8
          ToolTipText     =   "Earth Spell Points (automatically ""topped-off"")..."
          Top             =   2940
          Width           =   996
@@ -380,7 +583,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   24
-         Text            =   "frmWiz07.frx":83517
+         Text            =   "frmWiz07.frx":1CFB
          ToolTipText     =   "Air Spell Points (automatically ""topped-off"")..."
          Top             =   2520
          Width           =   996
@@ -403,7 +606,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   23
-         Text            =   "frmWiz07.frx":8351A
+         Text            =   "frmWiz07.frx":1CFE
          ToolTipText     =   "Water Spell Points (automatically ""topped-off"")..."
          Top             =   2100
          Width           =   996
@@ -426,7 +629,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   22
-         Text            =   "frmWiz07.frx":8351D
+         Text            =   "frmWiz07.frx":1D01
          ToolTipText     =   "Fire Spell Points (automatically ""topped-off"")..."
          Top             =   1680
          Width           =   996
@@ -449,7 +652,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   6
-         Text            =   "frmWiz07.frx":83520
+         Text            =   "frmWiz07.frx":1D04
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   840
          Width           =   996
@@ -472,7 +675,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   5
-         Text            =   "frmWiz07.frx":83523
+         Text            =   "frmWiz07.frx":1D07
          ToolTipText     =   "Lives..."
          Top             =   420
          Width           =   996
@@ -495,7 +698,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   4
-         Text            =   "frmWiz07.frx":83526
+         Text            =   "frmWiz07.frx":1D0A
          ToolTipText     =   "Level..."
          Top             =   0
          Width           =   996
@@ -518,7 +721,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   13
          MultiLine       =   -1  'True
          TabIndex        =   9
-         Text            =   "frmWiz07.frx":83529
+         Text            =   "frmWiz07.frx":1D0D
          ToolTipText     =   "Gold Pieces..."
          Top             =   840
          Width           =   1476
@@ -541,7 +744,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   13
          MultiLine       =   -1  'True
          TabIndex        =   8
-         Text            =   "frmWiz07.frx":8352C
+         Text            =   "frmWiz07.frx":1D10
          ToolTipText     =   "Monster Kills..."
          Top             =   420
          Width           =   1476
@@ -564,7 +767,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   13
          MultiLine       =   -1  'True
          TabIndex        =   7
-         Text            =   "frmWiz07.frx":8352F
+         Text            =   "frmWiz07.frx":1D13
          ToolTipText     =   "Experience Points..."
          Top             =   0
          Width           =   1476
@@ -587,7 +790,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   20
-         Text            =   "frmWiz07.frx":83532
+         Text            =   "frmWiz07.frx":1D16
          ToolTipText     =   "Carrying Capacity (automatically ""topped-off"")..."
          Top             =   2520
          Width           =   996
@@ -610,7 +813,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   19
-         Text            =   "frmWiz07.frx":83535
+         Text            =   "frmWiz07.frx":1D19
          ToolTipText     =   "Stamina (automatically ""topped-off"")..."
          Top             =   2100
          Width           =   996
@@ -633,7 +836,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   6
          MultiLine       =   -1  'True
          TabIndex        =   18
-         Text            =   "frmWiz07.frx":83538
+         Text            =   "frmWiz07.frx":1D1C
          ToolTipText     =   "Hit Points (automatically ""topped-off"")..."
          Top             =   1680
          Width           =   996
@@ -691,9 +894,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":8353B
+         ItemData        =   "frmWiz07.frx":1D1F
          Left            =   1440
-         List            =   "frmWiz07.frx":83542
+         List            =   "frmWiz07.frx":1D26
          Style           =   2  'Dropdown List
          TabIndex        =   1
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
@@ -712,7 +915,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196640
+         BuddyDispid     =   196641
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -741,7 +944,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   12
-         Text            =   "frmWiz07.frx":8354D
+         Text            =   "frmWiz07.frx":1D31
          ToolTipText     =   "Piety..."
          Top             =   2520
          Width           =   396
@@ -764,7 +967,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   17
-         Text            =   "frmWiz07.frx":83550
+         Text            =   "frmWiz07.frx":1D34
          ToolTipText     =   "Karma..."
          Top             =   4620
          Width           =   396
@@ -787,7 +990,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   16
-         Text            =   "frmWiz07.frx":83553
+         Text            =   "frmWiz07.frx":1D37
          ToolTipText     =   "Personality..."
          Top             =   4200
          Width           =   396
@@ -810,7 +1013,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   15
-         Text            =   "frmWiz07.frx":83556
+         Text            =   "frmWiz07.frx":1D3A
          ToolTipText     =   "Speed..."
          Top             =   3780
          Width           =   396
@@ -833,7 +1036,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   14
-         Text            =   "frmWiz07.frx":83559
+         Text            =   "frmWiz07.frx":1D3D
          ToolTipText     =   "Dexterity..."
          Top             =   3360
          Width           =   396
@@ -856,7 +1059,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   13
-         Text            =   "frmWiz07.frx":8355C
+         Text            =   "frmWiz07.frx":1D40
          ToolTipText     =   "Vitality..."
          Top             =   2940
          Width           =   396
@@ -879,7 +1082,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   11
-         Text            =   "frmWiz07.frx":8355F
+         Text            =   "frmWiz07.frx":1D43
          ToolTipText     =   "Intelligence..."
          Top             =   2100
          Width           =   396
@@ -897,9 +1100,9 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":83562
+         ItemData        =   "frmWiz07.frx":1D46
          Left            =   1440
-         List            =   "frmWiz07.frx":8356C
+         List            =   "frmWiz07.frx":1D50
          Style           =   2  'Dropdown List
          TabIndex        =   2
          ToolTipText     =   "Character's Gender (Male/Female)..."
@@ -924,7 +1127,7 @@ Begin VB.Form frmWiz07
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   10
-         Text            =   "frmWiz07.frx":8357E
+         Text            =   "frmWiz07.frx":1D62
          ToolTipText     =   "Strength..."
          Top             =   1680
          Width           =   396
@@ -941,7 +1144,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196648
+         BuddyDispid     =   196649
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -964,7 +1167,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196646
+         BuddyDispid     =   196647
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -987,7 +1190,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196645
+         BuddyDispid     =   196646
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1008,7 +1211,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDEX"
-         BuddyDispid     =   196644
+         BuddyDispid     =   196645
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1029,7 +1232,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSPD"
-         BuddyDispid     =   196643
+         BuddyDispid     =   196644
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1050,7 +1253,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPER"
-         BuddyDispid     =   196642
+         BuddyDispid     =   196643
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1071,7 +1274,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtKAR"
-         BuddyDispid     =   196641
+         BuddyDispid     =   196642
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -1092,7 +1295,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196636
+         BuddyDispid     =   196637
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1115,7 +1318,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTM"
-         BuddyDispid     =   196635
+         BuddyDispid     =   196636
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1138,7 +1341,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtCC"
-         BuddyDispid     =   196634
+         BuddyDispid     =   196635
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1161,7 +1364,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEXP"
-         BuddyDispid     =   196633
+         BuddyDispid     =   196634
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1184,7 +1387,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMKS"
-         BuddyDispid     =   196632
+         BuddyDispid     =   196633
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1207,7 +1410,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtGP"
-         BuddyDispid     =   196631
+         BuddyDispid     =   196632
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1230,7 +1433,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196630
+         BuddyDispid     =   196631
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1253,7 +1456,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLives"
-         BuddyDispid     =   196629
+         BuddyDispid     =   196630
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1276,7 +1479,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196628
+         BuddyDispid     =   196629
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1299,7 +1502,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtFireSP"
-         BuddyDispid     =   196627
+         BuddyDispid     =   196628
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1322,7 +1525,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtWaterSP"
-         BuddyDispid     =   196626
+         BuddyDispid     =   196627
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1345,7 +1548,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAirSP"
-         BuddyDispid     =   196625
+         BuddyDispid     =   196626
          OrigLeft        =   8460
          OrigTop         =   2940
          OrigRight       =   8700
@@ -1366,7 +1569,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEarthSP"
-         BuddyDispid     =   196624
+         BuddyDispid     =   196625
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1389,7 +1592,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMentalSP"
-         BuddyDispid     =   196623
+         BuddyDispid     =   196624
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1412,7 +1615,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDivineSP"
-         BuddyDispid     =   196622
+         BuddyDispid     =   196623
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -2024,19 +2227,256 @@ Begin VB.Form frmWiz07
          Width           =   576
       End
    End
-   Begin VB.PictureBox picFrames 
+   Begin VB.CommandButton cmdEdit 
       Appearance      =   0  'Flat
+      BeginProperty Font 
+         Name            =   "Heidelberg"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Picture         =   "frmWiz07.frx":1D65
+      Style           =   1  'Graphical
+      TabIndex        =   28
+      Top             =   2460
+      UseMaskColor    =   -1  'True
+      Width           =   1212
+   End
+   Begin VB.PictureBox picPortrait 
       BackColor       =   &H00000000&
-      ForeColor       =   &H80000008&
-      Height          =   5112
-      Index           =   2
-      Left            =   120
-      ScaleHeight     =   5088
-      ScaleWidth      =   9108
-      TabIndex        =   103
+      Height          =   2076
+      Left            =   9420
+      ScaleHeight     =   2028
+      ScaleWidth      =   1668
+      TabIndex        =   93
       TabStop         =   0   'False
-      Top             =   1020
-      Width           =   9132
+      Top             =   120
+      Width           =   1716
+      Begin VB.Label lblPortrait 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00000000&
+         Caption         =   "Character Portrait..."
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   7.8
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   192
+         Left            =   60
+         TabIndex        =   94
+         Top             =   900
+         Width           =   1608
+      End
+   End
+   Begin VB.CommandButton cmdOK 
+      Appearance      =   0  'Flat
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Style           =   1  'Graphical
+      TabIndex        =   29
+      Top             =   2460
+      Width           =   1212
+   End
+   Begin VB.CommandButton cmdCancel 
+      Appearance      =   0  'Flat
+      Cancel          =   -1  'True
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Style           =   1  'Graphical
+      TabIndex        =   30
+      Top             =   2940
+      Width           =   1212
+   End
+   Begin VB.PictureBox picWiz07 
+      AutoSize        =   -1  'True
+      BackColor       =   &H00000000&
+      Height          =   2064
+      Left            =   9600
+      Picture         =   "frmWiz07.frx":32B4
+      ScaleHeight     =   2016
+      ScaleWidth      =   1344
+      TabIndex        =   76
+      TabStop         =   0   'False
+      Top             =   3960
+      Width           =   1392
+   End
+   Begin VB.PictureBox picTabs 
+      BackColor       =   &H00000000&
+      Height          =   372
+      Index           =   1
+      Left            =   120
+      Picture         =   "frmWiz07.frx":3CFF
+      ScaleHeight     =   324
+      ScaleWidth      =   1104
+      TabIndex        =   64
+      TabStop         =   0   'False
+      Top             =   660
+      Width           =   1152
+      Begin VB.Label lblStats 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Statistics:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   0
+         TabIndex        =   65
+         Top             =   0
+         Width           =   1032
+      End
+   End
+   Begin VB.PictureBox picTabs 
+      BackColor       =   &H00000000&
+      Height          =   372
+      Index           =   2
+      Left            =   1272
+      Picture         =   "frmWiz07.frx":1D521
+      ScaleHeight     =   324
+      ScaleWidth      =   1104
+      TabIndex        =   95
+      TabStop         =   0   'False
+      Top             =   660
+      Width           =   1152
+      Begin VB.Label lblSkills 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Skills:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   60
+         TabIndex        =   96
+         Top             =   0
+         Width           =   1032
+      End
+   End
+   Begin VB.PictureBox picTabs 
+      BackColor       =   &H00000000&
+      Height          =   372
+      Index           =   3
+      Left            =   2424
+      Picture         =   "frmWiz07.frx":36D43
+      ScaleHeight     =   324
+      ScaleWidth      =   1104
+      TabIndex        =   97
+      TabStop         =   0   'False
+      Top             =   660
+      Width           =   1152
+      Begin VB.Label lblItems 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Items:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   60
+         TabIndex        =   98
+         Top             =   0
+         Width           =   1032
+      End
+   End
+   Begin VB.PictureBox picTabs 
+      BackColor       =   &H00000000&
+      Height          =   372
+      Index           =   4
+      Left            =   3576
+      Picture         =   "frmWiz07.frx":50565
+      ScaleHeight     =   324
+      ScaleWidth      =   1104
+      TabIndex        =   99
+      TabStop         =   0   'False
+      Top             =   660
+      Width           =   1152
+      Begin VB.Label lblSwagBag 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Swag Bag:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   0
+         TabIndex        =   100
+         Top             =   0
+         Width           =   1032
+      End
+   End
+   Begin VB.PictureBox picTabs 
+      BackColor       =   &H00000000&
+      Height          =   372
+      Index           =   5
+      Left            =   4728
+      Picture         =   "frmWiz07.frx":69D87
+      ScaleHeight     =   324
+      ScaleWidth      =   1104
+      TabIndex        =   101
+      TabStop         =   0   'False
+      Top             =   660
+      Width           =   1152
+      Begin VB.Label lblSpells 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Spells:"
+         BeginProperty Font 
+            Name            =   "Heidelberg"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000FFFF&
+         Height          =   288
+         Left            =   60
+         TabIndex        =   102
+         Top             =   0
+         Width           =   1032
+      End
    End
    Begin VB.PictureBox picFrames 
       Appearance      =   0  'Flat
@@ -2104,7 +2544,7 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2076
       Left            =   9420
-      Picture         =   "frmWiz07.frx":83581
+      Picture         =   "frmWiz07.frx":835A9
       ScaleHeight     =   2028
       ScaleWidth      =   1668
       TabIndex        =   32
@@ -2125,12 +2565,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":84454
+            Picture         =   "frmWiz07.frx":8447C
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":86130
+            Picture         =   "frmWiz07.frx":86158
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -2149,12 +2589,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":8644C
+            Picture         =   "frmWiz07.frx":86474
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":88128
+            Picture         =   "frmWiz07.frx":88150
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -2215,7 +2655,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "4:57 PM"
+            TextSave        =   "6:54 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -2279,6 +2719,7 @@ Const EnabledColor = &HFFFF&
 Const DisabledColor = &HC0C0&
 Public DataFile As String
 Private SaveMessage As String
+Private SelectedCharacter As Integer
 Private Characters(1 To 6) As Character
 Private Sub cboCharacter_Click()
     sbStatus.Panels("Message").Text = vbNullString
@@ -2290,7 +2731,8 @@ Private Sub cboCharacter_Click()
         Exit Sub
     End If
     cmdEdit.Visible = True
-    With Characters(cboCharacter.ListIndex + 1)
+    SelectedCharacter = cboCharacter.ListIndex + 1
+    With Characters(SelectedCharacter)
         cboCondition.ListIndex = .ConditionCode
         cboGender.ListIndex = .Gender
         cboProfession.ListIndex = .Profession
@@ -2333,61 +2775,12 @@ Private Sub cboCharacter_Click()
 '                Debug.Print strItem(.SwagBag(i))
 '            Next i
 '
-'            Debug.Print vbCrLf & "Unknown Region #2 (64 bytes):"
-'            Debug.Print strHex(.Unknown2, 64) & vbCrLf
-'
-'            Debug.Print vbCrLf & "Weaponry Skills..."
-'            Debug.Print "Wand:              " & vbTab & .Wand
-'            Debug.Print "Sword:             " & vbTab & .Sword
-'            Debug.Print "Axe:               " & vbTab & .Axe
-'            Debug.Print "Mace:              " & vbTab & .Mace
-'            Debug.Print "Pole:              " & vbTab & .Pole
-'            Debug.Print "Throwing:          " & vbTab & .Throwing
-'            Debug.Print "Sling:             " & vbTab & .Sling
-'            Debug.Print "Bow:               " & vbTab & .Bow
-'            Debug.Print "Shield:            " & vbTab & .Shield
-'            Debug.Print "HandToHand:        " & vbTab & .HandToHand
-'
-'            Debug.Print vbCrLf & "Physical Skills..."
-'            Debug.Print "Swimming:          " & vbTab & .Swimming
-'            Debug.Print "Climbing:          " & vbTab & .Climbing
-'            Debug.Print "Scouting:          " & vbTab & .Scouting
-'            Debug.Print "Music:             " & vbTab & .Music
-'            Debug.Print "Oratory:           " & vbTab & .Oratory
-'            Debug.Print "Legerdemain:       " & vbTab & .Legerdemain
-'            Debug.Print "Skulduggery:       " & vbTab & .Skulduggery
-'            Debug.Print "Ninjutsu:          " & vbTab & .Ninjutsu
-'
-'            Debug.Print vbCrLf & "Personal Skills..."
-'            Debug.Print "Firearms:          " & vbTab & .Firearms
-'            Debug.Print "Reflextion:        " & vbTab & .Reflextion
-'            Debug.Print "SnakeSpeed:        " & vbTab & .SnakeSpeed
-'            Debug.Print "EagleEye:          " & vbTab & .EagleEye
-'            Debug.Print "PowerStrike:       " & vbTab & .PowerStrike
-'            Debug.Print "MindControl:       " & vbTab & .MindControl
-'
-'            Debug.Print vbCrLf & "Academia Skills..."
-'            Debug.Print "Artifacts:         " & vbTab & .Artifacts
-'            Debug.Print "Mythology:         " & vbTab & .Mythology
-'            Debug.Print "Mapping:           " & vbTab & .Mapping
-'            Debug.Print "Scribe:            " & vbTab & .Scribe
-'            Debug.Print "Diplomacy:         " & vbTab & .Diplomacy
-'            Debug.Print "Alchemy:           " & vbTab & .Alchemy
-'            Debug.Print "Theology:          " & vbTab & .Theology
-'            Debug.Print "Theosophy:         " & vbTab & .Theosophy
-'            Debug.Print "Thaumaturgy:       " & vbTab & .Thaumaturgy
-'            Debug.Print "Kirijutsu:         " & vbTab & .Kirijutsu
-'
-'            Debug.Print vbCrLf & "Unknown Region #3a (28 bytes):"
-'            Debug.Print strHex(.Unknown3a, 28) & vbCrLf
-'
+        cboSkillsAcademia.ListIndex = 0
+        cboSkillsPersonal.ListIndex = 0
+        cboSkillsPhysical.ListIndex = 0
+        cboSkillsWeaponry.ListIndex = 0
+
 '            Debug.Print "'Natural' Armor Class:" & vbTab & .NaturalArmorClass
-'
-'            Debug.Print vbCrLf & "Unknown Region #3b (7 bytes):"
-'            Debug.Print strHex(.Unknown3b, 7) & vbCrLf
-'
-'            Debug.Print vbCrLf & "Aptitute (96 bytes):"
-'            Debug.Print strHex(.Aptitude, 96) & vbCrLf   'Aptitude - I don't remember how I determined this...
 '
 '            Debug.Print vbCrLf & "SpellBooks..."
 '            For j = 1 To 12
@@ -2396,37 +2789,193 @@ Private Sub cboCharacter_Click()
 '                Next i
 '            Next j
 '
-'            Debug.Print vbCrLf & "Unknown Region #4 (12 bytes):"
-'            Debug.Print strHex(.Unknown4, 12) & vbCrLf
-'
 '            Debug.Print "PictureCode:       " & vbTab & .PictureCode
-'            Debug.Print "Race:              " & vbTab & strRace(.Race)
-'            Debug.Print "Gender:            " & vbTab & strGender(.Gender)
-'            Debug.Print "Profession:        " & vbTab & strProfession(.Profession)
-'            Debug.Print "?Alive?:           " & vbTab & .Alive
-'            Debug.Print "ConditionCode:     " & vbTab & strCondition(.ConditionCode)
-'
-'            Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"
-'            Debug.Print strHex(.Unknown5, 12) & vbCrLf
-'
-'            Debug.Print "Unknown Recap:"
-'            Debug.Print "Unknown Region #1 (4 bytes): "
-'            Debug.Print strHex(.Unknown1, 4) & vbCrLf
-'            Debug.Print vbCrLf & "Unknown Region #2 (64 bytes):"
-'            Debug.Print strHex(.Unknown2, 64) & vbCrLf
-'            Debug.Print vbCrLf & "Unknown Region #3a (28 bytes):"
-'            Debug.Print strHex(.Unknown3a, 28) & vbCrLf
-'            Debug.Print vbCrLf & "Unknown Region #3b (7 bytes):"
-'            Debug.Print strHex(.Unknown3b, 7) & vbCrLf
-'            Debug.Print vbCrLf & "Unknown Region #4 (12 bytes):"
-'            Debug.Print strHex(.Unknown4, 12) & vbCrLf
-'            Debug.Print vbCrLf & "Unknown Region #5 (12 bytes):"
-'            Debug.Print strHex(.Unknown5, 12) & vbCrLf
-'            Debug.Print vbCrLf & "Aptitute (96 bytes):"
-'            Debug.Print strHex(.Aptitude, 96) & vbCrLf   'Aptitude - I don't remember how I determined this...
+        
         sbStatus.Panels("Status").Text = .Name
         sbStatus.Panels("Message").Text = "Level " & .Level & " " & cboProfession.List(cboProfession.ListIndex) & "..."
     End With
+End Sub
+Private Sub cboSkillsAcademia_Click()
+    With Characters(SelectedCharacter)
+        Select Case cboSkillsAcademia.ListIndex
+            Case 0
+                txtSkillsAcademia.Text = .Artifacts
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The ability to effectively use and invoke magical items depends on this skill. " & _
+                    "Without a developed Artifact skill, there's a chance the item's power will fizzle or backfire. " & _
+                    "This skill also affects a character's ability to successfully assay an item to determine its intricacies."
+            Case 1
+                txtSkillsAcademia.Text = .Mythology
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The ability to recognize, while in combat, the true identities of monsters."
+            Case 2
+                txtSkillsAcademia.Text = .Mapping
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The ability to transcribe an accurate record of the party's adventure. " & _
+                    "The higher ths skill, the more detail (doors, stairs, trees, gates, etc.) included. " & _
+                    "This skill requires a mapping kit to be effective."
+            Case 3
+                txtSkillsAcademia.Text = .Scribe
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The ability to successfully invoke the magical power of a scroll during combat."
+            Case 4
+                txtSkillsAcademia.Text = .Diplomacy
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The art of negotiation and creation of mutual pacts and trust between the party and another group. " & _
+                    "Allows the negotiator to truce well and form alliances with NPCs."
+            Case 5
+                txtSkillsAcademia.Text = .Alchemy
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The art of learning, practicing, and exercising Alchemist spells."
+            Case 6
+                txtSkillsAcademia.Text = .Theology
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The pursuit of the divine interests leading to the study of Priest spells."
+            Case 7
+                txtSkillsAcademia.Text = .Theosophy
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The possession of mental and spiritual insight that allows its possessor to study Psionic spells."
+            Case 8
+                txtSkillsAcademia.Text = .Thaumaturgy
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The path of study followed by the Mage and those who follow him to learn Mage spells."
+            Case 9
+                txtSkillsAcademia.Text = .Kirijutsu
+                txtSkillsAcademia.ToolTipText = cboSkillsAcademia.Text & _
+                    ": The deadly skill and knowledge of the body which allows its possessor to strike a vital blow or critical area, hopefully killing an opponent with a single blow."
+            Case Else
+        End Select
+    End With
+    txtSkillsAcademiaDesc.Text = txtSkillsAcademia.ToolTipText
+End Sub
+Private Sub cboSkillsPersonal_Click()
+    With Characters(SelectedCharacter)
+        Select Case cboSkillsPersonal.ListIndex
+            Case 0
+                txtSkillsPersonal.Text = .Firearms
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": The use of small firearms like muskets. " & _
+                    "This skill determines your character's ability to load and accurately fire such a weapon."
+            Case 1
+                txtSkillsPersonal.Text = .Reflextion
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": The ability to take small jumps so quickly - faster than the eye - that a double image is created. " & _
+                    "This skill's most effective use is in a character's ability to avoid an attack. " & _
+                    "The ""After Image"" is usually the target."
+            Case 2
+                txtSkillsPersonal.Text = .SnakeSpeed
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": Allows characters to move with lightning reflexes, increasing speed in all aspects where it is a factor."
+            Case 3
+                txtSkillsPersonal.Text = .EagleEye
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": The ability to target a creature with a weapon or spell and strike with an amazing degree of accuracy."
+            Case 4
+                txtSkillsPersonal.Text = .PowerStrike
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": An ability to strike a blow that does maximum damage - and sometimes yields more than that!"
+            Case 5
+                txtSkillsPersonal.Text = .MindControl
+                txtSkillsPersonal.ToolTipText = cboSkillsPersonal.Text & _
+                    ": Those adept in this skill can master control of their own minds. " & _
+                    "This extra willpower helps them fend off sleep or Psionic spells and to retain control of their own mind."
+            Case Else
+        End Select
+    End With
+    txtSkillsPersonalDesc.Text = txtSkillsPersonal.ToolTipText
+End Sub
+Private Sub cboSkillsPhysical_Click()
+    With Characters(SelectedCharacter)
+        Select Case cboSkillsPhysical.ListIndex
+            Case 0
+                txtSkillsPhysical.Text = .Swimming
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": A measurement of your character's ability to swim across deep water. " & _
+                    "Characters with fewer than 10 skill points may drown from entering deep water."
+            Case 1
+                txtSkillsPhysical.Text = .Climbing
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The knack of taking falls, climbing into pits, and scaling the sides of walls without taking damage."
+            Case 2
+                txtSkillsPhysical.Text = .Scouting
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The Knack of seeing and finding things such as secret doors, hidden entrances or buried items others seem to pass by. " & _
+                    "You must add points manually to ""Scout"" to increase your character's proficiency."
+            Case 3
+                txtSkillsPhysical.Text = .Music
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The art of playing enchanted musical instruments and bringing forth from them different magical spells."
+            Case 4
+                txtSkillsPhysical.Text = .Oratory
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The vocal discipline required to properly recite a magical spell in combat. " & _
+                    "Without good oratory, spells meant for monsters may fizzle or backfire on the party."
+            Case 5
+                txtSkillsPhysical.Text = .Legerdemain
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The ability to pickpocket (steal) items or gold from NPCs without their knowledge or permission."
+            Case 6
+                txtSkillsPhysical.Text = .Skulduggery
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": The delicate skill of inspecting and disarming traps on chects and picking locks on doors."
+            Case 7
+                txtSkillsPhysical.Text = .Ninjutsu
+                txtSkillsPhysical.ToolTipText = cboSkillsPhysical.Text & _
+                    ": THe legendary art that allows characters to hide themselves from their opponents." & _
+                    " For the Ninja and Monk, proficiency in Ninjitsu helps to lower their armor class rating."
+            Case Else
+        End Select
+    End With
+    txtSkillsPhysicalDesc.Text = txtSkillsPhysical.ToolTipText
+End Sub
+Private Sub cboSkillsWeaponry_Click()
+    With Characters(SelectedCharacter)
+        Select Case cboSkillsWeaponry.ListIndex
+            Case 0
+                txtSkillsWeaponry.Text = .Wand
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The talent of weilding daggers, wands, and other small items used as weapons in combat."
+            Case 1
+                txtSkillsWeaponry.Text = .Sword
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": Any sword, including the katana, used as a weapon in combat is covered under this skill."
+            Case 2
+                txtSkillsWeaponry.Text = .Axe
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": This ability covers any axe, such as the battle axe or hand axe, used as a weapon in combat."
+            Case 3
+                txtSkillsWeaponry.Text = .Mace
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The talent needed to use any mace-like item, including the flail or hammer, as a weapon in combat."
+            Case 4
+                txtSkillsWeaponry.Text = .Pole
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The mastery of any pole & staff, such as the halberd, bo, or staff, used as a weapon in combat."
+            Case 5
+                txtSkillsWeaponry.Text = .Throwing
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The demonstrated ability to be on target when any weapon is thrown. " & _
+                    "This includes such things as shurikens, darts, potions, and weapons that are thrown accidentally."
+            Case 6
+                txtSkillsWeaponry.Text = .Sling
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The ability to use any weapon which consists of a leather strap and two cords which, when whirled and released, hurls stones and other like objects at an opponent."
+            Case 7
+                txtSkillsWeaponry.Text = .Bow
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The flair of handling any bow which fires arrows and is used as a weapon in combat."
+            Case 8
+                txtSkillsWeaponry.Text = .Shield
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The art of using a shield effectively to block an opponent's blow while fighting or parrying."
+            Case 9
+                txtSkillsWeaponry.Text = .HandToHand
+                txtSkillsWeaponry.ToolTipText = cboSkillsWeaponry.Text & _
+                    ": The talent of using one's hands and feet as lethal weapons to strike and hopefully kill an opponent."
+            Case Else
+        End Select
+    End With
+    txtSkillsWeaponryDesc.Text = txtSkillsWeaponry.ToolTipText
 End Sub
 Private Sub ClearFields()
     Dim ctl As Control
@@ -2453,6 +3002,7 @@ Private Sub ClearFields()
         End Select
     Next ctl
 End Sub
+
 'char *SpellMap[] = {
 '     /* Fire */     "EnergyBlast","BlindingFlash","PsionicFire","Fireball",
 '                    "FireShield","DazzlingLights","FireBomb","Lightning",
@@ -2516,8 +3066,13 @@ Private Sub DisableFields()
             Case "UpDown"
                 ctl.Enabled = False
             Case "TextBox"
-                ctl.Enabled = False
-                ctl.ForeColor = DisabledColor
+                Select Case ctl.Name
+                    Case "txtSkillsAcademiaDesc", "txtSkillsPersonalDesc", _
+                        "txtSkillsPhysicalDesc", "txtSkillsWeaponryDesc"
+                    Case Else
+                        ctl.Enabled = False
+                        ctl.ForeColor = DisabledColor
+                End Select
             Case "Label"
                 Select Case ctl.Name
                     Case "lblPortrait", "lblStats", "lblSkills", "lblItems", "lblSwagBag", "lblSpells"
@@ -2551,8 +3106,13 @@ Private Sub EnableFields()
             Case "UpDown"
                 ctl.Enabled = True
             Case "TextBox"
-                ctl.Enabled = True
-                ctl.ForeColor = EnabledColor
+                Select Case ctl.Name
+                    Case "txtSkillsAcademiaDesc", "txtSkillsPersonalDesc", _
+                        "txtSkillsPhysicalDesc", "txtSkillsWeaponryDesc"
+                    Case Else
+                        ctl.Enabled = True
+                        ctl.ForeColor = EnabledColor
+                End Select
             Case "Label"
                 Select Case ctl.Name
                     Case "lblPortrait", "lblStats", "lblSkills", "lblItems", "lblSwagBag", "lblSpells"
@@ -2605,6 +3165,10 @@ Private Sub Form_Load()
     Call PopulateGender(cboGender)
     Call PopulateProfession(cboProfession)
     Call PopulateRace(cboRace)
+    Call PopulateSkillsAcademia(cboSkillsAcademia)
+    Call PopulateSkillsPersonal(cboSkillsPersonal)
+    Call PopulateSkillsPhysical(cboSkillsPhysical)
+    Call PopulateSkillsWeaponry(cboSkillsWeaponry)
 End Sub
 Private Sub lblItems_Click()
     Call picTabs_Click(3)
@@ -2653,6 +3217,19 @@ Private Sub picTabs_Click(Index As Integer)
             Case Else
         End Select
     Next i
+    
+    'Move the picWizardryLogo to the appropriate position, per frame...
+    Select Case Index
+        Case 1  'Basic Statistics...
+            picWizardryLogo.Move 4272, 4920
+        Case 2  'Skills...
+            picWizardryLogo.Move 4260, 5700
+        Case 3  'Items...
+        Case 4  'Swag Bag...
+        Case 5  'Spells...
+        Case Else
+    End Select
+    
 End Sub
 Private Sub picTabs_GotFocus(Index As Integer)
     SaveMessage = sbStatus.Panels("Message").Text
