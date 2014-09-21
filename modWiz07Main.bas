@@ -660,7 +660,14 @@ Public Sub ReadWiz07(ByVal strFile As String, xCharacters() As Character)
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
     Get #Unit, &H3635, xCharacters(1)
+    For i = 2 To 6
+        Get #Unit, , xCharacters(i)
+    Next i
     Close #Unit
+    
+    For i = 1 To 6
+        xCharacters(i).Name = Replace(xCharacters(i).Name, Chr(0), " ")
+    Next i
     
 ExitSub:
     Exit Sub

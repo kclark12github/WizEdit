@@ -13,6 +13,7 @@ Public Sub TextSelected()
     Dim i As Integer
     Dim ctl As Control
    
+    On Error Resume Next
     Select Case TypeName(Screen.ActiveControl)
         Case "TextBox", "ComboBox", "DataCombo"
             Set ctl = Screen.ActiveControl

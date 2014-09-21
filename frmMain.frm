@@ -29,9 +29,9 @@ Begin VB.Form frmMain
       Cancel          =   -1  'True
       Height          =   432
       Left            =   7560
-      Picture         =   "frmMain.frx":1B4EC
+      Picture         =   "frmMain.frx":43810
       Style           =   1  'Graphical
-      TabIndex        =   19
+      TabIndex        =   13
       Top             =   5400
       Width           =   1212
    End
@@ -39,9 +39,9 @@ Begin VB.Form frmMain
       Appearance      =   0  'Flat
       Height          =   372
       Left            =   6108
-      Picture         =   "frmMain.frx":1BAEA
+      Picture         =   "frmMain.frx":44D8B
       Style           =   1  'Graphical
-      TabIndex        =   18
+      TabIndex        =   10
       Top             =   4380
       Width           =   1332
    End
@@ -59,7 +59,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FFFF&
       Height          =   372
       Left            =   1848
-      TabIndex        =   16
+      TabIndex        =   9
       Text            =   "Save Game File"
       Top             =   4380
       Width           =   4152
@@ -68,10 +68,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1524
       Left            =   7782
-      Picture         =   "frmMain.frx":1C665
+      Picture         =   "frmMain.frx":462FB
       ScaleHeight     =   1476
       ScaleWidth      =   1224
-      TabIndex        =   15
+      TabIndex        =   8
       ToolTipText     =   "Wizardry 07G - Wizardry Gold"
       Top             =   1680
       Width           =   1272
@@ -80,10 +80,11 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   420
       Left            =   240
-      Picture         =   "frmMain.frx":1D058
+      Picture         =   "frmMain.frx":46CEE
       ScaleHeight     =   372
       ScaleWidth      =   1920
-      TabIndex        =   14
+      TabIndex        =   18
+      TabStop         =   0   'False
       Top             =   600
       Visible         =   0   'False
       Width           =   1968
@@ -92,7 +93,7 @@ Begin VB.Form frmMain
       Align           =   2  'Align Bottom
       Height          =   252
       Left            =   0
-      TabIndex        =   13
+      TabIndex        =   17
       Top             =   6168
       Width           =   9288
       _ExtentX        =   16383
@@ -131,6 +132,7 @@ Begin VB.Form frmMain
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   889
             MinWidth        =   891
             TextSave        =   "NUM"
@@ -142,7 +144,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "2:12 AM"
+            TextSave        =   "3:03 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -160,10 +162,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1536
       Left            =   6702
-      Picture         =   "frmMain.frx":1DB35
+      Picture         =   "frmMain.frx":477CB
       ScaleHeight     =   1488
       ScaleWidth      =   984
-      TabIndex        =   10
+      TabIndex        =   7
       ToolTipText     =   "Wizardry 07 - Crusaders of the Dark Savant"
       Top             =   1680
       Width           =   1032
@@ -172,10 +174,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1536
       Left            =   5622
-      Picture         =   "frmMain.frx":1E298
+      Picture         =   "frmMain.frx":47F2E
       ScaleHeight     =   1488
       ScaleWidth      =   984
-      TabIndex        =   9
+      TabIndex        =   6
       ToolTipText     =   "Wizardry 06 - Bane of the Cosmic Forge"
       Top             =   1680
       Width           =   1032
@@ -184,10 +186,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1548
       Left            =   4566
-      Picture         =   "frmMain.frx":1EA58
+      Picture         =   "frmMain.frx":486EE
       ScaleHeight     =   1500
       ScaleWidth      =   960
-      TabIndex        =   8
+      TabIndex        =   5
       ToolTipText     =   "Wizardry 05 - Heart of the Maelstrom"
       Top             =   1680
       Width           =   1008
@@ -196,10 +198,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1536
       Left            =   3474
-      Picture         =   "frmMain.frx":1F1D4
+      Picture         =   "frmMain.frx":48E6A
       ScaleHeight     =   1488
       ScaleWidth      =   996
-      TabIndex        =   7
+      TabIndex        =   4
       ToolTipText     =   "Wizardry 04 - Return of Werdna"
       Top             =   1680
       Width           =   1044
@@ -208,10 +210,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1536
       Left            =   2394
-      Picture         =   "frmMain.frx":1F862
+      Picture         =   "frmMain.frx":494F8
       ScaleHeight     =   1488
       ScaleWidth      =   984
-      TabIndex        =   6
+      TabIndex        =   3
       ToolTipText     =   "Wizardry 03 - Legacy of Llylgamn"
       Top             =   1680
       Width           =   1032
@@ -220,10 +222,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1536
       Left            =   1302
-      Picture         =   "frmMain.frx":1FE0B
+      Picture         =   "frmMain.frx":49AA1
       ScaleHeight     =   1488
       ScaleWidth      =   996
-      TabIndex        =   5
+      TabIndex        =   2
       ToolTipText     =   "Wizardry 02 - Knight of Diamonds"
       Top             =   1680
       Width           =   1044
@@ -232,10 +234,10 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   1524
       Left            =   234
-      Picture         =   "frmMain.frx":20465
+      Picture         =   "frmMain.frx":4A0FB
       ScaleHeight     =   1476
       ScaleWidth      =   972
-      TabIndex        =   4
+      TabIndex        =   1
       ToolTipText     =   "Wizardry 01 - Proving Grounds of the Mad Overlord"
       Top             =   1680
       Width           =   1020
@@ -245,9 +247,9 @@ Begin VB.Form frmMain
       Enabled         =   0   'False
       Height          =   432
       Left            =   7560
-      Picture         =   "frmMain.frx":20A7B
+      Picture         =   "frmMain.frx":4A711
       Style           =   1  'Graphical
-      TabIndex        =   3
+      TabIndex        =   12
       Top             =   5400
       Width           =   1212
    End
@@ -255,9 +257,9 @@ Begin VB.Form frmMain
       Appearance      =   0  'Flat
       Height          =   432
       Left            =   6240
-      Picture         =   "frmMain.frx":21064
+      Picture         =   "frmMain.frx":4BC5D
       Style           =   1  'Graphical
-      TabIndex        =   2
+      TabIndex        =   11
       Top             =   5400
       Width           =   1212
    End
@@ -265,10 +267,11 @@ Begin VB.Form frmMain
       AutoSize        =   -1  'True
       Height          =   468
       Left            =   8220
-      Picture         =   "frmMain.frx":2163E
+      Picture         =   "frmMain.frx":4D1BA
       ScaleHeight     =   420
       ScaleWidth      =   780
-      TabIndex        =   1
+      TabIndex        =   14
+      TabStop         =   0   'False
       Top             =   240
       Width           =   828
    End
@@ -277,7 +280,7 @@ Begin VB.Form frmMain
       BackColor       =   &H00000000&
       Height          =   1236
       Left            =   2820
-      Picture         =   "frmMain.frx":21AE8
+      Picture         =   "frmMain.frx":4D664
       ScaleHeight     =   1188
       ScaleWidth      =   3600
       TabIndex        =   0
@@ -300,7 +303,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FFFF&
       Height          =   252
       Left            =   1848
-      TabIndex        =   17
+      TabIndex        =   19
       Top             =   4080
       Width           =   2112
    End
@@ -320,7 +323,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FFFF&
       Height          =   288
       Left            =   480
-      TabIndex        =   12
+      TabIndex        =   16
       Top             =   3660
       Width           =   1956
    End
@@ -340,7 +343,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H0000FFFF&
       Height          =   288
       Left            =   240
-      TabIndex        =   11
+      TabIndex        =   15
       Top             =   3300
       Width           =   1956
    End
@@ -541,25 +544,73 @@ End Sub
 Private Sub picWiz01_Click()
     Call EnableFields(picWiz01.ToolTipText)
 End Sub
+Private Sub picWiz01_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz01.ToolTipText
+End Sub
+Private Sub picWiz01_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
+End Sub
 Private Sub picWiz02_Click()
     Call EnableFields(picWiz02.ToolTipText)
+End Sub
+Private Sub picWiz02_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz02.ToolTipText
+End Sub
+Private Sub picWiz02_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
 End Sub
 Private Sub picWiz03_Click()
     Call EnableFields(picWiz03.ToolTipText)
 End Sub
+Private Sub picWiz03_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz03.ToolTipText
+End Sub
+Private Sub picWiz03_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
+End Sub
 Private Sub picWiz04_Click()
     Call EnableFields(picWiz04.ToolTipText)
+End Sub
+Private Sub picWiz04_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz04.ToolTipText
+End Sub
+Private Sub picWiz04_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
 End Sub
 Private Sub picWiz05_Click()
     Call EnableFields(picWiz05.ToolTipText)
 End Sub
+Private Sub picWiz05_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz05.ToolTipText
+End Sub
+Private Sub picWiz05_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
+End Sub
 Private Sub picWiz06_Click()
     Call EnableFields(picWiz06.ToolTipText)
+End Sub
+Private Sub picWiz06_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz06.ToolTipText
+End Sub
+Private Sub picWiz06_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
 End Sub
 Private Sub picWiz07_Click()
     Call EnableFields(picWiz07.ToolTipText)
 End Sub
+Private Sub picWiz07_GotFocus()
+    sbStatus.Panels("Message").Text = picWiz07.ToolTipText
+End Sub
+Private Sub picWiz07_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
+End Sub
 Private Sub picWiz07g_Click()
     Call EnableFields(picWiz07g.ToolTipText)
+End Sub
+Private Sub picWiz07g_GotFocus()
+    sbStatus.Panels("Message").Text = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
+End Sub
+Private Sub picWiz07g_LostFocus()
+    sbStatus.Panels("Message").Text = vbNullString
 End Sub
 

@@ -14,13 +14,65 @@ Begin VB.Form frmWiz07
    ScaleWidth      =   11256
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
+   Begin VB.CommandButton cmdEdit 
+      Appearance      =   0  'Flat
+      BeginProperty Font 
+         Name            =   "Heidelberg"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   432
+      Left            =   9720
+      MaskColor       =   &H00FF00FF&
+      Picture         =   "frmWiz07.frx":1CCA
+      Style           =   1  'Graphical
+      TabIndex        =   28
+      Top             =   2460
+      UseMaskColor    =   -1  'True
+      Width           =   1212
+   End
+   Begin VB.PictureBox picPortrait 
+      BackColor       =   &H00000000&
+      Height          =   2076
+      Left            =   9420
+      ScaleHeight     =   2028
+      ScaleWidth      =   1668
+      TabIndex        =   93
+      TabStop         =   0   'False
+      Top             =   120
+      Width           =   1716
+      Begin VB.Label lblPortrait 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00000000&
+         Caption         =   "Character Portrait..."
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   7.8
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   192
+         Left            =   60
+         TabIndex        =   94
+         Top             =   900
+         Width           =   1608
+      End
+   End
    Begin VB.CommandButton cmdOK 
       Appearance      =   0  'Flat
       Height          =   432
       Left            =   9720
       MaskColor       =   &H00FF00FF&
       Style           =   1  'Graphical
-      TabIndex        =   90
+      TabIndex        =   29
       Top             =   2460
       Width           =   1212
    End
@@ -31,7 +83,7 @@ Begin VB.Form frmWiz07
       Left            =   9720
       MaskColor       =   &H00FF00FF&
       Style           =   1  'Graphical
-      TabIndex        =   89
+      TabIndex        =   30
       Top             =   2940
       Width           =   1212
    End
@@ -40,21 +92,23 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2064
       Left            =   9600
-      Picture         =   "frmWiz07.frx":1CCA
+      Picture         =   "frmWiz07.frx":3219
       ScaleHeight     =   2016
       ScaleWidth      =   1344
-      TabIndex        =   57
-      Top             =   120
+      TabIndex        =   76
+      TabStop         =   0   'False
+      Top             =   3960
       Width           =   1392
    End
    Begin VB.PictureBox picTabBasic 
       BackColor       =   &H00000000&
       Height          =   372
       Left            =   120
-      Picture         =   "frmWiz07.frx":2715
+      Picture         =   "frmWiz07.frx":3C64
       ScaleHeight     =   324
       ScaleWidth      =   1104
-      TabIndex        =   35
+      TabIndex        =   64
+      TabStop         =   0   'False
       Top             =   660
       Width           =   1152
       Begin VB.Label lblStats 
@@ -73,7 +127,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   0
-         TabIndex        =   36
+         TabIndex        =   65
          Top             =   0
          Width           =   1032
       End
@@ -86,7 +140,8 @@ Begin VB.Form frmWiz07
       Left            =   120
       ScaleHeight     =   5088
       ScaleWidth      =   9108
-      TabIndex        =   3
+      TabIndex        =   34
+      TabStop         =   0   'False
       Top             =   1020
       Width           =   9132
       Begin VB.PictureBox picWizardryLogo 
@@ -96,7 +151,8 @@ Begin VB.Form frmWiz07
          Left            =   4152
          ScaleHeight     =   372
          ScaleWidth      =   1920
-         TabIndex        =   88
+         TabIndex        =   92
+         TabStop         =   0   'False
          Top             =   3900
          Width           =   1968
       End
@@ -117,8 +173,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   86
-         Text            =   "frmWiz07.frx":1BF37
+         TabIndex        =   27
+         Text            =   "frmWiz07.frx":1D486
          ToolTipText     =   "Divine Spell Points (automatically ""topped-off"")..."
          Top             =   3780
          Width           =   996
@@ -140,8 +196,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   84
-         Text            =   "frmWiz07.frx":1BF3A
+         TabIndex        =   26
+         Text            =   "frmWiz07.frx":1D489
          ToolTipText     =   "Mental Spell Points (automatically ""topped-off"")..."
          Top             =   3360
          Width           =   996
@@ -163,8 +219,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   82
-         Text            =   "frmWiz07.frx":1BF3D
+         TabIndex        =   25
+         Text            =   "frmWiz07.frx":1D48C
          ToolTipText     =   "Earth Spell Points (automatically ""topped-off"")..."
          Top             =   2940
          Width           =   996
@@ -186,8 +242,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   80
-         Text            =   "frmWiz07.frx":1BF40
+         TabIndex        =   24
+         Text            =   "frmWiz07.frx":1D48F
          ToolTipText     =   "Air Spell Points (automatically ""topped-off"")..."
          Top             =   2520
          Width           =   996
@@ -209,8 +265,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   78
-         Text            =   "frmWiz07.frx":1BF43
+         TabIndex        =   23
+         Text            =   "frmWiz07.frx":1D492
          ToolTipText     =   "Water Spell Points (automatically ""topped-off"")..."
          Top             =   2100
          Width           =   996
@@ -232,8 +288,8 @@ Begin VB.Form frmWiz07
          Left            =   7620
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   76
-         Text            =   "frmWiz07.frx":1BF46
+         TabIndex        =   22
+         Text            =   "frmWiz07.frx":1D495
          ToolTipText     =   "Fire Spell Points (automatically ""topped-off"")..."
          Top             =   1680
          Width           =   996
@@ -255,8 +311,8 @@ Begin VB.Form frmWiz07
          Left            =   4680
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   74
-         Text            =   "frmWiz07.frx":1BF49
+         TabIndex        =   6
+         Text            =   "frmWiz07.frx":1D498
          ToolTipText     =   "Age...? (Still not sure of this one)..."
          Top             =   840
          Width           =   996
@@ -278,8 +334,8 @@ Begin VB.Form frmWiz07
          Left            =   4680
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   72
-         Text            =   "frmWiz07.frx":1BF4C
+         TabIndex        =   5
+         Text            =   "frmWiz07.frx":1D49B
          ToolTipText     =   "Lives..."
          Top             =   420
          Width           =   996
@@ -301,8 +357,8 @@ Begin VB.Form frmWiz07
          Left            =   4680
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   70
-         Text            =   "frmWiz07.frx":1BF4F
+         TabIndex        =   4
+         Text            =   "frmWiz07.frx":1D49E
          ToolTipText     =   "Level..."
          Top             =   0
          Width           =   996
@@ -324,8 +380,8 @@ Begin VB.Form frmWiz07
          Left            =   7380
          MaxLength       =   13
          MultiLine       =   -1  'True
-         TabIndex        =   68
-         Text            =   "frmWiz07.frx":1BF52
+         TabIndex        =   9
+         Text            =   "frmWiz07.frx":1D4A1
          ToolTipText     =   "Gold Pieces..."
          Top             =   840
          Width           =   1476
@@ -347,8 +403,8 @@ Begin VB.Form frmWiz07
          Left            =   7380
          MaxLength       =   13
          MultiLine       =   -1  'True
-         TabIndex        =   66
-         Text            =   "frmWiz07.frx":1BF55
+         TabIndex        =   8
+         Text            =   "frmWiz07.frx":1D4A4
          ToolTipText     =   "Monster Kills..."
          Top             =   420
          Width           =   1476
@@ -370,8 +426,8 @@ Begin VB.Form frmWiz07
          Left            =   7380
          MaxLength       =   13
          MultiLine       =   -1  'True
-         TabIndex        =   64
-         Text            =   "frmWiz07.frx":1BF58
+         TabIndex        =   7
+         Text            =   "frmWiz07.frx":1D4A7
          ToolTipText     =   "Experience Points..."
          Top             =   0
          Width           =   1476
@@ -393,8 +449,8 @@ Begin VB.Form frmWiz07
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   62
-         Text            =   "frmWiz07.frx":1BF5B
+         TabIndex        =   20
+         Text            =   "frmWiz07.frx":1D4AA
          ToolTipText     =   "Carrying Capacity (automatically ""topped-off"")..."
          Top             =   2520
          Width           =   996
@@ -416,8 +472,8 @@ Begin VB.Form frmWiz07
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   60
-         Text            =   "frmWiz07.frx":1BF5E
+         TabIndex        =   19
+         Text            =   "frmWiz07.frx":1D4AD
          ToolTipText     =   "Stamina (automatically ""topped-off"")..."
          Top             =   2100
          Width           =   996
@@ -439,8 +495,8 @@ Begin VB.Form frmWiz07
          Left            =   4320
          MaxLength       =   6
          MultiLine       =   -1  'True
-         TabIndex        =   58
-         Text            =   "frmWiz07.frx":1BF61
+         TabIndex        =   18
+         Text            =   "frmWiz07.frx":1D4B0
          ToolTipText     =   "Hit Points (automatically ""topped-off"")..."
          Top             =   1680
          Width           =   996
@@ -460,7 +516,7 @@ Begin VB.Form frmWiz07
          Height          =   336
          Left            =   4320
          Style           =   2  'Dropdown List
-         TabIndex        =   56
+         TabIndex        =   21
          ToolTipText     =   "Character's Condition (i.e. OK, Afraid, Poisoned, etc.)..."
          Top             =   2940
          Width           =   1632
@@ -480,7 +536,7 @@ Begin VB.Form frmWiz07
          Height          =   336
          Left            =   1440
          Style           =   2  'Dropdown List
-         TabIndex        =   55
+         TabIndex        =   3
          ToolTipText     =   "Character's Profession (i.e. Fighter, Mage, etc.)..."
          Top             =   780
          Width           =   1692
@@ -498,11 +554,11 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":1BF64
+         ItemData        =   "frmWiz07.frx":1D4B3
          Left            =   1440
-         List            =   "frmWiz07.frx":1BF6B
+         List            =   "frmWiz07.frx":1D4BA
          Style           =   2  'Dropdown List
-         TabIndex        =   54
+         TabIndex        =   1
          ToolTipText     =   "Character's Race (i.e. Human, Elf, etc.)..."
          Top             =   60
          Width           =   1692
@@ -510,7 +566,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udPIE 
          Height          =   360
          Left            =   2400
-         TabIndex        =   48
+         TabIndex        =   70
          TabStop         =   0   'False
          Top             =   2520
          Width           =   240
@@ -519,7 +575,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPIE"
-         BuddyDispid     =   196617
+         BuddyDispid     =   196637
          OrigLeft        =   120
          OrigTop         =   1560
          OrigRight       =   360
@@ -547,8 +603,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   45
-         Text            =   "frmWiz07.frx":1BF76
+         TabIndex        =   12
+         Text            =   "frmWiz07.frx":1D4C5
          ToolTipText     =   "Piety..."
          Top             =   2520
          Width           =   396
@@ -570,8 +626,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   44
-         Text            =   "frmWiz07.frx":1BF79
+         TabIndex        =   17
+         Text            =   "frmWiz07.frx":1D4C8
          ToolTipText     =   "Karma..."
          Top             =   4620
          Width           =   396
@@ -593,8 +649,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   43
-         Text            =   "frmWiz07.frx":1BF7C
+         TabIndex        =   16
+         Text            =   "frmWiz07.frx":1D4CB
          ToolTipText     =   "Personality..."
          Top             =   4200
          Width           =   396
@@ -616,8 +672,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   42
-         Text            =   "frmWiz07.frx":1BF7F
+         TabIndex        =   15
+         Text            =   "frmWiz07.frx":1D4CE
          ToolTipText     =   "Speed..."
          Top             =   3780
          Width           =   396
@@ -639,8 +695,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   41
-         Text            =   "frmWiz07.frx":1BF82
+         TabIndex        =   14
+         Text            =   "frmWiz07.frx":1D4D1
          ToolTipText     =   "Dexterity..."
          Top             =   3360
          Width           =   396
@@ -662,8 +718,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   40
-         Text            =   "frmWiz07.frx":1BF85
+         TabIndex        =   13
+         Text            =   "frmWiz07.frx":1D4D4
          ToolTipText     =   "Vitality..."
          Top             =   2940
          Width           =   396
@@ -685,8 +741,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   39
-         Text            =   "frmWiz07.frx":1BF88
+         TabIndex        =   11
+         Text            =   "frmWiz07.frx":1D4D7
          ToolTipText     =   "Intelligence..."
          Top             =   2100
          Width           =   396
@@ -704,11 +760,11 @@ Begin VB.Form frmWiz07
          EndProperty
          ForeColor       =   &H0000FFFF&
          Height          =   336
-         ItemData        =   "frmWiz07.frx":1BF8B
+         ItemData        =   "frmWiz07.frx":1D4DA
          Left            =   1440
-         List            =   "frmWiz07.frx":1BF95
+         List            =   "frmWiz07.frx":1D4E4
          Style           =   2  'Dropdown List
-         TabIndex        =   34
+         TabIndex        =   2
          ToolTipText     =   "Character's Gender (Male/Female)..."
          Top             =   420
          Width           =   1692
@@ -730,8 +786,8 @@ Begin VB.Form frmWiz07
          Left            =   2040
          MaxLength       =   2
          MultiLine       =   -1  'True
-         TabIndex        =   31
-         Text            =   "frmWiz07.frx":1BFA7
+         TabIndex        =   10
+         Text            =   "frmWiz07.frx":1D4F6
          ToolTipText     =   "Strength..."
          Top             =   1680
          Width           =   396
@@ -739,7 +795,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udSTR 
          Height          =   360
          Left            =   2400
-         TabIndex        =   46
+         TabIndex        =   68
          TabStop         =   0   'False
          Top             =   1680
          Width           =   240
@@ -748,7 +804,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTR"
-         BuddyDispid     =   196626
+         BuddyDispid     =   196645
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -762,7 +818,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udINT 
          Height          =   360
          Left            =   2400
-         TabIndex        =   47
+         TabIndex        =   69
          TabStop         =   0   'False
          Top             =   2100
          Width           =   240
@@ -771,7 +827,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtINT"
-         BuddyDispid     =   196623
+         BuddyDispid     =   196643
          OrigLeft        =   2280
          OrigTop         =   720
          OrigRight       =   2520
@@ -785,7 +841,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udVIT 
          Height          =   360
          Left            =   2400
-         TabIndex        =   49
+         TabIndex        =   71
          TabStop         =   0   'False
          Top             =   2940
          Width           =   240
@@ -794,7 +850,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtVIT"
-         BuddyDispid     =   196622
+         BuddyDispid     =   196642
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -806,7 +862,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udDEX 
          Height          =   360
          Left            =   2400
-         TabIndex        =   50
+         TabIndex        =   72
          TabStop         =   0   'False
          Top             =   3360
          Width           =   240
@@ -815,7 +871,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDEX"
-         BuddyDispid     =   196621
+         BuddyDispid     =   196641
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -827,7 +883,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udSPD 
          Height          =   360
          Left            =   2400
-         TabIndex        =   51
+         TabIndex        =   73
          TabStop         =   0   'False
          Top             =   3780
          Width           =   240
@@ -836,7 +892,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSPD"
-         BuddyDispid     =   196620
+         BuddyDispid     =   196640
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -848,7 +904,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udPER 
          Height          =   360
          Left            =   2400
-         TabIndex        =   52
+         TabIndex        =   74
          TabStop         =   0   'False
          Top             =   4200
          Width           =   240
@@ -857,7 +913,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtPER"
-         BuddyDispid     =   196619
+         BuddyDispid     =   196639
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -869,7 +925,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udKAR 
          Height          =   360
          Left            =   2400
-         TabIndex        =   53
+         TabIndex        =   75
          TabStop         =   0   'False
          Top             =   4620
          Width           =   240
@@ -878,7 +934,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtKAR"
-         BuddyDispid     =   196618
+         BuddyDispid     =   196638
          OrigRight       =   240
          OrigBottom      =   612
          Max             =   99
@@ -890,7 +946,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udHP 
          Height          =   360
          Left            =   5280
-         TabIndex        =   59
+         TabIndex        =   77
          TabStop         =   0   'False
          Top             =   1680
          Width           =   240
@@ -899,7 +955,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtHP"
-         BuddyDispid     =   196613
+         BuddyDispid     =   196633
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -910,10 +966,10 @@ Begin VB.Form frmWiz07
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
-      Begin MSComCtl2.UpDown upSTM 
+      Begin MSComCtl2.UpDown udSTM 
          Height          =   360
          Left            =   5280
-         TabIndex        =   61
+         TabIndex        =   78
          TabStop         =   0   'False
          Top             =   2100
          Width           =   240
@@ -922,7 +978,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtSTM"
-         BuddyDispid     =   196672
+         BuddyDispid     =   196632
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -936,7 +992,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udCC 
          Height          =   360
          Left            =   5280
-         TabIndex        =   63
+         TabIndex        =   79
          TabStop         =   0   'False
          Top             =   2520
          Width           =   240
@@ -945,7 +1001,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtCC"
-         BuddyDispid     =   196674
+         BuddyDispid     =   196631
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -956,10 +1012,10 @@ Begin VB.Form frmWiz07
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
-      Begin MSComCtl2.UpDown upEXP 
+      Begin MSComCtl2.UpDown udEXP 
          Height          =   360
          Left            =   8820
-         TabIndex        =   65
+         TabIndex        =   80
          TabStop         =   0   'False
          Top             =   0
          Width           =   240
@@ -968,7 +1024,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEXP"
-         BuddyDispid     =   196625
+         BuddyDispid     =   196630
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -979,10 +1035,10 @@ Begin VB.Form frmWiz07
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
-      Begin MSComCtl2.UpDown upMKS 
+      Begin MSComCtl2.UpDown udMKS 
          Height          =   360
          Left            =   8820
-         TabIndex        =   67
+         TabIndex        =   81
          TabStop         =   0   'False
          Top             =   420
          Width           =   240
@@ -991,7 +1047,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMKS"
-         BuddyDispid     =   196677
+         BuddyDispid     =   196629
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1002,10 +1058,10 @@ Begin VB.Form frmWiz07
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
-      Begin MSComCtl2.UpDown upGP 
+      Begin MSComCtl2.UpDown udGP 
          Height          =   360
          Left            =   8820
-         TabIndex        =   69
+         TabIndex        =   82
          TabStop         =   0   'False
          Top             =   840
          Width           =   240
@@ -1014,7 +1070,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtGP"
-         BuddyDispid     =   196679
+         BuddyDispid     =   196628
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1025,10 +1081,10 @@ Begin VB.Form frmWiz07
          BuddyProperty   =   0
          Enabled         =   -1  'True
       End
-      Begin MSComCtl2.UpDown upLVL 
+      Begin MSComCtl2.UpDown udLVL 
          Height          =   360
          Left            =   5640
-         TabIndex        =   71
+         TabIndex        =   83
          TabStop         =   0   'False
          Top             =   0
          Width           =   240
@@ -1037,7 +1093,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLVL"
-         BuddyDispid     =   196681
+         BuddyDispid     =   196627
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1051,7 +1107,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udLives 
          Height          =   360
          Left            =   5640
-         TabIndex        =   73
+         TabIndex        =   84
          TabStop         =   0   'False
          Top             =   420
          Width           =   240
@@ -1060,7 +1116,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtLives"
-         BuddyDispid     =   196683
+         BuddyDispid     =   196626
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1074,7 +1130,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udAge 
          Height          =   360
          Left            =   5640
-         TabIndex        =   75
+         TabIndex        =   85
          TabStop         =   0   'False
          Top             =   840
          Width           =   240
@@ -1083,7 +1139,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAge"
-         BuddyDispid     =   196685
+         BuddyDispid     =   196625
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1097,7 +1153,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udFireSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   77
+         TabIndex        =   86
          TabStop         =   0   'False
          Top             =   1680
          Width           =   240
@@ -1106,7 +1162,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtFireSP"
-         BuddyDispid     =   196687
+         BuddyDispid     =   196624
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1120,7 +1176,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udWaterSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   79
+         TabIndex        =   87
          TabStop         =   0   'False
          Top             =   2100
          Width           =   240
@@ -1129,7 +1185,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtWaterSP"
-         BuddyDispid     =   196689
+         BuddyDispid     =   196623
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1143,7 +1199,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udAirSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   81
+         TabIndex        =   88
          TabStop         =   0   'False
          Top             =   2520
          Width           =   240
@@ -1152,7 +1208,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtAirSP"
-         BuddyDispid     =   196691
+         BuddyDispid     =   196622
          OrigLeft        =   8460
          OrigTop         =   2940
          OrigRight       =   8700
@@ -1164,7 +1220,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udEarthSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   83
+         TabIndex        =   89
          TabStop         =   0   'False
          Top             =   2940
          Width           =   240
@@ -1173,7 +1229,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtEarthSP"
-         BuddyDispid     =   196693
+         BuddyDispid     =   196621
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1187,7 +1243,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udMentalSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   85
+         TabIndex        =   90
          TabStop         =   0   'False
          Top             =   3360
          Width           =   240
@@ -1196,7 +1252,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtMentalSP"
-         BuddyDispid     =   196695
+         BuddyDispid     =   196620
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1210,7 +1266,7 @@ Begin VB.Form frmWiz07
       Begin MSComCtl2.UpDown udDivineSP 
          Height          =   360
          Left            =   8580
-         TabIndex        =   87
+         TabIndex        =   91
          TabStop         =   0   'False
          Top             =   3780
          Width           =   240
@@ -1219,7 +1275,7 @@ Begin VB.Form frmWiz07
          _Version        =   393216
          Value           =   1
          BuddyControl    =   "txtDivineSP"
-         BuddyDispid     =   196697
+         BuddyDispid     =   196619
          OrigLeft        =   2280
          OrigTop         =   360
          OrigRight       =   2520
@@ -1246,7 +1302,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3012
-         TabIndex        =   38
+         TabIndex        =   67
          Top             =   1380
          Width           =   2148
       End
@@ -1266,7 +1322,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   180
-         TabIndex        =   37
+         TabIndex        =   66
          Top             =   1380
          Width           =   1608
       End
@@ -1286,7 +1342,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   60
-         TabIndex        =   33
+         TabIndex        =   63
          Top             =   444
          Width           =   780
       End
@@ -1306,7 +1362,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1104
-         TabIndex        =   30
+         TabIndex        =   61
          Top             =   4656
          Width           =   756
       End
@@ -1326,7 +1382,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   576
-         TabIndex        =   29
+         TabIndex        =   60
          Top             =   4236
          Width           =   1284
       End
@@ -1346,7 +1402,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1212
-         TabIndex        =   28
+         TabIndex        =   59
          Top             =   3816
          Width           =   648
       End
@@ -1366,7 +1422,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   804
-         TabIndex        =   27
+         TabIndex        =   58
          Top             =   3396
          Width           =   1056
       End
@@ -1386,7 +1442,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   960
-         TabIndex        =   26
+         TabIndex        =   57
          Top             =   2976
          Width           =   900
       End
@@ -1406,7 +1462,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   1224
-         TabIndex        =   25
+         TabIndex        =   56
          Top             =   2556
          Width           =   636
       End
@@ -1426,7 +1482,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   600
-         TabIndex        =   24
+         TabIndex        =   55
          Top             =   2136
          Width           =   1260
       End
@@ -1446,7 +1502,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   936
-         TabIndex        =   23
+         TabIndex        =   54
          Top             =   1716
          Width           =   924
       End
@@ -1466,7 +1522,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6684
-         TabIndex        =   22
+         TabIndex        =   53
          Top             =   3816
          Width           =   744
       End
@@ -1486,7 +1542,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6612
-         TabIndex        =   21
+         TabIndex        =   52
          Top             =   3396
          Width           =   816
       End
@@ -1506,7 +1562,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   7020
-         TabIndex        =   20
+         TabIndex        =   51
          Top             =   2556
          Width           =   408
       End
@@ -1526,7 +1582,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6792
-         TabIndex        =   19
+         TabIndex        =   50
          Top             =   2976
          Width           =   636
       End
@@ -1546,7 +1602,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6720
-         TabIndex        =   18
+         TabIndex        =   49
          Top             =   2136
          Width           =   708
       End
@@ -1566,7 +1622,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6912
-         TabIndex        =   17
+         TabIndex        =   48
          Top             =   1716
          Width           =   516
       End
@@ -1586,7 +1642,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6480
-         TabIndex        =   16
+         TabIndex        =   47
          Top             =   1380
          Width           =   1332
       End
@@ -1606,7 +1662,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3276
-         TabIndex        =   15
+         TabIndex        =   46
          Top             =   2556
          Width           =   936
       End
@@ -1626,7 +1682,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3312
-         TabIndex        =   14
+         TabIndex        =   45
          Top             =   2136
          Width           =   900
       End
@@ -1646,7 +1702,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3048
-         TabIndex        =   13
+         TabIndex        =   44
          Top             =   1716
          Width           =   1164
       End
@@ -1666,7 +1722,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6744
-         TabIndex        =   12
+         TabIndex        =   43
          Top             =   876
          Width           =   528
       End
@@ -1686,7 +1742,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6696
-         TabIndex        =   11
+         TabIndex        =   42
          Top             =   456
          Width           =   576
       End
@@ -1706,7 +1762,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   6072
-         TabIndex        =   10
+         TabIndex        =   41
          Top             =   36
          Width           =   1200
       End
@@ -1726,7 +1782,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   4020
-         TabIndex        =   9
+         TabIndex        =   40
          Top             =   876
          Width           =   552
       End
@@ -1746,7 +1802,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   4080
-         TabIndex        =   8
+         TabIndex        =   39
          Top             =   456
          Width           =   480
       End
@@ -1766,7 +1822,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3960
-         TabIndex        =   7
+         TabIndex        =   38
          Top             =   36
          Width           =   624
       End
@@ -1786,7 +1842,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   3180
-         TabIndex        =   6
+         TabIndex        =   37
          Top             =   2940
          Width           =   1032
       End
@@ -1806,7 +1862,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   60
-         TabIndex        =   5
+         TabIndex        =   36
          Top             =   804
          Width           =   1188
       End
@@ -1826,7 +1882,7 @@ Begin VB.Form frmWiz07
          ForeColor       =   &H0000FFFF&
          Height          =   288
          Left            =   60
-         TabIndex        =   4
+         TabIndex        =   35
          Top             =   84
          Width           =   576
       End
@@ -1846,7 +1902,7 @@ Begin VB.Form frmWiz07
       Height          =   336
       Left            =   1200
       Style           =   2  'Dropdown List
-      TabIndex        =   2
+      TabIndex        =   0
       Top             =   240
       Width           =   4212
    End
@@ -1855,16 +1911,17 @@ Begin VB.Form frmWiz07
       BackColor       =   &H00000000&
       Height          =   2076
       Left            =   9420
-      Picture         =   "frmWiz07.frx":1BFAA
+      Picture         =   "frmWiz07.frx":1D4F9
       ScaleHeight     =   2028
       ScaleWidth      =   1668
-      TabIndex        =   0
-      Top             =   120
+      TabIndex        =   32
+      TabStop         =   0   'False
+      Top             =   3960
       Width           =   1716
    End
    Begin MSComctlLib.ImageList imgIcons32 
       Left            =   10140
-      Top             =   600
+      Top             =   4500
       _ExtentX        =   804
       _ExtentY        =   804
       BackColor       =   -2147483643
@@ -1875,12 +1932,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1CE7D
+            Picture         =   "frmWiz07.frx":1E3CC
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1EB59
+            Picture         =   "frmWiz07.frx":200A8
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -1888,7 +1945,7 @@ Begin VB.Form frmWiz07
    End
    Begin MSComctlLib.ImageList imgIcons16 
       Left            =   10140
-      Top             =   1140
+      Top             =   5040
       _ExtentX        =   804
       _ExtentY        =   804
       BackColor       =   -2147483643
@@ -1899,12 +1956,12 @@ Begin VB.Form frmWiz07
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":1EE75
+            Picture         =   "frmWiz07.frx":203C4
             Key             =   "Wiz07"
             Object.Tag             =   "Wiz07"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmWiz07.frx":20B51
+            Picture         =   "frmWiz07.frx":220A0
             Key             =   "Wiz07g"
             Object.Tag             =   "Wiz07g"
          EndProperty
@@ -1914,7 +1971,7 @@ Begin VB.Form frmWiz07
       Align           =   2  'Align Bottom
       Height          =   252
       Left            =   0
-      TabIndex        =   32
+      TabIndex        =   62
       Top             =   6192
       Width           =   11256
       _ExtentX        =   19854
@@ -1953,6 +2010,7 @@ Begin VB.Form frmWiz07
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   889
             MinWidth        =   891
             TextSave        =   "NUM"
@@ -1964,7 +2022,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "2:16 AM"
+            TextSave        =   "3:42 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -1980,12 +2038,20 @@ Begin VB.Form frmWiz07
    End
    Begin VB.CommandButton cmdExit 
       Appearance      =   0  'Flat
-      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Heidelberg"
+         Size            =   10.2
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   432
       Left            =   9720
       MaskColor       =   &H00FF00FF&
       Style           =   1  'Graphical
-      TabIndex        =   91
+      TabIndex        =   31
       Top             =   2940
       Width           =   1212
    End
@@ -2005,7 +2071,7 @@ Begin VB.Form frmWiz07
       ForeColor       =   &H0000FFFF&
       Height          =   288
       Left            =   120
-      TabIndex        =   1
+      TabIndex        =   33
       Top             =   264
       Width           =   1020
    End
@@ -2017,88 +2083,51 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public DataFile As String
+Private SaveMessage As String
 Private Characters(1 To 6) As Character
-'char *SpellMap[] = {
-'     /* Fire */     "EnergyBlast","BlindingFlash","PsionicFire","Fireball",
-'                    "FireShield","DazzlingLights","FireBomb","Lightning",
-'                    "PrismicMissile","Firestorm","NuclearBlast",
-'     /* Water */    "ChillingTouch","Stamina","Terror","Weaken","Slow",
-'                    "Haste","CureParalysis","IceShield","Restfull","IceBall",
-'                    "Paralyze","Superman","Deepfreeze","DrainingCloud",
-'                    "CureDisease",
-'     /* Air */      "Poison","MissileShield","ShrillSound","StinkBomb",
-'                    "AirPocket","Silence","PoisonGas","CurePoison",
-'                    "Whirlwind","PurifyAir","DeadlyPoison","Levitate",
-'                    "ToxicVapors","NoxiousFumes","Asphyxiation","DeadlyAir",
-'                    "DeathCloud",
-'     /* Earth */    "AcidSplash","ItchingSkin","ArmorShield","Direction",
-'                    "KnockKnock","Blades","Armorplate","Web","WhippingRocks",
-'                    "AcidBomb","Armormelt","Crush","CreateLife","CureStone",
-'     /* Mental */   "MentalAttack","Sleep","Bless","Charm","CureLesserCnd",
-'                    "DivineTrap","DetectSecret","Identify","Confusion",
-'                    "Watchbells","HoldMonsters","Mindread","SaneMind",
-'                    "PsionicBlast","Illusion","WizardsEye","Spooks","Death",
-'                    "LocateObject","MindFlay","FindPerson",
-'     /* Divine */   "HealWounds","MakeWounds","MagicMissile","DispellUndead",
-'                    "EnchantedBlade","Blink","MagicScreen","Conjuration",
-'                    "AntiMagic","RemoveCurse","Healfull","Lifesteal",
-'                    "AstralGate","ZapUndead","Recharge","WordOfDeath",
-'                    "Resurrection","DeathWish"};
-'
-Private Sub cmdCancel_Click()
-    cmdExit.Visible = True
+Private Sub cboCharacter_Click()
+    sbStatus.Panels("Message").Text = vbNullString
+    sbStatus.Panels("Status").Text = vbNullString
     
-    cmdOK.Visible = False
-    cmdCancel.Visible = False
-    cmdExit.Enabled = True
-End Sub
-Private Sub cmdExit_Click()
-    Unload Me
-End Sub
-Private Sub cmdOK_Click()
-    Unload Me
-End Sub
-Private Sub Form_Activate()
-    Dim i As Integer
+    If cboCharacter.ListIndex = -1 Then
+        sbStatus.Panels("Message").Text = "Select Character from the List..."
+        cmdEdit.Visible = False
+        Exit Sub
+    End If
+    cmdEdit.Visible = True
+    With Characters(cboCharacter.ListIndex + 1)
+        cboCondition.ListIndex = .ConditionCode
+        cboGender.ListIndex = .Gender
+        cboProfession.ListIndex = .Profession
+        cboRace.ListIndex = .Race
+        
+        txtSTR.Text = .STR
+        txtINT.Text = .INT
+        txtPIE.Text = .PIE
+        txtVIT.Text = .VIT
+        txtDEX.Text = .DEX
+        txtSPD.Text = .SPD
+        txtPER.Text = .PER
+        txtKAR.Text = .KAR
+        
+        txtLVL.Text = Format(.Level, "#,##0")
+        txtLives.Text = Format(.Lives, "#,##0")
+        txtAge.Text = Format(.Age, "#,##0")
+        
+        txtHP.Text = Format(.HP.Maximum, "#,##0")
+        txtSTM.Text = Format(.STM.Maximum, "#,##0")
+        txtCC.Text = Format(.CC.Maximum / 10, "#,##0.0")
+        txtEXP.Text = Format(.EXP, "#,##0")
+        txtMKS.Text = Format(.MKS, "#,##0")
+        txtGP.Text = Format(.GP, "#,##0")
     
-    'Populate Form with data from disk...
-    Call ReadWiz07(DataFile, Characters)
-
-    For i = 1 To 1  '6
-        With Characters(i)
-            cboCharacter.AddItem .Name, i - 1
-            cboCondition.ListIndex = .ConditionCode
-            cboGender.ListIndex = .Gender
-            cboProfession.ListIndex = .Profession
-            cboRace.ListIndex = .Race
-            
-            txtSTR.Text = .STR
-            txtINT.Text = .INT
-            txtPIE.Text = .PIE
-            txtVIT.Text = .VIT
-            txtDEX.Text = .DEX
-            txtSPD.Text = .SPD
-            txtPER.Text = .PER
-            txtKAR.Text = .KAR
-            
-            txtLVL.Text = Format(.Level, "#,##0")
-            txtLives.Text = Format(.Lives, "#,##0")
-            txtAge.Text = Format(.Age, "#,##0")
-            
-            txtHP.Text = Format(.HP.Maximum, "#,##0")
-            txtSTM.Text = Format(.STM.Maximum, "#,##0")
-            txtCC.Text = Format(.CC.Maximum / 10, "#,##0.0")
-            txtEXP.Text = Format(.EXP, "#,##0")
-            txtMKS.Text = Format(.MKS, "#,##0")
-            txtGP.Text = Format(.GP, "#,##0")
-
-            txtFireSP.Text = Format(.FireSpellPoints.Maximum, "#,##0")
-            txtWaterSP.Text = Format(.WaterSpellPoints.Maximum, "#,##0")
-            txtAirSP.Text = Format(.AirSpellPoints.Maximum, "#,##0")
-            txtEarthSP.Text = Format(.EarthSpellPoints.Maximum, "#,##0")
-            txtMentalSP.Text = Format(.MentalSpellPoints.Maximum, "#,##0")
-            txtDivineSP.Text = Format(.DivineSpellPoints.Maximum, "#,##0")
-            
+        txtFireSP.Text = Format(.FireSpellPoints.Maximum, "#,##0")
+        txtWaterSP.Text = Format(.WaterSpellPoints.Maximum, "#,##0")
+        txtAirSP.Text = Format(.AirSpellPoints.Maximum, "#,##0")
+        txtEarthSP.Text = Format(.EarthSpellPoints.Maximum, "#,##0")
+        txtMentalSP.Text = Format(.MentalSpellPoints.Maximum, "#,##0")
+        txtDivineSP.Text = Format(.DivineSpellPoints.Maximum, "#,##0")
+                
 '            Debug.Print vbCrLf & "List of Items (not stowed)..."
 '            For i = 1 To 10
 '                Debug.Print strItem(.ItemList(i))
@@ -2200,10 +2229,167 @@ Private Sub Form_Activate()
 '            Debug.Print strHex(.Unknown5, 12) & vbCrLf
 '            Debug.Print vbCrLf & "Aptitute (96 bytes):"
 '            Debug.Print strHex(.Aptitude, 96) & vbCrLf   'Aptitude - I don't remember how I determined this...
-            
-        End With
+        sbStatus.Panels("Status").Text = .Name
+        sbStatus.Panels("Message").Text = "Level " & .Level & " " & cboProfession.List(cboProfession.ListIndex) & "..."
+    End With
+End Sub
+Private Sub ClearFields()
+    Dim ctl As Control
+    
+    If cboCharacter.ListIndex = -1 Then
+        cmdEdit.Visible = False
+    Else
+        cmdEdit.Visible = True
+    End If
+    cmdOK.Visible = False
+    cmdCancel.Visible = False
+    cmdExit.Visible = True
+    
+    For Each ctl In Me.Controls
+        Select Case TypeName(ctl)
+            Case "TextBox"
+                ctl.Text = vbNullString
+            Case "ComboBox"
+                If ctl Is cboCharacter Then
+                Else
+                    ctl.ListIndex = -1
+                End If
+            Case Else
+        End Select
+    Next ctl
+End Sub
+'char *SpellMap[] = {
+'     /* Fire */     "EnergyBlast","BlindingFlash","PsionicFire","Fireball",
+'                    "FireShield","DazzlingLights","FireBomb","Lightning",
+'                    "PrismicMissile","Firestorm","NuclearBlast",
+'     /* Water */    "ChillingTouch","Stamina","Terror","Weaken","Slow",
+'                    "Haste","CureParalysis","IceShield","Restfull","IceBall",
+'                    "Paralyze","Superman","Deepfreeze","DrainingCloud",
+'                    "CureDisease",
+'     /* Air */      "Poison","MissileShield","ShrillSound","StinkBomb",
+'                    "AirPocket","Silence","PoisonGas","CurePoison",
+'                    "Whirlwind","PurifyAir","DeadlyPoison","Levitate",
+'                    "ToxicVapors","NoxiousFumes","Asphyxiation","DeadlyAir",
+'                    "DeathCloud",
+'     /* Earth */    "AcidSplash","ItchingSkin","ArmorShield","Direction",
+'                    "KnockKnock","Blades","Armorplate","Web","WhippingRocks",
+'                    "AcidBomb","Armormelt","Crush","CreateLife","CureStone",
+'     /* Mental */   "MentalAttack","Sleep","Bless","Charm","CureLesserCnd",
+'                    "DivineTrap","DetectSecret","Identify","Confusion",
+'                    "Watchbells","HoldMonsters","Mindread","SaneMind",
+'                    "PsionicBlast","Illusion","WizardsEye","Spooks","Death",
+'                    "LocateObject","MindFlay","FindPerson",
+'     /* Divine */   "HealWounds","MakeWounds","MagicMissile","DispellUndead",
+'                    "EnchantedBlade","Blink","MagicScreen","Conjuration",
+'                    "AntiMagic","RemoveCurse","Healfull","Lifesteal",
+'                    "AstralGate","ZapUndead","Recharge","WordOfDeath",
+'                    "Resurrection","DeathWish"};
+'
+Private Sub cmdCancel_Click()
+    Call DisableFields
+    lblStats.ForeColor = &HC0C0&
+    cboCharacter.SetFocus
+End Sub
+Private Sub cmdEdit_Click()
+    Call EnableFields
+    lblStats.ForeColor = &HFFFF&
+    cboRace.SetFocus
+End Sub
+Private Sub cmdExit_Click()
+    Unload Me
+End Sub
+Private Sub cmdOK_Click()
+    'Move data from screen controls back into Characters array...
+    'Write Data back to DataFile...
+    Call DisableFields
+End Sub
+Private Sub DisableFields()
+    Dim ctl As Control
+    
+    If cboCharacter.ListIndex = -1 Then
+        cmdEdit.Visible = False
+    Else
+        cmdEdit.Visible = True
+    End If
+    cmdOK.Visible = False
+    cmdCancel.Visible = False
+    cmdExit.Visible = True
+    
+    For Each ctl In Me.Controls
+        Select Case TypeName(ctl)
+            Case "UpDown"
+                ctl.Enabled = False
+            Case "TextBox"
+                ctl.Enabled = False
+                ctl.ForeColor = &HC0C0&
+            Case "Label"
+                Select Case ctl.Name
+                    Case "lblPortrait"
+                    Case "lblCharacter"
+                        ctl.ForeColor = &HFFFF&
+                    Case Else
+                        ctl.ForeColor = &HC0C0&
+                End Select
+            Case "ComboBox"
+                If ctl Is cboCharacter Then
+                    ctl.Enabled = True
+                    ctl.ForeColor = &HFFFF&
+                Else
+                    ctl.Enabled = False
+                    ctl.ForeColor = &HC0C0&
+                End If
+            Case Else
+        End Select
+    Next ctl
+End Sub
+Private Sub EnableFields()
+    Dim ctl As Control
+    
+    cmdEdit.Visible = False
+    cmdOK.Visible = True
+    cmdCancel.Visible = True
+    cmdExit.Visible = False
+    
+    For Each ctl In Me.Controls
+        Select Case TypeName(ctl)
+            Case "UpDown"
+                ctl.Enabled = True
+            Case "TextBox"
+                ctl.Enabled = True
+                ctl.ForeColor = &HFFFF&
+            Case "Label"
+                Select Case ctl.Name
+                    Case "lblPortrait"
+                    Case "lblCharacter"
+                        ctl.ForeColor = &HC0C0&
+                    Case Else
+                        ctl.ForeColor = &HFFFF&
+                End Select
+            Case "ComboBox"
+                If ctl Is cboCharacter Then
+                    ctl.Enabled = False
+                    ctl.ForeColor = &HC0C0&
+                Else
+                    ctl.Enabled = True
+                    ctl.ForeColor = &HFFFF&
+                End If
+            Case Else
+        End Select
+    Next ctl
+End Sub
+Private Sub Form_Activate()
+    Dim i As Integer
+    
+    'Populate Form with data from disk...
+    Call ReadWiz07(DataFile, Characters)
+    For i = 1 To 6
+        cboCharacter.AddItem Characters(i).Name, i - 1
     Next i
-    cboCharacter.ListIndex = 0
+    
+    cmdEdit.Visible = False
+    cboCharacter.ListIndex = -1
+    Call DisableFields
+    Call ClearFields
 End Sub
 Private Sub Form_Load()
     Me.Picture = frmMain.Picture
@@ -2217,6 +2403,13 @@ Private Sub Form_Load()
     Call PopulateGender(cboGender)
     Call PopulateProfession(cboProfession)
     Call PopulateRace(cboRace)
+End Sub
+Private Sub picTabBasic_GotFocus()
+    SaveMessage = sbStatus.Panels("Message").Text
+    sbStatus.Panels("Message").Text = "Basic Character Statistics..."
+End Sub
+Private Sub picTabBasic_LostFocus()
+    sbStatus.Panels("Message").Text = SaveMessage
 End Sub
 Private Sub txtAge_GotFocus()
     TextSelected
