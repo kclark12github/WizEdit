@@ -10,8 +10,8 @@ Attribute VB_Name = "modWiz01Main"
 '=================================================================================================================================
 Option Explicit
 
-Public Declare Sub DtoTP6 Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByVal x As Double, ByRef TP6buffer() As Byte)
-Public Declare Function TP6toD Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByRef TP6buffer() As Byte) As Double
+'Public Declare Sub DtoTP6 Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByVal x As Double, ByRef TP6buffer() As Byte)
+'Public Declare Function TP6toD Lib "C:\Projects\WizEdit\DTOTP6\Debug\DTOTP6.dll" (ByRef TP6buffer() As Byte) As Double
 
 Global Const Wiz01CharactersMax As Integer = 20
 Global Const Wiz01ItemListMax As Integer = 8
@@ -49,14 +49,10 @@ Type Wiz01Character
     Alignment As Integer                '0x1D82A    02 00 = Neutral
     Statistics As Long                  '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
     Unknown1(1 To 4) As Byte            '0x1D830
-'    GP(1 To 6) As Byte                  '0x1D834
-    GP As Long                          '0x1D834
-    xGP(1 To 2) As Byte                  '0x1D834
+    GP(1 To 3) As Integer               '0x1D834
     ItemCount As Integer                '0x1D83A
     ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
-'    EXP(1 To 6) As Byte                 '0x1D87C
-    EXP As Long                         '0x1D87C
-    xEXP(1 To 2) As Byte                 '0x1D87C
+    EXP(1 To 3) As Integer               '0x1D87C
     LVL As Wiz01Points                  '0x1D882
     HP As Wiz01Points                   '0x1D886
     SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
@@ -87,9 +83,9 @@ Public Sub DumpWiz01(xCharacter As Wiz01Character)
         Debug.Print "Password:           " & vbTab & Left(.Password, .PasswordLength)
 
         If .Out = 1 Then
-            Debug.Print "Out (Left in Maze): " & vbTab & "YES"
+            Debug.Print "On Expidition:      " & vbTab & "YES"
         Else
-            Debug.Print "Out (Left in Maze): " & vbTab & "NO"
+            Debug.Print "On Expidition:      " & vbTab & "NO"
         End If
 
         Debug.Print "Race:               " & vbTab & strRace(.Race)
@@ -99,10 +95,8 @@ Public Sub DumpWiz01(xCharacter As Wiz01Character)
         Debug.Print "Alignment:          " & vbTab & strAlignment(.Alignment)
         Debug.Print "Level:              " & vbTab & strPoints(.LVL)
         Debug.Print "Hit Points:         " & vbTab & strPoints(.HP)
-        'Debug.Print "Gold Pieces:        " & vbTab & TP6toD(.GP)
-        Debug.Print "Gold Pieces:        " & vbTab & .GP
-        'Debug.Print "Experience Points:  " & vbTab & TP6toD(.EXP)
-        Debug.Print "Experience Points:  " & vbTab & .EXP
+        Debug.Print "Gold Pieces:        " & vbTab & I6toD(.GP)
+        Debug.Print "Experience Points:  " & vbTab & I6toD(.EXP)
 
         Debug.Print vbCrLf & "Basic Statistics..."
         Debug.Print "Strength:           " & vbTab & cvtStatisticToInt(.Statistics, 1)
@@ -117,15 +111,15 @@ Public Sub DumpWiz01(xCharacter As Wiz01Character)
             Debug.Print strItem(.ItemList(i))
         Next i
 
-        Debug.Print vbCrLf & "SpellBooks..."
-        bString = cvtSpellsToBstr(.SpellBooks)
-        For i = 1 To Wiz01SpellMapMax
-            If Mid(bString, i + 1, 1) = "1" Then
-                Debug.Print "[X] " & GetSpell(CInt(i))
-            Else
-                Debug.Print "[ ] " & GetSpell(CInt(i))
-            End If
-        Next i
+'        Debug.Print vbCrLf & "SpellBooks..."
+'        bString = cvtSpellsToBstr(.SpellBooks)
+'        For i = 1 To Wiz01SpellMapMax
+'            If Mid(bString, i + 1, 1) = "1" Then
+'                Debug.Print "[X] " & GetSpell(CInt(i))
+'            Else
+'                Debug.Print "[ ] " & GetSpell(CInt(i))
+'            End If
+'        Next i
 
         Debug.Print " "
         strTemp = "Mage Spell Points:    " & vbTab
@@ -391,6 +385,9 @@ Public Sub InitializeWiz01Spells()
     Spells(49) = "Malikto"
     Spells(50) = "Kadorto"
 End Sub
+Public Function IsLord(x As Integer) As Boolean
+    IsLord = (strProfession(x) = "Lord")
+End Function
 Public Sub PopulateWiz01Alignment(x As ComboBox)
     Dim i As Byte
     With x
@@ -531,16 +528,6 @@ Private Function strStatus(ByVal x As Integer) As String
         Case Else
             strStatus = "Unknown"
     End Select
-End Function
-Private Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
-    Dim i As Integer
-
-    strHex = ""
-    For i = 1 To nBytes
-        strHex = strHex & Format(Hex(xBytes(i)), "00") ' & " "
-        If i Mod 4 = 0 Then strHex = strHex & " "
-        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
-    Next i
 End Function
 Private Function strProfession(ByVal x As Integer) As String
     Select Case x
@@ -686,7 +673,7 @@ Public Sub Test()
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
-    Dim Data(1 To 6) As Byte
+    Dim Data(1 To 3) As Integer
     Dim x As Double
     Dim errorCode As Long
 '553599992787
@@ -698,12 +685,15 @@ Public Sub Test()
     Get #Unit, , Data
     Close #Unit
     
-    x = CDbl(553599992787#)
-    Debug.Print "Converted Data: " & TP6toD(Data)
-    Call DtoTP6(x, Data)
+    'x = CDbl(553599992787#)
+    x = I6toD(Data)
+    Data(1) = 0
+    Data(2) = 0
+    Data(3) = 0
+    Call DtoI6(x, Data)
     Unit = FreeFile
     Open "Output.dat" For Binary Access Read Write Lock Read Write As #Unit
-    Put #Unit, , x
+    Put #Unit, , Data
     Close #Unit
 
 ExitSub:
@@ -714,4 +704,3 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
-

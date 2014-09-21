@@ -21,6 +21,61 @@ Public Function ChkINumber(cnum As Integer, _
         ChkINumber = cnum
     End If
 End Function
+Public Sub DtoI6test(ByVal x As Double)
+    Dim Data(1 To 3) As Integer
+    Dim xBytes(1 To 6) As Byte
+    
+    Data(3) = CInt(x / 100000000#)
+    x = x - (Data(3) * 100000000#)
+    Data(2) = CInt(x / 10000#)
+    x = x - (Data(2) * 10000#)
+    Data(1) = x
+
+    Debug.Print "Wizardry Says: " & (Data(3) * 100000000#) + (Data(2) * 10000#) + Data(1)
+End Sub
+Public Sub DtoI6test2()
+    Dim Data(1 To 3) As Integer
+    Dim x As Double
+    Data(3) = 0
+    Data(2) = 3
+    Data(1) = 2898
+
+    x = I6toD(Data)
+    
+    Data(3) = 257
+    Data(2) = 257
+    Data(1) = 257
+
+    x = I6toD(Data)
+    
+    Data(3) = 0
+    Data(2) = 214
+    Data(1) = -4000
+
+    x = I6toD(Data)
+    
+    x = 32898
+    Call DtoI6(x, Data)
+    Debug.Print Data(3) & Data(2) & Data(1)
+End Sub
+Public Sub DtoI6(ByVal x As Double, Data() As Integer)
+    Data(3) = CInt(x / 100000000#)
+    x = x - (Data(3) * 100000000#)
+    Data(2) = CInt(x / 10000#)
+    x = x - (Data(2) * 10000#)
+    Data(1) = x
+End Sub
+Public Function I6toD(Data() As Integer) As Double
+    Dim r1 As Double
+    Dim r2 As Double
+    Dim r3 As Double
+    
+    r1 = Data(1)
+    r2 = Data(2) * 10000#
+    r3 = Data(3) * 100000000#
+    
+    I6toD = r1 + r2 + r3
+End Function
 Public Sub initCommonDialog()
     frmMain.cdgMain.CancelError = False
     frmMain.cdgMain.FileName = vbNullString
@@ -29,6 +84,16 @@ Public Sub initCommonDialog()
     frmMain.cdgMain.flags = 0
     'Any additional fields used by any Form in FiRRe must be added to this list...
 End Sub
+Public Function strHex(ByRef xBytes() As Byte, nBytes As Integer) As String
+    Dim i As Integer
+
+    strHex = ""
+    For i = 1 To nBytes
+        strHex = strHex & Format(Hex(xBytes(i)), "00") ' & " "
+        If i Mod 4 = 0 Then strHex = strHex & " "
+        If i Mod 32 = 0 Then strHex = strHex & vbCrLf
+    Next i
+End Function
 Public Function ValidateByte(Optional x As Control = Nothing) As Boolean
     Const iLimit As Byte = 99
     Dim fCancel As Boolean
