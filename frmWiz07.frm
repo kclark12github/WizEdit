@@ -2655,7 +2655,7 @@ Begin VB.Form frmWiz07
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "6:54 PM"
+            TextSave        =   "11:29 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -2720,7 +2720,7 @@ Const DisabledColor = &HC0C0&
 Public DataFile As String
 Private SaveMessage As String
 Private SelectedCharacter As Integer
-Private Characters(1 To 6) As Character
+Private Characters(1 To 6) As Wiz07Character
 Private Sub cboCharacter_Click()
     sbStatus.Panels("Message").Text = vbNullString
     sbStatus.Panels("Status").Text = vbNullString
@@ -3161,14 +3161,14 @@ Private Sub Form_Load()
     cmdCancel.Picture = frmMain.cmdCancel.Picture
     cmdExit.Picture = frmMain.cmdExit.Picture
     
-    Call PopulateCondition(cboCondition)
-    Call PopulateGender(cboGender)
-    Call PopulateProfession(cboProfession)
-    Call PopulateRace(cboRace)
-    Call PopulateSkillsAcademia(cboSkillsAcademia)
-    Call PopulateSkillsPersonal(cboSkillsPersonal)
-    Call PopulateSkillsPhysical(cboSkillsPhysical)
-    Call PopulateSkillsWeaponry(cboSkillsWeaponry)
+    Call PopulateWiz07Condition(cboCondition)
+    Call PopulateWiz07Gender(cboGender)
+    Call PopulateWiz07Profession(cboProfession)
+    Call PopulateWiz07Race(cboRace)
+    Call PopulateWiz07SkillsAcademia(cboSkillsAcademia)
+    Call PopulateWiz07SkillsPersonal(cboSkillsPersonal)
+    Call PopulateWiz07SkillsPhysical(cboSkillsPhysical)
+    Call PopulateWiz07SkillsWeaponry(cboSkillsWeaponry)
 End Sub
 Private Sub lblItems_Click()
     Call picTabs_Click(3)

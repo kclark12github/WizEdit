@@ -1,12 +1,12 @@
-Attribute VB_Name = "modWiz07Main"
-'modWiz07Main - modWiz07Main.bas
-'   Main module for Crusaders of the Dark Savant / Wizardry Gold...
+Attribute VB_Name = "modWiz01Main"
+'modWiz01Main - modWiz01Main.bas
+'   Main module for Proving Grounds of the Mad Overlord...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:
 '   Date:       Programmer:     Description:
-'   08/26/00    Ken Clark       Created;
+'   09/02/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
 
@@ -15,11 +15,11 @@ Option Explicit
 '      The original WizEdit was written for DOS at the end of 1995. Some of that C
 '      code is imortalized here for reference.
 '=================================================================================================================================
-Global Const Wiz07ItemMapMax As Integer = 569
-Global Const Wiz07RaceMapMax As Integer = 10
-Global Const Wiz07ProfessionMapMax As Integer = 13
-Global Const Wiz07ConditionMapMax As Integer = 11
-Global Const Wiz07SpellMapMax As Integer = 95
+Global Const Wiz01ItemMapMax As Integer = 569
+Global Const Wiz01RaceMapMax As Integer = 10
+Global Const Wiz01ProfessionMapMax As Integer = 13
+Global Const Wiz01ConditionMapMax As Integer = 11
+Global Const Wiz01SpellMapMax As Integer = 95
 
 '/* WIZARDRY.H
 '*/
@@ -35,7 +35,7 @@ Global Const Wiz07SpellMapMax As Integer = 95
 '   unsigned char          Filler;
 '   unsigned char          AC;
 '};
-Type Wiz07Item
+Type Item
     ItemCode As Integer
     Weight As Integer
     PictureCode As Integer
@@ -51,7 +51,7 @@ End Type
 '   unsigned short int   Current;
 '   unsigned short int   Maximum;
 '};
-Type Wiz07Points
+Type Points
     Current As Integer
     Maximum As Integer
 End Type
@@ -255,7 +255,7 @@ End Type
 '   unsigned char        ConditionCode; /* Under Investigation */
 '   unsigned char        Unknown5[12];
 '};
-Type Wiz07Character
+Type Character
     Name As String * 8                  'Null Terminated
     Unknown1(1 To 4) As Byte            '???
     
@@ -263,21 +263,21 @@ Type Wiz07Character
     EXP As Long                         'Experience Points
     MKS As Long                         'Monster Kills
     GP As Long                          'Gold Pieces
-    HP As Wiz07Points                   'Hit Points
-    STM As Wiz07Points                  'Stamina
-    CC As Wiz07Points                   'Carrying Capacity
+    HP As Points                        'Hit Points
+    STM As Points                       'Stamina
+    CC As Points                        'Carrying Capacity
     Level As Integer                    'Level (Duh)
     Lives As Integer                    'Number of Lives Used
     
     'Spell Points...
-    FireSpellPoints  As Wiz07Points
-    WaterSpellPoints  As Wiz07Points
-    AirSpellPoints  As Wiz07Points
-    EarthSpellPoints  As Wiz07Points
-    MentalSpellPoints  As Wiz07Points
-    DivineSpellPoints  As Wiz07Points
-    ItemList(1 To 10) As Wiz07Item      'List of Items (not stowed)
-    SwagBag(1 To 10) As Wiz07Item       'List of Stowed items
+    FireSpellPoints  As Points
+    WaterSpellPoints  As Points
+    AirSpellPoints  As Points
+    EarthSpellPoints  As Points
+    MentalSpellPoints  As Points
+    DivineSpellPoints  As Points
+    ItemList(1 To 10) As Item           'List of Items (not stowed)
+    SwagBag(1 To 10) As Item            'List of Stowed items
     
     Unknown2(1 To 64) As Byte           '???
     
@@ -352,13 +352,13 @@ Type Wiz07Character
 End Type
 
 Private Spells(1 To 96) As String
-Public Sub DumpWiz07(ByVal strFile As String)
+Public Sub DumpWiz01(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
     Dim Unit As Integer
     Dim BytesReadSoFar As Long
     Dim errorCode As Long
-    Dim Sunwolf As Wiz07Character
+    Dim Sunwolf As Character
     
     'Fire Spell Book...
     Spells(1) = "Energy Blast"
@@ -609,20 +609,20 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "DumpWiz07"
+    MsgBox Err.Description, vbExclamation, "DumpWiz01"
     Exit Sub
     Resume Next
 End Sub
-Public Sub PopulateWiz07Condition(x As ComboBox)
+Public Sub PopulateCondition(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz07ConditionMapMax
+        For i = 0 To Wiz01ConditionMapMax
             .AddItem strCondition(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz07Gender(x As ComboBox)
+Public Sub PopulateGender(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
@@ -631,25 +631,25 @@ Public Sub PopulateWiz07Gender(x As ComboBox)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz07Profession(x As ComboBox)
+Public Sub PopulateProfession(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz07ProfessionMapMax
+        For i = 0 To Wiz01ProfessionMapMax
             .AddItem strProfession(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz07Race(x As ComboBox)
+Public Sub PopulateRace(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz07RaceMapMax
+        For i = 0 To Wiz01RaceMapMax
             .AddItem strRace(i), CInt(i)
         Next i
     End With
 End Sub
-Public Sub PopulateWiz07SkillsAcademia(x As ComboBox)
+Public Sub PopulateSkillsAcademia(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
@@ -665,7 +665,7 @@ Public Sub PopulateWiz07SkillsAcademia(x As ComboBox)
         .AddItem "Kirijutsu"
     End With
 End Sub
-Public Sub PopulateWiz07SkillsPersonal(x As ComboBox)
+Public Sub PopulateSkillsPersonal(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
@@ -677,7 +677,7 @@ Public Sub PopulateWiz07SkillsPersonal(x As ComboBox)
         .AddItem "Mind Control"
     End With
 End Sub
-Public Sub PopulateWiz07SkillsPhysical(x As ComboBox)
+Public Sub PopulateSkillsPhysical(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
@@ -691,7 +691,7 @@ Public Sub PopulateWiz07SkillsPhysical(x As ComboBox)
         .AddItem "Ninjutsu"
     End With
 End Sub
-Public Sub PopulateWiz07SkillsWeaponry(x As ComboBox)
+Public Sub PopulateSkillsWeaponry(x As ComboBox)
     Dim i As Byte
     With x
         .Clear
@@ -707,7 +707,7 @@ Public Sub PopulateWiz07SkillsWeaponry(x As ComboBox)
         .AddItem "Hands & Feet"
     End With
 End Sub
-Public Sub ReadWiz07(ByVal strFile As String, xCharacters() As Wiz07Character)
+Public Sub ReadWiz01(ByVal strFile As String, xCharacters() As Character)
     Dim i As Long
     Dim j As Long
     Dim Unit As Integer
@@ -731,7 +731,7 @@ ExitSub:
     Exit Sub
     
 ErrorHandler:
-    MsgBox Err.Description, vbExclamation, "ReadWiz07"
+    MsgBox Err.Description, vbExclamation, "ReadWiz01"
     Exit Sub
     Resume Next
 End Sub
@@ -850,10 +850,10 @@ Private Function strRace(ByVal x As Byte) As String
             strRace = "Unknown"
     End Select
 End Function
-Private Function strItem(x As Wiz07Item) As String
+Private Function strItem(x As Item) As String
     strItem = vbTab & "Code: " & x.ItemCode
 End Function
-Private Function strPoints(x As Wiz07Points) As String
+Private Function strPoints(x As Points) As String
     strPoints = x.Current & "/" & x.Maximum
 End Function
 Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
@@ -861,4 +861,5 @@ Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As 
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
     strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
 End Function
+
 
