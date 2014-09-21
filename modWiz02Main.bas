@@ -148,6 +148,20 @@ Private Function strRace(ByVal x As Byte) As String
             strRace = "Unknown"
     End Select
 End Function
+Private Function strHonors(ByVal x As Integer) As String
+    Select Case x
+        Case 0
+            strHonors = vbNullString
+        Case 1
+            strHonors = "> Chevron of Trebor"
+        Case 2
+            strHonors = "G Mark of Gnilda"
+        Case 3
+            strHonors = "K Knight of Gnilda"
+        Case Else
+            strHonors = "Unknown"
+    End Select
+End Function
 Private Function strItem(x As Wiz02Item) As String
 '    strItem = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "
 '    If x.Identified Then strItem = strItem & "; Identified"
@@ -333,6 +347,15 @@ Public Function Wiz02cvtStatisticToInt(xStatistics As Long, WhichStat As Integer
         Case Else
             Wiz02cvtStatisticToInt = 0
     End Select
+End Function
+Public Function Wiz02GetHonors(x As ListBox) As Integer
+    Dim i As Integer
+    Wiz02GetHonors = 0
+    If x.Selected(0) Then Wiz02GetHonors = (Wiz02GetHonors Or &H1)      ' >
+    If x.Selected(1) Then Wiz02GetHonors = (Wiz02GetHonors Or &H4000)   ' G
+    If x.Selected(2) Then Wiz02GetHonors = (Wiz02GetHonors Or &H800)    ' K
+    If x.Selected(3) Then Wiz02GetHonors = (Wiz02GetHonors Or &H2000)   ' D
+    If x.Selected(4) Then Wiz02GetHonors = (Wiz02GetHonors Or &H20)     ' *
 End Function
 Public Function Wiz02GetSpell(i As Integer) As String
     Wiz02GetSpell = Spells(i)
@@ -591,6 +614,17 @@ Public Sub Wiz02PopulateAlignment(x As ComboBox)
         Next i
     End With
 End Sub
+Public Sub Wiz02PopulateHonors(x As ListBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "> - Chevron of Trebor"
+        .AddItem "G - Mark of Gnilda"
+        .AddItem "K - Knight of Gnilda"
+        '.AddItem "D - Descendant of Heroes"
+        '.AddItem "* - Star of Llylgamyn"
+    End With
+End Sub
 Public Sub Wiz02PopulateItem(x As ComboBox)
     Dim i As Integer
     With x
@@ -806,6 +840,20 @@ ErrorHandler:
     MsgBox Err.Description, vbExclamation, "Wiz02Read"
     Exit Sub
     Resume Next
+End Sub
+Public Sub Wiz02SetHonors(x As ListBox, y As Integer)
+    Dim i As Integer
+    For i = 0 To x.ListCount - 1
+        x.Selected(i) = False
+    Next i
+    
+    If (y And &H1) = &H1 Then x.Selected(0) = True          ' >
+    If (y And &H4000) = &H4000 Then x.Selected(1) = True    ' G
+    If (y And &H800) = &H800 Then x.Selected(2) = True      ' K
+    If (y And &H2000) = &H2000 Then x.Selected(3) = True    ' D
+    If (y And &H20) = &H20 Then x.Selected(4) = True        ' *
+
+    x.ListIndex = -1
 End Sub
 Public Function Wiz02ValidateScenario(xFileName As String) As Boolean
     Dim i As Long

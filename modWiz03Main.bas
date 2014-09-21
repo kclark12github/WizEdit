@@ -334,6 +334,15 @@ Public Function Wiz03cvtStatisticToInt(xStatistics As Long, WhichStat As Integer
             Wiz03cvtStatisticToInt = 0
     End Select
 End Function
+Public Function Wiz03GetHonors(x As ListBox) As Integer
+    Dim i As Integer
+    Wiz03GetHonors = 0
+    If x.Selected(0) Then Wiz03GetHonors = (Wiz03GetHonors Or &H1)      ' >
+    If x.Selected(1) Then Wiz03GetHonors = (Wiz03GetHonors Or &H4000)   ' G
+    If x.Selected(2) Then Wiz03GetHonors = (Wiz03GetHonors Or &H800)    ' K
+    If x.Selected(3) Then Wiz03GetHonors = (Wiz03GetHonors Or &H2000)   ' D
+    If x.Selected(4) Then Wiz03GetHonors = (Wiz03GetHonors Or &H20)     ' *
+End Function
 Public Function Wiz03GetSpell(i As Integer) As String
     Wiz03GetSpell = Spells(i)
 End Function
@@ -558,6 +567,17 @@ Public Sub Wiz03PopulateAlignment(x As ComboBox)
         Next i
     End With
 End Sub
+Public Sub Wiz03PopulateHonors(x As ListBox)
+    Dim i As Byte
+    With x
+        .Clear
+        .AddItem "> - Chevron of Trebor"
+        .AddItem "G - Mark of Gnilda"
+        .AddItem "K - Knight of Gnilda"
+        .AddItem "D - Descendant of Heroes"
+        .AddItem "* - Star of Llylgamyn"
+    End With
+End Sub
 Public Sub Wiz03PopulateItem(x As ComboBox)
     Dim i As Integer
     With x
@@ -773,6 +793,20 @@ ErrorHandler:
     MsgBox Err.Description, vbExclamation, "Wiz03Read"
     Exit Sub
     Resume Next
+End Sub
+Public Sub Wiz03SetHonors(x As ListBox, y As Integer)
+    Dim i As Integer
+    For i = 0 To x.ListCount - 1
+        x.Selected(i) = False
+    Next i
+    
+    If (y And &H1) = &H1 Then x.Selected(0) = True          ' >
+    If (y And &H4000) = &H4000 Then x.Selected(1) = True    ' G
+    If (y And &H800) = &H800 Then x.Selected(2) = True      ' K
+    If (y And &H2000) = &H2000 Then x.Selected(3) = True    ' D
+    If (y And &H20) = &H20 Then x.Selected(4) = True        ' *
+
+    x.ListIndex = -1
 End Sub
 Public Function Wiz03ValidateScenario(xFileName As String) As Boolean
     Dim i As Long

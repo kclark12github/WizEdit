@@ -18,7 +18,6 @@ Global Const Wiz01ItemListMax As Integer = 8
 Global Const Wiz01ItemMapMin As Integer = 0
 Global Const Wiz01ItemMapMax As Integer = 100
 Global Const Wiz01AlignmentMapMax As Integer = 3
-Global Const Wiz01HonorsMapMax As Integer = 1
 Global Const Wiz01RaceMapMax As Integer = 5
 Global Const Wiz01ProfessionMapMax As Integer = 7
 Global Const Wiz01StatusMapMax As Integer = 7
@@ -91,9 +90,7 @@ Private Function strAlignment(ByVal x As Integer) As String
 End Function
 Private Function strHonors(ByVal x As Integer) As String
     Select Case x
-        Case 0
-            strHonors = vbNullString
-        Case 1
+        Case &H0
             strHonors = "> Chevron of Trebor"
         Case Else
             strHonors = "Unknown"
@@ -346,6 +343,15 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
+Public Function Wiz01GetHonors(x As ListBox) As Integer
+    Dim i As Integer
+    Wiz01GetHonors = 0
+    If x.Selected(0) Then Wiz01GetHonors = (Wiz01GetHonors Or &H1)      ' >
+    If x.Selected(1) Then Wiz01GetHonors = (Wiz01GetHonors Or &H4000)   ' G
+    If x.Selected(2) Then Wiz01GetHonors = (Wiz01GetHonors Or &H800)    ' K
+    If x.Selected(3) Then Wiz01GetHonors = (Wiz01GetHonors Or &H2000)   ' D
+    If x.Selected(4) Then Wiz01GetHonors = (Wiz01GetHonors Or &H20)     ' *
+End Function
 Public Function Wiz01GetSpell(i As Integer) As String
     Wiz01GetSpell = Spells(i)
 End Function
@@ -567,13 +573,15 @@ Public Sub Wiz01PopulateAlignment(x As ComboBox)
         Next i
     End With
 End Sub
-Public Sub Wiz01PopulateHonors(x As ComboBox)
+Public Sub Wiz01PopulateHonors(x As ListBox)
     Dim i As Byte
     With x
         .Clear
-        For i = 0 To Wiz01HonorsMapMax
-            .AddItem strHonors(i), CInt(i)
-        Next i
+        .AddItem "> - Chevron of Trebor"
+        '.AddItem "G - Mark of Gnilda"
+        '.AddItem "K - Knight of Gnilda"
+        '.AddItem "D - Descendant of Heroes"
+        '.AddItem "* - Star of Llylgamyn"
     End With
 End Sub
 Public Sub Wiz01PopulateItem(x As ComboBox)
@@ -792,6 +800,20 @@ ErrorHandler:
     MsgBox Err.Description, vbExclamation, "Wiz01Read"
     Exit Sub
     Resume Next
+End Sub
+Public Sub Wiz01SetHonors(x As ListBox, y As Integer)
+    Dim i As Integer
+    For i = 0 To x.ListCount - 1
+        x.Selected(i) = False
+    Next i
+    
+    If (y And &H1) = &H1 Then x.Selected(0) = True          ' >
+    If (y And &H4000) = &H4000 Then x.Selected(1) = True    ' G
+    If (y And &H800) = &H800 Then x.Selected(2) = True      ' K
+    If (y And &H2000) = &H2000 Then x.Selected(3) = True    ' D
+    If (y And &H20) = &H20 Then x.Selected(4) = True        ' *
+
+    x.ListIndex = -1
 End Sub
 Public Function Wiz01ValidateScenario(xFileName As String) As Boolean
     Dim i As Long
