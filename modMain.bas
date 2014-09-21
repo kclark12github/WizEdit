@@ -14,18 +14,19 @@ Public Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 Public Const adoNullError = &H80040E21
 
 Global Const gstrRegPath As String = "Software\Sage Software\WizEdit"
-Global gstrUWAPath1 As String
-Global gstrUWAPath2 As String
-Global gstrUWAPath3 As String
-Global gstrUWAPath4 As String
-Global gstrUWAPath5 As String
-Global gstrUWAPath6 As String
-Global gstrUWAPath7 As String
-Global gstrUWAPath7g As String
+
 Public Function GetWizEditSetting(Key As String, Value As String, vDefault As Variant) As Variant
     GetWizEditSetting = VbRegQueryValue(HKEY_CURRENT_USER, gstrRegPath & "\" & Key, Value)
     If GetWizEditSetting = vbNullString Then GetWizEditSetting = vDefault
 End Function
+Public Sub initCommonDialog()
+    frmMain.cdgMain.CancelError = False
+    frmMain.cdgMain.FileName = vbNullString
+    frmMain.cdgMain.Filter = vbNullString
+    frmMain.cdgMain.FilterIndex = 0
+    frmMain.cdgMain.flags = 0
+    'Any additional fields used by any Form in FiRRe must be added to this list...
+End Sub
 Public Sub SaveWizEditSetting(Key As String, Value As String, Data As Variant)
     Dim CurrentValue As Variant
     Dim Token As String
