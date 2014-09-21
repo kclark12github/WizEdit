@@ -9,6 +9,14 @@ Attribute VB_Name = "modWiz01Main"
 '   09/02/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
+Global Const Wiz01CharactersMax As Integer = 20
+Global Const Wiz01ItemListMax As Integer = 8
+Global Const Wiz01ItemMapMax As Integer = 100
+Global Const Wiz01RaceMapMax As Integer = 5
+Global Const Wiz01ProfessionMapMax As Integer = 7
+Global Const Wiz01StatusMapMax As Integer = 7
+Global Const Wiz01SpellLevelMax As Integer = 7
+Global Const Wiz01SpellMapMax As Integer = 50
 
 Type Wiz01Item
     Equipped As Integer
@@ -49,8 +57,8 @@ Type Wiz01Character
     PriestSpellPoints(1 To 7) As Integer
     Unknown4(1 To 34) As Byte
 End Type
-Private ItemList(0 To 100) As String
-Private Spells(1 To 50) As String
+Private ItemList(0 To Wiz01ItemMapMax) As String
+Private Spells(1 To Wiz01SpellMapMax) As String
 Public Sub DumpWiz01(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
@@ -61,9 +69,6 @@ Public Sub DumpWiz01(ByVal strFile As String)
     Dim errorCode As Long
     Dim xCharacters(1 To 20) As Wiz01Character
     Dim strTemp As String
-    
-    Call PopulateItemList
-    Call PopulateSpells
     
     On Error GoTo ErrorHandler
     Unit = FreeFile
@@ -79,7 +84,7 @@ Public Sub DumpWiz01(ByVal strFile As String)
     Next i
     Close #Unit
     
-    For i = 1 To 1 '20
+    For i = 7 To 7 '20
         Debug.Print String(80, "=")
         Debug.Print "Character #" & i
         With xCharacters(i)
@@ -133,7 +138,6 @@ Public Sub DumpWiz01(ByVal strFile As String)
             Next j
             strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
             Debug.Print strTemp
-            Debug.Print "Luck:               " & vbTab & icvtStatistic(.Statistics, 6)
             
             strTemp = "Priest Spell Points:  " & vbTab
             For j = 1 To 7
@@ -167,16 +171,28 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
-Public Sub PopulateCondition(x As ComboBox)
-    Dim i As Byte
-    With x
-        .Clear
-        For i = 0 To Wiz01ConditionMapMax
-            .AddItem strStatus(i), CInt(i)
-        Next i
-    End With
-End Sub
-Private Sub PopulateItemList()
+Public Function icvtSpell(Spell As Integer, Data As Byte, Offset As Integer) As Boolean
+    If (Data And 2 ^ Offset) = 2 ^ Offset Then icvtSpell = True Else icvtSpell = False
+End Function
+Public Function icvtStatistic(xStatistics As Long, WhichStat As Integer) As Integer
+    Select Case WhichStat
+        Case 1  'Strength
+            icvtStatistic = ((xStatistics \ (2 ^ 0)) And &H1F)
+        Case 2  'Intelligence
+            icvtStatistic = ((xStatistics \ (2 ^ 5)) And &H1F)
+        Case 3  'Piety
+            icvtStatistic = ((xStatistics \ (2 ^ 10)) And &H1F)
+        Case 4  'Vitality
+            icvtStatistic = ((xStatistics \ (2 ^ 16)) And &H1F)
+        Case 5  'Agility
+            icvtStatistic = ((xStatistics \ (2 ^ 21)) And &H1F)
+        Case 6  'Luck
+            icvtStatistic = ((xStatistics \ (2 ^ 26)) And &H1F)
+        Case Else
+            icvtStatistic = 0
+    End Select
+End Function
+Public Sub InitializeWiz01ItemList()
     ItemList(0) = "Broken Item"
     ItemList(1) = "Long Sword"
     ItemList(2) = "Short Sword"
@@ -279,25 +295,7 @@ Private Sub PopulateItemList()
     ItemList(99) = "Gold Key"
     ItemList(100) = "Blue Ribbon"
 End Sub
-Public Sub PopulateProfession(x As ComboBox)
-    Dim i As Byte
-    With x
-        .Clear
-        For i = 0 To Wiz01ProfessionMapMax
-            .AddItem strProfession(i), CInt(i)
-        Next i
-    End With
-End Sub
-Public Sub PopulateRace(x As ComboBox)
-    Dim i As Byte
-    With x
-        .Clear
-        For i = 0 To Wiz01RaceMapMax
-            .AddItem strRace(i), CInt(i)
-        Next i
-    End With
-End Sub
-Private Sub PopulateSpells()
+Public Sub InitializeWiz01Spells()
     'Mage Spell Book...
     Spells(1) = "Halito"
     Spells(2) = "Mogref"
@@ -350,6 +348,58 @@ Private Sub PopulateSpells()
     Spells(48) = "Loktofeit"
     Spells(49) = "Malikto"
     Spells(50) = "Kadorto"
+End Sub
+Public Sub PopulateWiz01Item(x As ComboBox)
+    Dim i As Integer
+    With x
+        .Clear
+        For i = 0 To Wiz01ItemMapMax
+            .AddItem ItemList(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateWiz01Profession(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz01ProfessionMapMax
+            .AddItem strProfession(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateWiz01Race(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz01RaceMapMax
+            .AddItem strRace(i), CInt(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateWiz01SpellBooks(lstMageSpells As ListBox, lstPriestSpells As ListBox)
+    Dim i As Integer
+    With lstMageSpells
+        .Clear
+        For i = 1 To 21
+            .AddItem Spells(i)
+        Next i
+    End With
+
+    With lstPriestSpells
+        .Clear
+        For i = 22 To 50
+            .AddItem Spells(i)
+        Next i
+    End With
+End Sub
+Public Sub PopulateWiz01Status(x As ComboBox)
+    Dim i As Byte
+    With x
+        .Clear
+        For i = 0 To Wiz01StatusMapMax
+            .AddItem strStatus(i), CInt(i)
+        Next i
+    End With
 End Sub
 Public Sub ReadWiz01(ByVal strFile As String, xCharacters() As Wiz01Character)
     Dim i As Long
@@ -485,28 +535,10 @@ End Function
 Private Function strPoints(x As Wiz01Points) As String
     strPoints = x.Current & "/" & x.Maximum
 End Function
-Private Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
+Public Function strSpell(Spell As Integer, Data As Byte, Offset As Integer) As String
     Dim Temp As String
     If (Data And 2 ^ Offset) = 2 ^ Offset Then Temp = "[X]" Else Temp = "[ ]"
     strSpell = Temp & " " & Spells(Spell) '& vbTab & "[Spell: " & Spell & "; Data: " & Hex(Data) & "; Offset: " & Offset & "]"
-End Function
-Private Function icvtStatistic(xStatistics As Long, WhichStat As Integer) As Integer
-    Select Case WhichStat
-        Case 1  'Strength
-            icvtStatistic = ((xStatistics \ (2 ^ 0)) And &H1F)
-        Case 2  'Intelligence
-            icvtStatistic = ((xStatistics \ (2 ^ 5)) And &H1F)
-        Case 3  'Piety
-            icvtStatistic = ((xStatistics \ (2 ^ 10)) And &H1F)
-        Case 4  'Vitality
-            icvtStatistic = ((xStatistics \ (2 ^ 16)) And &H1F)
-        Case 5  'Agility
-            icvtStatistic = ((xStatistics \ (2 ^ 21)) And &H1F)
-        Case 6  'Luck
-            icvtStatistic = ((xStatistics \ (2 ^ 26)) And &H1F)
-        Case Else
-            icvtStatistic = 0
-    End Select
 End Function
 Private Sub Test()
     Dim i As Long

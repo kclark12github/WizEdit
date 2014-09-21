@@ -15,11 +15,12 @@ Option Explicit
 '      The original WizEdit was written for DOS at the end of 1995. Some of that C
 '      code is imortalized here for reference.
 '=================================================================================================================================
+Global Const Wiz07CharactersMax As Integer = 6
 Global Const Wiz07ItemMapMax As Integer = 569
 Global Const Wiz07RaceMapMax As Integer = 10
 Global Const Wiz07ProfessionMapMax As Integer = 13
 Global Const Wiz07ConditionMapMax As Integer = 11
-Global Const Wiz07SpellMapMax As Integer = 95
+Global Const Wiz07SpellMapMax As Integer = 96
 
 '/* WIZARDRY.H
 '*/
@@ -351,7 +352,7 @@ Type Wiz07Character
     Unknown5(1 To 12) As Byte           '???
 End Type
 
-Private Spells(1 To 96) As String
+Private Spells(1 To Wiz07SpellMapMax) As String
 Public Sub DumpWiz07(ByVal strFile As String)
     Dim i As Long
     Dim j As Long
@@ -718,12 +719,12 @@ Public Sub ReadWiz07(ByVal strFile As String, xCharacters() As Wiz07Character)
     Unit = FreeFile
     Open strFile For Binary Access Read Write Lock Read Write As #Unit
     Get #Unit, &H3635, xCharacters(1)
-    For i = 2 To 6
+    For i = 2 To Wiz07CharactersMax
         Get #Unit, , xCharacters(i)
     Next i
     Close #Unit
     
-    For i = 1 To 6
+    For i = 1 To Wiz07CharactersMax
         xCharacters(i).Name = Replace(xCharacters(i).Name, Chr(0), " ")
     Next i
     

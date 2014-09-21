@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "8:56 PM"
+            TextSave        =   "10:22 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -285,6 +285,98 @@ Begin VB.Form frmMain
       TabIndex        =   0
       Top             =   240
       Width           =   3648
+   End
+   Begin MSComctlLib.ImageList imgIcons16 
+      Left            =   600
+      Top             =   5460
+      _ExtentX        =   804
+      _ExtentY        =   804
+      BackColor       =   -2147483643
+      ImageWidth      =   16
+      ImageHeight     =   16
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   8
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":4E20A
+            Key             =   "Wiz01"
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":4FEE6
+            Key             =   "Wiz02"
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":51BC2
+            Key             =   "Wiz03"
+         EndProperty
+         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5389E
+            Key             =   "Wiz04"
+         EndProperty
+         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":53BBA
+            Key             =   "Wiz05"
+         EndProperty
+         BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":55896
+            Key             =   "Wiz06"
+         EndProperty
+         BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":57572
+            Key             =   "Wiz07"
+         EndProperty
+         BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5924E
+            Key             =   "Wiz07g"
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.ImageList imgIcons32 
+      Left            =   1020
+      Top             =   5460
+      _ExtentX        =   804
+      _ExtentY        =   804
+      BackColor       =   -2147483643
+      ImageWidth      =   48
+      ImageHeight     =   48
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   8
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5956A
+            Key             =   "Wiz01"
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5B246
+            Key             =   "Wiz02"
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5CF22
+            Key             =   "Wiz03"
+         EndProperty
+         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5EBFE
+            Key             =   "Wiz04"
+         EndProperty
+         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":5EF1A
+            Key             =   "Wiz05"
+         EndProperty
+         BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":60BF6
+            Key             =   "Wiz06"
+         EndProperty
+         BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":628D2
+            Key             =   "Wiz07"
+         EndProperty
+         BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmMain.frx":645AE
+            Key             =   "Wiz07g"
+         EndProperty
+      EndProperty
    End
    Begin VB.Label lblFile 
       AutoSize        =   -1  'True
@@ -445,31 +537,30 @@ Private Sub cmdOK_Click()
     
     Select Case Scenario
         Case "01"
-            Call DumpWiz01(dPath & "\" & txtFile.Text)
-'            Load frmWiz01
-'            frmWiz01.DataFile = dPath & "\" & txtFile.Text
-'            frmWiz01.Caption = picWiz01.ToolTipText
-'            frmWiz01.Icon = frmWiz01.imgIcons32.ListImages("Wiz01").ExtractIcon
-'            frmWiz01.picWiz01.Visible = True
-'            frmWiz01.picWiz01Gold.Visible = False
-'            frmWiz01.Show vbModal
+            'Call DumpWiz01(dPath & "\" & txtFile.Text)
+            Load frmWiz01
+            frmWiz01.DataFile = dPath & "\" & txtFile.Text
+            frmWiz01.Caption = picWiz01.ToolTipText
+            frmWiz01.Icon = imgIcons32.ListImages("Wiz01").ExtractIcon
+            frmWiz01.picWiz01.Visible = True
+            frmWiz01.Show vbModal
         Case "07"
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
             Load frmWiz07
             frmWiz07.DataFile = dPath & "\" & txtFile.Text
             frmWiz07.Caption = picWiz07.ToolTipText
-            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07").ExtractIcon
+            frmWiz07.Icon = imgIcons32.ListImages("Wiz07").ExtractIcon
             frmWiz07.picWiz07.Visible = True
-            frmWiz07.picWiz07.Picture = picWiz07.Picture
+            'frmWiz07.picWiz07.Picture = picWiz07.Picture
             frmWiz07.Show vbModal
         Case "07G"
             'Call DumpWiz07(dPath & "\" & txtFile.Text)
             Load frmWiz07
             frmWiz07.DataFile = dPath & "\" & txtFile.Text
             frmWiz07.Caption = Left(picWiz07g.ToolTipText, 11) & Mid(picWiz07g.ToolTipText, 13)
-            frmWiz07.Icon = frmWiz07.imgIcons32.ListImages("Wiz07g").ExtractIcon
+            frmWiz07.Icon = imgIcons32.ListImages("Wiz07g").ExtractIcon
             frmWiz07.picWiz07Gold.Visible = True
-            frmWiz07.picWiz07Gold.Picture = picWiz07g.Picture
+            'frmWiz07.picWiz07Gold.Picture = picWiz07g.Picture
             frmWiz07.Show vbModal
         Case Else
             MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
