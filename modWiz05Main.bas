@@ -1,12 +1,12 @@
 Attribute VB_Name = "modWiz05Main"
 'modWiz05Main - modWiz05Main.bas
-'   Main module for Proving Grounds of the Mad Overlord...
+'   Main module for Heart of the Maelstrom...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:
 '   Date:       Programmer:     Description:
-'   09/02/00    Ken Clark       Created;
+'   09/17/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
 
@@ -765,7 +765,7 @@ Public Sub Wiz05Read(ByVal strFile As String, xCharacters() As Wiz05Character)
     
 ExitSub:
     Close #Unit
-    Call SaveRegSetting("Environment", "UWAPath03", ParsePath(strFile, DrvDirNoSlash))
+    Call SaveRegSetting("Environment", "UWAPath05", ParsePath(strFile, DrvDirNoSlash))
     Call SaveRegSetting("Environment", "Wiz05DataFile", ParsePath(strFile, FileNameBaseExt))
     Exit Sub
     

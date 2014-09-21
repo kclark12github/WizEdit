@@ -143,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:18 AM"
+            TextSave        =   "4:47 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -561,6 +561,24 @@ Private Sub cmdOK_Click()
             frmWiz03.picWiz03.Visible = True
             Me.Hide
             frmWiz03.Show
+        Case "04"
+            If Not Wiz04ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
+            Load frmWiz04
+            frmWiz04.DataFile = dPath & "\" & txtFile.Text
+            frmWiz04.Caption = picWiz04.ToolTipText
+            frmWiz04.Icon = imgIcons32.ListImages("Wiz04").ExtractIcon
+            frmWiz04.picWiz04.Visible = True
+            Me.Hide
+            frmWiz04.Show
+        Case "05"
+            If Not Wiz05ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
+            Load frmWiz05
+            frmWiz05.DataFile = dPath & "\" & txtFile.Text
+            frmWiz05.Caption = picWiz05.ToolTipText
+            frmWiz05.Icon = imgIcons32.ListImages("Wiz05").ExtractIcon
+            frmWiz05.picWiz05.Visible = True
+            Me.Hide
+            frmWiz05.Show
         Case "07"
             'If Not Wiz07ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
             'Call DumpWiz07(dPath & "\" & txtFile.Text)

@@ -1,12 +1,12 @@
 Attribute VB_Name = "modWiz03Main"
 'modWiz03Main - modWiz03Main.bas
-'   Main module for Proving Grounds of the Mad Overlord...
+'   Main module for The Legacy of Llylgamyn...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:
 '   Date:       Programmer:     Description:
-'   09/02/00    Ken Clark       Created;
+'   09/16/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
 

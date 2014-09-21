@@ -765,7 +765,7 @@ Public Sub Wiz04Read(ByVal strFile As String, xCharacters() As Wiz04Character)
     
 ExitSub:
     Close #Unit
-    Call SaveRegSetting("Environment", "UWAPath05", ParsePath(strFile, DrvDirNoSlash))
+    Call SaveRegSetting("Environment", "UWAPath04", ParsePath(strFile, DrvDirNoSlash))
     Call SaveRegSetting("Environment", "Wiz04DataFile", ParsePath(strFile, FileNameBaseExt))
     Exit Sub
     

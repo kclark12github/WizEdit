@@ -4,7 +4,7 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form frmWiz03 
    BackColor       =   &H00000000&
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Wizardry 02 - The Knight of Diamonds"
+   Caption         =   "Wizardry 03 - The Legacy of Llylgamyn"
    ClientHeight    =   6420
    ClientLeft      =   36
    ClientTop       =   492
@@ -3313,7 +3313,7 @@ Begin VB.Form frmWiz03
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "12:18 AM"
+            TextSave        =   "4:30 PM"
             Key             =   "Time"
          EndProperty
       EndProperty

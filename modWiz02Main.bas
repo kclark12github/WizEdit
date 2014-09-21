@@ -1,12 +1,12 @@
 Attribute VB_Name = "modWiz02Main"
 'modWiz02Main - modWiz02Main.bas
-'   Main module for Proving Grounds of the Mad Overlord...
+'   Main module for The Knight of Diamonds...
 '   Copyright © 2000, Ken Clark
 '*********************************************************************************************************************************
 '
 '   Modification History:
 '   Date:       Programmer:     Description:
-'   09/02/00    Ken Clark       Created;
+'   09/16/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
 
