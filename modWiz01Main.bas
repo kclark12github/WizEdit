@@ -9,6 +9,10 @@ Attribute VB_Name = "modWiz01Main"
 '   09/02/00    Ken Clark       Created;
 '=================================================================================================================================
 Option Explicit
+Const DBL_BIAS  As Long = &H3FE
+Const REAL_BIAS As Long = &H80
+Const TP_REAL_BIAS As Long = (DBL_BIAS - REAL_BIAS)          ' 0x37E
+
 Global Const Wiz01CharactersMax As Integer = 20
 Global Const Wiz01ItemListMax As Integer = 8
 Global Const Wiz01ItemMapMax As Integer = 100
@@ -44,18 +48,16 @@ Type Wiz01Character
     Alignment As Integer                '0x1D82A    02 00 = Neutral
     Statistics As Long                  '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
     Unknown1(1 To 4) As Byte            '0x1D830
-    GP As Long                          '0x1D834
-    Unknown2(1 To 2) As Byte            '0x1D838
+    GP(1 To 6) As Byte                  '0x1D834
     ItemCount As Integer                '0x1D83A
     ItemList(1 To 8) As Wiz01Item       '0x1D83C    List of Items (stowing not an option in Wiz01...)
-    EXP As Long                         '0x1D87C
-    Unknown3(1 To 2) As Byte            '0x1D880
+    EXP(1 To 6) As Byte                 '0x1D87C
     LVL As Wiz01Points                  '0x1D882
     HP As Wiz01Points                   '0x1D886
     SpellBooks(1 To 8) As Byte          '0x1D88A    Need to mask as bits...
     MageSpellPoints(1 To 7) As Integer  '0x1D882
     PriestSpellPoints(1 To 7) As Integer '0x1D890
-    Unknown4(1 To 34) As Byte           '0x1D89D
+    Unknown2(1 To 34) As Byte           '0x1D89D
                                         '0x1D8C0    Next Character Record...
 End Type
 Private ItemList(0 To Wiz01ItemMapMax) As String
@@ -133,12 +135,8 @@ Public Sub DumpWiz01(xCharacter As Wiz01Character)
             
         Debug.Print "Unknown Region #1 (4 bytes): "
         Debug.Print strHex(.Unknown1, 4) '& vbCrLf
-        Debug.Print "Unknown Region #2 (2 bytes): "
-        Debug.Print strHex(.Unknown2, 2) '& vbCrLf
-        Debug.Print "Unknown Region #3 (2 bytes): "
-        Debug.Print strHex(.Unknown3, 2) '& vbCrLf
-        Debug.Print "Unknown Region #4 (34 bytes): "
-        Debug.Print strHex(.Unknown4, 34) '& vbCrLf
+        Debug.Print "Unknown Region #2 (34 bytes): "
+        Debug.Print strHex(.Unknown2, 34) '& vbCrLf
     End With
 
 ExitSub:
@@ -663,20 +661,235 @@ ErrorHandler:
     Exit Sub
     Resume Next
 End Sub
+'/* +++Date last modified: 05-Jul-1997 */
+'
+'/*
+'$Header: c:/bnxl/rcs/dtotp6.h 1.1 1995/05/01 00:04:08 bnelson Exp $
+'
+'$Log: dtotp6.h $
+'Revision 1.1  1995/05/01 00:04:08  bnelson
+'
+'- Include file companion to dtotp6.c, see notes contained there.
+'*/
+'
+'
+'#include "dirport.h"
+'
+'
+'#ifndef D2TOTP6_H_
+'#define     D2TOTP6_H_
+'
+'#ifdef __TURBOC__
+'#pragma     option -a-       /* Force byte alignment in struct */
+'#End If
+'
+'#ifdef __GNUC__
+'#define PAK        __attribute__((packed))
+'#Else
+'#define PAK
+'#End If
+'
+'#ifdef MONOSPACE_6           /* Just to be safe... */
+' #define     double_to_tp6    DBL2TP
+' #define     tp6_to_double    TP2DBL
+'#End If
+'
+'typedef struct {
+'    unsigned char be   PAK;     /* biased exponent */
+'    unsigned int  v1   PAK;     /* lower 16 bits of mantissa */
+'    unsigned int  v2   PAK;     /* next  16 bits of mantissa */
+'    unsigned int  v3:7 PAK;     /* upper  7 bits of mantissa */
+'    unsigned int  s :1 PAK;     /* sign bit */
+'} tp_real_t;
+'
+'extern tp_real_t  double_to_tp6(double x);
+'extern double     tp6_to_double(tp_real_t r);
+'
+'#endif    /* D2TOTP6_H_ */
+'
+'/* +++Date last modified: 05-Jul-1997 */
+'/*
+'$Header: c:/bnxl/rcs/dtotp6.c 1.2 1995/05/01 00:30:58 bnelson Exp $
+'
+'$Log: dtotp6.c $
+'Revision 1.2  1995/05/01 00:30:58  bnelson
+'
+'- Added test driver and Thad Smith's original function
+'  to convert a TP real to double
+'
+'- Checks out OK with lint.
+'
+'- Tested on GNU C 2.6.3 (little endian Intel) after adding PAK to
+'  real struct.
+'
+'Revision 1.1  1995/04/30 23:54:56  bnelson
+'
+'Written by Bob Nelson of Dallas, TX, USA (bnelson@netcom.com)
+'
+'Original tp6_to_double() written by Thad Smith III of Boulder, CO, and
+'  released to the public domain in SNIPPETS
+'
+'- Initial release -- converts C double value into the bit pattern used
+'  by a Turbo Pascal 6-byte real. Uses the "real" struct written by Thad
+'  Smith for ease of assignment to members.
+'
+'- Tested on BC++ 3.1.
+'
+'- This source and associated include are contributed to the Public Domain.
+'*/
+'
+'
+'#include <math.h>
+'#include "dtotp6.h"
+'
+'
+'#define DBL_BIAS            0x3FE
+'#define REAL_BIAS           0x80
+'#define TP_REAL_BIAS        (DBL_BIAS - REAL_BIAS)    /* 0x37E */
+'
+'
+'tp_real_t double_to_tp6(double x)
+'{
+'      unsigned int *wp;
+'      tp_real_t r;
+'
+'      if(x == 0.0)
+'      {
+'            r.v3 = r.v2 = r.v1 = r.be = r.s = 0;
+'            return r;
+'      }
+'
+'      wp = (void *)&x;            /* Break down double into words */
+'
+'      r.s  = wp[3] >> 15;         /* High bit set for sign */
+'
+'      /* -------------------------------------------------------------------
+'      ** Grab biased exponent -- exclude sign and shift out the MSB
+'      ** mantissa bits.
+'      */
+'
+'      r.be = (unsigned char)(((wp[3] & 0x7FFF) >> 4) - TP_REAL_BIAS);
+'
+'      /* ------------------------------------------------------------------
+'      ** Now...just assign the mantissa after shifting the bits to conform
+'      ** with the layout for the TP 6-byte real.
+'      */
+'
+'      r.v3 = ((wp[3] & 0x0F) << 3) | (wp[2] >> 13);
+'      r.v2 = (wp[2] << 3) | (wp[1] >> 13);
+'      r.v1 = (wp[1] << 3) | (wp[0] >> 13);
+'
+'      return r;
+'}
+'
+'
+'/* -----------------------------------------------------------------
+'** Slightly adapted version of Thad Smith's function from TP6TOD.C
+'** from Snippets. (Uses TP real struct parameter and no memcpy).
+'*/
+'
+'
+'double tp6_to_double(tp_real_t r)
+'{
+'      if (r.be == 0)
+'            return 0.0;
+'
+'      return ((((128 + r.v3) * 65536.0) + r.v2) * 65536.0 + r.v1) *
+'            ldexp((r.s ? -1.0 : 1.0), r.be - (129 + 39));
+'}
+'
+'#if defined (TEST)
+'
+'#include <stdio.h>
+'#include <stdlib.h>
+'
+'
+'
+'int main(int argc, char **argv)
+'{
+'      double x, y;
+'      tp_real_t r;
+'
+'      if(argc > 1)
+'            x = strtod(argv[1], NULL);
+'      else  x = 19999.99;
+'
+'      r = double_to_tp6(x);
+'      y = tp6_to_double(r);
+'
+'      printf("input double value: %.2f, converted double value: %.2f\n",
+'            x, y);
+'
+'      return 0;
+'}
+'
+'#endif    /* TEST */
+Public Sub cvtDoubleToTP6(x As Double, TP6Data() As Byte)
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim lData(2) As Long
+    Dim Data(4) As Integer
+    Dim TPBiasedExponent As Byte
+    Dim Mantissa(3) As Integer
+    Dim SignBit As Integer
+    Dim errorCode As Long
+    
+    If UBound(Data) <> 6 Or LBound(Data) <> 1 Then
+        Err.Raise 13, "modWiz01Main.cvtDoubleToTP6", "Type mismatch; Argument 'Data' not defined with array bounds (1 To 6)."
+        Exit Sub
+    End If
+    
+    'Split Double into Double Words...
+    'ldata(0) = (x \ 2^32) and
+    'Convert Double to 6-Byte Turbo Pascal Real...
+    SignBit = (Data(3) \ (2 ^ 15))  'High bit set for sign
+    TPBiasedExponent = (((Data(3) & &H7FFF) \ 2 ^ 4) - TP_REAL_BIAS)
+    Mantissa(3) = ((Data(3) & &HF) * 2 ^ 3) Or (Data(2) \ 2 ^ 13)
+    Mantissa(2) = (Data(2) * 2 ^ 3) Or (Data(1) \ 2 ^ 13)
+    Mantissa(1) = (Data(1) * 2 ^ 3) Or (Data(0) \ 2 ^ 13)
+End Sub
+Public Function cvtTP6ToDouble(Data() As Byte) As Double
+    Dim i As Long
+    Dim iChar As Integer
+    Dim Offset As Long
+    Dim Unit As Integer
+    Dim TPBiasedExponent As Byte
+    Dim Mantissa(3) As Integer
+    Dim SignBit As Integer
+    Dim errorCode As Long
+    
+    'Convert Double to TP Real...
+    SignBit = (Data(3) \ (2 ^ 15))  'High bit set for sign
+    TPBiasedExponent = (((Data(3) & &H7FFF) \ 2 ^ 4) - TP_REAL_BIAS)
+    Mantissa(3) = ((Data(3) & &HF) * 2 ^ 3) Or (Data(2) \ 2 ^ 13)
+    Mantissa(2) = (Data(2) * 2 ^ 3) Or (Data(1) \ 2 ^ 13)
+    Mantissa(1) = (Data(1) * 2 ^ 3) Or (Data(1) \ 2 ^ 13)
+End Function
 Public Sub Test()
     Dim i As Long
     Dim iChar As Integer
     Dim Offset As Long
     Dim Unit As Integer
-    Dim Data As Single
+    Dim Data(1 To 6) As Byte
+    Dim x As Double
     Dim errorCode As Long
+'553599992787
+'23 A7 0F 27 FF FF
     
-    Data = 846681
     On Error GoTo ErrorHandler
     Unit = FreeFile
-    Open "Test2.dat" For Binary Access Read Write Lock Read Write As #Unit
-    Put #Unit, , Data
-    'Get #Unit, , Data
+    Open "Input.dat" For Binary Access Read Write Lock Read Write As #Unit
+    Get #Unit, , Data
+    Close #Unit
+    
+    x = CDbl(553599992787#)
+    'Debug.Print "Converted Data: " & cvtTP6ToDouble(Data)
+    'Call cvtDoubleToTP6(x, Data)
+    Unit = FreeFile
+    Open "Output.dat" For Binary Access Read Write Lock Read Write As #Unit
+    Put #Unit, , x
     Close #Unit
 
 ExitSub:
