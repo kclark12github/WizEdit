@@ -2931,7 +2931,7 @@ Begin VB.Form frmWiz01
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "10:29 PM"
+            TextSave        =   "10:36 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
@@ -3368,7 +3368,7 @@ Private Sub picTabs_Click(Index As Integer)
         End Select
     Next i
     
-    Debug.Print "Testing..."
+    'Debug.Print "Testing..."
     For Each ctl In Me.Controls
         Select Case TypeName(ctl)
             Case "Label", "ImageList", "CommandButton", "UpDown"
@@ -3376,10 +3376,10 @@ Private Sub picTabs_Click(Index As Integer)
                 If Not ctl.Container Is Me And Not IsNull(ctl.Container) Then
                     If ctl.Container Is picFrames(Index) Then
                         ctl.TabStop = True
-                        Debug.Print ctl.Name & ".TabStop = True"
+                        'Debug.Print ctl.Name & ".TabStop = True"
                     Else
                         ctl.TabStop = False
-                        Debug.Print ctl.Name & ".TabStop = False"
+                        'Debug.Print ctl.Name & ".TabStop = False"
                     End If
                 End If
         End Select
