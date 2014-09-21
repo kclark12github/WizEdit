@@ -51,7 +51,9 @@ Type Wiz01Character
     LVL As Wiz01Points
     HP As Wiz01Points
     SpellBooks(1 To 8) As Byte         'Need to mask as bits...
-    Unknown4(1 To 62) As Byte
+    MageSpellPoints(1 To 7) As Integer
+    PriestSpellPoints(1 To 7) As Integer
+    Unknown4(1 To 34) As Byte
 End Type
 Private Spells(1 To 49) As String
 Public Sub DumpWiz01(ByVal strFile As String)
@@ -63,6 +65,7 @@ Public Sub DumpWiz01(ByVal strFile As String)
     Dim Offset As Long
     Dim errorCode As Long
     Dim xCharacters(1 To 20) As Wiz01Character
+    Dim strTemp As String
     
     'Mage Spell Book...
     Spells(1) = "HALITO"
@@ -176,10 +179,25 @@ Public Sub DumpWiz01(ByVal strFile As String)
             Debug.Print vbCrLf & "SpellBooks..."
             For j = 1 To 8
                 For k = 1 To 8
-                    Debug.Print vbTab & strSpell(((j - 1) * 8) + k, .SpellBooks(j), k - 1)
+                    If ((j - 1) * 8) + k <= UBound(Spells) Then Debug.Print vbTab & strSpell(((j - 1) * 8) + k, .SpellBooks(j), k - 1)
                 Next k
             Next j
         
+            Debug.Print " "
+            strTemp = "Mage Spell Points: "
+            For j = 1 To 7
+                strTemp = strTemp & .MageSpellPoints(j) & "/"
+            Next j
+            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+            Debug.Print strTemp
+            
+            strTemp = "Priest Spell Points: "
+            For j = 1 To 7
+                strTemp = strTemp & .PriestSpellPoints(j) & "/"
+            Next j
+            strTemp = Mid(strTemp, 1, Len(strTemp) - 1)
+            Debug.Print strTemp
+            
             Debug.Print " "
             Debug.Print "Unknown Region #1 (4 bytes): "
             Debug.Print strHex(.Unknown1, 4) & vbCrLf
@@ -190,8 +208,8 @@ Public Sub DumpWiz01(ByVal strFile As String)
             Debug.Print "Unknown Region #3 (2 bytes): "
             Debug.Print strHex(.Unknown3, 2) & vbCrLf
 
-            Debug.Print "Unknown Region #4 (62 bytes): "
-            Debug.Print strHex(.Unknown4, 62) & vbCrLf
+            Debug.Print "Unknown Region #4 (34 bytes): "
+            Debug.Print strHex(.Unknown4, 34) & vbCrLf
         End With
 
 NextCharacter:
