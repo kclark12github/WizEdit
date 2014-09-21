@@ -132,7 +132,6 @@ Begin VB.Form frmMain
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
-            Enabled         =   0   'False
             Object.Width           =   889
             MinWidth        =   891
             TextSave        =   "NUM"
@@ -144,7 +143,7 @@ Begin VB.Form frmMain
             AutoSize        =   2
             Object.Width           =   1270
             MinWidth        =   1270
-            TextSave        =   "11:22 PM"
+            TextSave        =   "10:45 PM"
             Key             =   "Time"
          EndProperty
       EndProperty
