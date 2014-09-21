@@ -15,6 +15,7 @@ Global Const Wiz01ScenarioDataOffset As Long = &H1D401
 Global Const Wiz01CharacterDataOffset As Long = &H1D801
 Global Const Wiz01CharactersMax As Integer = 20
 Global Const Wiz01ItemListMax As Integer = 8
+Global Const Wiz01ItemMapMin As Integer = 0
 Global Const Wiz01ItemMapMax As Integer = 100
 Global Const Wiz01AlignmentMapMax As Integer = 3
 Global Const Wiz01RaceMapMax As Integer = 5
@@ -71,7 +72,7 @@ Type Wiz01Character
     Honors As Integer                   '0x1D8CE    Need more testing, but 1 = ">"
                                         '0x1D8D0    Next Character Record...
 End Type
-Private ItemList(0 To Wiz01ItemMapMax) As String
+Private ItemList(Wiz01ItemMapMin To Wiz01ItemMapMax) As String
 Private Spells(0 To Wiz01SpellMapMax) As String
 Private Function strAlignment(ByVal x As Integer) As String
     Select Case x
@@ -538,7 +539,7 @@ Public Function Wiz01lkupItemByCbo(x As Integer, cbo As ComboBox) As Integer
 End Function
 Public Function Wiz01lkupItemByName(x As String) As Integer
     Dim i As Integer
-    For i = 0 To Wiz01ItemMapMax
+    For i = Wiz01ItemMapMin To Wiz01ItemMapMax
         If ItemList(i) = x Then
             Wiz01lkupItemByName = i
             Exit Function
@@ -558,7 +559,7 @@ Public Sub Wiz01PopulateItem(x As ComboBox)
     Dim i As Integer
     With x
         .Clear
-        For i = 0 To Wiz01ItemMapMax
+        For i = Wiz01ItemMapMin To Wiz01ItemMapMax
             .AddItem ItemList(i)    ', i    'Removed to allow ComboBox to be Sorted
         Next i
     End With
