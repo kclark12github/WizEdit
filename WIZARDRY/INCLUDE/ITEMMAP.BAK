@@ -1,0 +1,13 @@
+struct ItemMap
+{
+   short         ItemCode;
+   char          Name[21];
+/*   long          Value;
+ *  short         Weight;
+ *  unsigned char SpellCode;
+ *  unsigned char SpellLevel;
+ *  short         PictureCode;
+*/
+} Items[] = {
+{0, "", 0,0,0x0000, 0, 0}
+};
