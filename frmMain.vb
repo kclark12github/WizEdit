@@ -11,6 +11,7 @@
 Public Class frmMain
     Private fScenarioSelected As Boolean = False
     Private Scenario As String = ""
+    Private mBase As WizEditBase = New WizEditBase()
     Dim dFilter As String = ""
     Dim dPath As String = ""
     Private Sub EnableFields(ByVal Caption As String)
@@ -47,65 +48,24 @@ Public Class frmMain
             'See if we know where UWA is installed... If not, use defaults from UWA...
             Select Case Scenario
                 Case "01", "02", "03", "04", "05"
-                    dPath = GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\WIZARD15")
-                    dPath &= String.Format("\{0}", GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
+                    dPath = mBase.GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\WIZARD15")
+                    dPath &= String.Format("\{0}", mBase.GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
                     dFilter = "Saved Games (SAVE?.DSK)|SAVE?.DSK|All Files (*.*)|*.*"
                 Case "06"
-                    dPath = GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\BANE")
-                    dPath &= String.Format("\{0}", GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
+                    dPath = mBase.GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\BANE")
+                    dPath &= String.Format("\{0}", mBase.GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
                     dFilter = "Saved Games (*.DBS)|*.DBS|All Files (*.*)|*.*"
                 Case "07"
-                    dPath = GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\DSAVANT")
-                    dPath &= String.Format("\{0}", GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
+                    dPath = mBase.GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\DSAVANT")
+                    dPath &= String.Format("\{0}", mBase.GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
                     dFilter = "Saved Games (*.DBS)|*.DBS|All Files (*.*)|*.*"
                 Case "07G"
-                    dPath = GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\Sirtech\WizGold")
-                    dPath &= String.Format("\{0}", GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
+                    dPath = mBase.GetRegSetting("Environment", String.Format("UWAPath{0}", Scenario), "C:\Sirtech\WizGold")
+                    dPath &= String.Format("\{0}", mBase.GetRegSetting("Environment", String.Format("Wiz{0}DataFile", Scenario), dFileName))
                     dFilter = "Saved Games (*.GLD)|*.GLD|All Files (*.*)|*.*"
             End Select
+            tsslMessage.Text = IIf(File.Exists(dPath), dPath, "")
         Catch ex As Exception : MessageBox.Show(Me, ex.Message, ex.GetType.Name)
-        End Try
-    End Sub
-    Private Function GetRegSetting(ByVal KeyName As String, ByVal ValueName As String, ByVal [Default] As Object) As Object
-        Dim Reg As RegistryKey = Nothing
-        GetRegSetting = Nothing
-        Try
-            Reg = Registry.CurrentUser.OpenSubKey(String.Format("Software\KClark Software\WizEdit\{0}", KeyName)) : If IsNothing(Reg) Then Exit Try
-            GetRegSetting = Reg.GetValue(ValueName, [Default])
-        Catch ex As System.Exception
-        Finally : If Not IsNothing(Reg) Then Reg.Close()
-        End Try
-    End Function
-    Private Sub SaveRegSetting(ByVal KeyName As String, ByVal ValueName As String, ByVal Value As Object)
-        Dim Reg As RegistryKey = Nothing
-        Dim CurrentValue As Object = Nothing
-        Try
-            If KeyName Is Nothing Then Throw New ArgumentException("KeyName must be provided.")
-            If ValueName Is Nothing Then Throw New ArgumentException("ValueName must be provided.")
-            If Value Is Nothing Then Throw New ArgumentException("Value must be provided.")
-
-            KeyName = String.Format("Software\KClark Software\WizEdit\{0}", KeyName)
-            Reg = Registry.CurrentUser.OpenSubKey(KeyName, True)
-            If Reg Is Nothing Then
-                'Iterate through the KeyName making sure each sub-key exists (create as necessary)...
-                Dim SubKeys() As String = KeyName.Split("\")
-                Dim Key As String = SubKeys(0)
-                For i As Short = 1 To SubKeys.Length - 1
-                    Dim SubKey As String = String.Format("{0}\{1}", Key, SubKeys(i))
-                    Reg = Registry.CurrentUser.OpenSubKey(SubKey)
-                    If Reg Is Nothing Then
-                        Reg = Registry.CurrentUser.OpenSubKey(Key, True)
-                        Reg.CreateSubKey(SubKeys(i))
-                    End If
-                    Reg.Close() : Reg = Nothing
-                    Key = SubKey
-                Next i
-                Reg = Registry.CurrentUser.OpenSubKey(KeyName, True)
-            End If
-            CurrentValue = Reg.GetValue(ValueName)
-            If CurrentValue Is Nothing OrElse CurrentValue.ToString <> Value.ToString Then Reg.SetValue(ValueName, Value)
-        Catch ex As System.Exception
-        Finally : If Reg IsNot Nothing Then Reg.Close()
         End Try
     End Sub
     Private Sub cmdBrowse_Click(sender As Object, e As EventArgs) Handles cmdBrowse.Click
@@ -163,6 +123,7 @@ Public Class frmMain
     End Sub
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         Dim fi As FileInfo = Nothing
+        Dim bHidden As Boolean = False
         Try
             epMain.SetError(sender, "")
             If dPath = "" Then Throw New FileNotFoundException("Save Game file not found!")
@@ -174,55 +135,18 @@ Public Class frmMain
             End If
 
             fi = New FileInfo(dPath)
+            Me.Hide() : bHidden = True
             Select Case Scenario
-                Case "01"
-                    Dim wiz01 As clsWiz01 = New clsWiz01(dPath)
-                    SaveRegSetting("Environment", "UWAPath01", fi.DirectoryName)
-                    SaveRegSetting("Environment", "Wiz01DataFile", fi.Name)
-                    'Call DumpWiz01(dPath & "\" & txtFile.Text)
-                    'Load frmWiz01
-                    'frmWiz01.DataFile = dPath & "\" & txtFile.Text
-                    'frmWiz01.Caption = picWiz01.ToolTipText
-                    'frmWiz01.Icon = imgIcons32.ListImages("Wiz01").ExtractIcon
-                    'frmWiz01.picWiz01.Visible = True
-                    'Me.Hide()
-                    'frmWiz01.Show
-                Case "02"
-                    'If Not Wiz02ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
-                    'Load frmWiz02
-                    'frmWiz02.DataFile = dPath & "\" & txtFile.Text
-                    'frmWiz02.Caption = picWiz02.ToolTipText
-                    'frmWiz02.Icon = imgIcons32.ListImages("Wiz02").ExtractIcon
-                    'frmWiz02.picWiz02.Visible = True
-                    'Me.Hide()
-                    'frmWiz02.Show
-                Case "03"
-                    'If Not Wiz03ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
-                    'Load frmWiz03
-                    'frmWiz03.DataFile = dPath & "\" & txtFile.Text
-                    'frmWiz03.Caption = picWiz03.ToolTipText
-                    'frmWiz03.Icon = imgIcons32.ListImages("Wiz03").ExtractIcon
-                    'frmWiz03.picWiz03.Visible = True
-                    'Me.Hide()
-                    'frmWiz03.Show
-                Case "04"
-                    'If Not Wiz04ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
-                    'Load frmWiz04
-                    'frmWiz04.DataFile = dPath & "\" & txtFile.Text
-                    'frmWiz04.Caption = picWiz04.ToolTipText
-                    'frmWiz04.Icon = imgIcons32.ListImages("Wiz04").ExtractIcon
-                    'frmWiz04.picWiz04.Visible = True
-                    'Me.Hide()
-                    'frmWiz04.Show
-                Case "05"
-                    'If Not Wiz05ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
-                    'Load frmWiz05
-                    'frmWiz05.DataFile = dPath & "\" & txtFile.Text
-                    'frmWiz05.Caption = picWiz05.ToolTipText
-                    'frmWiz05.Icon = imgIcons32.ListImages("Wiz05").ExtractIcon
-                    'frmWiz05.picWiz05.Visible = True
-                    'Me.Hide()
-                    'frmWiz05.Show
+                Case "01", "02", "03", "04", "05"
+                    Dim Wiz15 As WizEditBase
+                    Select Case Scenario
+                        Case "01" : Wiz15 = New Wizardry01(dPath, ttMain.GetToolTip(pbWiz01), Global.WizEdit.My.Resources.Resources.Wiz1, Global.WizEdit.My.Resources.Resources.Wiz01Box, Me)
+                            'Case "02" : Wiz15 = New Wizardry02(dPath, ttMain.GetToolTip(pbWiz02), Global.WizEdit.My.Resources.Resources.Wiz2, Global.WizEdit.My.Resources.Resources.Wiz02Box, Me)
+                            'Case "03" : Wiz15 = New Wizardry03(dPath, ttMain.GetToolTip(pbWiz03), Global.WizEdit.My.Resources.Resources.Wiz3, Global.WizEdit.My.Resources.Resources.Wiz03Box, Me)
+                            'Case "04" : Wiz15 = New Wizardry04(dPath, ttMain.GetToolTip(pbWiz04), Global.WizEdit.My.Resources.Resources.Wiz4, Global.WizEdit.My.Resources.Resources.Wiz04Box, Me)
+                            'Case "05" : Wiz15 = New Wizardry05(dPath, ttMain.GetToolTip(pbWiz05), Global.WizEdit.My.Resources.Resources.Wiz5, Global.WizEdit.My.Resources.Resources.Wiz05Box, Me)
+                    End Select
+                    Wiz15.Show()
                 Case "07"
                     ''If Not Wiz07ValidateScenario(dPath & "\" & txtFile.Text) Then GoTo ExitSub
                     ''Call DumpWiz07(dPath & "\" & txtFile.Text)
@@ -251,7 +175,11 @@ Public Class frmMain
         Catch ex As FileNotFoundException
             epMain.SetError(sender, ex.Message)
             cmdBrowse_Click(sender, e)
-        Catch ex As Exception : epMain.SetError(sender, ex.Message)
+        Catch ex As Exception
+            Debug.WriteLine(ex.ToString)
+            epMain.SetError(sender, ex.Message)
+        Finally
+            If bHidden Then Me.Show() : bHidden = False
         End Try
     End Sub
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
