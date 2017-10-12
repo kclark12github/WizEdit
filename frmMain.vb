@@ -138,7 +138,7 @@ Public Class frmMain
             Me.Hide() : bHidden = True
             Select Case Scenario
                 Case "01", "02", "03", "04", "05"
-                    Dim Wiz15 As WizEditBase
+                    Dim Wiz15 As WizEditBase = Nothing
                     Select Case Scenario
                         Case "01" : Wiz15 = New Wizardry01(dPath, ttMain.GetToolTip(pbWiz01), Global.WizEdit.My.Resources.Resources.Wiz1, Global.WizEdit.My.Resources.Resources.Wiz01Box, Me)
                             'Case "02" : Wiz15 = New Wizardry02(dPath, ttMain.GetToolTip(pbWiz02), Global.WizEdit.My.Resources.Resources.Wiz2, Global.WizEdit.My.Resources.Resources.Wiz02Box, Me)
