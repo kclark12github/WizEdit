@@ -1,5 +1,5 @@
-﻿'Wizardry01.cls
-'   Main Class for Proving Grounds of the Mad Overlord...
+﻿'Wizardry02.cls
+'   Main Class for Knight of Diamonds (KOD)...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
 '
@@ -10,7 +10,7 @@
 '=================================================================================================================================
 Option Explicit On
 
-Public Class Wizardry01
+Public Class Wizardry02
     Inherits WizEditBase
     Public Sub New(FileName As String, ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
         MyBase.New(FileName, Caption, Icon, BoxArt, Parent)
@@ -18,7 +18,7 @@ Public Class Wizardry01
     End Sub
     Public Overrides ReadOnly Property CharacterDataOffset As Int32
         Get
-            Return &H1D800
+            Return &H1D200
         End Get
     End Property
     Public Overrides ReadOnly Property CharactersMax As Short
@@ -124,13 +124,42 @@ Public Class Wizardry01
                     New ItemData("Magic: Ring of Healing", 91),
                     New ItemData("Magic: Ring Pro Undead", 92),
                     New ItemData("Magic: Deadly Ring", 93),
-                    New ItemData("Special: Werdna's Amulet", 94),
-                    New ItemData("Special: Statuette/Bear", 95),
-                    New ItemData("Special: Statuette/Frog", 96),
-                    New ItemData("Special: Bronze Key", 97),
-                    New ItemData("Special: Silver Key", 98),
-                    New ItemData("Special: Gold Key", 99),
-                    New ItemData("Special: Blue Ribbon", 100)
+                    New ItemData("Magic: Rod of Raising", 94),
+                    New ItemData("Magic: Amulet of Cover", 95),
+                    New ItemData("Armor: +3 Robe", 96),
+                    New ItemData("Gauntlets: Winter Mittens", 97),
+                    New ItemData("Magic: Necklace Pro Magic", 98),
+                    New ItemData("Weapon: Staff of Light", 99),
+                    New ItemData("Weapon: +5 Long Sword", 100),
+                    New ItemData("Weapon: Sword of Swinging", 101),
+                    New ItemData("Weapon: Priest Puncher", 102),
+                    New ItemData("Weapon: Priest Mace", 103),
+                    New ItemData("Weapon: Short Sword of Swinging", 104),
+                    New ItemData("Magic: Ring Pro Fire", 105),
+                    New ItemData("Armor: Cursed +1 Plate", 106),
+                    New ItemData("Armor: +5 Plate", 107),
+                    New ItemData("Weapon: Staff of Curing", 108),
+                    New ItemData("Magic: Ring of Regen", 109),
+                    New ItemData("Magic: Metamorph Ring", 110),
+                    New ItemData("Misc: Stone Stone", 111),
+                    New ItemData("Misc: Dreamer's Stone", 112),
+                    New ItemData("Misc: Damien Stone", 113),
+                    New ItemData("Weapon: Great Mage Wand", 114),
+                    New ItemData("Misc: Coin of Power", 115),
+                    New ItemData("Misc: Stone of Youth", 116),
+                    New ItemData("Misc: Mind Stone", 117),
+                    New ItemData("Misc: Stone of Piety", 118),
+                    New ItemData("Misc: Blarney Stone", 119),
+                    New ItemData("Magic: Amulet of Skill", 120),
+                    New ItemData("Magic: Amulet of Skill", 121),
+                    New ItemData("Weapon: Great Mage Wand", 122),
+                    New ItemData("Magic: Coin of Power", 123),
+                    New ItemData("Weapon: Staff of Gnilda", 124),
+                    New ItemData("Special: Hrathnir", 125),
+                    New ItemData("Special: KOD's Helm", 126),
+                    New ItemData("Special: KOD's Shield", 127),
+                    New ItemData("Special: KOD's Gauntlets", 128),
+                    New ItemData("Special: KOD's Armor", 129)
                 }
             End If
             Return mMasterItemList
@@ -138,29 +167,30 @@ Public Class Wizardry01
     End Property
     Public Overrides ReadOnly Property RegDataDirectory As String
         Get
-            Return "UWAPath01"
+            Return "UWAPath02"
         End Get
     End Property
     Public Overrides ReadOnly Property RegDataFile As String
         Get
-            Return "Wiz01DataFile"
+            Return "Wiz02DataFile"
         End Get
     End Property
     Public Overrides ReadOnly Property ScenarioDataOffset As String
         Get
-            Return &H1D400
+            Return &H1CE00
         End Get
     End Property
     Public Overrides ReadOnly Property ScenarioName As String
         Get
-            Return "PROVING GROUNDS OF THE MAD OVERLORD!"
+            Return "THE KNIGHT OF DIAMONDS"
         End Get
     End Property
     Public Overrides ReadOnly Property HonorsList As String()
         Get
             HonorsList = {
-                "> Chevron of Trebor"
-                }
+                "> Chevron of Trebor",
+                "K - Knight of Gnilda"
+       }
         End Get
     End Property
 End Class

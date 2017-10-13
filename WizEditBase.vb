@@ -20,11 +20,13 @@ Public Class WizEditBase
     Public Sub New(Path As String, ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
         mPath = Path
         If Path IsNot Nothing AndAlso Path <> "" Then mFileInfo = New FileInfo(Path)
+
         mBoxArt = BoxArt
         mCaption = Caption
         mIcon = Icon
         mParent = Parent
-        For iChar As Short = 0 To CharactersMax - 1
+        ReDim mCharacters(Me.CharactersMax - 1)
+        For iChar As Short = 0 To Me.CharactersMax - 1
             mCharacters(iChar) = New Character(Me)
         Next iChar
     End Sub
@@ -53,14 +55,16 @@ Public Class WizEditBase
             mGold = 0
             mGoldPacked = {0S, 0S, 0S}
             mItemCount = 0S
-            mItemList = {New Item(), New Item(), New Item(), New Item(), New Item(), New Item(), New Item(), New Item()}
+            mItemList = {New Item(mBase), New Item(mBase), New Item(mBase), New Item(mBase), New Item(mBase), New Item(mBase), New Item(mBase), New Item(mBase)}
             mExperience = 0
             mExperiencePacked = {0S, 0S, 0S}
             mLVL = New Points
             mHP = New Points
 
             mSpellBooks = {0, 0, 0, 0, 0, 0, 0, 0}
+            ReDim mMageSpellBook(mBase.MageSpellBook.Length - 1)
             mMageSpellPoints = {0S, 0S, 0S, 0S, 0S, 0S, 0S}
+            ReDim mPriestSpellBook(mBase.PriestSpellBook.Length - 1)
             mPriestSpellPoints = {0S, 0S, 0S, 0S, 0S, 0S, 0S}
             mArmorClass = 0S
             mLocation = 0S
@@ -100,74 +104,21 @@ Public Class WizEditBase
         Private mGold As Long
         Private mGoldPacked(2) As UInt16
         Private mItemCount As UInt16
+
         Private mItemList(ItemListMax - 1) As Item
         Private mExperience As Long
         Private mExperiencePacked(2) As UInt16
         Private mLVL As Points
         Private mHP As Points
         Private mSpellBooks(7) As Byte
+        Private mMageSpellBook() As Boolean
         Private mMageSpellPoints(SpellLevelMax - 1) As UInt16
+        Private mPriestSpellBook() As Boolean
         Private mPriestSpellPoints(SpellLevelMax - 1) As UInt16
-        Private mArmorClass As UInt16
+        Private mArmorClass As Int16
         Private mLocation As UInt16
         Private mDown As UInt16
         Private mHonors As UInt16
-
-        Private mMageSpellBook() As Spell = {
-            New Spell("Unknown", "Unknown", Spell.enumSpellType.Camp, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 0),
-            New Spell("Halito", "Little Fire", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Mage, 1),
-            New Spell("Mogref", "Body Iron", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 1),
-            New Spell("Katino", "Bad Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 1),
-            New Spell("Dumapic", "Clarity", Spell.enumSpellType.Camp, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 1),
-            New Spell("Dilto", "Darkness", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 2),
-            New Spell("Sopic", "Glass", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 2),
-            New Spell("Mahalito", "Big Fire", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 3),
-            New Spell("Molito", "Sparks", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 3),
-            New Spell("Morlis", "Fear", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
-            New Spell("Dalto", "Blizzard", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
-            New Spell("Lahalito", "Torch", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
-            New Spell("Mamorlis", "Terror", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 5),
-            New Spell("Makanito", "Deadly Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 5),
-            New Spell("Madalto", "Frost King", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 5),
-            New Spell("Lakanito", "Vacuum", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 6),
-            New Spell("Zilwan", "Dispell", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Mage, 6),
-            New Spell("Masopic", "Crystal", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 6),
-            New Spell("Haman", "Beg", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Variable, Spell.enumSpellCategory.Mage, 6),
-            New Spell("Malor", "Teleport", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 7),
-            New Spell("Mahaman", "Beseech", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Variable, Spell.enumSpellCategory.Mage, 7),
-            New Spell("Tiltowait", "Ka-Blam!", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 7)
-            }
-        Private mPriestSpellBook() As Spell = {
-            New Spell("Kalki", "Blessings", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 1),
-            New Spell("Dios", "Heal", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 1),
-            New Spell("Badios", "Harm", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 1),
-            New Spell("Milwa", "Light", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 1),
-            New Spell("Porfic", "Shield", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 1),
-            New Spell("Matu", "Zeal", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 2),
-            New Spell("Calfo", "X-Ray", Spell.enumSpellType.Looting, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 2),
-            New Spell("Manifo", "Statue", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 2),
-            New Spell("Montino", "Still Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 2),
-            New Spell("Lomilwa", "Sunbeam", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
-            New Spell("Dialko", "Softness", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 3),
-            New Spell("Latumapic", "Identify", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
-            New Spell("Bamatu", "Prayer", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
-            New Spell("Dial", "Cure", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 4),
-            New Spell("Badial", "Wound", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 4),
-            New Spell("Latumofis", "Cleanse", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 4),
-            New Spell("Maporfic", "Big Shield", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 4),
-            New Spell("Dialma", "Big Cure", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Badialma", "Big Wound", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Litokan", "Flames", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Kandi", "Location", Spell.enumSpellType.Camp, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Di", "Life", Spell.enumSpellType.Camp, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Badi", "Death", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 5),
-            New Spell("Lorto", "Blades", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 6),
-            New Spell("Madi", "Restore", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 6),
-            New Spell("Mabadi", "Maiming", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 6),
-            New Spell("Loktofeit", "Recall", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 6),
-            New Spell("Malikto", "Wrath", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Priest, 7),
-            New Spell("Kadorto", "Rebirth", Spell.enumSpellType.Camp, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 7)
-     }
 #End Region
         Public Property Age As Short
             Get
@@ -257,6 +208,14 @@ Public Class WizEditBase
                 Return mHP
             End Get
         End Property
+        Public Property ItemCount As Int16
+            Get
+                Return mItemCount
+            End Get
+            Set(value As Int16)
+                mItemCount = value
+            End Set
+        End Property
         Public ReadOnly Property Items As Item()
             Get
                 Return mItemList
@@ -325,7 +284,8 @@ Public Class WizEditBase
                 Return (mLocation \ 100)
             End Get
             Set(value As UInt16)
-
+                Dim north As UInt16 = Me.LocationNorth
+                mLocation = (value * 100) + north
             End Set
         End Property
         Public Property LocationNorth As UInt16
@@ -333,7 +293,8 @@ Public Class WizEditBase
                 Return (mLocation Mod 100)
             End Get
             Set(value As UInt16)
-
+                Dim east As UInt16 = Me.LocationEast
+                mLocation = (east * 100) + value
             End Set
         End Property
         Public ReadOnly Property LocationFull As String
@@ -346,30 +307,18 @@ Public Class WizEditBase
                 Return mLVL
             End Get
         End Property
-        Public ReadOnly Property MageSpellBook As Spell()
+        Public ReadOnly Property MageSpellBook As Boolean()
             Get
                 Return mMageSpellBook
             End Get
         End Property
-        Public ReadOnly Property MageSpellList As String()
-            Get
-                Try
-                    Dim temp() As String = {}
-                    ReDim temp(mMageSpellBook.Length - 2)
-                    For i As Short = 0 To mMageSpellBook.Length - 2
-                        temp(i) = mMageSpellBook(i + 1).Name
-                    Next i
-                    Return temp
-                Catch ex As Exception
-                    Debug.WriteLine(ex.ToString)
-                    Throw
-                End Try
-            End Get
-        End Property
-        Public ReadOnly Property MageSpellPoints(ByVal Level As Short) As Short
+        Public Property MageSpellPoints(ByVal Level As Short) As Int16
             Get
                 Return mMageSpellPoints(Level)
             End Get
+            Set(value As Int16)
+                mMageSpellPoints(Level) = value
+            End Set
         End Property
         Public Property Name As String
             Get
@@ -397,30 +346,18 @@ Public Class WizEditBase
                 mPassword = value
             End Set
         End Property
-        Public ReadOnly Property PriestSpellBook As Spell()
+        Public ReadOnly Property PriestSpellBook As Boolean()
             Get
                 Return mPriestSpellBook
             End Get
         End Property
-        Public ReadOnly Property PriestSpellList As String()
-            Get
-                Try
-                    Dim temp() As String = {}
-                    ReDim temp(mPriestSpellBook.Length - 1)
-                    For i As Short = 0 To mPriestSpellBook.Length - 1
-                        temp(i) = mPriestSpellBook(i).Name
-                    Next i
-                    Return temp
-                Catch ex As Exception
-                    Debug.WriteLine(ex.ToString)
-                    Throw
-                End Try
-            End Get
-        End Property
-        Public ReadOnly Property PriestSpellPoints(ByVal Level As Short) As Short
+        Public Property PriestSpellPoints(ByVal Level As Short) As Int16
             Get
                 Return mPriestSpellPoints(Level)
             End Get
+            Set(value As Int16)
+                mPriestSpellPoints(Level) = value
+            End Set
         End Property
         Public Property Profession As enumProfession
             Get
@@ -452,6 +389,11 @@ Public Class WizEditBase
                     Case enumStatus.LostDeleted : Return "Lost/Deleted"
                     Case Else : Return String.Format("{0}", Me.StatusCode)
                 End Select
+            End Get
+        End Property
+        Public ReadOnly Property Tag As String
+            Get
+                Return String.Format("{0}{1} L {2} {3}-{4} {5}", New Object() {Me.Name.ToUpper, New String(" "c, NamePasswordLengthMax - Me.Name.Length), Me.LVL.Current, Me.Alignment.ToString.Substring(0, 1).ToUpper, Me.Profession.ToString.Substring(0, 3).ToUpper, Me.Race.ToString.ToUpper})
             End Get
         End Property
 
@@ -568,9 +510,9 @@ Public Class WizEditBase
                 For Offset As Short = 0 To 7
                     If iSpell > 50 Then Exit For
                     If iSpell <= 21 Then
-                        mMageSpellBook(iSpell).Known = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
+                        mMageSpellBook(iSpell) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
                     Else
-                        mPriestSpellBook(iSpell - 22).Known = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
+                        mPriestSpellBook(iSpell - 22) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
                     End If
                     iSpell += 1
                 Next Offset
@@ -579,8 +521,6 @@ Public Class WizEditBase
             For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
                 mMageSpellPoints(i) = binReader.ReadInt16()
             Next i
-            If mName = "NEB" Then Debug.WriteLine(String.Format("NEB Priest Spells @ 0x{0:X00000}", binReader.BaseStream.Position))
-            'TODO: VB6 incarnation reports this as 9/9/9/9/9/9/9 while we seem to find 2/0/0/0/0/0/0/0
             For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
                 mPriestSpellPoints(i) = binReader.ReadInt16()
             Next i
@@ -676,7 +616,7 @@ Public Class WizEditBase
             'SpellBooks...
             ToString &= String.Format("{0}Mage SpellBook...{0}", vbCrLf)
             For iSpell As Short = 1 To mMageSpellBook.Length - 1
-                ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell, mMageSpellBook(iSpell).ToString})
+                ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString, IIf(mMageSpellBook(iSpell), "Yes", "No")})
             Next iSpell
             ToString &= String.Format("{0}Mage Spell Points:    {1}", vbCrLf, mMageSpellPoints(0))
             For iPoints As Integer = 1 To mMageSpellPoints.Length - 1
@@ -684,7 +624,7 @@ Public Class WizEditBase
             Next iPoints
             ToString &= String.Format("{0}Priest SpellBook...{0}", vbCrLf)
             For iSpell As Short = 0 To mPriestSpellBook.Length - 1
-                ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell + 1, mPriestSpellBook(iSpell).ToString})
+                ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell + 1, mBase.PriestSpellBook(iSpell).ToString, IIf(mPriestSpellBook(iSpell), "Yes", "No")})
             Next iSpell
             ToString &= String.Format("{0}Priest Spell Points:  {1}", vbCrLf, mPriestSpellPoints(0))
             For iPoints As Integer = 1 To mPriestSpellPoints.Length - 1
@@ -694,153 +634,48 @@ Public Class WizEditBase
 #End Region
     End Class
     Public Class Item
-        Public Sub New()
+        Public Sub New(ByVal Base As WizEditBase)
+            mBase = Base
             mEquipped = 0
             mCursed = 0
             mIdentified = 0
             mItemCode = 0
         End Sub
-        Private mEquipped As UInt16
-        Private mCursed As UInt16
-        Private mIdentified As UInt16
-        Private mItemCode As UInt16
-        Private mMasterItemList As String() = {
-                "Misc: Broken Item",
-                "Weapon: Long Sword",
-                "Weapon: Short Sword",
-                "Weapon: Anointed Mace",
-                "Weapon: Anointed Flail",
-                "Weapon: Staff",
-                "Weapon: Dagger",
-                "Shield: Small Shield",
-                "Shield: Large Shield",
-                "Armor: Robes",
-                "Armor: Leather Armor",
-                "Armor: Chain Mail",
-                "Armor: Breast Plate",
-                "Armor: Plate Mail",
-                "Helm: Helm",
-                "Magic: Potion Of Dios",
-                "Magic: Potion Of Latumofis",
-                "Weapon: Long Sword +1",
-                "Weapon: Short Sword +1",
-                "Weapon: Mace +1",
-                "Weapon: Staff of Mogref",
-                "Magic: Scroll of Katino",
-                "Armor: Leather +1",
-                "Armor: Chain Mail +1",
-                "Armor: Plate Mail +1",
-                "Shield: Shield +1",
-                "Armor: Breast Plate +1",
-                "Magic: Scroll Of Badios",
-                "Magic: Scroll Of Halito",
-                "Weapon: Long Sword -1",
-                "Weapon: Short Sword -1",
-                "Weapon: Mace -1",
-                "Weapon: Staff +2",
-                "Weapon: Dragon Slayer",
-                "Helm: Helm +1",
-                "Armor: Leather -1",
-                "Armor: Chain -1",
-                "Armor: Breast Plate -1",
-                "Shield: Shield -1",
-                "Magic: Jeweled Amulet",
-                "Magic: Scroll of Badios",
-                "Magic: Potion of Sopic",
-                "Weapon: Long Sword +2",
-                "Weapon: Short Sword +2",
-                "Weapon: Mace +2",
-                "Magic: Scroll Of Lomilwa",
-                "Magic: Scroll Of Dilto",
-                "Gauntlets: Copper Gloves",
-                "Armor: Leather +2",
-                "Armor: Chain +2",
-                "Armor: Plate Mail +2",
-                "Shield: Shield +2",
-                "Helm: Helm +2 (E)",
-                "Magic: Potion Of Dial",
-                "Magic: Ring of Porfic",
-                "Weapon: Were Slayer",
-                "Weapon: Mage Masher",
-                "Weapon: Mace Pro Poison",
-                "Weapon: Staff Of Montino",
-                "Weapon: Blade Cusinart'",
-                "Magic: Amulet Of Manifo",
-                "Weapon: Rod Of Flame",
-                "Armor: Chain +2 (E)",
-                "Armor: Plate +2 (N)",
-                "Shield: Shield +3 (E)",
-                "Magic: Amulet Of Makanito",
-                "Helm: Helm of Malor",
-                "Magic: Scroll of Badial",
-                "Weapon: Short Sword -2",
-                "Weapon: Dagger +2",
-                "Weapon: Mace -2",
-                "Weapon: Staff -2",
-                "Weapon: Dagger Of Speed",
-                "Armor: Cursed Robe",
-                "Armor: Leather -2",
-                "Armor: Chain -2",
-                "Armor: Breastplate -2",
-                "Shield: Shield -2",
-                "Helm: Cursed Helmet",
-                "Armor: Breast Plate +2",
-                "Gauntlets: Gloves of Silver",
-                "Weapon: Evil +3 Sword",
-                "Weapon: +3 Evil Short Sword",
-                "Weapon: Thieves Dagger",
-                "Armor: +3 Breast Plate",
-                "Armor: Lord's Garb",
-                "Weapon: Muramasa Blade",
-                "Weapon: Shiriken",
-                "Armor: Chain Pro Fire",
-                "Armor: +3 Evil Plate",
-                "Shield: +3 Shield",
-                "Magic: Ring of Healing",
-                "Magic: Ring Pro Undead",
-                "Magic: Deadly Ring",
-                "Special: Werdna's Amulet",
-                "Special: Statuette/Bear",
-                "Special: Statuette/Frog",
-                "Special: Bronze Key",
-                "Special: Silver Key",
-                "Special: Gold Key",
-                "Special: Blue Ribbon"}
-        Public Property ItemCode As Integer
+        Private mBase As WizEditBase
+        Private mEquipped As Int16
+        Private mCursed As Int16
+        Private mIdentified As Int16
+        Private mItemCode As Int16
+        Public Property ItemCode As Short
             Get
                 Return mItemCode
             End Get
-            Set(value As Integer)
+            Set(value As Short)
                 mItemCode = value
             End Set
         End Property
-        Public ReadOnly Property ItemList As String()
+        Public Property Cursed As Boolean
             Get
-                Return mMasterItemList
+                Return CBool(mCursed <> 0)
             End Get
-        End Property
-        Public Property Cursed As Integer
-            Get
-                Return mCursed
-            End Get
-            Set(value As Integer)
-                mCursed = value
+            Set(value As Boolean)
+                mCursed = IIf(value, 1, 0)
             End Set
         End Property
-        Public Property Equipped As Integer
+        Public Property Equipped As Boolean
             Get
-                Return mEquipped
+                Return CBool(mEquipped <> 0)
             End Get
-            Set(value As Integer)
-                mEquipped = value
+            Set(value As Boolean)
+                mEquipped = IIf(value, 1, 0)
             End Set
         End Property
-        Public Property Identified As Integer
+        Public Property Identified As Boolean
             Get
-                Return mIdentified
+                Return CBool(mIdentified <> 0)
             End Get
-            Set(value As Integer)
-                mIdentified = value
+            Set(value As Boolean)
+                mIdentified = IIf(value, 1, 0)
             End Set
         End Property
         Public Sub Read(binReader As BinaryReader)
@@ -861,7 +696,7 @@ Public Class WizEditBase
             '    If x.Equipped Then Item &= "; **EQUIPPED**"
             '    If x.Cursed Then strItem &= "; --CURSED--"
 
-            Return String.Format("{0}{1}{2}", vbTab, IIf(mCursed, "-", IIf(mEquipped, "*", " ")), mMasterItemList(mItemCode))
+            Return String.Format("{0}{1}{2}", vbTab, IIf(mCursed, "-", IIf(mEquipped, "*", " ")), mBase.MasterItemList(mItemCode))
         End Function
     End Class
     Public Class Points
@@ -937,7 +772,6 @@ Public Class WizEditBase
         Private mAffects As enumSpellAffects
         Private mCategory As enumSpellCategory
         Private mLevel As Short
-        Private mKnown As Boolean = False
 #End Region
         Public ReadOnly Property Name As String
             Get
@@ -978,18 +812,10 @@ Public Class WizEditBase
                 Return mLevel
             End Get
         End Property
-        Public Property Known As Boolean
-            Get
-                Return mKnown
-            End Get
-            Set(value As Boolean)
-                mKnown = value
-            End Set
-        End Property
 #End Region
 #Region "Methods"
         Public Overrides Function ToString() As String
-            Return String.Format("{1}{0}Level {2}{0}{3} (""{4}""){0}Type: {5}{0}Affects: {6}{0}Known: {7}", New Object() {vbTab, Me.Category, Me.Level, Me.Name, Me.Translation, Me.Type, Me.Affects, IIf(Me.Known, "Yes", "No")})
+            Return String.Format("{1}{0}Level {2}{0}{3} (""{4}""){0}Type: {5}{0}Affects: {6}", New Object() {vbTab, Me.Category, Me.Level, Me.Name, Me.Translation, Me.Type, Me.Affects})
         End Function
 #End Region
     End Class
@@ -1013,6 +839,7 @@ Public Class WizEditBase
         Ninja = 7
     End Enum
     Public Enum enumRace As Byte
+        NoRace = 0
         Human = 1
         Elf = 2
         Dwarf = 3
@@ -1031,16 +858,17 @@ Public Class WizEditBase
     End Enum
 #End Region
 #Region "Declarations"
-    Const CharactersMax As Integer = 20
-
     Private mBoxArt As Image
     Private mCaption As String
     Private mForm As Form
     Private mIcon As Icon
     Private mParent As Form
 
-    Private mCharacters(19) As Character
+    Private mCharacters() As Character
     Private mFileInfo As FileInfo = Nothing
+    Protected mMasterItemList As ItemData()
+    Protected mMageSpellBook As Spell()
+    Protected mPriestSpellBook As Spell()
     Private mPath As String = vbNullString
     Private mRegKey As String = "Software\KClark Software"
 #End Region
@@ -1057,6 +885,11 @@ Public Class WizEditBase
     Public ReadOnly Property Characters As Character()
         Get
             Return mCharacters
+        End Get
+    End Property
+    Public Overridable ReadOnly Property CharactersMax As Short
+        Get
+            Throw New NotSupportedException("Must Override Property!")
         End Get
     End Property
     Public ReadOnly Property DirectoryName As String
@@ -1082,25 +915,113 @@ Public Class WizEditBase
                 }
         End Get
     End Property
-    Public Overridable ReadOnly Property ItemList As String()
+    Public Overridable ReadOnly Property MasterItemList As ItemData()
         Get
-            ItemList = mCharacters(0).Items(0).ItemList
+            Throw New NotSupportedException("Must Override Property!")
+        End Get
+    End Property
+    Public Overridable ReadOnly Property MageSpellBook As Spell()
+        Get
+            If mMageSpellBook Is Nothing Then
+                mMageSpellBook = {
+                    New Spell("Unknown", "Unknown", Spell.enumSpellType.Camp, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 0),
+                    New Spell("Halito", "Little Fire", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Mage, 1),
+                    New Spell("Mogref", "Body Iron", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 1),
+                    New Spell("Katino", "Bad Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 1),
+                    New Spell("Dumapic", "Clarity", Spell.enumSpellType.Camp, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 1),
+                    New Spell("Dilto", "Darkness", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 2),
+                    New Spell("Sopic", "Glass", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Mage, 2),
+                    New Spell("Mahalito", "Big Fire", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 3),
+                    New Spell("Molito", "Sparks", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 3),
+                    New Spell("Morlis", "Fear", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
+                    New Spell("Dalto", "Blizzard", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
+                    New Spell("Lahalito", "Torch", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 4),
+                    New Spell("Mamorlis", "Terror", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 5),
+                    New Spell("Makanito", "Deadly Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 5),
+                    New Spell("Madalto", "Frost King", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 5),
+                    New Spell("Lakanito", "Vacuum", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Mage, 6),
+                    New Spell("Zilwan", "Dispell", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Mage, 6),
+                    New Spell("Masopic", "Crystal", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 6),
+                    New Spell("Haman", "Beg", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Variable, Spell.enumSpellCategory.Mage, 6),
+                    New Spell("Malor", "Teleport", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Mage, 7),
+                    New Spell("Mahaman", "Beseech", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Variable, Spell.enumSpellCategory.Mage, 7),
+                    New Spell("Tiltowait", "Ka-Blam!", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Mage, 7)
+                }
+            End If
+            Return mMageSpellBook
         End Get
     End Property
     Public Overridable ReadOnly Property MageSpellList As String()
         Get
-            MageSpellList = mCharacters(0).MageSpellList
+            Try
+                Dim temp() As String = {}
+                ReDim temp(Me.MageSpellBook.Length - 2)
+                For i As Short = 0 To Me.MageSpellBook.Length - 2
+                    temp(i) = Me.MageSpellBook(i + 1).Name
+                Next i
+                Return temp
+            Catch ex As Exception
+                Debug.WriteLine(ex.ToString)
+                Throw
+            End Try
         End Get
     End Property
-
     Public ReadOnly Property Path As String
         Get
             Return mPath
         End Get
     End Property
+    Public Overridable ReadOnly Property PriestSpellBook As Spell()
+        Get
+            If mPriestSpellBook Is Nothing Then
+                mPriestSpellBook = {
+                    New Spell("Kalki", "Blessings", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 1),
+                    New Spell("Dios", "Heal", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 1),
+                    New Spell("Badios", "Harm", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 1),
+                    New Spell("Milwa", "Light", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 1),
+                    New Spell("Porfic", "Shield", Spell.enumSpellType.Combat, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 1),
+                    New Spell("Matu", "Zeal", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 2),
+                    New Spell("Calfo", "X-Ray", Spell.enumSpellType.Looting, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 2),
+                    New Spell("Manifo", "Statue", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 2),
+                    New Spell("Montino", "Still Air", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 2),
+                    New Spell("Lomilwa", "Sunbeam", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
+                    New Spell("Dialko", "Softness", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 3),
+                    New Spell("Latumapic", "Identify", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
+                    New Spell("Bamatu", "Prayer", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 3),
+                    New Spell("Dial", "Cure", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 4),
+                    New Spell("Badial", "Wound", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 4),
+                    New Spell("Latumofis", "Cleanse", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 4),
+                    New Spell("Maporfic", "Big Shield", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 4),
+                    New Spell("Dialma", "Big Cure", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Badialma", "Big Wound", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Litokan", "Flames", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Kandi", "Location", Spell.enumSpellType.Camp, Spell.enumSpellAffects.Caster, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Di", "Life", Spell.enumSpellType.Camp, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Badi", "Death", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 5),
+                    New Spell("Lorto", "Blades", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneGroup, Spell.enumSpellCategory.Priest, 6),
+                    New Spell("Madi", "Restore", Spell.enumSpellType.AnyTime, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 6),
+                    New Spell("Mabadi", "Maiming", Spell.enumSpellType.Combat, Spell.enumSpellAffects.OneMonster, Spell.enumSpellCategory.Priest, 6),
+                    New Spell("Loktofeit", "Recall", Spell.enumSpellType.Combat, Spell.enumSpellAffects.EntireParty, Spell.enumSpellCategory.Priest, 6),
+                    New Spell("Malikto", "Wrath", Spell.enumSpellType.Combat, Spell.enumSpellAffects.AllMonsters, Spell.enumSpellCategory.Priest, 7),
+                    New Spell("Kadorto", "Rebirth", Spell.enumSpellType.Camp, Spell.enumSpellAffects.OnePerson, Spell.enumSpellCategory.Priest, 7)
+                }
+            End If
+            Return mPriestSpellBook
+        End Get
+    End Property
     Public Overridable ReadOnly Property PriestSpellList As String()
         Get
-            PriestSpellList = mCharacters(0).PriestSpellList
+            Try
+                Dim temp() As String = {}
+                ReDim temp(Me.PriestSpellBook.Length - 1)
+                For i As Short = 0 To Me.PriestSpellBook.Length - 1
+                    temp(i) = Me.PriestSpellBook(i).Name
+                Next i
+                Return temp
+            Catch ex As Exception
+                Debug.WriteLine(ex.ToString)
+                Throw
+            End Try
         End Get
     End Property
     Public Overridable ReadOnly Property ProfessionList As String()
@@ -1120,12 +1041,38 @@ Public Class WizEditBase
     Public Overridable ReadOnly Property RaceList As String()
         Get
             RaceList = {
+                enumRace.NoRace.ToString,
                 enumRace.Human.ToString,
                 enumRace.Elf.ToString,
                 enumRace.Dwarf.ToString,
                 enumRace.Gnome.ToString,
                 enumRace.Hobbit.ToString
                 }
+        End Get
+    End Property
+    Public Overridable ReadOnly Property CharacterDataOffset As Int32
+        Get
+            Throw New NotSupportedException("Must Override Property!")
+        End Get
+    End Property
+    Public Overridable ReadOnly Property RegDataDirectory As String
+        Get
+            Throw New NotSupportedException("Must Override Property!")
+        End Get
+    End Property
+    Public Overridable ReadOnly Property RegDataFile As String
+        Get
+            Throw New NotSupportedException("Must Override Property!")
+        End Get
+    End Property
+    Public Overridable ReadOnly Property ScenarioDataOffset As String
+        Get
+            Throw New NotSupportedException("Must Override Property!")
+        End Get
+    End Property
+    Public Overridable ReadOnly Property ScenarioName As String
+        Get
+            Throw New NotSupportedException("Must Override Property!")
         End Get
     End Property
     Public Overridable ReadOnly Property StatusList As String()
@@ -1280,15 +1227,105 @@ Public Class WizEditBase
         End Try
     End Function
 #End Region
-    Public Function GetCharacter(ByVal Name As String) As Character
+    Public Function GetCharacter(ByVal Tag As String) As Character
         For iChar As Short = 0 To mCharacters.Length - 1
-            If mCharacters(iChar).Name = Name Then Return mCharacters(iChar)
+            If mCharacters(iChar).Tag = Tag Then Return mCharacters(iChar)
         Next iChar
         Return Nothing
     End Function
+    Public Sub Read()
+        Dim binReader As BinaryReader = Nothing
+        Try
+            If Not File.Exists(mPath) Then Throw New FileNotFoundException(String.Format("{0} does not exist!", mPath))
+            binReader = New BinaryReader(File.Open(mPath, FileMode.Open))
+            binReader.BaseStream.Position = Me.ScenarioDataOffset
+            Dim myScenarioName As String = binReader.ReadString()
+            If myScenarioName <> Me.ScenarioName Then Throw New NotSupportedException(String.Format("Save game file specified is not a valid Ultimate Wizardry Archives: {0} save game file.", Me.ScenarioName))
+
+            'Wizardry (1-5) supports up to 20 characters...
+            'The layout is a little funky in that the Character structure seems
+            'not to have lined-up evenly with the disk layout (1024 byte blocks
+            'on disk)... So, characters start at offset 0x0001D800 and then are
+            'stored in blocks of 4 characters (832 bytes), 192 bytes of filler
+            '(completing the 1K disk block), then another 4 blocks... for 5
+            'total blocks of 4, making 20 characters.
+            binReader.BaseStream.Position = Me.CharacterDataOffset
+            For iBlock As Short = 1 To 5
+                Dim iChar As Short = (iBlock * 4) - 4
+                Characters(iChar).Read(binReader)
+                Characters(iChar + 1).Read(binReader)
+                Characters(iChar + 2).Read(binReader)
+                Characters(iChar + 3).Read(binReader)
+                binReader.BaseStream.Position += 192
+            Next iBlock
+            'For iChar As Short = 0 To 19
+            '    If Characters(iChar).Name <> "" Then
+            '        Debug.WriteLine(New String("="c, 132))
+            '        Debug.WriteLine(String.Format("{0:00}) {1}", iChar + 1, Characters(iChar).Name))
+            '        Debug.WriteLine(New String("-"c, 132))
+            '        Debug.WriteLine(Characters(iChar).ToString)
+            '    End If
+            'Next iChar
+            Me.SaveRegSetting("Environment", Me.RegDataDirectory, Me.DirectoryName)
+            Me.SaveRegSetting("Environment", Me.RegDataFile, Me.FileName)
+        Finally
+            If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
+        End Try
+    End Sub
+    Public Sub Save()
+        Dim binWriter As BinaryWriter = Nothing
+        Try
+            Backup()
+            binWriter = New BinaryWriter(File.Open(mPath, FileMode.Open, FileAccess.Write, FileShare.None))
+            binWriter.BaseStream.Position = Me.CharacterDataOffset
+            For iBlock As Short = 1 To 5
+                Dim iChar As Short = (iBlock * 4) - 4
+                Characters(iChar).Save(binWriter)
+                Characters(iChar + 1).Save(binWriter)
+                Characters(iChar + 2).Save(binWriter)
+                Characters(iChar + 3).Save(binWriter)
+                binWriter.BaseStream.Position += 192
+            Next iBlock
+        Finally
+            If binWriter IsNot Nothing Then binWriter.Close() : binWriter = Nothing
+        End Try
+    End Sub
     Public Sub Show()
         mForm = New frmWizardry15Base(Me, mCaption, mIcon, mBoxArt)
         mForm.ShowDialog(mParent)
     End Sub
 #End Region
 End Class
+#Region "Support Class(es)"
+Public Class ItemData
+    Public Sub New(Text As String, Data As Object)
+        mText = Text
+        mData = Data
+    End Sub
+#Region "Properties"
+    Private mText As String = ""
+    Private mData As Object = Nothing
+    Public Property Text() As String
+        Get
+            Return mText
+        End Get
+        Set(value As String)
+            mText = value
+        End Set
+    End Property
+    Public Property Data() As String
+        Get
+            Return mData
+        End Get
+        Set(value As String)
+            mData = value
+        End Set
+    End Property
+#End Region
+#Region "Methods"
+    Public Overrides Function ToString() As String
+        Return mText
+    End Function
+#End Region
+End Class
+#End Region

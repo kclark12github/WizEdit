@@ -107,6 +107,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Wizardry02.vb" />
+    <Compile Include="Wizardry03.vb" />
+    <Compile Include="Wizardry04.vb" />
+    <Compile Include="Wizardry05.vb" />
     <Compile Include="WizEditBase.vb" />
   </ItemGroup>
   <ItemGroup>

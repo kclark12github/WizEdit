@@ -141,10 +141,10 @@ Public Class frmMain
                     Dim Wiz15 As WizEditBase = Nothing
                     Select Case Scenario
                         Case "01" : Wiz15 = New Wizardry01(dPath, ttMain.GetToolTip(pbWiz01), Global.WizEdit.My.Resources.Resources.Wiz1, Global.WizEdit.My.Resources.Resources.Wiz01Box, Me)
-                            'Case "02" : Wiz15 = New Wizardry02(dPath, ttMain.GetToolTip(pbWiz02), Global.WizEdit.My.Resources.Resources.Wiz2, Global.WizEdit.My.Resources.Resources.Wiz02Box, Me)
-                            'Case "03" : Wiz15 = New Wizardry03(dPath, ttMain.GetToolTip(pbWiz03), Global.WizEdit.My.Resources.Resources.Wiz3, Global.WizEdit.My.Resources.Resources.Wiz03Box, Me)
-                            'Case "04" : Wiz15 = New Wizardry04(dPath, ttMain.GetToolTip(pbWiz04), Global.WizEdit.My.Resources.Resources.Wiz4, Global.WizEdit.My.Resources.Resources.Wiz04Box, Me)
-                            'Case "05" : Wiz15 = New Wizardry05(dPath, ttMain.GetToolTip(pbWiz05), Global.WizEdit.My.Resources.Resources.Wiz5, Global.WizEdit.My.Resources.Resources.Wiz05Box, Me)
+                        Case "02" : Wiz15 = New Wizardry02(dPath, ttMain.GetToolTip(pbWiz02), Global.WizEdit.My.Resources.Resources.Wiz2, Global.WizEdit.My.Resources.Resources.Wiz02Box, Me)
+                        Case "03" : Wiz15 = New Wizardry03(dPath, ttMain.GetToolTip(pbWiz03), Global.WizEdit.My.Resources.Resources.Wiz3, Global.WizEdit.My.Resources.Resources.Wiz03Box, Me)
+                        Case "04" : Wiz15 = New Wizardry04(dPath, ttMain.GetToolTip(pbWiz04), Global.WizEdit.My.Resources.Resources.Wiz4, Global.WizEdit.My.Resources.Resources.Wiz04Box, Me)
+                        Case "05" : Wiz15 = New Wizardry05(dPath, ttMain.GetToolTip(pbWiz05), Global.WizEdit.My.Resources.Resources.Wiz5, Global.WizEdit.My.Resources.Resources.Wiz05Box, Me)
                     End Select
                     Wiz15.Show()
                 Case "07"
@@ -172,14 +172,16 @@ Public Class frmMain
                 Case Else
                     'MsgBox "Sorry, I haven't implemented this scenario yet...", vbExclamation, Me.Caption
             End Select
-        Catch ex As FileNotFoundException
-            epMain.SetError(sender, ex.Message)
+            tsslMessage.Text = ""
+        Catch ex As FileNotFoundException : tsslMessage.Text = ex.Message : epMain.SetError(sender, ex.Message)
             cmdBrowse_Click(sender, e)
-        Catch ex As Exception
+        Catch ex As System.IO.IOException : tsslMessage.Text = ex.Message : epMain.SetError(sender, ex.Message)
+        Catch ex As Exception : tsslMessage.Text = ex.Message : epMain.SetError(sender, ex.Message)
             Debug.WriteLine(ex.ToString)
-            epMain.SetError(sender, ex.Message)
         Finally
             If bHidden Then Me.Show() : bHidden = False
+            'Use our cmdCancel to reset the screen...
+            cmdCancel_Click(sender, e)
         End Try
     End Sub
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -95,6 +95,8 @@ Partial Class frmWizardry15Base
         Me.lblName = New System.Windows.Forms.Label()
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.tpItems = New System.Windows.Forms.TabPage()
+        Me.lblItemCount = New System.Windows.Forms.Label()
+        Me.nudItemCount = New System.Windows.Forms.NumericUpDown()
         Me.lblItem8 = New System.Windows.Forms.Label()
         Me.lblItem7 = New System.Windows.Forms.Label()
         Me.lblItem6 = New System.Windows.Forms.Label()
@@ -197,6 +199,7 @@ Partial Class frmWizardry15Base
         CType(Me.nudStrength, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudAC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpItems.SuspendLayout()
+        CType(Me.nudItemCount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpSpellBooks.SuspendLayout()
         CType(Me.nudPriestSP1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudPriestSP2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -328,7 +331,7 @@ Partial Class frmWizardry15Base
         '
         Me.cbCharacter.BackColor = System.Drawing.Color.Gray
         Me.cbCharacter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbCharacter.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbCharacter.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbCharacter.FormattingEnabled = True
         Me.cbCharacter.Location = New System.Drawing.Point(106, 33)
         Me.cbCharacter.Margin = New System.Windows.Forms.Padding(4)
@@ -938,8 +941,9 @@ Partial Class frmWizardry15Base
         '
         Me.nudAC.BackColor = System.Drawing.Color.LightGray
         Me.nudAC.Location = New System.Drawing.Point(222, 206)
+        Me.nudAC.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudAC.Name = "nudAC"
-        Me.nudAC.Size = New System.Drawing.Size(40, 22)
+        Me.nudAC.Size = New System.Drawing.Size(61, 22)
         Me.nudAC.TabIndex = 9
         Me.nudAC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1101,6 +1105,8 @@ Partial Class frmWizardry15Base
         'tpItems
         '
         Me.tpItems.BackgroundImage = Global.WizEdit.My.Resources.Resources.backgnd3b
+        Me.tpItems.Controls.Add(Me.lblItemCount)
+        Me.tpItems.Controls.Add(Me.nudItemCount)
         Me.tpItems.Controls.Add(Me.lblItem8)
         Me.tpItems.Controls.Add(Me.lblItem7)
         Me.tpItems.Controls.Add(Me.lblItem6)
@@ -1153,6 +1159,30 @@ Partial Class frmWizardry15Base
         Me.tpItems.TabIndex = 1
         Me.tpItems.Text = "Items"
         Me.tpItems.UseVisualStyleBackColor = True
+        '
+        'lblItemCount
+        '
+        Me.lblItemCount.AutoSize = True
+        Me.lblItemCount.BackColor = System.Drawing.Color.Transparent
+        Me.lblItemCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblItemCount.ForeColor = System.Drawing.Color.Yellow
+        Me.lblItemCount.Location = New System.Drawing.Point(51, 59)
+        Me.lblItemCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblItemCount.Name = "lblItemCount"
+        Me.lblItemCount.Size = New System.Drawing.Size(70, 16)
+        Me.lblItemCount.TabIndex = 102
+        Me.lblItemCount.Text = "Item Count"
+        Me.lblItemCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'nudItemCount
+        '
+        Me.nudItemCount.BackColor = System.Drawing.Color.LightGray
+        Me.nudItemCount.Location = New System.Drawing.Point(129, 57)
+        Me.nudItemCount.Maximum = New Decimal(New Integer() {8, 0, 0, 0})
+        Me.nudItemCount.Name = "nudItemCount"
+        Me.nudItemCount.Size = New System.Drawing.Size(40, 22)
+        Me.nudItemCount.TabIndex = 101
+        Me.nudItemCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'lblItem8
         '
@@ -2206,6 +2236,7 @@ Partial Class frmWizardry15Base
         CType(Me.nudAC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpItems.ResumeLayout(False)
         Me.tpItems.PerformLayout()
+        CType(Me.nudItemCount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpSpellBooks.ResumeLayout(False)
         Me.tpSpellBooks.PerformLayout()
         CType(Me.nudPriestSP1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2382,4 +2413,6 @@ Partial Class frmWizardry15Base
     Friend WithEvents cmdAllPS As Button
     Friend WithEvents lblPriestSpells As Label
     Friend WithEvents lblMageSpells As Label
+    Friend WithEvents lblItemCount As Label
+    Friend WithEvents nudItemCount As NumericUpDown
 End Class
