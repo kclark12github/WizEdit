@@ -12,9 +12,8 @@ Option Explicit On
 
 Public Class Wizardry01
     Inherits WizEditBase
-    Public Sub New(FileName As String, ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
-        MyBase.New(FileName, Caption, Icon, BoxArt, Parent)
-        Read()
+    Public Sub New(ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
+        MyBase.New(Caption, Icon, BoxArt, Parent)
     End Sub
     Public Overrides ReadOnly Property CharacterDataOffset As Int32
         Get
@@ -136,14 +135,9 @@ Public Class Wizardry01
             Return mMasterItemList
         End Get
     End Property
-    Public Overrides ReadOnly Property RegDataDirectory As String
+    Public Overrides ReadOnly Property RegDataPath As String
         Get
-            Return "UWAPath01"
-        End Get
-    End Property
-    Public Overrides ReadOnly Property RegDataFile As String
-        Get
-            Return "Wiz01DataFile"
+            Return "Scenario01DataPath"
         End Get
     End Property
     Public Overrides ReadOnly Property ScenarioDataOffset As String

@@ -34,6 +34,9 @@ Partial Class frmWizardry15Base
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tsslMessage = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tsslTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.pbWizardry = New System.Windows.Forms.PictureBox()
         Me.cmdEdit = New System.Windows.Forms.Button()
         Me.cbCharacter = New System.Windows.Forms.ComboBox()
@@ -179,8 +182,10 @@ Partial Class frmWizardry15Base
         Me.epMain = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.cmdSave = New System.Windows.Forms.Button()
+        Me.timMain = New System.Windows.Forms.Timer(Me.components)
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcWiz.SuspendLayout()
         Me.tpStats.SuspendLayout()
@@ -297,12 +302,38 @@ Partial Class frmWizardry15Base
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 605)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslStatus, Me.tsslMessage, Me.tsslTime})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 603)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(644, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(644, 24)
         Me.StatusStrip1.TabIndex = 20
         Me.StatusStrip1.Text = "ssStatus"
+        '
+        'tsslStatus
+        '
+        Me.tsslStatus.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
+            Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
+            Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
+        Me.tsslStatus.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tsslStatus.Name = "tsslStatus"
+        Me.tsslStatus.Size = New System.Drawing.Size(62, 19)
+        Me.tsslStatus.Text = "EditMode"
+        '
+        'tsslMessage
+        '
+        Me.tsslMessage.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tsslMessage.Name = "tsslMessage"
+        Me.tsslMessage.Size = New System.Drawing.Size(497, 19)
+        Me.tsslMessage.Spring = True
+        Me.tsslMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'tsslTime
+        '
+        Me.tsslTime.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tsslTime.Name = "tsslTime"
+        Me.tsslTime.Size = New System.Drawing.Size(34, 19)
+        Me.tsslTime.Text = "Time"
         '
         'pbWizardry
         '
@@ -2186,6 +2217,11 @@ Partial Class frmWizardry15Base
         Me.cmdSave.TabIndex = 30
         Me.cmdSave.UseVisualStyleBackColor = True
         '
+        'timMain
+        '
+        Me.timMain.Enabled = True
+        Me.timMain.Interval = 1000
+        '
         'frmWizardry15Base
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2216,6 +2252,8 @@ Partial Class frmWizardry15Base
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tcWiz.ResumeLayout(False)
         Me.tpStats.ResumeLayout(False)
@@ -2415,4 +2453,8 @@ Partial Class frmWizardry15Base
     Friend WithEvents lblMageSpells As Label
     Friend WithEvents lblItemCount As Label
     Friend WithEvents nudItemCount As NumericUpDown
+    Friend WithEvents tsslStatus As ToolStripStatusLabel
+    Friend WithEvents tsslMessage As ToolStripStatusLabel
+    Friend WithEvents tsslTime As ToolStripStatusLabel
+    Friend WithEvents timMain As Timer
 End Class

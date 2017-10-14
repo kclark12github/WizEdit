@@ -28,6 +28,7 @@ Partial Class frmMain
         Me.lblFile = New System.Windows.Forms.Label()
         Me.ssStatus = New System.Windows.Forms.StatusStrip()
         Me.tsslMessage = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tsslTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.pbUWA = New System.Windows.Forms.PictureBox()
         Me.pbSirTech = New System.Windows.Forms.PictureBox()
         Me.imgIcons32 = New System.Windows.Forms.ImageList(Me.components)
@@ -48,6 +49,7 @@ Partial Class frmMain
         Me.txtFile = New System.Windows.Forms.TextBox()
         Me.epMain = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.cmdOK = New System.Windows.Forms.Button()
+        Me.timMain = New System.Windows.Forms.Timer(Me.components)
         Me.ssStatus.SuspendLayout()
         CType(Me.pbUWA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbSirTech, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +91,7 @@ Partial Class frmMain
         '
         'ssStatus
         '
-        Me.ssStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslMessage})
+        Me.ssStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslMessage, Me.tsslTime})
         Me.ssStatus.Location = New System.Drawing.Point(0, 471)
         Me.ssStatus.Name = "ssStatus"
         Me.ssStatus.Size = New System.Drawing.Size(1132, 22)
@@ -99,8 +101,14 @@ Partial Class frmMain
         'tsslMessage
         '
         Me.tsslMessage.Name = "tsslMessage"
-        Me.tsslMessage.Size = New System.Drawing.Size(121, 17)
-        Me.tsslMessage.Text = "ToolStripStatusLabel1"
+        Me.tsslMessage.Size = New System.Drawing.Size(1083, 17)
+        Me.tsslMessage.Spring = True
+        '
+        'tsslTime
+        '
+        Me.tsslTime.Name = "tsslTime"
+        Me.tsslTime.Size = New System.Drawing.Size(34, 17)
+        Me.tsslTime.Text = "Time"
         '
         'pbUWA
         '
@@ -296,6 +304,11 @@ Partial Class frmMain
         Me.cmdOK.TabIndex = 19
         Me.cmdOK.UseVisualStyleBackColor = True
         '
+        'timMain
+        '
+        Me.timMain.Enabled = True
+        Me.timMain.Interval = 1000
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -320,7 +333,10 @@ Partial Class frmMain
         Me.Controls.Add(Me.ssStatus)
         Me.Controls.Add(Me.lblFile)
         Me.Controls.Add(Me.lblSelectedScenario)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WizEdit 2017© for The Ultimate Wizardry Archives®"
@@ -366,4 +382,6 @@ Partial Class frmMain
     Friend WithEvents tsslMessage As ToolStripStatusLabel
     Friend WithEvents epMain As ErrorProvider
     Friend WithEvents cmdOK As Button
+    Friend WithEvents tsslTime As ToolStripStatusLabel
+    Friend WithEvents timMain As Timer
 End Class

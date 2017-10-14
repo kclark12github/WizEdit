@@ -38,7 +38,7 @@
 #Region "Declarations"
     Private mBase As WizEditBase
     Private mChanged As Boolean = False
-    Private mCharacter As WizEditBase.Character = Nothing
+    Private mCharacter As CharacterBase = Nothing
     Private mEditMode As Boolean = False
 #End Region
 #End Region
@@ -185,7 +185,8 @@
         Me.EnableControl(Me.cmdExit, Not EditMode) : Me.cmdExit.Visible = Not EditMode
         Me.EnableControl(Me.cmdCancel, EditMode) : Me.cmdCancel.Visible = EditMode
         Me.EnableControl(Me.cmdSave, EditMode) : Me.cmdSave.Visible = EditMode
-        If EditMode Then ProtectItems(Me.nudItemCount.value)
+        If EditMode Then ProtectItems(Me.nudItemCount.Value)
+        tsslStatus.Visible = EditMode
     End Sub
 #End Region
 #Region "Event Handlers"
@@ -363,6 +364,8 @@
             Me.clbPriestSpells.Items.AddRange(mBase.PriestSpellList)
 
             ToggleEditMode(False)
+            tsslMessage.Text = mBase.ScenarioDataPath
+            timMain_Tick(Nothing, Nothing)
         Catch ex As Exception
             Debug.WriteLine(ex.ToString)
             Throw
@@ -370,6 +373,9 @@
     End Sub
     Private Sub nudItemCount_ValueChanged(sender As Object, e As EventArgs) Handles nudItemCount.ValueChanged
         If mEditMode Then ProtectItems(Me.nudItemCount.Value)
+    End Sub
+    Private Sub timMain_Tick(sender As Object, e As EventArgs) Handles timMain.Tick
+        tsslTime.Text = String.Format("{0:hh:mm tt}", Now)
     End Sub
 #End Region
 End Class
