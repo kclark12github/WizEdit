@@ -28,7 +28,7 @@ Namespace My
 
         Private Shared addedHandlerLockObject As New Object
 
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
+        <Global.System.DIagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
         Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
             If My.Application.SaveMySettingsOnExit Then
                 My.Settings.Save()
@@ -59,7 +59,7 @@ End Namespace
 Namespace My
 
     <Global.Microsoft.VisualBasic.HideModuleNameAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.DIagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()> _
     Friend Module MySettingsProperty
 

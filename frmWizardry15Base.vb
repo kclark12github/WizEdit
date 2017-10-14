@@ -135,7 +135,7 @@
     Protected Function FindItem(ByVal cbItem As ComboBox, ByVal ItemCode As Short) As Integer
         FindItem = -1
         For i As Integer = 0 To cbItem.Items.Count - 1
-            If CType(cbItem.Items(i), ItemData).Data = ItemCode Then Return i
+            If CType(cbItem.Items(i), ItemData).ItemCode = ItemCode Then Return i
         Next i
     End Function
     Protected Sub InitItem(ByVal iItem As Short, ByVal Equipped As Boolean, ByVal Cursed As Boolean, ByVal IDed As Boolean, ByVal ItemCode As Short)
@@ -229,14 +229,14 @@
                 'Items...
                 Me.ClearItems()
                 Me.nudItemCount.Value = .ItemCount
-                Me.initItem(1, .Items(0).Equipped, .Items(0).Cursed, .Items(0).Identified, .Items(0).ItemCode)
-                Me.initItem(2, .Items(1).Equipped, .Items(1).Cursed, .Items(1).Identified, .Items(1).ItemCode)
-                Me.initItem(3, .Items(2).Equipped, .Items(2).Cursed, .Items(2).Identified, .Items(2).ItemCode)
-                Me.initItem(4, .Items(3).Equipped, .Items(3).Cursed, .Items(3).Identified, .Items(3).ItemCode)
-                Me.initItem(5, .Items(4).Equipped, .Items(4).Cursed, .Items(4).Identified, .Items(4).ItemCode)
-                Me.initItem(6, .Items(5).Equipped, .Items(5).Cursed, .Items(5).Identified, .Items(5).ItemCode)
-                Me.initItem(7, .Items(6).Equipped, .Items(6).Cursed, .Items(6).Identified, .Items(6).ItemCode)
-                Me.initItem(8, .Items(7).Equipped, .Items(7).Cursed, .Items(7).Identified, .Items(7).ItemCode)
+                Me.InitItem(1, .Items(0).Equipped, .Items(0).Cursed, .Items(0).Identified, .Items(0).ItemCode)
+                Me.InitItem(2, .Items(1).Equipped, .Items(1).Cursed, .Items(1).Identified, .Items(1).ItemCode)
+                Me.InitItem(3, .Items(2).Equipped, .Items(2).Cursed, .Items(2).Identified, .Items(2).ItemCode)
+                Me.InitItem(4, .Items(3).Equipped, .Items(3).Cursed, .Items(3).Identified, .Items(3).ItemCode)
+                Me.InitItem(5, .Items(4).Equipped, .Items(4).Cursed, .Items(4).Identified, .Items(4).ItemCode)
+                Me.InitItem(6, .Items(5).Equipped, .Items(5).Cursed, .Items(5).Identified, .Items(5).ItemCode)
+                Me.InitItem(7, .Items(6).Equipped, .Items(6).Cursed, .Items(6).Identified, .Items(6).ItemCode)
+                Me.InitItem(8, .Items(7).Equipped, .Items(7).Cursed, .Items(7).Identified, .Items(7).ItemCode)
 
                 'SpellBooks...
                 For i As Integer = 0 To Me.clbMageSpells.Items.Count - 1
@@ -302,14 +302,14 @@
 
                 'Items...
                 .ItemCount = Me.nudItemCount.Value
-                If .ItemCount >= 1 Then .Items(0).Equipped = Me.chkEquipped1.Checked : .Items(0).Cursed = Me.chkCursed1.Checked : .Items(0).Identified = Me.chkID1.Checked : .Items(0).ItemCode = CType(Me.cbItem1.SelectedItem, ItemData).Data
-                If .ItemCount >= 2 Then .Items(1).Equipped = Me.chkEquipped2.Checked : .Items(1).Cursed = Me.chkCursed2.Checked : .Items(1).Identified = Me.chkID2.Checked : .Items(1).ItemCode = CType(Me.cbItem2.SelectedItem, ItemData).Data
-                If .ItemCount >= 3 Then .Items(2).Equipped = Me.chkEquipped3.Checked : .Items(2).Cursed = Me.chkCursed3.Checked : .Items(2).Identified = Me.chkID3.Checked : .Items(2).ItemCode = CType(Me.cbItem3.SelectedItem, ItemData).Data
-                If .ItemCount >= 4 Then .Items(3).Equipped = Me.chkEquipped4.Checked : .Items(3).Cursed = Me.chkCursed4.Checked : .Items(3).Identified = Me.chkID4.Checked : .Items(3).ItemCode = CType(Me.cbItem4.SelectedItem, ItemData).Data
-                If .ItemCount >= 5 Then .Items(4).Equipped = Me.chkEquipped5.Checked : .Items(4).Cursed = Me.chkCursed5.Checked : .Items(4).Identified = Me.chkID5.Checked : .Items(4).ItemCode = CType(Me.cbItem5.SelectedItem, ItemData).Data
-                If .ItemCount >= 6 Then .Items(5).Equipped = Me.chkEquipped6.Checked : .Items(5).Cursed = Me.chkCursed6.Checked : .Items(5).Identified = Me.chkID6.Checked : .Items(5).ItemCode = CType(Me.cbItem6.SelectedItem, ItemData).Data
-                If .ItemCount >= 7 Then .Items(6).Equipped = Me.chkEquipped7.Checked : .Items(6).Cursed = Me.chkCursed7.Checked : .Items(6).Identified = Me.chkID7.Checked : .Items(6).ItemCode = CType(Me.cbItem7.SelectedItem, ItemData).Data
-                If .ItemCount >= 8 Then .Items(7).Equipped = Me.chkEquipped8.Checked : .Items(7).Cursed = Me.chkCursed8.Checked : .Items(7).Identified = Me.chkID8.Checked : .Items(7).ItemCode = CType(Me.cbItem8.SelectedItem, ItemData).Data
+                If .ItemCount >= 1 Then .Items(0).Equipped = Me.chkEquipped1.Checked : .Items(0).Cursed = Me.chkCursed1.Checked : .Items(0).Identified = Me.chkID1.Checked : .Items(0).ItemCode = CType(Me.cbItem1.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 2 Then .Items(1).Equipped = Me.chkEquipped2.Checked : .Items(1).Cursed = Me.chkCursed2.Checked : .Items(1).Identified = Me.chkID2.Checked : .Items(1).ItemCode = CType(Me.cbItem2.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 3 Then .Items(2).Equipped = Me.chkEquipped3.Checked : .Items(2).Cursed = Me.chkCursed3.Checked : .Items(2).Identified = Me.chkID3.Checked : .Items(2).ItemCode = CType(Me.cbItem3.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 4 Then .Items(3).Equipped = Me.chkEquipped4.Checked : .Items(3).Cursed = Me.chkCursed4.Checked : .Items(3).Identified = Me.chkID4.Checked : .Items(3).ItemCode = CType(Me.cbItem4.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 5 Then .Items(4).Equipped = Me.chkEquipped5.Checked : .Items(4).Cursed = Me.chkCursed5.Checked : .Items(4).Identified = Me.chkID5.Checked : .Items(4).ItemCode = CType(Me.cbItem5.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 6 Then .Items(5).Equipped = Me.chkEquipped6.Checked : .Items(5).Cursed = Me.chkCursed6.Checked : .Items(5).Identified = Me.chkID6.Checked : .Items(5).ItemCode = CType(Me.cbItem6.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 7 Then .Items(6).Equipped = Me.chkEquipped7.Checked : .Items(6).Cursed = Me.chkCursed7.Checked : .Items(6).Identified = Me.chkID7.Checked : .Items(6).ItemCode = CType(Me.cbItem7.SelectedItem, ItemData).ItemCode
+                If .ItemCount >= 8 Then .Items(7).Equipped = Me.chkEquipped8.Checked : .Items(7).Cursed = Me.chkCursed8.Checked : .Items(7).Identified = Me.chkID8.Checked : .Items(7).ItemCode = CType(Me.cbItem8.SelectedItem, ItemData).ItemCode
 
                 'SpellBooks...
                 For i As Integer = 0 To Me.clbMageSpells.Items.Count - 1

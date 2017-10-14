@@ -81,27 +81,27 @@ Public Class WizEditBase
             If mMageSpellBook Is Nothing Then
                 mMageSpellBook = {
                     New SpellBase("Unknown", "Unknown", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 0),
-                    New SpellBase("Halito", "Little Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("Mogref", "Body Iron", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("Katino", "Bad Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("Dumapic", "Clarity", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("Dilto", "Darkness", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 2),
-                    New SpellBase("Sopic", "Glass", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 2),
-                    New SpellBase("Mahalito", "Big Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
-                    New SpellBase("Molito", "Sparks", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
-                    New SpellBase("Morlis", "Fear", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("Dalto", "Blizzard", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("Lahalito", "Torch", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("Mamorlis", "Terror", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("Makanito", "Deadly Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("Madalto", "Frost King", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("Lakanito", "Vacuum", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("Zilwan", "Dispell", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("Masopic", "Crystal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("Haman", "Beg", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("Malor", "Teleport", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 7),
-                    New SpellBase("Mahaman", "Beseech", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 7),
-                    New SpellBase("Tiltowait", "Ka-Blam!", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 7)
+                    New SpellBase("HALITO", "Little Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 1),
+                    New SpellBase("MOGREF", "Body Iron", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 1),
+                    New SpellBase("KATINO", "Bad Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 1),
+                    New SpellBase("DUMAPIC", "Clarity", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 1),
+                    New SpellBase("DILTO", "Darkness", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 2),
+                    New SpellBase("SOPIC", "Glass", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 2),
+                    New SpellBase("MAHALITO", "Big Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
+                    New SpellBase("MOLITO", "Sparks", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
+                    New SpellBase("MORLIS", "Fear", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
+                    New SpellBase("DALTO", "Blizzard", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
+                    New SpellBase("LAHALITO", "Torch", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
+                    New SpellBase("MAMORLIS", "Terror", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
+                    New SpellBase("MAKANITO", "Deadly Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
+                    New SpellBase("MADALTO", "Frost King", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5),
+                    New SpellBase("LAKANITO", "Vacuum", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 6),
+                    New SpellBase("ZILWAN", "Dispell", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 6),
+                    New SpellBase("MASOPIC", "Crystal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 6),
+                    New SpellBase("HAMAN", "Beg", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 6),
+                    New SpellBase("MALOR", "Teleport", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 7),
+                    New SpellBase("MAHAMAN", "Beseech", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 7),
+                    New SpellBase("TILTOWAIT", "Ka-Blam!", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 7)
                 }
             End If
             Return mMageSpellBook
@@ -126,35 +126,35 @@ Public Class WizEditBase
         Get
             If mPriestSpellBook Is Nothing Then
                 mPriestSpellBook = {
-                    New SpellBase("Kalki", "Blessings", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("Dios", "Heal", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("Badios", "Harm", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("Milwa", "Light", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("Porfic", "Shield", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("Matu", "Zeal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("Calfo", "X-Ray", SpellBase.enumSpellType.Looting, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("Manifo", "Statue", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("Montino", "Still Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("Lomilwa", "Sunbeam", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("Dialko", "Softness", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("Latumapic", "Identify", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("Bamatu", "Prayer", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("Dial", "Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("Badial", "Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("Latumofis", "Cleanse", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("Maporfic", "Big Shield", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("Dialma", "Big Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Badialma", "Big Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Litokan", "Flames", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Kandi", "Location", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Di", "Life", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Badi", "Death", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("Lorto", "Blades", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("Madi", "Restore", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("Mabadi", "Maiming", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("Loktofeit", "Recall", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("Malikto", "Wrath", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Priest, 7),
-                    New SpellBase("Kadorto", "Rebirth", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 7)
+                    New SpellBase("KALKI", "Blessings", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
+                    New SpellBase("DIOS", "Heal", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 1),
+                    New SpellBase("BADIOS", "Harm", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 1),
+                    New SpellBase("MILWA", "Light", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
+                    New SpellBase("PORFIC", "Shield", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 1),
+                    New SpellBase("MATU", "Zeal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2),
+                    New SpellBase("CALFO", "X-Ray", SpellBase.enumSpellType.Looting, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 2),
+                    New SpellBase("MANIFO", "Statue", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
+                    New SpellBase("MONTINO", "Still Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
+                    New SpellBase("LOMILWA", "Sunbeam", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
+                    New SpellBase("DIALKO", "Softness", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 3),
+                    New SpellBase("LATUMAPIC", "Identify", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
+                    New SpellBase("BAMATU", "Prayer", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
+                    New SpellBase("DIAL", "Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
+                    New SpellBase("BADIAL", "Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 4),
+                    New SpellBase("LATUMOFIS", "Cleanse", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
+                    New SpellBase("MAPORFIC", "Big Shield", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 4),
+                    New SpellBase("DIALMA", "Big Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("BADIALMA", "Big Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("LITOKAN", "Flames", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("KANDI", "Location", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("DI", "Life", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("BADI", "Death", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
+                    New SpellBase("LORTO", "Blades", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 6),
+                    New SpellBase("MADI", "Restore", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 6),
+                    New SpellBase("MABADI", "Maiming", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 6),
+                    New SpellBase("LOKTOFEIT", "Recall", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 6),
+                    New SpellBase("MALIKTO", "Wrath", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Priest, 7),
+                    New SpellBase("KADORTO", "Rebirth", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 7)
                 }
             End If
             Return mPriestSpellBook
@@ -453,13 +453,56 @@ Public Class WizEditBase
 End Class
 #Region "Support Class(es)"
 Public Class ItemData
-    Public Sub New(Text As String, Data As Object)
+    Public Sub New(ByVal Text As String, ByVal ItemCode As Short, Optional ByVal Category As String = "", Optional ByVal Affect As String = "", Optional ByVal Value As Integer = -1, Optional ByVal UserClass As String = "", Optional ByVal Notes As String = "")
+        mAffect = Affect
+        mCategory = Category
+        mItemCode = ItemCode
+        mNotes = Notes
+        mUserClass = UserClass
         mText = Text
-        mData = Data
+        mValue = Value
+        If mCategory = "" AndAlso mText.Contains(":") Then mCategory = mText.Substring(0, mText.IndexOf(":"))
     End Sub
 #Region "Properties"
-    Private mText As String = ""
-    Private mData As Object = Nothing
+    Private mAffect As String
+    Private mCategory As String
+    Private mNotes As String
+    Private mText As String
+    Private mItemCode As Short
+    Private mUserClass As String
+    Private mValue As Integer
+    Public Property Category() As String
+        Get
+            Return mAffect
+        End Get
+        Set(value As String)
+            mAffect = value
+        End Set
+    End Property
+    Public Property Affect() As String
+        Get
+            Return mCategory
+        End Get
+        Set(value As String)
+            mCategory = value
+        End Set
+    End Property
+    Public Property ItemCode() As Short
+        Get
+            Return mItemCode
+        End Get
+        Set(value As Short)
+            mItemCode = value
+        End Set
+    End Property
+    Public Property Notes() As String
+        Get
+            Return mNotes
+        End Get
+        Set(value As String)
+            mNotes = value
+        End Set
+    End Property
     Public Property Text() As String
         Get
             Return mText
@@ -468,12 +511,20 @@ Public Class ItemData
             mText = value
         End Set
     End Property
-    Public Property Data() As String
+    Public Property UserClass() As String
         Get
-            Return mData
+            Return mUserClass
         End Get
         Set(value As String)
-            mData = value
+            mUserClass = value
+        End Set
+    End Property
+    Public Property Value() As Integer
+        Get
+            Return mValue
+        End Get
+        Set(value As Integer)
+            mValue = value
         End Set
     End Property
 #End Region
