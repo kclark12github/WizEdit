@@ -86,52 +86,52 @@ Public Class CharacterBase
 #End Region
 #Region "Properties"
 #Region "Declarations"
-    Const NamePasswordLengthMax As Short = 15
+    Protected Const NamePasswordLengthMax As Short = 15
 
-    Const ItemListMax As Integer = 8
-    Const AlignmentMapMax As Integer = 3
-    Const RaceMapMax As Integer = 5
-    Const ProfessionMapMax As Integer = 7
-    Const StatusMapMax As Integer = 7
-    Const SpellLevelMax As Integer = 7
+    Protected Const ItemListMax As Integer = 8
+    Protected Const AlignmentMapMax As Integer = 3
+    Protected Const RaceMapMax As Integer = 5
+    Protected Const ProfessionMapMax As Integer = 7
+    Protected Const StatusMapMax As Integer = 7
+    Protected Const SpellLevelMax As Integer = 7
 
-    Private mBase As WizEditBase
-    Private mName As String
-    Private mPassword As String
+    Protected mBase As WizEditBase
+    Protected mName As String
+    Protected mPassword As String
 
-    Private mOut As UInt16
-    Private mRace As UInt16
-    Private mProfession As UInt16
-    Private mAgeInWeeks As UInt16
-    Private mStatus As UInt16
-    Private mAlignment As UInt16
+    Protected mOut As UInt16
+    Protected mRace As UInt16
+    Protected mProfession As UInt16
+    Protected mAgeInWeeks As UInt16
+    Protected mStatus As UInt16
+    Protected mAlignment As UInt16
 
-    Private mStatistics As UInt32
-    Private mStrength As Short
-    Private mIntelligence As Short
-    Private mPiety As Short
-    Private mVitality As Short
-    Private mAgility As Short
-    Private mLuck As Short
+    Protected mStatistics As UInt32
+    Protected mStrength As Short
+    Protected mIntelligence As Short
+    Protected mPiety As Short
+    Protected mVitality As Short
+    Protected mAgility As Short
+    Protected mLuck As Short
 
-    Private mGold As Long
-    Private mGoldPacked(2) As UInt16
-    Private mItemCount As UInt16
+    Protected mGold As Long
+    Protected mGoldPacked(2) As UInt16
+    Protected mItemCount As UInt16
 
-    Private mItemList(ItemListMax - 1) As ItemBase
-    Private mExperience As Long
-    Private mExperiencePacked(2) As UInt16
-    Private mLVL As PointsBase
-    Private mHP As PointsBase
-    Private mSpellBooks(7) As Byte
-    Private mMageSpellBook() As Boolean
-    Private mMageSpellPoints(SpellLevelMax - 1) As UInt16
-    Private mPriestSpellBook() As Boolean
-    Private mPriestSpellPoints(SpellLevelMax - 1) As UInt16
-    Private mArmorClass As Int16
-    Private mLocation As UInt16
-    Private mDown As UInt16
-    Private mHonors As UInt16
+    Protected mItemList(ItemListMax - 1) As ItemBase
+    Protected mExperience As Long
+    Protected mExperiencePacked(2) As UInt16
+    Protected mLVL As PointsBase
+    Protected mHP As PointsBase
+    Protected mSpellBooks(7) As Byte
+    Protected mMageSpellBook() As Boolean
+    Protected mMageSpellPoints(SpellLevelMax - 1) As UInt16
+    Protected mPriestSpellBook() As Boolean
+    Protected mPriestSpellPoints(SpellLevelMax - 1) As UInt16
+    Protected mArmorClass As Int16
+    Protected mLocation As UInt16
+    Protected mDown As UInt16
+    Protected mHonors As UInt16
 #End Region
     Public Property Age As Short
         Get
@@ -480,35 +480,35 @@ Public Class CharacterBase
     End Property
 #End Region
 #Region "Methods"
-    Public Sub Read(binReader As BinaryReader)
+    Public Overridable Sub Read(binReader As BinaryReader)
         'Debug.WriteLine(String.Format("Character Data @ 0x{0:X00000}", binReader.BaseStream.Position))
         mName = binReader.ReadString()                          '0x1D800   Pascal Varying Length String Format...
         binReader.BaseStream.Position += NamePasswordLengthMax - mName.Length
         mPassword = binReader.ReadString()                      '0x1D810   Pascal Varying Length String Format...
         binReader.BaseStream.Position += NamePasswordLengthMax - mPassword.Length
 
-        mOut = binReader.ReadInt16()                            '0x1D820    00 00 = No; 01 00 = Yes;
-        mRace = binReader.ReadInt16()                           '0x1D822    01 00 = Human
-        mProfession = binReader.ReadInt16()                     '0x1D824    06 00 = Lord
-        mAgeInWeeks = binReader.ReadInt16()                     '0x1D826    0C 03 = Weeks Alive...
-        mStatus = binReader.ReadInt16()                         '0x1D828    00 00 = OK
-        mAlignment = binReader.ReadInt16()                      '0x1D82A    02 00 = Neutral
+        mOut = binReader.ReadUInt16()                            '0x1D820    00 00 = No; 01 00 = Yes;
+        mRace = binReader.ReadUInt16()                           '0x1D822    01 00 = Human
+        mProfession = binReader.ReadUInt16()                     '0x1D824    06 00 = Lord
+        mAgeInWeeks = binReader.ReadUInt16()                     '0x1D826    0C 03 = Weeks Alive...
+        mStatus = binReader.ReadUInt16()                         '0x1D828    00 00 = OK
+        mAlignment = binReader.ReadUInt16()                      '0x1D82A    02 00 = Neutral
 
-        Me.Statistics = binReader.ReadInt32()                   '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
+        Me.Statistics = binReader.ReadUInt32()                   '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
         binReader.BaseStream.Position += 4                      '0x1D830
 
         For i As Short = 0 To 2                                 '0x1D834
-            mGoldPacked(i) = binReader.ReadInt16()
+            mGoldPacked(i) = binReader.ReadUInt16()
         Next i
         mGold = mBase.I6toD(mGoldPacked)
 
-        mItemCount = binReader.ReadInt16()                      '0x1D83A
+        mItemCount = binReader.ReadUInt16()                      '0x1D83A
         For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
             mItemList(i).Read(binReader)
         Next i
 
         For i As Short = 0 To 2                                 '0x1D87C
-            mExperiencePacked(i) = binReader.ReadInt16()
+            mExperiencePacked(i) = binReader.ReadUInt16()
         Next i
         mExperience = mBase.I6toD(mExperiencePacked)
 
@@ -532,20 +532,20 @@ Public Class CharacterBase
         Next i
 
         For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
-            mMageSpellPoints(i) = binReader.ReadInt16()
+            mMageSpellPoints(i) = binReader.ReadUInt16()
         Next i
         For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
-            mPriestSpellPoints(i) = binReader.ReadInt16()
+            mPriestSpellPoints(i) = binReader.ReadUInt16()
         Next i
         binReader.BaseStream.Position += 2                      '0x1D8AE
-        mArmorClass = binReader.ReadInt16()                     '0x1D8B0
+        mArmorClass = binReader.ReadUInt16()                     '0x1D8B0
         binReader.BaseStream.Position += 24                     '0x1D8B2
-        mLocation = binReader.ReadInt16()                       '0x1D8CA    Some sort of packed variable...
-        mDown = binReader.ReadInt16()                           '0x1D8CC    Seems to be a simple 2-byte Int16...
-        mHonors = binReader.ReadInt16()                         '0x1D8CE    Need more testing, but 1 = ">"
+        mLocation = binReader.ReadUInt16()                       '0x1D8CA    Some sort of packed variable...
+        mDown = binReader.ReadUInt16()                           '0x1D8CC    Seems to be a simple 2-byte Int16...
+        mHonors = binReader.ReadUInt16()                         '0x1D8CE    Need more testing, but 1 = ">"
         '                                                       '0x1D8D0    Next Character Record...
     End Sub
-    Public Sub Save(binWriter As BinaryWriter)
+    Public Overridable Sub Save(binWriter As BinaryWriter)
         binWriter.Write(mName)                                  '0x1D800   Pascal Varying Length String Format...
         binWriter.BaseStream.Position += NamePasswordLengthMax - mName.Length
         binWriter.Write(mPassword)                              '0x1D810   Pascal Varying Length String Format...

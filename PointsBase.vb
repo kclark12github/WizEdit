@@ -32,8 +32,8 @@ Public Class PointsBase
         End Set
     End Property
     Public Sub Read(binReader As BinaryReader)
-        mCurrent = binReader.ReadInt16()
-        mMaximum = binReader.ReadInt16()
+        mCurrent = binReader.ReadUInt16()
+        mMaximum = binReader.ReadUInt16()
     End Sub
     Public Sub Save(binWriter As BinaryWriter)
         binWriter.Write(mCurrent)

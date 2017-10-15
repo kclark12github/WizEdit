@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="ItemBase.vb" />
     <Compile Include="ItemData.vb" />
+    <Compile Include="MonsterGroupData.vb" />
     <Compile Include="PointsBase.vb" />
     <Compile Include="SpellBase.vb" />
     <Compile Include="Wizardry01.vb" />

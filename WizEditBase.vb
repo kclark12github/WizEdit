@@ -28,7 +28,7 @@ Public Class WizEditBase
     Private mIcon As Icon = Nothing
     Private mParent As Form = Nothing
 
-    Private mCharacters As CharacterBase()
+    Protected mCharacters As CharacterBase()
     Protected mMasterItemList As ItemData()
     Protected mMageSpellBook As SpellBase()
     Protected mPriestSpellBook As SpellBase()
@@ -69,6 +69,11 @@ Public Class WizEditBase
                 "D - Descendant of Heroes",
                 "* - Star of Llylgamyn"
                 }
+        End Get
+    End Property
+    Public ReadOnly Property Icon As Icon
+        Get
+            Return mIcon
         End Get
     End Property
     Public Overridable ReadOnly Property MasterItemList As ItemData()
@@ -395,7 +400,7 @@ Public Class WizEditBase
         Next iChar
         Return Nothing
     End Function
-    Public Sub Read()
+    Public Overridable Sub Read()
         Dim binReader As BinaryReader = Nothing
         Try
             'Wizardry (1-3) supports up to 20 characters...

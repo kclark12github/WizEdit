@@ -8,83 +8,16 @@
 '   10/09/19    Ken Clark       Migrated to VS2017;
 '   09/02/00    Ken Clark       Created;
 '=================================================================================================================================
-'WERDNA IV
-'0x4AC00	Name
-'0x4AC10 Password?
-'0x4AC20	Out[I2]
-'0x4AC22 Race[I2]
-'0x4AC24 Profession[I2]
-'0x4AC26 Age[I2]
-'0x4AC28 Status[I2]
-'0x4AC2A Alignment[I2]
-'0x4AC2C Statistics[I4];
-'0x4AC20 Unknown[I4];
-'0x4AC24 Gold[I6];
-'0x4AC3A ItemCount[I2];
-
-'	0x4AC3C Equipped1[I2];
-'	0x4AC3E Cursed1[I2];
-'	0x4AC40 Identified1[I2];
-'	0x4AC42 ItemCode1[I2];
-
-'	0x4AC44 Equipped2[I2];
-'	0x4AC46 Cursed2[I2];
-'	0x4AC48 Identified2[I2];
-'	0x4AC4A ItemCode2[I2];	
-
-'	0x4AC4C Equipped3[I2];
-'	0x4AC4E Cursed3[I2];
-'	0x4AC50 Identified3[I2];
-'	0x4AC52 ItemCode3[I2];	
-
-'	0x4AC54 Equipped4[I2];
-'	0x4AC56 Cursed4[I2];
-'	0x4AC58 Identified4[I2];
-'	0x4AC5A ItemCode4[I2];	
-
-'	0x4AC5C Equipped5[I2];
-'	0x4AC5E Cursed5[I2];
-'	0x4AC60 Identified5[I2];
-'	0x4AC62 ItemCode5[I2];
-
-'	0x4AC64 Equipped6[I2];
-'	0x4AC66 Cursed6[I2];
-'	0x4AC68 Identified6[I2];
-'	0x4AC6A ItemCode6[I2];	
-
-'	0x4AC6C Equipped7[I2];
-'	0x4AC6E Cursed7[I2];
-'	0x4AC70 Identified7[I2];
-'	0x4AC72 ItemCode7[I2];	
-
-'	0x4AC74 Equipped8[I2];
-'	0x4AC76 Cursed8[I2];
-'	0x4AC78 Identified8[I2];
-'	0x4AC7A ItemCode8[I2];	
-'0x4AC7C Keys[I6]; [I12]?
-'0x4AC82 Level.Current[I2];.Max[I2];
-'0x4AC86 HP.Current[I2];.Max[I2];
-'0x4AC8A SpellBooks[8B];
-'0x4AC92 SpellPoints[I2]x14
-'0x4ACAE Unknown[[I2]x14 (Coincidence?) - Spells Cast maybe?
-'0x4ACCA Location[I2];
-'0x4ACCE	Down[I2] - Screen says -2 but data says 0E 00
-'0x4ACD0 Group1.Count[I2]
-'0x4ACD2 Group2.Count[I2]
-'0x4ACD4 Group3.Count[I2]
-'0x4ACD6 Group1.Code[I2]
-'04AACD8 Group2.Code[I2]
-'0x4ACDA Group3.Code[I2]
-'0x4ACDC Group1.Name ("A DINK") String(15) 0x00
-'0x4ACEC Group2.Name ("ENTELECHY FUFF") String(15) 0x77
-'0x4ACFC Group3.Name ("VAMPIRE LORD") String(15) 0x70
-'0x4ACFC 
 Option Explicit On
 
 Public Class Wizardry04
     Inherits WizEditBase
     Public Sub New(ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
         MyBase.New(Caption, Icon, BoxArt, Parent)
+        ReDim mCharacters(Me.CharactersMax - 1)
+        For iChar As Short = 0 To Me.CharactersMax - 1
+            mCharacters(iChar) = New Character04(Me)
+        Next iChar
     End Sub
     Public Overrides ReadOnly Property CharacterDataOffset As Int32
         Get
@@ -225,6 +158,136 @@ Public Class Wizardry04
             Return mMasterItemList
         End Get
     End Property
+    Protected mMasterMonsterGroupList As MonsterGroupData()
+    Public ReadOnly Property MasterMonsterGroupList As MonsterGroupData()
+        Get
+            If mMasterMonsterGroupList Is Nothing Then
+                mMasterMonsterGroupList = {
+                    New MonsterGroupData("A Dink", 0, 10),
+                    New MonsterGroupData("Bubbly Slimes", 1, 10),
+                    New MonsterGroupData("Creeping Coins", 2, 10),
+                    New MonsterGroupData("Fuzzballs", 3, 10),
+                    New MonsterGroupData("Garian Raiders", 4, 10),
+                    New MonsterGroupData("Gas Clouds", 5, 10),
+                    New MonsterGroupData("Kobolds", 6, 10),
+                    New MonsterGroupData("Lvl 1 Mages", 7, 10),
+                    New MonsterGroupData("Lvl 1 Priests", 8, 10),
+                    New MonsterGroupData("Orcs", 9, 10),
+                    New MonsterGroupData("Skeletons", 10, 10),
+                    New MonsterGroupData("Zombies", 11, 10),
+                    New MonsterGroupData("Anacondas", 12, 9),
+                    New MonsterGroupData("Ashers", 13, 9),
+                    New MonsterGroupData("Crawling Kelps", 14, 9),
+                    New MonsterGroupData("Creeping Cruds", 15, 9),
+                    New MonsterGroupData("Dusters", 16, 9),
+                    New MonsterGroupData("Huge Spiders", 17, 9),
+                    New MonsterGroupData("Lvl 3 Priests", 18, 9),
+                    New MonsterGroupData("Mummies", 19, 9),
+                    New MonsterGroupData("No-See-Um Swarm", 20, 9),
+                    New MonsterGroupData("Poltergeists", 21, 9),
+                    New MonsterGroupData("Rogues", 22, 9),
+                    New MonsterGroupData("Witches", 23, 9),
+                    New MonsterGroupData("Banshees", 24, 8),
+                    New MonsterGroupData("Bugbears", 25, 8),
+                    New MonsterGroupData("Dragon Flies", 26, 8),
+                    New MonsterGroupData("Gaze Hounds", 27, 8),
+                    New MonsterGroupData("Harpies", 28, 8),
+                    New MonsterGroupData("Looters", 29, 8),
+                    New MonsterGroupData("Lvl 5 Priests", 30, 8),
+                    New MonsterGroupData("Ronins", 31, 8),
+                    New MonsterGroupData("Rotting Corpse", 32, 8),
+                    New MonsterGroupData("Shades", 33, 8),
+                    New MonsterGroupData("Spirits", 34, 8),
+                    New MonsterGroupData("Wererats", 35, 8),
+                    New MonsterGroupData("Blink Dogs", 36, 7),
+                    New MonsterGroupData("Bushwackers", 37, 7),
+                    New MonsterGroupData("Cockatrices", 38, 7),
+                    New MonsterGroupData("Giant Slugs", 39, 7),
+                    New MonsterGroupData("Giant Toads", 40, 7),
+                    New MonsterGroupData("Goblin Shamans", 41, 7),
+                    New MonsterGroupData("Goblins", 42, 7),
+                    New MonsterGroupData("Moat Monsters", 43, 7),
+                    New MonsterGroupData("Ogres", 44, 7),
+                    New MonsterGroupData("Priestesses", 45, 7),
+                    New MonsterGroupData("Strangler Vines", 46, 7),
+                    New MonsterGroupData("Vorpal Bunnies", 47, 7),
+                    New MonsterGroupData("Bishops", 48, 6),
+                    New MonsterGroupData("Centaurs", 49, 6),
+                    New MonsterGroupData("Grave Mists", 50, 6),
+                    New MonsterGroupData("High Corsairs", 51, 6),
+                    New MonsterGroupData("Hobgoblins", 52, 6),
+                    New MonsterGroupData("Lifestealers", 53, 6),
+                    New MonsterGroupData("Lvl 3 Samurai", 54, 6),
+                    New MonsterGroupData("Master Ninjas", 55, 6),
+                    New MonsterGroupData("Minor Daimyos", 56, 6),
+                    New MonsterGroupData("Nightstalkers", 57, 6),
+                    New MonsterGroupData("Werewolves", 58, 6),
+                    New MonsterGroupData("Wights", 59, 6),
+                    New MonsterGroupData("Boring Beetles", 60, 5),
+                    New MonsterGroupData("Corr. Slimes", 61, 5),
+                    New MonsterGroupData("D'Placer Beasts", 62, 5),
+                    New MonsterGroupData("Gargoyles", 63, 5),
+                    New MonsterGroupData("Gas Dragons", 64, 5),
+                    New MonsterGroupData("Ghosts", 65, 5),
+                    New MonsterGroupData("Hellhounds", 66, 5),
+                    New MonsterGroupData("Komodo Dragons", 67, 5),
+                    New MonsterGroupData("Masters/Dragons", 68, 5),
+                    New MonsterGroupData("Priests of Fung", 69, 5),
+                    New MonsterGroupData("Seraphim", 70, 5),
+                    New MonsterGroupData("Weretigers", 71, 5),
+                    New MonsterGroupData("Carriers", 72, 4),
+                    New MonsterGroupData("Dark Riders", 73, 4),
+                    New MonsterGroupData("Doppelgangers", 74, 4),
+                    New MonsterGroupData("Evil Eyes", 75, 4),
+                    New MonsterGroupData("Giant Mantises", 76, 4),
+                    New MonsterGroupData("Goblin Princes", 77, 4),
+                    New MonsterGroupData("Gorgons", 78, 4),
+                    New MonsterGroupData("Lvl 6 Ninjas", 79, 4),
+                    New MonsterGroupData("Masters/W. Wind", 80, 4),
+                    New MonsterGroupData("Myrmidons", 81, 4),
+                    New MonsterGroupData("Scrylls", 82, 4),
+                    New MonsterGroupData("Wyverns", 83, 4),
+                    New MonsterGroupData("Berserkers", 84, 3),
+                    New MonsterGroupData("Bleebs", 85, 3),
+                    New MonsterGroupData("Brass Dragons", 86, 3),
+                    New MonsterGroupData("Champ Samurai", 87, 3),
+                    New MonsterGroupData("Chimeras", 88, 3),
+                    New MonsterGroupData("Fiends", 89, 3),
+                    New MonsterGroupData("Major Daimyos", 90, 3),
+                    New MonsterGroupData("Rocs", 91, 3),
+                    New MonsterGroupData("Trolls", 92, 3),
+                    New MonsterGroupData("Vampires", 93, 3),
+                    New MonsterGroupData("Will O' Wisps", 94, 3),
+                    New MonsterGroupData("Xenos", 95, 3),
+                    New MonsterGroupData("Cyclopes", 96, 2),
+                    New MonsterGroupData("Dragon Zombies", 97, 2),
+                    New MonsterGroupData("Fire Giants", 98, 2),
+                    New MonsterGroupData("Firedrakes", 99, 2),
+                    New MonsterGroupData("Frost Giants", 100, 2),
+                    New MonsterGroupData("Hatamotos", 101, 2),
+                    New MonsterGroupData("Hydrae", 102, 2),
+                    New MonsterGroupData("Liches", 103, 2),
+                    New MonsterGroupData("Manticores", 104, 2),
+                    New MonsterGroupData("Masters/Summer", 105, 2),
+                    New MonsterGroupData("Murphy's Ghosts", 106, 2),
+                    New MonsterGroupData("Succubi", 107, 2),
+                    New MonsterGroupData("A Demon Lord", 108, 1),
+                    New MonsterGroupData("Black Dragons", 109, 1),
+                    New MonsterGroupData("Fleck", 110, 1),
+                    New MonsterGroupData("Foaming Molds", 111, 1),
+                    New MonsterGroupData("Gold Dragons", 112, 1),
+                    New MonsterGroupData("Greater Demons", 113, 1),
+                    New MonsterGroupData("High Masters", 114, 1),
+                    New MonsterGroupData("Iron Golems", 115, 1),
+                    New MonsterGroupData("Lycurgi", 116, 1),
+                    New MonsterGroupData("Maelifics", 117, 1),
+                    New MonsterGroupData("Poison Giants", 118, 1),
+                    New MonsterGroupData("Vampire Lords", 119, 1)
+                }
+            End If
+            Return mMasterMonsterGroupList
+        End Get
+    End Property
     Public Overrides ReadOnly Property RegDataPath As String
         Get
             Return "Scenario04DataPath"
@@ -240,4 +303,23 @@ Public Class Wizardry04
             Return "THE RETURN OF WERDNA"
         End Get
     End Property
+
+    Public Overrides Sub Read()
+        Dim binReader As BinaryReader = Nothing
+        Dim iGame As Short = 0
+        Try
+            'Instead of individual characters Wizardry (4) supports up to 8 games...
+            'This is comparable when you consider the nature of the game - Werdna is the only "Character".
+            binReader = New BinaryReader(File.Open(Me.ScenarioDataPath, FileMode.Open))
+            binReader.BaseStream.Position = Me.CharacterDataOffset
+            For iGame = 1 To Me.CharactersMax
+                Characters(iGame - 1).Read(binReader)
+            Next iGame
+        Catch ex As Exception
+            Debug.WriteLine(String.Format("{0} encountered reading Game #{1}{2}{3}", New Object() {ex.GetType.Name, iGame, vbCrLf, ex.ToString}))
+            Throw
+        Finally
+            If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
+        End Try
+    End Sub
 End Class

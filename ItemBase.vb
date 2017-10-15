@@ -17,15 +17,15 @@ Public Class ItemBase
         mItemCode = 0
     End Sub
     Private mBase As WizEditBase
-    Private mEquipped As Int16
-    Private mCursed As Int16
-    Private mIdentified As Int16
-    Private mItemCode As Int16
-    Public Property ItemCode As Short
+    Private mEquipped As UInt16
+    Private mCursed As UInt16
+    Private mIdentified As UInt16
+    Private mItemCode As UInt16
+    Public Property ItemCode As UInt16
         Get
             Return mItemCode
         End Get
-        Set(value As Short)
+        Set(value As UInt16)
             mItemCode = value
         End Set
     End Property
@@ -54,10 +54,10 @@ Public Class ItemBase
         End Set
     End Property
     Public Sub Read(binReader As BinaryReader)
-        mEquipped = binReader.ReadInt16()
-        mCursed = binReader.ReadInt16()
-        mIdentified = binReader.ReadInt16()
-        mItemCode = binReader.ReadInt16()
+        mEquipped = binReader.ReadUInt16()
+        mCursed = binReader.ReadUInt16()
+        mIdentified = binReader.ReadUInt16()
+        mItemCode = binReader.ReadUInt16()
     End Sub
     Public Sub Save(binWriter As BinaryWriter)
         binWriter.Write(mEquipped)
