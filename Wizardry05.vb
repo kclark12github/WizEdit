@@ -102,7 +102,7 @@ Public Class Wizardry05
                     New ItemData("Weapon: Ebony Blade (E)", 1070),
                     New ItemData("Weapon: Amber Blade (N)", 1071),
                     New ItemData("Weapon: Mace +2", 1072),
-                    New ItemData("Gauntlets: Gloves of Mithril", 1073),
+                    New ItemData("Gauntlets: Gloves of Mythril", 1073),
                     New ItemData("Magic: Amulet of Dailko", 1074),
                     New ItemData("Armor: Cuirass +2", 1075),
                     New ItemData("Shield: Heater +2", 1076),

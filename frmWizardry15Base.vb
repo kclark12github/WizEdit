@@ -255,6 +255,18 @@
             Me.epMain.SetError(sender, ex.ToString)
         End Try
     End Sub
+    Private Sub cbItem_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbItem1.SelectedIndexChanged, cbItem2.SelectedIndexChanged, cbItem3.SelectedIndexChanged, cbItem4.SelectedIndexChanged, cbItem5.SelectedIndexChanged, cbItem6.SelectedIndexChanged, cbItem7.SelectedIndexChanged, cbItem8.SelectedIndexChanged
+        Dim cbItem As ComboBox = CType(sender, ComboBox)
+        Select Case cbItem.Name
+            Case "cbItem1" : Me.ttMain.SetToolTip(Me.lblItem1, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem2" : Me.ttMain.SetToolTip(Me.lblItem2, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem3" : Me.ttMain.SetToolTip(Me.lblItem3, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem4" : Me.ttMain.SetToolTip(Me.lblItem4, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem5" : Me.ttMain.SetToolTip(Me.lblItem5, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem6" : Me.ttMain.SetToolTip(Me.lblItem6, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem7" : Me.ttMain.SetToolTip(Me.lblItem7, CType(cbItem.SelectedItem, ItemData).Tag)
+        End Select
+    End Sub
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         ToggleEditMode(False)
         'Use our event handler to re-read the character...

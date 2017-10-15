@@ -70,7 +70,6 @@ Public Class ItemBase
         '    If x.Identified Then Item &= "; Identified"
         '    If x.Equipped Then Item &= "; **EQUIPPED**"
         '    If x.Cursed Then strItem &= "; --CURSED--"
-
-        Return String.Format("{0}{1}{2}", vbTab, IIf(mCursed, "-", IIf(mEquipped, "*", " ")), mBase.MasterItemList(mItemCode))
+        ToString = String.Format("{0}{1}{2}", vbTab, IIf(mCursed, "-", IIf(mEquipped, "*", " ")), mBase.MasterItemList(mItemCode))
     End Function
 End Class
