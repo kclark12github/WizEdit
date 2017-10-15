@@ -115,7 +115,7 @@ Public Class Wizardry01
                     New ItemData("Thieves Dagger", 83, "Weapon", "11-16 Damage", 50000, "TN", "Invoke: Class to Ninja"),
                     New ItemData("Breast Plate +3", 84, "Armor", "AC 7", 100000, "FPSLN", ""),
                     New ItemData("Lord's Garb", 85, "Armor", "AC 10", 1000000, "L", "Prot: Mythical, Dragon; Regeneration (1); Vs: Were, Demon, Undead"),
-                    New ItemData("Murasama Blade", 86, "Weapon", "10-50 Damage", 1000000, "S", "Invoking: St+1"),
+                    New ItemData("Muramasa Blade", 86, "Weapon", "10-50 Damage", 1000000, "S", "Invoking: St+1"),
                     New ItemData("Shuriken", 87, "Weapon", "1-6 Damage", 50000, "N", "Alig: Evil; Res: Poison, LvlDrain; Invoking: Hp+1."),
                     New ItemData("Chain Pro Fire", 88, "Armor", "AC 6", 150000, "FPSLN", ""),
                     New ItemData("Evil Plate +3", 89, "Armor", "AC 9", 150000, "FPSLN", "Alignment: Evil"),

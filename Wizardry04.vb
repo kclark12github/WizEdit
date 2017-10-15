@@ -192,7 +192,7 @@ Public Class Wizardry04
                     New ItemData("Oxygen Mask", 89, "Armor", "AC 0", 0, "Y", "Casts MAKANITO"),
                     New ItemData("Chronicles of H", 90, "Misc", "", 0, "Y", ""),
                     New ItemData("Lord's Garb", 91, "Armor", "AC 10", 1000000, "Y", ""),
-                    New ItemData("Murasama Blade", 92, "Weapon", "10-50 Damage", 1000000, "N", ""),
+                    New ItemData("Muramasa Blade", 92, "Weapon", "10-50 Damage", 1000000, "N", ""),
                     New ItemData("Shuriken", 93, "Weapon", "11-15 Damage", 50000, "N", ""),
                     New ItemData("Chain Pro Ice", 94, "Armor", "AC 6", 150000, "Y", ""),
                     New ItemData("**ERR**", 95, "", "", 0, "", ""),

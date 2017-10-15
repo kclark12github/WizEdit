@@ -8,6 +8,90 @@
 '   10/09/19    Ken Clark       Migrated to VS2017;
 '   09/02/00    Ken Clark       Created;
 '=================================================================================================================================
+'MAELSTROM V
+'0x4C00	Name
+'0x4C10 Password
+'0x4C20	? Out[I2]
+'0x4C22 ? Race[I2]
+'0x4C24 ? Profession[I2]
+'0x4C26 ? Age[I2]
+'0x4C28 ? Status[I2]
+'0x4C2A ? Alignment[I2]
+'0x4C2C ? Statistics[I4];
+'0x4C20 ? Unknown[I4];
+'0x4C24 ? Gold[I6];
+
+'0x4C3A ItemCount[I2];
+'	0x4C3C ItemCode1[I2];
+'	0x4C3C ItemStatus1[I2];  2^0 = Equipped; 2^1 = Identified;
+'       0x00=0000 0000 = Unidentified
+'       0x01=0000 0001 = Equipped & Unidentified (Weapon)
+'       0x02=0000 0010 = Identified
+'       0x03=0000 0011 = Equipped & Identified (Weapon)
+'       0x04=0000 0100 = Unidentified
+'       0x05=0000 0101 = Equipped & Unidentified
+'       0x06=0000 0110 = Identified
+'       0x07=0000 0111 = Equipped & Identified (Weapon)
+'       0x08=0000 1000
+'       0x09=0000 1001
+'       0x0A=0000 1010
+'       0x0B=0000 1011 = Equipped & Identified (Armor)
+'	0x4C3E Cursed1[I2];
+'	0x4C40 Identified1[I2];
+
+'	0x4C44 Equipped2[I2];
+'	0x4C46 Cursed2[I2];
+'	0x4C48 Identified2[I2];
+'	0x4C4A ItemCode2[I2];	
+
+'	0x4C4C Equipped3[I2];
+'	0x4C4E Cursed3[I2];
+'	0x4C50 Identified3[I2];
+'	0x4C52 ItemCode3[I2];	
+
+'	0x4C54 Equipped4[I2];
+'	0x4C56 Cursed4[I2];
+'	0x4C58 Identified4[I2];
+'	0x4C5A ItemCode4[I2];	
+
+'	0x4C5C Equipped5[I2];
+'	0x4C5E Cursed5[I2];
+'	0x4C60 Identified5[I2];
+'	0x4C62 ItemCode5[I2];
+
+'	0x4C64 Equipped6[I2];
+'	0x4C66 Cursed6[I2];
+'	0x4C68 Identified6[I2];
+'	0x4C6A ItemCode6[I2];	
+
+'	0x4C6C Equipped7[I2];
+'	0x4C6E Cursed7[I2];
+'	0x4C70 Identified7[I2];
+'	0x4C72 ItemCode7[I2];	
+
+'	0x4C74 Equipped8[I2];
+'	0x4C76 Cursed8[I2];
+'	0x4C78 Identified8[I2];
+'	0x4C7A ItemCode8[I2];	
+'0x4C7C Keys[I6]; [I12]?
+'0x4C82 Level.Current[I2];.Max[I2];
+'0x4C86 HP.Current[I2];.Max[I2];
+'0x4C8A SpellBooks[8B];
+'0x4C92 SpellPoints[I2]x14
+'0x4CAE Unknown[[I2]x14 (Coincidence?) - Spells Cast maybe?
+'0x4CCA Location[I2];
+'0x4CCE	Down[I2] - Screen says -2 but data says 0E 00
+'0x4CD0 Group1.Count[I2]
+'0x4CD2 Group2.Count[I2]
+'0x4CD4 Group3.Count[I2]
+'0x4CD6 Group1.Code[I2]
+'04ACD8 Group2.Code[I2]
+'0x4CDA Group3.Code[I2]
+'0x4CDC Group1.Name ("A DINK") String(15) 0x00
+'0x4CEC Group2.Name ("ENTELECHY FUFF") String(15) 0x77
+'0x4CFC Group3.Name ("VAMPIRE LORD") String(15) 0x70
+'0x4CFC 
+
 Option Explicit On
 
 Public Class Wizardry05
@@ -17,7 +101,7 @@ Public Class Wizardry05
     End Sub
     Public Overrides ReadOnly Property CharacterDataOffset As Int32
         Get
-            Return &H25C00
+            Return &H4C00
         End Get
     End Property
     Public Overrides ReadOnly Property CharactersMax As Short
@@ -29,110 +113,142 @@ Public Class Wizardry05
         Get
             If mMasterItemList Is Nothing Then
                 mMasterItemList = {
-                    New ItemData("Misc: Broken Item", 1000),
-                    New ItemData("Special: Orb of Earithin", 1001),
-                    New ItemData("Special: Neutral Crystal", 1002),
-                    New ItemData("Special: Crystal of Evil", 1003),
-                    New ItemData("Special: Crystal of Good", 1004),
-                    New ItemData("Special: Ship in a Bottle", 1005),
-                    New ItemData("Weapon: Staff of Earth", 1006),
-                    New ItemData("Magic: Amulet of Air", 1007),
-                    New ItemData("Misc: Holy Water", 1008),
-                    New ItemData("Magic: Rod of Fire", 1009),
-                    New ItemData("Special: Gold Medallion", 1010),
-                    New ItemData("Special: Orb of Mhuuzfes", 1011),
-                    New ItemData("Weapon: Butterfly Knife", 1012),
-                    New ItemData("Weapon: Short Sword", 1013),
-                    New ItemData("Weapon: Broad Sword", 1014),
-                    New ItemData("Weapon: Mace", 1015),
-                    New ItemData("Weapon: Staff of Earth", 1016),
-                    New ItemData("Weapon: Hand Axe", 1017),
-                    New ItemData("Weapon: Battle Axe", 1018),
-                    New ItemData("Weapon: Dagger", 1019),
-                    New ItemData("Weapon: Flail", 1020),
-                    New ItemData("Shield: Round Shield", 1021),
-                    New ItemData("Shield: Heater Shield", 1022),
-                    New ItemData("Armor: Mage's Robes", 1023),
-                    New ItemData("Armor: Cuirass", 1024),
-                    New ItemData("Armor: Hauberk", 1025),
-                    New ItemData("Armor: Breast Plate", 1026),
-                    New ItemData("Armor: Plate Armor", 1027),
-                    New ItemData("Helm: Sallet", 1028),
-                    New ItemData("Magic: Potion of DIOS", 1029),
-                    New ItemData("Magic: LATUMOFIS Oil", 1030),
-                    New ItemData("Weapon: Short Sword +1", 1031),
-                    New ItemData("Weapon: Broad Sword +1", 1032),
-                    New ItemData("Weapon: Mace +1", 1033),
-                    New ItemData("Weapon: Battle Axe +1", 1034),
-                    New ItemData("Weapon: Nunchuka", 1035),
-                    New ItemData("Weapon: Dagger +1", 1036),
-                    New ItemData("Magic: Scroll of KATINO", 1037),
-                    New ItemData("Armor: Cuirass +1", 1038),
-                    New ItemData("Armor: Hauberk +1", 1039),
-                    New ItemData("Armor: Breast Plate +1", 1040),
-                    New ItemData("Armor: Plate Armor +1", 1041),
-                    New ItemData("Shield: Heater +1", 1042),
-                    New ItemData("Helm: Bascinet", 1043),
-                    New ItemData("Gauntlets: Gloves of Iron", 1044),
-                    New ItemData("Magic: Scroll of BADIOS", 1045),
-                    New ItemData("Magic: Potion of HALITO", 1046),
-                    New ItemData("Weapon: Short Sword -1", 1047),
-                    New ItemData("Weapon: Broadsword -1", 1048),
-                    New ItemData("Weapon: Mace -1", 1049),
-                    New ItemData("Weapon: Dagger -1", 1050),
-                    New ItemData("Weapon: Battle Axe -1", 1051),
-                    New ItemData("Weapon: Margaux's Flail", 1052),
-                    New ItemData("Special: Bag of Gems", 1053),
-                    New ItemData("Weapon: Wizard's Staff", 1054),
-                    New ItemData("Weapon: Flametongue", 1055),
-                    New ItemData("Shield: Round Shield -1", 1056),
-                    New ItemData("Armor: Cuirass -1", 1057),
-                    New ItemData("Armor: Hauberk -1", 1058),
-                    New ItemData("Armor: Breast Plate -1", 1059),
-                    New ItemData("Armor: Plate Armor -1", 1060),
-                    New ItemData("Helm: Sallet -1", 1061),
-                    New ItemData("Magic: Potion of SOPIC", 1062),
-                    New ItemData("Special: Gold Ring", 1063),
-                    New ItemData("Special: Salamander Ring", 1064),
-                    New ItemData("Special: Serpent's Tooth", 1065),
-                    New ItemData("Weapon: Short Sword +2", 1066),
-                    New ItemData("Weapon: Broad Sword +2", 1067),
-                    New ItemData("Weapon: Battle Axe +2", 1068),
-                    New ItemData("Weapon: Ivory Blade (G)", 1069),
-                    New ItemData("Weapon: Ebony Blade (E)", 1070),
-                    New ItemData("Weapon: Amber Blade (N)", 1071),
-                    New ItemData("Weapon: Mace +2", 1072),
-                    New ItemData("Gauntlets: Gloves of Mythril", 1073),
-                    New ItemData("Magic: Amulet of Dailko", 1074),
-                    New ItemData("Armor: Cuirass +2", 1075),
-                    New ItemData("Shield: Heater +2", 1076),
-                    New ItemData("Armor: Displacer Robes", 1077),
-                    New ItemData("Armor: Hauberk +2", 1078),
-                    New ItemData("Armor: Breast Plate +2", 1079),
-                    New ItemData("Armor: Plate Armor +2", 1080),
-                    New ItemData("Armor: Armet", 1081),
-                    New ItemData("Armor: Wargan Robes", 1082),
-                    New ItemData("Weapon: Giant's Club", 1083),
-                    New ItemData("Weapon: Blade Cuisinart'", 1084),
-                    New ItemData("Weapon: Shepherd Crook", 1085),
-                    New ItemData("Weapon: Unholy Axe", 1086),
-                    New ItemData("Weapon: Rod of Death", 1087),
-                    New ItemData("Special: Gem of Exorcism", 1088),
-                    New ItemData("Special: Bag of Emeralds", 1089),
-                    New ItemData("Special: Bag of Garnets", 1090),
-                    New ItemData("Special: Blue Pearl", 1091),
-                    New ItemData("Special: Ruby Slippers", 1092),
-                    New ItemData("Weapon: Necrology Rod", 1093),
-                    New ItemData("Misc: Book of Life", 1094),
-                    New ItemData("Misc: Book of Death", 1095),
-                    New ItemData("Special: Dragon's Tooth", 1096),
-                    New ItemData("Special: Trollkin Ring", 1097),
-                    New ItemData("Special: Rabbit's Foot", 1098),
-                    New ItemData("Special: Thief's Pick", 1099),
-                    New ItemData("Misc: Book of Demons", 1100),
-                    New ItemData("Weapon: Butterfly Knife", 1101),
-                    New ItemData("Special: Gold Tiara", 1102),
-                    New ItemData("Gauntlets: Mantis Gloves", 1103)
+                    New ItemData("Broken Item", 0, "Misc", "", 0, "*", "Worthless"),
+                    New ItemData("Torch", 1, "Misc", "", 10, "*", "Casts MILWA"),
+                    New ItemData("Lantern", 2, "Magic", "", 75, "*", "Casts LOMILWA"),
+                    New ItemData("Rubber Duck", 3, "Misc", "", 0, "*", "Equip for Perfect Swimming"),
+                    New ItemData("Dagger", 4, "Weapon", "2-4 Damage", 25, "FMTSLN", "Close Range;"),
+                    New ItemData("Staff", 5, "Weapon", "1-5 Damage", 30, "*", "Close Range;"),
+                    New ItemData("Short Sword", 6, "Weapon", "1-6 Damage", 35, "FTSLN", "Close Range;"),
+                    New ItemData("Long Sword", 7, "Weapon", "2-7 Damage", 45, "FSLN", "Close Range;"),
+                    New ItemData("Mace", 8, "Weapon", "3-6 Damage", 100, "FPBSLN", "Close Range;"),
+                    New ItemData("Battle Axe", 9, "Weapon", "4-8 Damage", 180, "FSLN", "Close Range;"),
+                    New ItemData("Pike", 10, "Weapon", "2-6 Damage", 250, "FSLN", "Short Range;"),
+                    New ItemData("War Hammer", 11, "Weapon", "4-9 Damage", 400, "FL", "Short Range;"),
+                    New ItemData("Holy Basher", 12, "Weapon", "3-7 Damage", 400, "PB", "Short Range;"),
+                    New ItemData("Long Bow", 13, "Weapon", "2-7 Damage", 325, "FSLN", "Long Range;"),
+                    New ItemData("Thieve's Bow", 14, "Weapon", "2-6 Damage", 600, "FTSLN", "Medium Range;"),
+                    New ItemData("Robes", 15, "Armor", "AC 1", 20, "*", ""),
+                    New ItemData("Leather Armor", 16, "Armor", "AC 2", 95, "FPTBSLN", ""),
+                    New ItemData("Chain Mail", 17, "Armor", "AC 3", 145, "FPBSLN", ""),
+                    New ItemData("Scale Mail", 18, "Armor", "AC 4", 400, "FSLN", ""),
+                    New ItemData("Plate Mail", 19, "Armor", "AC 5", 750, "FL", ""),
+                    New ItemData("Target Shield", 20, "Shield", "AC 1", 65, "FTSLN", ""),
+                    New ItemData("Heater Shield", 21, "Shield", "AC 2", 125, "FL", ""),
+                    New ItemData("Leather Sallet", 22, "Helmet", "1", 250, "FPBSLN", ""),
+                    New ItemData("Leather Gloves", 23, "Gauntlets", "AC 1", 500, "FPTBSLN", ""),
+                    New ItemData("Short Sword +1", 24, "Weapon", "7-12 Damage", 1500, "FSLN", "Close Range;"),
+                    New ItemData("Long Sword +1", 25, "Weapon", "7-12 Damage", 1500, "FSLN", "Close Range;"),
+                    New ItemData("Blackblade", 26, "Weapon", "6-12 Damage", 1500, "FSLN", "Close Range;"),
+                    New ItemData("Katana", 27, "Weapon", "7-13 Damage", 1750, "SN", "Close Range;"),
+                    New ItemData("Battle Axe +1", 28, "Weapon", "8-14 Damage", 1750, "FSLN", "Close Range;"),
+                    New ItemData("Morningstar", 29, "Weapon", "4-10 Damage", 2000, "FPBSLN", "Short Range;"),
+                    New ItemData("Runed Flail", 30, "Weapon", " Damage", 2000, "FPBSLN", "Cursed; AC -2"),
+                    New ItemData("Halberd", 31, "Weapon", "7-13 Damage", 2500, "FSLN", "Short Range;"),
+                    New ItemData("Lt. Crossbow", 32, "Weapon", "5-10 Damage", 2500, "FTSLN", "Long Range;"),
+                    New ItemData("Leather +1", 33, "Armor", "AC 3", 1500, "FPTBSLN", ""),
+                    New ItemData("Chain Mail +1", 34, "Armor", "AC 4", 1750, "FPBSLN", ""),
+                    New ItemData("Scale Mail +1", 35, "Armor", "AC 5", 2000, "FSLN", ""),
+                    New ItemData("Plate Mail +1", 36, "Armor", "AC 6", 2500, "FL", ""),
+                    New ItemData("Silver Mail", 37, "Armor", "AC 4", 2500, "FPSLN", "Cursed; Invoke: Heal"),
+                    New ItemData("Target +1", 38, "Shield", "AC 2", 1500, "FTSLN", ""),
+                    New ItemData("Heater +1", 39, "Shield", "AC 3", 2000, "FL", ""),
+                    New ItemData("Crested Shield", 40, "Shield", "AC -3", 2000, "FL", "Cursed;"),
+                    New ItemData("Brass Sallet", 41, "Helmet", "2", 1500, "FPBSLN", ""),
+                    New ItemData("Iron Gloves", 42, "Gauntlets", "AC 2", 2500, "FSLN", ""),
+                    New ItemData("Bracers", 43, "Gauntlets", "AC ", 2500, "*", "[FSLN] AC: 1"),
+                    New ItemData("Long Sword +2", 44, "Weapon", "7-17 Damage", 5000, "FSLN", "Close Range;"),
+                    New ItemData("Robinsword", 45, "Weapon", "5-15 Damage", 7000, "FTSLN", "Close Range;"),
+                    New ItemData("Sword of Fire", 46, "Weapon", "8-22 Damage", 10000, "FSLN", "Close Range; Casts MAHALITO"),
+                    New ItemData("Master Katana", 47, "Weapon", "7-19 Damage", 13500, "S", "Close Range;"),
+                    New ItemData("Soulstealer", 48, "Weapon", " Damage", 13500, "FSLN", "Cursed; Invoke: Vitality -1, Age +1"),
+                    New ItemData("Battle Axe +2", 49, "Weapon", "10-20 Damage", 8500, "FSLN", "Close Range;"),
+                    New ItemData("Axe of Death", 50, "Weapon", " Damage", 8500, "FSLN", "Cursed;"),
+                    New ItemData("Sacred Basher", 51, "Weapon", "8-14 Damage", 7500, "PB", "Short Range;"),
+                    New ItemData("Faust Halberd", 52, "Weapon", "8-20 Damage", 10000, "FSLN", "Short Range; Invoke: Vitality -1"),
+                    New ItemData("Silver Hammer", 53, "Weapon", "10-20 Damage", 10000, "FSLN", "Short Range; Invoke: Strength +1, Luck -1"),
+                    New ItemData("Mage's Yew Bow", 54, "Weapon", "6-12 Damage", 12000, "M", "Long Range; Invoke: Vitality +1"),
+                    New ItemData("Hv. Crossbow", 55, "Weapon", "8-15 Damage", 12000, "FTSLN", "Long Range;"),
+                    New ItemData("Leather +2", 56, "Armor", "AC 4", 4000, "FPTBSLN", ""),
+                    New ItemData("Chain Mail +2", 57, "Armor", "AC 5", 6000, "FPBSLN", ""),
+                    New ItemData("Scale Mail +2", 58, "Armor", "AC 6", 8000, "FSLN", ""),
+                    New ItemData("Plate Mail +2", 59, "Armor", "AC 7", 10000, "FL", ""),
+                    New ItemData("Scarlet Robes", 60, "Armor", "AC -2", 4500, "M", "Cursed;"),
+                    New ItemData("Emerald Robes", 61, "Armor", "AC 4", 4500, "*", ""),
+                    New ItemData("Heater +2", 62, "Shield", "AC 4", 5000, "FL", ""),
+                    New ItemData("Bacinet", 63, "Helmet", "3", 3500, "FSLN", ""),
+                    New ItemData("Cone of Fire", 64, "Helmet", "-4", 3000, "*", "Cursed; Invoke: Ashes"),
+                    New ItemData("Silver Gloves", 65, "Gauntlets", "AC 3", 7500, "FSLN", ""),
+                    New ItemData("Bracers +1", 66, "Gauntlets", "AC ", 10000, "*", "[FSLN] AC:2"),
+                    New ItemData("Long Sword +3", 67, "Weapon", "12-22 Damage", 20000, "FSLN", "Close Range; Formerly Blade Cusinart'"),
+                    New ItemData("Plate Mail +3", 68, "Armor", "AC 8", 25000, "FSLN", ""),
+                    New ItemData("Shield Pro Magic", 69, "Shield", "AC 3", 20000, "FSLN", ""),
+                    New ItemData("Jeweled Armet", 70, "Gauntlets", "AC 4", 12500, "FL", ""),
+                    New ItemData("Wizard's Cap", 71, "Helmet", "1", 8000, "M", ""),
+                    New ItemData("Gloves of Myrdall", 72, "Gauntlets", "AC 4", 40000, "FSLN", ""),
+                    New ItemData("Cloak of Capricorn", 73, "Armor", "AC ", 9000, "*", "AC: 2"),
+                    New ItemData("Sylvan Bow", 74, "Weapon", "14-26 Damage", 100000, "FTSLN", "Long Range; Invoke: Agility +1"),
+                    New ItemData("Muramasa Katana", 75, "Weapon", "15-30 Damage", 150000, "SN", "Close Range; Invoke: Vitality +1"),
+                    New ItemData("Odinsword", 76, "Weapon", "15-35 Damage", 250000, "L", "Close Range; Invoke: Vitality +1"),
+                    New ItemData("Gold Plate +5", 77, "Armor", "AC 10", 250000, "FSLN", ""),
+                    New ItemData("Ring of Frozz", 78, "Magic", "", 5000, "*", "[M] AC: 2; Invoke: 9s All Spell Pts."),
+                    New ItemData("Ring of Skulls", 79, "Magic", "", 5000, "*", "Invoke: Piety -1, Age -1"),
+                    New ItemData("Ring of MADI", 80, "Magic", "", 15000, "*", "Invoke: Casts MADI"),
+                    New ItemData("Ring of Jade", 81, "Magic", "AC -2", 10000, "*", "Cursed; Invoke: Age +1"),
+                    New ItemData("Ring of Solitude", 82, "Magic", "", 20000, "*", "Invoke: Luck +1"),
+                    New ItemData("Ankh of Wonder", 83, "Magic", "", 12000, "*", "AC: 1; Invoke: Casts IHALON"),
+                    New ItemData("Ankh of Power", 84, "Magic", "", 12000, "*", "AC: 1; Invoke: Strength +1"),
+                    New ItemData("Ankh of Life", 85, "Magic", "", 12000, "*", "AC: 1; Casts MADI"),
+                    New ItemData("Ankh of Intellect", 86, "Magic", "", 12000, "*", "AC: 1; Invoke: I.Q. +1"),
+                    New ItemData("Ankh of Sanctity", 87, "Magic", "", 12000, "*", "AC: 1; Invoke: Piety +1"),
+                    New ItemData("Ankh of Youth", 88, "Magic", "", 12000, "*", "AC: 1; Invoke: Age -1"),
+                    New ItemData("Staff of Summoning", 89, "Weapon", "4-9 Damage", 7750, "MPB", "Close Range; Casts BAMORDI"),
+                    New ItemData("Staff of Death", 90, "Weapon", " Damage", 7750, "MPB", "Cursed; Invoke: Casts BADI"),
+                    New ItemData("Scroll of KATINO", 91, "Magic", "", 250, "*", ""),
+                    New ItemData("Scroll of Stoning", 92, "Magic", "", 750, "*", "Casts BOLATU"),
+                    New ItemData("Scroll of Fire", 93, "Magic", "", 1250, "*", "Casts MAHALITO"),
+                    New ItemData("Scroll of Conjuring", 94, "Magic", "", 3500, "*", "Casts SOCORDI"),
+                    New ItemData("Potion of DIOS", 95, "Magic", "", 100, "*", ""),
+                    New ItemData("Potion of Charming", 96, "Magic", "", 350, "*", "Casts KATU"),
+                    New ItemData("Potion of LATUMOFIS", 97, "Magic", "", 250, "*", ""),
+                    New ItemData("Potion of DIALKO", 98, "Magic", "", 400, "*", "Casts DIALKO"),
+                    New ItemData("Potion of Wounding", 99, "Magic", "", 500, "*", "Casts BADIAL"),
+                    New ItemData("Potion of MADI", 100, "Magic", "", 2500, "*", "Casts MADI"),
+                    New ItemData("King of Diamonds", 101, "Special", "", 0, "*", "Used for Endgame Level 8 Access"),
+                    New ItemData("Queen of Hearts", 102, "Special", "", 0, "*", "Used for Endgame Level 8 Access"),
+                    New ItemData("Jack of Spades", 103, "Special", "", 0, "*", "Used for Endgame Level 8 Access"),
+                    New ItemData("Ace of Clubs", 104, "Special", "", 0, "*", "Used for Endgame Level 8 Access"),
+                    New ItemData("Munke Wand", 105, "Weapon", "2-8 Damage", 0, "MB", "Close Range; Use at LVL7 1W 13S"),
+                    New ItemData("Lightning Rod", 106, "Weapon", "8-20 Damage", 0, "MB", "Close Range; Use at LVL7 13E 4S"),
+                    New ItemData("Lark in a Cage", 107, "Special", "", 0, "*", "Use at LVL7 13W 0N"),
+                    New ItemData("Staff of Water", 108, "Weapon", "6-12 Damage", 0, "*", "Short Range; Use during Endgame"),
+                    New ItemData("Staff of Fire", 109, "Weapon", "6-12 Damage", 0, "*", "Short Range; Use during Endgame"),
+                    New ItemData("Staff of Air", 110, "Weapon", "6-12 Damage", 0, "*", "Short Range; Use during Endgame"),
+                    New ItemData("Staff of Earth", 111, "Weapon", "6-12 Damage", 0, "*", "Short Range; Use during Endgame"),
+                    New ItemData("Potion of Demon-Out", 112, "Magic", "", 4500, "*", "Casts MOGATO"),
+                    New ItemData("Gold Medallion", 113, "Special", "", 50000, "*", "AC: 2, Use at LVL6 14E 5S"),
+                    New ItemData("Ice Key", 114, "Special", "", 0, "*", "Use at LVL6 5E 25S"),
+                    New ItemData("Ticket Stubs", 115, "Special", "", 0, "*", "Use at LVL5 7E 1S"),
+                    New ItemData("Tickets", 116, "Special", "", 0, "*", "Use at LVL5 7E 1S"),
+                    New ItemData("Skeleton Key", 117, "Special", "", 0, "*", "Use at LVL4 4E 24S"),
+                    New ItemData("Pocketwatch", 118, "Special", "", 0, "*", "Use at LVL4 2E 21S"),
+                    New ItemData("Battery", 119, "Special", "", 0, "*", "Use at LVL3 6E 10S"),
+                    New ItemData("Petrified Demon", 120, "Special", "AC 2", 0, "*", "Cursed; Invoke: Vitality -1, +HP; Use at LVL4 6E 17S"),
+                    New ItemData("Gold Key", 121, "Special", "", 0, "*", "Use at LVL4 15W 21S"),
+                    New ItemData("Blue Candle", 122, "Special", "", 3000, "*", "Use at LVL3 12E 25S"),
+                    New ItemData("Jeweled Scepter", 123, "Special", "", 0, "*", "Use at LVL2 12E 5N"),
+                    New ItemData("Potion of Spirit-Away", 124, "Magic", "", 500, "*", "Casts MORLIS; Use at LVL2 4E 0N"),
+                    New ItemData("Hacksaw", 125, "Special", "", 0, "*", "Use at LVL2 2E 15S"),
+                    New ItemData("Bottle of Rum", 126, "Special", "", 0, "*", "Use at LVL2 7W 3N"),
+                    New ItemData("Silver Key", 127, "Special", "", 0, "*", "Use at LVL1 5E 27N"),
+                    New ItemData("Bag of Tokens", 128, "Special", "", 0, "*", "Use at LVL1 12E 4N"),
+                    New ItemData("Brass Key", 129, "Special", "", 0, "*", "Use at LVL1 6E 3N"),
+                    New ItemData("Orb of Llylgamyn", 130, "Special", "", 0, "*", "Use at LVL1 8E 17N and Endgame"),
+                    New ItemData("Heart of Abriel", 131, "Special", "", 0, "*", "Wins the Game"),
+                    New ItemData("Holy Talisman", 132, "Magic", "", 25000, "*", "Casts DUMAPIC; Invoke: Piety -1"),
+                    New ItemData("Amulet of Rainbows", 133, "Magic", "", 10000, "*", "Casts VASKYRE"),
+                    New ItemData("Amulet of Screens", 134, "Magic", "", 10000, "*", "Casts CORTU"),
+                    New ItemData("Amulet of Flames", 135, "Magic", "", 10000, "*", "Casts LAHALITO")
                 }
             End If
             Return mMasterItemList
