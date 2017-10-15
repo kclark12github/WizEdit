@@ -1,0 +1,540 @@
+================================================================================
+Character #1
+Name:                   TARKIN
+Password:               
+Out (Left in Maze):     NO
+Race:                   Human
+Profession:             Fighter
+Age?:                   804
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            125 0x7D
+Experience Points:      5632    0x1600
+
+List of Items (Currently carrying 8 items)...
+    Code: 29
+    Code: 2
+    Code: 3
+    Code: 4
+    Code: 5
+    Code: 6
+    Code: 7
+    Code: 8
+ 
+Unknown Region #1 (4 bytes): 
+6F4E7302 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 03000700 00000000 01000100 08000200 00000000 00000000 00000000 
+00000000 0000
+
+
+================================================================================
+Character #2
+Name:                   SHREEV
+Password:               
+Out (Left in Maze):     NO
+Race:                   Dwarf
+Profession:             Mage
+Age?:                   804
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            190 0xBE
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+734EF02 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+A00F0FF FFFFFF00 FF00FF00 FF00FF00 FF00FF00 FF00FF00 FF00FF00 FF00FF00 
+FF00FF00 0000A00 00000000 01000200 02000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #3
+Name:                   CURTIS
+Password:               
+Out (Left in Maze):     NO
+Race:                   Human
+Profession:             Fighter
+Age?:                   752
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            109 0x6D
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #4
+Name:                   KIMBAL
+Password:               
+Out (Left in Maze):     NO
+Race:                   Gnome
+Profession:             Mage
+Age?:                   752
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            173 0xAD
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+A000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+================================================================================
+Character #5
+Name:                   TIVIS
+Password:               
+Out (Left in Maze):     NO
+Race:                   Hobbit
+Profession:             Thief
+Age?:                   804
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            115 0x73
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #6
+Name:                   MEWO
+Password:               
+Out (Left in Maze):     NO
+Race:                   Gnome
+Profession:             Priest
+Age?:                   752
+ConditionCode:          OK
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            196 0xC4
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #7
+Name:                   ELRIC
+Password:               
+Out (Left in Maze):     NO
+Race:                   Elf
+Profession:             Priest
+Age?:                   856
+ConditionCode:          OK
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            191 0xBF
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #8
+Name:                   NEB
+Password:               
+Out (Left in Maze):     NO
+Race:                   Gnome
+Profession:             Priest
+Age?:                   856
+ConditionCode:          Lost
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            199 0xC7
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+D34D7302 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0200A00 00000000 01000200 02000000 00000000 00000000 00000000 
+00000000 0000
+================================================================================
+Character #9
+Name:                   YTNOM
+Password:               
+Out (Left in Maze):     NO
+Race:                   Hobbit
+Profession:             Mage
+Age?:                   752
+ConditionCode:          Lost
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            187 0xBB
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+52009201 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+A000000 00000000 02000000 00000000 00000000 00000000 00000000 00000000 
+00000000 FFFFA00 00000000 01000200 02000000 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #10
+Name:                   NAYR
+Password:               
+Out (Left in Maze):     NO
+Race:                   Dwarf
+Profession:             Fighter
+Age?:                   856
+ConditionCode:          Lost
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            178 0xB2
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+704E6F02 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0400A00 00000000 01000200 02000200 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #11
+Name:                   CRAZY YRRAB
+Password:               
+Out (Left in Maze):     NO
+Race:                   Dwarf
+Profession:             Fighter
+Age?:                   804
+ConditionCode:          Lost
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            188 0xBC
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+704E6F02 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0300A00 00000000 01000200 02000100 00000000 00000000 00000000 
+00000000 0000
+
+================================================================================
+Character #12
+Name:                   ELMER
+Password:               
+Out (Left in Maze):     NO
+Race:                   Elf
+Profession:             Priest
+Age?:                   856
+ConditionCode:          Lost
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            187 0xBB
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+13467302 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0200A00 00000000 01000200 02000000 00000000 00000000 00000000 
+00000000 0000
+================================================================================
+Character #7
+Name:                   ELRIC
+Password:               
+Out (Left in Maze):     YES
+Race:                   Elf
+Profession:             Priest
+Age?:                   856
+ConditionCode:          OK
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            191 0xBF
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000100 0000
+
+Note: Left in Maze @ Steps to Castle...
+================================================================================
+Character #1
+Name:                   TARKIN
+Password:               
+Out (Left in Maze):     YES
+Race:                   Human
+Profession:             Fighter
+Age?:                   804
+ConditionCode:          OK
+Alignment:              Neutral
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            125 0x7D
+Experience Points:      5632    0x1600
+
+List of Items (Currently carrying 8 items)...
+    Code: 29
+    Code: 2
+    Code: 3
+    Code: 4
+    Code: 5
+    Code: 6
+    Code: 7
+    Code: 8
+ 
+Unknown Region #1 (4 bytes): 
+6F4E7302 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 03000700 00000000 01000100 08000200 00000000 00000000 00000000 
+00000100 0000
+
+================================================================================
+Character #7
+Name:                   ELRIC
+Password:               
+Out (Left in Maze):     YES
+Race:                   Elf
+Profession:             Priest
+Age?:                   856
+ConditionCode:          OK
+Alignment:              Good
+Level:                  1/1
+Hit Points:             8/8
+Gold Pieces:            191 0xBF
+Experience Points:      0   0x0
+
+List of Items (Currently carrying 0 items)...
+ 
+Unknown Region #1 (4 bytes): 
+00000000 
+
+Unknown Region #2 (2 bytes): 
+0000
+
+Unknown Region #3 (2 bytes): 
+0000
+
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000100 0000
+================================================================================
+================================================================================
+Elric Not Lost...
+Unknown Region #1 (4 bytes): 
+00000000 
+Unknown Region #2 (2 bytes): 
+0000
+Unknown Region #3 (2 bytes): 
+0000
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 0000
+--------------------------------------------------------------------------------
+Elric Lost at Steps...
+Unknown Region #1 (4 bytes): 
+00000000 
+Unknown Region #2 (2 bytes): 
+0000
+Unknown Region #3 (2 bytes): 
+0000
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000100 0000
+--------------------------------------------------------------------------------
+Elric Lost w/Tarkin 2 spaces from steps... 
+Unknown Region #1 (4 bytes): 
+00000000 
+Unknown Region #2 (2 bytes): 
+0000
+Unknown Region #3 (2 bytes): 
+0000
+Unknown Region #4 (70 bytes): 
+00008001 00000000 00000000 00000000 00000000 00000200 00000000 00000000 
+00000000 0000A00 00000000 00000000 00000000 00000000 00000000 00000000 
+00000100 0000
+--------------------------------------------------------------------------------
+Tarkin Not Lost... 
+Unknown Region #1 (4 bytes): 
+6F4E7302 
+Unknown Region #2 (2 bytes): 
+0000
+Unknown Region #3 (2 bytes): 
+0000
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 03000700 00000000 01000100 08000200 00000000 00000000 00000000 
+00000000 0000
+--------------------------------------------------------------------------------
+Tarkin Lost 2 spaces from steps... 
+Unknown Region #1 (4 bytes): 
+6F4E7302 
+Unknown Region #2 (2 bytes): 
+0000
+Unknown Region #3 (2 bytes): 
+0000
+Unknown Region #4 (70 bytes): 
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+00000000 03000700 00000000 01000100 08000200 00000000 00000000 00000000 
+00000100 0000
