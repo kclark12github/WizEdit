@@ -324,7 +324,7 @@ Partial Class frmWizardry15Base
         '
         Me.tsslMessage.ForeColor = System.Drawing.SystemColors.ControlText
         Me.tsslMessage.Name = "tsslMessage"
-        Me.tsslMessage.Size = New System.Drawing.Size(497, 19)
+        Me.tsslMessage.Size = New System.Drawing.Size(528, 19)
         Me.tsslMessage.Spring = True
         Me.tsslMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2297,164 +2297,164 @@ Partial Class frmWizardry15Base
 
     End Sub
 
-    Friend WithEvents pbBoxArt As PictureBox
-    Friend WithEvents cmdExit As Button
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
-    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents pbWizardry As PictureBox
-    Friend WithEvents cmdEdit As Button
-    Friend WithEvents cbCharacter As ComboBox
-    Friend WithEvents lblCharacter As Label
-    Friend WithEvents tcWiz As TabControl
-    Friend WithEvents tpStats As TabPage
-    Friend WithEvents nudLevel As NumericUpDown
-    Friend WithEvents lblLevel As Label
-    Friend WithEvents cbStatus As ComboBox
-    Friend WithEvents lblAgeInYears As Label
-    Friend WithEvents txtAgeInYears As TextBox
-    Friend WithEvents nudHitPoints As NumericUpDown
-    Friend WithEvents txtAgeInWeeks As TextBox
-    Friend WithEvents lblAge As Label
-    Friend WithEvents lblStatus As Label
-    Friend WithEvents lblGold As Label
-    Friend WithEvents txtGold As TextBox
-    Friend WithEvents lblHitPoints As Label
-    Friend WithEvents txtExperience As TextBox
-    Friend WithEvents lblExperience As Label
-    Friend WithEvents lblDown As Label
-    Friend WithEvents nudLocationDown As NumericUpDown
-    Friend WithEvents lblNorth As Label
-    Friend WithEvents nudLocationNorth As NumericUpDown
-    Friend WithEvents lblEast As Label
-    Friend WithEvents nudLocationEast As NumericUpDown
-    Friend WithEvents lblLocation As Label
-    Friend WithEvents clbHonors As CheckedListBox
-    Friend WithEvents lblHonors As Label
-    Friend WithEvents lblIntelligence As Label
-    Friend WithEvents lblPiety As Label
-    Friend WithEvents lblVitality As Label
-    Friend WithEvents lblAgility As Label
-    Friend WithEvents lblLuck As Label
-    Friend WithEvents lblStrength As Label
-    Friend WithEvents nudIntelligence As NumericUpDown
-    Friend WithEvents nudPiety As NumericUpDown
-    Friend WithEvents nudVitality As NumericUpDown
-    Friend WithEvents nudAgility As NumericUpDown
-    Friend WithEvents nudLuck As NumericUpDown
-    Friend WithEvents nudStrength As NumericUpDown
-    Friend WithEvents lblSecondaryStatistics As Label
-    Friend WithEvents lblBaseStatistics As Label
-    Friend WithEvents nudAC As NumericUpDown
-    Friend WithEvents lblAC As Label
-    Friend WithEvents chkOut As CheckBox
-    Friend WithEvents lblAlignment As Label
-    Friend WithEvents cbAlignment As ComboBox
-    Friend WithEvents lblProfession As Label
-    Friend WithEvents cbProfession As ComboBox
-    Friend WithEvents lblRace As Label
-    Friend WithEvents cbRace As ComboBox
-    Friend WithEvents txtPassword As TextBox
-    Friend WithEvents txtName As TextBox
-    Friend WithEvents lblName As Label
-    Friend WithEvents lblPassword As Label
-    Friend WithEvents tpItems As TabPage
-    Friend WithEvents tpSpellBooks As TabPage
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents nudLevelMax As NumericUpDown
-    Friend WithEvents nudHitPointsMax As NumericUpDown
-    Friend WithEvents ttMain As ToolTip
-    Friend WithEvents epMain As ErrorProvider
-    Friend WithEvents lblEquipped As Label
-    Friend WithEvents cbItem1 As ComboBox
-    Friend WithEvents chkEquipped1 As CheckBox
-    Friend WithEvents clbMageSpells As CheckedListBox
-    Friend WithEvents nudMageSP2 As NumericUpDown
-    Friend WithEvents lblItemList As Label
-    Friend WithEvents cmdCancel As Button
-    Friend WithEvents cmdSave As Button
-    Friend WithEvents clbPriestSpells As CheckedListBox
-    Friend WithEvents nudPriestSP1 As NumericUpDown
-    Friend WithEvents nudPriestSP2 As NumericUpDown
-    Friend WithEvents nudPriestSP3 As NumericUpDown
-    Friend WithEvents nudPriestSP4 As NumericUpDown
-    Friend WithEvents nudMageSP4 As NumericUpDown
-    Friend WithEvents nudPriestSP5 As NumericUpDown
-    Friend WithEvents nudMageSP5 As NumericUpDown
-    Friend WithEvents nudPriestSP6 As NumericUpDown
-    Friend WithEvents nudMageSP6 As NumericUpDown
-    Friend WithEvents nudMageSP7 As NumericUpDown
-    Friend WithEvents nudPriestSP7 As NumericUpDown
-    Friend WithEvents nudMageSP1 As NumericUpDown
-    Friend WithEvents nudMageSP3 As NumericUpDown
-    Friend WithEvents lblIdentified As Label
-    Friend WithEvents lblCursed As Label
-    Friend WithEvents chkID1 As CheckBox
-    Friend WithEvents chkCursed1 As CheckBox
-    Friend WithEvents chkID8 As CheckBox
-    Friend WithEvents chkCursed8 As CheckBox
-    Friend WithEvents cbItem8 As ComboBox
-    Friend WithEvents chkEquipped8 As CheckBox
-    Friend WithEvents chkID7 As CheckBox
-    Friend WithEvents chkCursed7 As CheckBox
-    Friend WithEvents cbItem7 As ComboBox
-    Friend WithEvents chkEquipped7 As CheckBox
-    Friend WithEvents chkID6 As CheckBox
-    Friend WithEvents chkCursed6 As CheckBox
-    Friend WithEvents cbItem6 As ComboBox
-    Friend WithEvents chkEquipped6 As CheckBox
-    Friend WithEvents chkID5 As CheckBox
-    Friend WithEvents chkCursed5 As CheckBox
-    Friend WithEvents cbItem5 As ComboBox
-    Friend WithEvents chkEquipped5 As CheckBox
-    Friend WithEvents chkID4 As CheckBox
-    Friend WithEvents chkCursed4 As CheckBox
-    Friend WithEvents cbItem4 As ComboBox
-    Friend WithEvents chkEquipped4 As CheckBox
-    Friend WithEvents chkID3 As CheckBox
-    Friend WithEvents chkCursed3 As CheckBox
-    Friend WithEvents cbItem3 As ComboBox
-    Friend WithEvents chkEquipped3 As CheckBox
-    Friend WithEvents chkID2 As CheckBox
-    Friend WithEvents chkCursed2 As CheckBox
-    Friend WithEvents cbItem2 As ComboBox
-    Friend WithEvents chkEquipped2 As CheckBox
-    Friend WithEvents lblItem8 As Label
-    Friend WithEvents lblItem7 As Label
-    Friend WithEvents lblItem6 As Label
-    Friend WithEvents lblItem5 As Label
-    Friend WithEvents lblItem4 As Label
-    Friend WithEvents lblItem3 As Label
-    Friend WithEvents lblItem2 As Label
-    Friend WithEvents lblItem1 As Label
-    Friend WithEvents lblLevelSP As Label
-    Friend WithEvents lblPriestSP As Label
-    Friend WithEvents lblMageSP As Label
-    Friend WithEvents lblSpellPoints As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents cmdAllMS As Button
-    Friend WithEvents cmdNoneMS As Button
-    Friend WithEvents cmdNonePS As Button
-    Friend WithEvents cmdAllPS As Button
-    Friend WithEvents lblPriestSpells As Label
-    Friend WithEvents lblMageSpells As Label
-    Friend WithEvents lblItemCount As Label
-    Friend WithEvents nudItemCount As NumericUpDown
-    Friend WithEvents tsslStatus As ToolStripStatusLabel
-    Friend WithEvents tsslMessage As ToolStripStatusLabel
-    Friend WithEvents tsslTime As ToolStripStatusLabel
-    Friend WithEvents timMain As Timer
+    Protected Friend WithEvents pbBoxArt As PictureBox
+    Protected Friend WithEvents cmdExit As Button
+    Protected Friend WithEvents MenuStrip1 As MenuStrip
+    Protected Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Protected Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents StatusStrip1 As StatusStrip
+    Protected Friend WithEvents pbWizardry As PictureBox
+    Protected Friend WithEvents cmdEdit As Button
+    Protected Friend WithEvents cbCharacter As ComboBox
+    Protected Friend WithEvents lblCharacter As Label
+    Protected Friend WithEvents tpStats As TabPage
+    Protected Friend WithEvents nudLevel As NumericUpDown
+    Protected Friend WithEvents lblLevel As Label
+    Protected Friend WithEvents cbStatus As ComboBox
+    Protected Friend WithEvents lblAgeInYears As Label
+    Protected Friend WithEvents txtAgeInYears As TextBox
+    Protected Friend WithEvents nudHitPoints As NumericUpDown
+    Protected Friend WithEvents txtAgeInWeeks As TextBox
+    Protected Friend WithEvents lblAge As Label
+    Protected Friend WithEvents lblStatus As Label
+    Protected Friend WithEvents lblGold As Label
+    Protected Friend WithEvents txtGold As TextBox
+    Protected Friend WithEvents lblHitPoints As Label
+    Protected Friend WithEvents txtExperience As TextBox
+    Protected Friend WithEvents lblExperience As Label
+    Protected Friend WithEvents lblDown As Label
+    Protected Friend WithEvents nudLocationDown As NumericUpDown
+    Protected Friend WithEvents lblNorth As Label
+    Protected Friend WithEvents nudLocationNorth As NumericUpDown
+    Protected Friend WithEvents lblEast As Label
+    Protected Friend WithEvents nudLocationEast As NumericUpDown
+    Protected Friend WithEvents lblLocation As Label
+    Protected Friend WithEvents clbHonors As CheckedListBox
+    Protected Friend WithEvents lblHonors As Label
+    Protected Friend WithEvents lblIntelligence As Label
+    Protected Friend WithEvents lblPiety As Label
+    Protected Friend WithEvents lblVitality As Label
+    Protected Friend WithEvents lblAgility As Label
+    Protected Friend WithEvents lblLuck As Label
+    Protected Friend WithEvents lblStrength As Label
+    Protected Friend WithEvents nudIntelligence As NumericUpDown
+    Protected Friend WithEvents nudPiety As NumericUpDown
+    Protected Friend WithEvents nudVitality As NumericUpDown
+    Protected Friend WithEvents nudAgility As NumericUpDown
+    Protected Friend WithEvents nudLuck As NumericUpDown
+    Protected Friend WithEvents nudStrength As NumericUpDown
+    Protected Friend WithEvents lblSecondaryStatistics As Label
+    Protected Friend WithEvents lblBaseStatistics As Label
+    Protected Friend WithEvents nudAC As NumericUpDown
+    Protected Friend WithEvents lblAC As Label
+    Protected Friend WithEvents chkOut As CheckBox
+    Protected Friend WithEvents lblAlignment As Label
+    Protected Friend WithEvents cbAlignment As ComboBox
+    Protected Friend WithEvents lblProfession As Label
+    Protected Friend WithEvents cbProfession As ComboBox
+    Protected Friend WithEvents lblRace As Label
+    Protected Friend WithEvents cbRace As ComboBox
+    Protected Friend WithEvents txtPassword As TextBox
+    Protected Friend WithEvents txtName As TextBox
+    Protected Friend WithEvents lblName As Label
+    Protected Friend WithEvents lblPassword As Label
+    Protected Friend WithEvents tpItems As TabPage
+    Protected Friend WithEvents tpSpellBooks As TabPage
+    Protected Friend WithEvents Label2 As Label
+    Protected Friend WithEvents Label1 As Label
+    Protected Friend WithEvents nudLevelMax As NumericUpDown
+    Protected Friend WithEvents nudHitPointsMax As NumericUpDown
+    Protected Friend WithEvents ttMain As ToolTip
+    Protected Friend WithEvents epMain As ErrorProvider
+    Protected Friend WithEvents lblEquipped As Label
+    Protected Friend WithEvents cbItem1 As ComboBox
+    Protected Friend WithEvents chkEquipped1 As CheckBox
+    Protected Friend WithEvents clbMageSpells As CheckedListBox
+    Protected Friend WithEvents nudMageSP2 As NumericUpDown
+    Protected Friend WithEvents lblItemList As Label
+    Protected Friend WithEvents cmdCancel As Button
+    Protected Friend WithEvents cmdSave As Button
+    Protected Friend WithEvents clbPriestSpells As CheckedListBox
+    Protected Friend WithEvents nudPriestSP1 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP2 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP3 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP4 As NumericUpDown
+    Protected Friend WithEvents nudMageSP4 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP5 As NumericUpDown
+    Protected Friend WithEvents nudMageSP5 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP6 As NumericUpDown
+    Protected Friend WithEvents nudMageSP6 As NumericUpDown
+    Protected Friend WithEvents nudMageSP7 As NumericUpDown
+    Protected Friend WithEvents nudPriestSP7 As NumericUpDown
+    Protected Friend WithEvents nudMageSP1 As NumericUpDown
+    Protected Friend WithEvents nudMageSP3 As NumericUpDown
+    Protected Friend WithEvents lblIdentified As Label
+    Protected Friend WithEvents lblCursed As Label
+    Protected Friend WithEvents chkID1 As CheckBox
+    Protected Friend WithEvents chkCursed1 As CheckBox
+    Protected Friend WithEvents chkID8 As CheckBox
+    Protected Friend WithEvents chkCursed8 As CheckBox
+    Protected Friend WithEvents cbItem8 As ComboBox
+    Protected Friend WithEvents chkEquipped8 As CheckBox
+    Protected Friend WithEvents chkID7 As CheckBox
+    Protected Friend WithEvents chkCursed7 As CheckBox
+    Protected Friend WithEvents cbItem7 As ComboBox
+    Protected Friend WithEvents chkEquipped7 As CheckBox
+    Protected Friend WithEvents chkID6 As CheckBox
+    Protected Friend WithEvents chkCursed6 As CheckBox
+    Protected Friend WithEvents cbItem6 As ComboBox
+    Protected Friend WithEvents chkEquipped6 As CheckBox
+    Protected Friend WithEvents chkID5 As CheckBox
+    Protected Friend WithEvents chkCursed5 As CheckBox
+    Protected Friend WithEvents cbItem5 As ComboBox
+    Protected Friend WithEvents chkEquipped5 As CheckBox
+    Protected Friend WithEvents chkID4 As CheckBox
+    Protected Friend WithEvents chkCursed4 As CheckBox
+    Protected Friend WithEvents cbItem4 As ComboBox
+    Protected Friend WithEvents chkEquipped4 As CheckBox
+    Protected Friend WithEvents chkID3 As CheckBox
+    Protected Friend WithEvents chkCursed3 As CheckBox
+    Protected Friend WithEvents cbItem3 As ComboBox
+    Protected Friend WithEvents chkEquipped3 As CheckBox
+    Protected Friend WithEvents chkID2 As CheckBox
+    Protected Friend WithEvents chkCursed2 As CheckBox
+    Protected Friend WithEvents cbItem2 As ComboBox
+    Protected Friend WithEvents chkEquipped2 As CheckBox
+    Protected Friend WithEvents lblItem8 As Label
+    Protected Friend WithEvents lblItem7 As Label
+    Protected Friend WithEvents lblItem6 As Label
+    Protected Friend WithEvents lblItem5 As Label
+    Protected Friend WithEvents lblItem4 As Label
+    Protected Friend WithEvents lblItem3 As Label
+    Protected Friend WithEvents lblItem2 As Label
+    Protected Friend WithEvents lblItem1 As Label
+    Protected Friend WithEvents lblLevelSP As Label
+    Protected Friend WithEvents lblPriestSP As Label
+    Protected Friend WithEvents lblMageSP As Label
+    Protected Friend WithEvents lblSpellPoints As Label
+    Protected Friend WithEvents Label3 As Label
+    Protected Friend WithEvents Label4 As Label
+    Protected Friend WithEvents Label5 As Label
+    Protected Friend WithEvents Label6 As Label
+    Protected Friend WithEvents Label7 As Label
+    Protected Friend WithEvents Label8 As Label
+    Protected Friend WithEvents Label9 As Label
+    Protected Friend WithEvents cmdAllMS As Button
+    Protected Friend WithEvents cmdNoneMS As Button
+    Protected Friend WithEvents cmdNonePS As Button
+    Protected Friend WithEvents cmdAllPS As Button
+    Protected Friend WithEvents lblPriestSpells As Label
+    Protected Friend WithEvents lblMageSpells As Label
+    Protected Friend WithEvents lblItemCount As Label
+    Protected Friend WithEvents nudItemCount As NumericUpDown
+    Protected Friend WithEvents tsslStatus As ToolStripStatusLabel
+    Protected Friend WithEvents tsslMessage As ToolStripStatusLabel
+    Protected Friend WithEvents tsslTime As ToolStripStatusLabel
+    Protected Friend WithEvents timMain As Timer
+    Protected Friend WithEvents tcWiz As TabControl
 End Class

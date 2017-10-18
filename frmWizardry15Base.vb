@@ -1,4 +1,12 @@
 ﻿Public Class frmWizardry15Base
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
     Public Sub New(ByVal base As WizEditBase, ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image)
 
         ' This call is required by the designer.
@@ -342,6 +350,7 @@
         End Try
     End Sub
     Private Sub frmWizardry15Base_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If DesignMode Then Exit Sub   'Form Designer
         If mEditMode Then Beep() : e.Cancel = True : Exit Sub
         If mChanged Then
             Select Case MessageBox.Show(Me, "Update Save Game file?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
@@ -352,6 +361,7 @@
         End If
     End Sub
     Private Sub frmWizardry15Base_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If DesignMode Then Exit Sub   'Form Designer
         Try
             'Populate our List controls here - not specific to any given Character...
             For iChar As Short = 0 To mBase.Characters.Length - 1

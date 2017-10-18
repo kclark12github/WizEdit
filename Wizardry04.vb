@@ -322,4 +322,8 @@ Public Class Wizardry04
             If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
         End Try
     End Sub
+    Public Overrides Sub Show()
+        mForm = New frmWizardry04(Me, mCaption, mIcon, mBoxArt)
+        mForm.ShowDialog(mParent)
+    End Sub
 End Class

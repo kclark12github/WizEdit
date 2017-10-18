@@ -73,6 +73,7 @@
 '	0x4C76 Cursed8[I2];
 '	0x4C78 Identified8[I2];
 '	0x4C7A ItemCode8[I2];	
+'TODO: vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 '0x4C7C Keys[I6]; [I12]?
 '0x4C82 Level.Current[I2];.Max[I2];
 '0x4C86 HP.Current[I2];.Max[I2];

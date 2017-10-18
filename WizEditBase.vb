@@ -22,11 +22,11 @@ Public Class WizEditBase
     End Sub
 #Region "Properties"
 #Region "Declarations"
-    Private mBoxArt As Image = Nothing
-    Private mCaption As String = Nothing
-    Private mForm As Form = Nothing
-    Private mIcon As Icon = Nothing
-    Private mParent As Form = Nothing
+    Protected mBoxArt As Image = Nothing
+    Protected mCaption As String = Nothing
+    Protected mForm As Form = Nothing
+    Protected mIcon As Icon = Nothing
+    Protected mParent As Form = Nothing
 
     Protected mCharacters As CharacterBase()
     Protected mMasterItemList As ItemData()
@@ -450,7 +450,7 @@ Public Class WizEditBase
             If binWriter IsNot Nothing Then binWriter.Close() : binWriter = Nothing
         End Try
     End Sub
-    Public Sub Show()
+    Public Overridable Sub Show()
         mForm = New frmWizardry15Base(Me, mCaption, mIcon, mBoxArt)
         mForm.ShowDialog(mParent)
     End Sub
