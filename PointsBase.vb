@@ -32,12 +32,16 @@ Public Class PointsBase
         End Set
     End Property
     Public Sub Read(binReader As BinaryReader)
-        mCurrent = binReader.ReadUInt16()
-        mMaximum = binReader.ReadUInt16()
+        With binReader
+            mCurrent = .ReadUInt16()
+            mMaximum = .ReadUInt16()
+        End With
     End Sub
     Public Sub Save(binWriter As BinaryWriter)
-        binWriter.Write(mCurrent)
-        binWriter.Write(mMaximum)
+        With binWriter
+            .Write(mCurrent)
+            .Write(mMaximum)
+        End With
     End Sub
     Public Overrides Function ToString() As String
         Return String.Format("{0}/{1}", mCurrent, mMaximum)

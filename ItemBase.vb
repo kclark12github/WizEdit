@@ -54,16 +54,20 @@ Public Class ItemBase
         End Set
     End Property
     Public Sub Read(binReader As BinaryReader)
-        mEquipped = binReader.ReadUInt16()
-        mCursed = binReader.ReadUInt16()
-        mIdentified = binReader.ReadUInt16()
-        mItemCode = binReader.ReadUInt16()
+        With binReader
+            mEquipped = .ReadUInt16()
+            mCursed = .ReadUInt16()
+            mIdentified = .ReadUInt16()
+            mItemCode = .ReadUInt16()
+        End With
     End Sub
     Public Sub Save(binWriter As BinaryWriter)
-        binWriter.Write(mEquipped)
-        binWriter.Write(mCursed)
-        binWriter.Write(mIdentified)
-        binWriter.Write(mItemCode)
+        With binWriter
+            .Write(mEquipped)
+            .Write(mCursed)
+            .Write(mIdentified)
+            .Write(mItemCode)
+        End With
     End Sub
     Public Overrides Function ToString() As String
         '    Item = vbTab & ItemList(x.ItemCode) & "; Code: " & x.ItemCode & "; Equipped: "

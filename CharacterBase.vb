@@ -539,108 +539,112 @@ Public Class CharacterBase
 #End Region
 #Region "Methods"
     Public Overridable Sub Read(binReader As BinaryReader)
-        'Debug.WriteLine(String.Format("Character Data @ 0x{0:X00000}", binReader.BaseStream.Position))
-        mName = binReader.ReadString()                          '0x1D800   Pascal Varying Length String Format...
-        binReader.BaseStream.Position += NamePasswordLengthMax - mName.Length
-        mPassword = binReader.ReadString()                      '0x1D810   Pascal Varying Length String Format...
-        binReader.BaseStream.Position += NamePasswordLengthMax - mPassword.Length
+        With binReader
+            'Debug.WriteLine(String.Format("Character Data @ 0x{0:X00000}", .BaseStream.Position))
+            mName = .ReadString()                          '0x1D800   Pascal Varying Length String Format...
+            .BaseStream.Position += NamePasswordLengthMax - mName.Length
+            mPassword = .ReadString()                      '0x1D810   Pascal Varying Length String Format...
+            .BaseStream.Position += NamePasswordLengthMax - mPassword.Length
 
-        mOut = binReader.ReadUInt16()                            '0x1D820    00 00 = No; 01 00 = Yes;
-        mRace = binReader.ReadUInt16()                           '0x1D822    01 00 = Human
-        mProfession = binReader.ReadUInt16()                     '0x1D824    06 00 = Lord
-        mAgeInWeeks = binReader.ReadUInt16()                     '0x1D826    0C 03 = Weeks Alive...
-        mStatus = binReader.ReadUInt16()                         '0x1D828    00 00 = OK
-        mAlignment = binReader.ReadUInt16()                      '0x1D82A    02 00 = Neutral
+            mOut = .ReadUInt16()                            '0x1D820    00 00 = No; 01 00 = Yes;
+            mRace = .ReadUInt16()                           '0x1D822    01 00 = Human
+            mProfession = .ReadUInt16()                     '0x1D824    06 00 = Lord
+            mAgeInWeeks = .ReadUInt16()                     '0x1D826    0C 03 = Weeks Alive...
+            mStatus = .ReadUInt16()                         '0x1D828    00 00 = OK
+            mAlignment = .ReadUInt16()                      '0x1D82A    02 00 = Neutral
 
-        Me.Statistics = binReader.ReadUInt32()                   '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
-        binReader.BaseStream.Position += 4                      '0x1D830
+            Me.Statistics = .ReadUInt32()                   '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
+            .BaseStream.Position += 4                      '0x1D830
 
-        For i As Short = 0 To 2                                 '0x1D834
-            mGoldPacked(i) = binReader.ReadUInt16()
-        Next i
-        mGold = mBase.I6toD(mGoldPacked)
+            For i As Short = 0 To 2                                 '0x1D834
+                mGoldPacked(i) = .ReadUInt16()
+            Next i
+            mGold = mBase.I6toD(mGoldPacked)
 
-        mItemCount = binReader.ReadUInt16()                      '0x1D83A
-        For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
-            mItemList(i).Read(binReader)
-        Next i
+            mItemCount = .ReadUInt16()                      '0x1D83A
+            For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
+                mItemList(i).Read(binReader)
+            Next i
 
-        For i As Short = 0 To 2                                 '0x1D87C
-            mExperiencePacked(i) = binReader.ReadUInt16()
-        Next i
-        mExperience = mBase.I6toD(mExperiencePacked)
+            For i As Short = 0 To 2                                 '0x1D87C
+                mExperiencePacked(i) = .ReadUInt16()
+            Next i
+            mExperience = mBase.I6toD(mExperiencePacked)
 
-        mLVL.Read(binReader)                                    '0x1D882
-        mHP.Read(binReader)                                     '0x1D886
+            mLVL.Read(binReader)                                    '0x1D882
+            mHP.Read(binReader)                                     '0x1D886
 
-        For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
-            mSpellBooks(i) = binReader.ReadByte()
-        Next i
+            For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
+                mSpellBooks(i) = .ReadByte()
+            Next i
 
-        For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
-            mMageSpellPoints(i) = binReader.ReadUInt16()
-        Next i
-        For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
-            mPriestSpellPoints(i) = binReader.ReadUInt16()
-        Next i
-        binReader.BaseStream.Position += 2                      '0x1D8AE
-        mArmorClass = binReader.ReadUInt16()                     '0x1D8B0
-        binReader.BaseStream.Position += 24                     '0x1D8B2
-        mLocation = binReader.ReadUInt16()                       '0x1D8CA    Some sort of packed variable...
-        mDown = binReader.ReadUInt16()                           '0x1D8CC    Seems to be a simple 2-byte Int16...
-        mHonors = binReader.ReadUInt16()                         '0x1D8CE    Need more testing, but 1 = ">"
-        '                                                       '0x1D8D0    Next Character Record...
+            For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
+                mMageSpellPoints(i) = .ReadUInt16()
+            Next i
+            For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
+                mPriestSpellPoints(i) = .ReadUInt16()
+            Next i
+            .BaseStream.Position += 2                      '0x1D8AE
+            mArmorClass = .ReadUInt16()                     '0x1D8B0
+            .BaseStream.Position += 24                     '0x1D8B2
+            mLocation = .ReadUInt16()                       '0x1D8CA    Some sort of packed variable...
+            mDown = .ReadUInt16()                           '0x1D8CC    Seems to be a simple 2-byte Int16...
+            mHonors = .ReadUInt16()                         '0x1D8CE    Need more testing, but 1 = ">"
+            '                                                       '0x1D8D0    Next Character Record...
+        End With
     End Sub
     Public Overridable Sub Save(binWriter As BinaryWriter)
-        binWriter.Write(mName)                                  '0x1D800   Pascal Varying Length String Format...
-        binWriter.BaseStream.Position += NamePasswordLengthMax - mName.Length
-        binWriter.Write(mPassword)                              '0x1D810   Pascal Varying Length String Format...
-        binWriter.BaseStream.Position += NamePasswordLengthMax - mPassword.Length
+        With binWriter
+            .Write(mName)                                  '0x1D800   Pascal Varying Length String Format...
+            .BaseStream.Position += NamePasswordLengthMax - mName.Length
+            .Write(mPassword)                              '0x1D810   Pascal Varying Length String Format...
+            .BaseStream.Position += NamePasswordLengthMax - mPassword.Length
 
-        binWriter.Write(mOut)                                   '0x1D820    00 00 = No; 01 00 = Yes;
-        binWriter.Write(mRace)                                  '0x1D822    01 00 = Human
-        binWriter.Write(mProfession)                            '0x1D824    06 00 = Lord
-        binWriter.Write(mAgeInWeeks)                            '0x1D826    0C 03 = Weeks Alive...
-        binWriter.Write(mStatus)                                '0x1D828    00 00 = OK
-        binWriter.Write(mAlignment)                             '0x1D82A    02 00 = Neutral
+            .Write(mOut)                                   '0x1D820    00 00 = No; 01 00 = Yes;
+            .Write(mRace)                                  '0x1D822    01 00 = Human
+            .Write(mProfession)                            '0x1D824    06 00 = Lord
+            .Write(mAgeInWeeks)                            '0x1D826    0C 03 = Weeks Alive...
+            .Write(mStatus)                                '0x1D828    00 00 = OK
+            .Write(mAlignment)                             '0x1D82A    02 00 = Neutral
 
-        binWriter.Write(Me.Statistics)                          '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
-        binWriter.BaseStream.Position += 4                      '0x1D830
+            .Write(Me.Statistics)                          '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
+            .BaseStream.Position += 4                      '0x1D830
 
-        For i As Short = 0 To 2                                 '0x1D834
-            binWriter.Write(mGoldPacked(i))
-        Next i
+            For i As Short = 0 To 2                                 '0x1D834
+                .Write(mGoldPacked(i))
+            Next i
 
-        binWriter.Write(mItemCount)                             '0x1D83A
-        For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
-            mItemList(i).Save(binWriter)
-        Next i
+            .Write(mItemCount)                             '0x1D83A
+            For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
+                mItemList(i).Save(binWriter)
+            Next i
 
-        For i As Short = 0 To 2                                 '0x1D87C
-            binWriter.Write(mExperiencePacked(i))
-        Next i
+            For i As Short = 0 To 2                                 '0x1D87C
+                .Write(mExperiencePacked(i))
+            Next i
 
-        mLVL.Save(binWriter)                                    '0x1D882
-        mHP.Save(binWriter)                                     '0x1D886
+            mLVL.Save(binWriter)                                    '0x1D882
+            mHP.Save(binWriter)                                     '0x1D886
 
-        For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
-            binWriter.Write(mSpellBooks(i))
-        Next i
+            For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
+                .Write(mSpellBooks(i))
+            Next i
 
-        For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
-            binWriter.Write(mMageSpellPoints(i))
-        Next i
-        If mName = "NEB" Then Debug.WriteLine(String.Format("NEB Priest Spells @ 0x{0:X00000}", binWriter.BaseStream.Position))
-        'TODO: VB6 incarnation reports this as 9/9/9/9/9/9/9 while we seem to find 2/0/0/0/0/0/0/0
-        For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
-            binWriter.Write(mPriestSpellPoints(i))
-        Next i
-        binWriter.BaseStream.Position += 2                      '0x1D8AE
-        binWriter.Write(mArmorClass)                            '0x1D8B0
-        binWriter.BaseStream.Position += 24                     '0x1D8B2
-        binWriter.Write(mLocation)                              '0x1D8CA    Some sort of packed variable...
-        binWriter.Write(mDown)                                  '0x1D8CC    Seems to be a simple 2-byte Int16...
-        binWriter.Write(mHonors)                                '0x1D8CE    Need more testing, but 1 = ">"
+            For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
+                .Write(mMageSpellPoints(i))
+            Next i
+            If mName = "NEB" Then Debug.WriteLine(String.Format("NEB Priest Spells @ 0x{0:X00000}", .BaseStream.Position))
+            'TODO: VB6 incarnation reports this as 9/9/9/9/9/9/9 while we seem to find 2/0/0/0/0/0/0/0
+            For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
+                .Write(mPriestSpellPoints(i))
+            Next i
+            .BaseStream.Position += 2                      '0x1D8AE
+            .Write(mArmorClass)                            '0x1D8B0
+            .BaseStream.Position += 24                     '0x1D8B2
+            .Write(mLocation)                              '0x1D8CA    Some sort of packed variable...
+            .Write(mDown)                                  '0x1D8CC    Seems to be a simple 2-byte Int16...
+            .Write(mHonors)                                '0x1D8CE    Need more testing, but 1 = ">"
+        End With
     End Sub
     Public Overrides Function ToString() As String
         ToString = String.Format("Name:               {1}{2}{0}", vbCrLf, Me.Name, Me.HonorsShort)
