@@ -20,6 +20,10 @@ Partial Class frmWizardry04
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.tpGroups = New System.Windows.Forms.TabPage()
+        Me.lblGroups = New System.Windows.Forms.Label()
+        Me.lblGroupCount = New System.Windows.Forms.Label()
+        Me.lblGroup3 = New System.Windows.Forms.Label()
+        Me.lblGroup2 = New System.Windows.Forms.Label()
         Me.lblGroup1 = New System.Windows.Forms.Label()
         Me.nudGroup3 = New System.Windows.Forms.NumericUpDown()
         Me.nudGroup2 = New System.Windows.Forms.NumericUpDown()
@@ -27,10 +31,6 @@ Partial Class frmWizardry04
         Me.cbGroup3 = New System.Windows.Forms.ComboBox()
         Me.cbGroup2 = New System.Windows.Forms.ComboBox()
         Me.cbGroup1 = New System.Windows.Forms.ComboBox()
-        Me.lblGroup2 = New System.Windows.Forms.Label()
-        Me.lblGroup3 = New System.Windows.Forms.Label()
-        Me.lblGroupCount = New System.Windows.Forms.Label()
-        Me.lblGroups = New System.Windows.Forms.Label()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpStats.SuspendLayout()
@@ -85,6 +85,14 @@ Partial Class frmWizardry04
         Me.lblExperience.Size = New System.Drawing.Size(38, 16)
         Me.lblExperience.Text = "Keys"
         '
+        'clbHonors
+        '
+        Me.clbHonors.Visible = False
+        '
+        'lblHonors
+        '
+        Me.lblHonors.Visible = False
+        '
         'tcWiz
         '
         Me.tcWiz.Controls.Add(Me.tpGroups)
@@ -115,6 +123,42 @@ Partial Class frmWizardry04
         Me.tpGroups.TabIndex = 3
         Me.tpGroups.Text = "Groups"
         Me.tpGroups.UseVisualStyleBackColor = True
+        '
+        'lblGroups
+        '
+        Me.lblGroups.AutoSize = True
+        Me.lblGroups.Location = New System.Drawing.Point(126, 85)
+        Me.lblGroups.Name = "lblGroups"
+        Me.lblGroups.Size = New System.Drawing.Size(52, 16)
+        Me.lblGroups.TabIndex = 10
+        Me.lblGroups.Text = "Groups"
+        '
+        'lblGroupCount
+        '
+        Me.lblGroupCount.AutoSize = True
+        Me.lblGroupCount.Location = New System.Drawing.Point(72, 85)
+        Me.lblGroupCount.Name = "lblGroupCount"
+        Me.lblGroupCount.Size = New System.Drawing.Size(42, 16)
+        Me.lblGroupCount.TabIndex = 9
+        Me.lblGroupCount.Text = "Count"
+        '
+        'lblGroup3
+        '
+        Me.lblGroup3.AutoSize = True
+        Me.lblGroup3.Location = New System.Drawing.Point(13, 171)
+        Me.lblGroup3.Name = "lblGroup3"
+        Me.lblGroup3.Size = New System.Drawing.Size(55, 16)
+        Me.lblGroup3.TabIndex = 8
+        Me.lblGroup3.Text = "Group 3"
+        '
+        'lblGroup2
+        '
+        Me.lblGroup2.AutoSize = True
+        Me.lblGroup2.Location = New System.Drawing.Point(14, 139)
+        Me.lblGroup2.Name = "lblGroup2"
+        Me.lblGroup2.Size = New System.Drawing.Size(55, 16)
+        Me.lblGroup2.TabIndex = 7
+        Me.lblGroup2.Text = "Group 2"
         '
         'lblGroup1
         '
@@ -190,42 +234,6 @@ Partial Class frmWizardry04
         Me.cbGroup1.Name = "cbGroup1"
         Me.cbGroup1.Size = New System.Drawing.Size(288, 24)
         Me.cbGroup1.TabIndex = 0
-        '
-        'lblGroup2
-        '
-        Me.lblGroup2.AutoSize = True
-        Me.lblGroup2.Location = New System.Drawing.Point(14, 139)
-        Me.lblGroup2.Name = "lblGroup2"
-        Me.lblGroup2.Size = New System.Drawing.Size(55, 16)
-        Me.lblGroup2.TabIndex = 7
-        Me.lblGroup2.Text = "Group 2"
-        '
-        'lblGroup3
-        '
-        Me.lblGroup3.AutoSize = True
-        Me.lblGroup3.Location = New System.Drawing.Point(13, 171)
-        Me.lblGroup3.Name = "lblGroup3"
-        Me.lblGroup3.Size = New System.Drawing.Size(55, 16)
-        Me.lblGroup3.TabIndex = 8
-        Me.lblGroup3.Text = "Group 3"
-        '
-        'lblGroupCount
-        '
-        Me.lblGroupCount.AutoSize = True
-        Me.lblGroupCount.Location = New System.Drawing.Point(72, 85)
-        Me.lblGroupCount.Name = "lblGroupCount"
-        Me.lblGroupCount.Size = New System.Drawing.Size(42, 16)
-        Me.lblGroupCount.TabIndex = 9
-        Me.lblGroupCount.Text = "Count"
-        '
-        'lblGroups
-        '
-        Me.lblGroups.AutoSize = True
-        Me.lblGroups.Location = New System.Drawing.Point(126, 85)
-        Me.lblGroups.Name = "lblGroups"
-        Me.lblGroups.Size = New System.Drawing.Size(52, 16)
-        Me.lblGroups.TabIndex = 10
-        Me.lblGroups.Text = "Groups"
         '
         'frmWizardry04
         '

@@ -44,10 +44,10 @@
 
 #Region "Properties"
 #Region "Declarations"
-    Private mBase As WizEditBase
-    Private mChanged As Boolean = False
-    Private mCharacter As CharacterBase = Nothing
-    Private mEditMode As Boolean = False
+    Protected mBase As WizEditBase
+    Protected mChanged As Boolean = False
+    Protected mCharacter As CharacterBase = Nothing
+    Protected mEditMode As Boolean = False
 #End Region
 #End Region
 #Region "Methods"
@@ -163,7 +163,7 @@
         End Select
         chkEquipped.Checked = Equipped : chkCursed.Checked = Cursed : chkID.Checked = IDed : cbItem.SelectedIndex = FindItem(cbItem, ItemCode)
     End Sub
-    Protected Sub ProtectItems(ByVal Count As Short)
+    Protected Overridable Sub ProtectItems(ByVal Count As Short)
         Dim chkEquipped As CheckBox = Nothing
         Dim chkCursed As CheckBox = Nothing
         Dim chkID As CheckBox = Nothing
@@ -185,7 +185,7 @@
             End If
         Next i
     End Sub
-    Protected Friend Sub ToggleEditMode(ByVal EditMode As Boolean)
+    Protected Friend Overridable Sub ToggleEditMode(ByVal EditMode As Boolean)
         mEditMode = EditMode
         Me.EnableControls(Me.Controls, EditMode, False)
         Me.EnableControl(Me.cbCharacter, Not EditMode)
@@ -198,7 +198,7 @@
     End Sub
 #End Region
 #Region "Event Handlers"
-    Private Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCharacter.SelectedIndexChanged
+    Protected Overridable Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCharacter.SelectedIndexChanged
         Try
             Me.epMain.SetError(sender, "")
             mCharacter = mBase.GetCharacter(cbCharacter.Items(cbCharacter.SelectedIndex))
@@ -247,12 +247,12 @@
                 Me.InitItem(8, .Items(7).Equipped, .Items(7).Cursed, .Items(7).Identified, .Items(7).ItemCode)
 
                 'SpellBooks...
-                For i As Integer = 0 To Me.clbMageSpells.Items.Count - 1
-                    If .MageSpellBook(i) Then Me.clbMageSpells.SetItemChecked(i, True)
-                Next i
-                For i As Integer = 0 To Me.clbPriestSpells.Items.Count - 1
-                    If .PriestSpellBook(i) Then Me.clbPriestSpells.SetItemChecked(i, True)
-                Next i
+                For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+                    If .MageSpellBook(iSpell) Then Me.clbMageSpells.SetItemChecked(iSpell - 1, True)
+                Next
+                For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+                    If .PriestSpellBook(iSpell) Then Me.clbPriestSpells.SetItemChecked(iSpell - 1, True)
+                Next
                 Me.nudMageSP1.Value = .MageSpellPoints(0) : Me.nudMageSP2.Value = .MageSpellPoints(1) : Me.nudMageSP3.Value = .MageSpellPoints(2) : Me.nudMageSP4.Value = .MageSpellPoints(3) : Me.nudMageSP5.Value = .MageSpellPoints(4) : Me.nudMageSP6.Value = .MageSpellPoints(5) : Me.nudMageSP7.Value = .MageSpellPoints(6)
                 Me.nudPriestSP1.Value = .PriestSpellPoints(0) : Me.nudPriestSP2.Value = .PriestSpellPoints(1) : Me.nudPriestSP3.Value = .PriestSpellPoints(2) : Me.nudPriestSP4.Value = .PriestSpellPoints(3) : Me.nudPriestSP5.Value = .PriestSpellPoints(4) : Me.nudPriestSP6.Value = .PriestSpellPoints(5) : Me.nudPriestSP7.Value = .PriestSpellPoints(6)
 
@@ -286,7 +286,7 @@
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
-    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+    Protected Overridable Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Try
             Me.epMain.SetError(sender, "")
             mCharacter = mBase.GetCharacter(cbCharacter.Items(cbCharacter.SelectedIndex))
@@ -332,24 +332,23 @@
                 If .ItemCount >= 8 Then .Items(7).Equipped = Me.chkEquipped8.Checked : .Items(7).Cursed = Me.chkCursed8.Checked : .Items(7).Identified = Me.chkID8.Checked : .Items(7).ItemCode = CType(Me.cbItem8.SelectedItem, ItemData).ItemCode
 
                 'SpellBooks...
-                For i As Integer = 0 To Me.clbMageSpells.Items.Count - 1
-                    .MageSpellBook(i) = Me.clbMageSpells.GetItemChecked(i)
-                Next i
-                For i As Integer = 0 To Me.clbPriestSpells.Items.Count - 1
-                    .PriestSpellBook(i) = Me.clbPriestSpells.GetItemChecked(i)
-                Next i
+                For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+                    .MageSpellBook(iSpell) = Me.clbMageSpells.GetItemChecked(iSpell - 1)
+                Next
+                For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+                    .PriestSpellBook(iSpell) = Me.clbPriestSpells.GetItemChecked(iSpell - 1)
+                Next
                 .MageSpellPoints(0) = Me.nudMageSP1.Value : .MageSpellPoints(1) = Me.nudMageSP2.Value : .MageSpellPoints(2) = Me.nudMageSP3.Value : .MageSpellPoints(3) = Me.nudMageSP4.Value : .MageSpellPoints(4) = Me.nudMageSP5.Value : .MageSpellPoints(5) = Me.nudMageSP6.Value : .MageSpellPoints(6) = Me.nudMageSP7.Value
                 .PriestSpellPoints(0) = Me.nudPriestSP1.Value : .PriestSpellPoints(1) = Me.nudPriestSP2.Value : .PriestSpellPoints(2) = Me.nudPriestSP3.Value : .PriestSpellPoints(3) = Me.nudPriestSP4.Value : .PriestSpellPoints(4) = Me.nudPriestSP5.Value : .PriestSpellPoints(5) = Me.nudPriestSP6.Value : .PriestSpellPoints(6) = Me.nudPriestSP7.Value
 
                 mChanged = True
                 ToggleEditMode(False)
             End With
-        Catch ex As Exception
-            Debug.WriteLine(ex.ToString)
+        Catch ex As Exception : Debug.WriteLine(ex.ToString)
             Me.epMain.SetError(sender, ex.ToString)
         End Try
     End Sub
-    Private Sub frmWizardry15Base_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Protected Overridable Sub Form_Closing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If DesignMode Then Exit Sub   'Form Designer
         If mEditMode Then Beep() : e.Cancel = True : Exit Sub
         If mChanged Then
@@ -360,7 +359,7 @@
             End Select
         End If
     End Sub
-    Private Sub frmWizardry15Base_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Protected Overridable Sub Form_Load(sender As Object, e As EventArgs) Handles Me.Load
         If DesignMode Then Exit Sub   'Form Designer
         Try
             'Populate our List controls here - not specific to any given Character...

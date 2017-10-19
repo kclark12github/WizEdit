@@ -59,15 +59,15 @@ Public Class Character04
             mAlignment = binReader.ReadUInt16()                      '0x4AC2A    03 00 = Evil
 
             Me.Statistics = binReader.ReadUInt32()                   '0x4AC2C    94 52 94 52 = 20/20/20/20/20/20
-            binReader.BaseStream.Position += 4                      '0x4AC30
+            binReader.BaseStream.Position += 4                       '0x4AC30
 
-            For i As Short = 0 To 2                                 '0x4AC34
+            For i As Short = 0 To 2                                  '0x4AC34
                 mGoldPacked(i) = binReader.ReadUInt16()
             Next i
             mGold = mBase.I6toD(mGoldPacked)
 
             mItemCount = binReader.ReadUInt16()                      '0x4AC3A
-            For i As Short = 0 To ItemListMax - 1                   '0x4AC3C    List of Items (stowing not an option in Wiz01...)
+            For i As Short = 0 To ItemListMax - 1                    '0x4AC3C    List of Items (stowing not an option in Wiz01...)
                 '	                                                    0x4AC42 ItemCode1[I2];
                 '	                                                    0x4AC4A ItemCode2[I2];	
                 '	                                                    0x4AC52 ItemCode3[I2];	
@@ -90,18 +90,6 @@ Public Class Character04
             For i As Short = 0 To 7                                 '0x4AC8A    Need to mask as bits...
                 mSpellBooks(i) = binReader.ReadByte()
             Next i
-            Dim iSpell As Short = 0
-            For i As Short = 0 To mSpellBooks.Length - 1
-                For Offset As Short = 0 To 7
-                    If iSpell > 50 Then Exit For
-                    If iSpell <= 21 Then
-                        mMageSpellBook(iSpell) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
-                    Else
-                        mPriestSpellBook(iSpell - 22) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
-                    End If
-                    iSpell += 1
-                Next Offset
-            Next i
 
             For i As Short = 0 To SpellLevelMax - 1                 '0x4AC92-9F
                 mMageSpellPoints(i) = binReader.ReadUInt16()
@@ -121,9 +109,9 @@ Public Class Character04
             mSummonedMonsterGroupCount(0) = binReader.ReadUInt16()   '0x4ACD0 Group1.Count[I2]
             mSummonedMonsterGroupCount(1) = binReader.ReadUInt16()   '0x4ACD2 Group2.Count[I2]
             mSummonedMonsterGroupCount(2) = binReader.ReadUInt16()   '0x4ACD4 Group3.Count[I2]
-            mSummonedMonsterGroupCode(0) = binReader.ReadUInt16()    '0x4ACD6 Group1.Code[I2]
-            mSummonedMonsterGroupCode(1) = binReader.ReadUInt16()    '04AACD8 Group2.Code[I2]
-            mSummonedMonsterGroupCode(2) = binReader.ReadUInt16()    '0x4ACDA Group3.Code[I2]
+            mSummonedMonsterGroupCode(0) = binReader.ReadUInt16()    '0x4ACD6 Group1.Code[I2] ("A DINK") 0x00
+            mSummonedMonsterGroupCode(1) = binReader.ReadUInt16()    '04AACD8 Group2.Code[I2] ("ENTELECHY FUFF") 0x77
+            mSummonedMonsterGroupCode(2) = binReader.ReadUInt16()    '0x4ACDA Group3.Code[I2] ("VAMPIRE LORD") 0x70
             mSummonedMonsterGroupName(0) = binReader.ReadString()    '0x4ACDC Group1.Name ("A DINK") String(15) 0x00
             binReader.BaseStream.Position += NamePasswordLengthMax - mSummonedMonsterGroupName(0).Length
             mSummonedMonsterGroupName(1) = binReader.ReadString()    '0x4ACEC Group2.Name ("ENTELECHY FUFF") String(15) 0x77

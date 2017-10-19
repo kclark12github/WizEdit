@@ -164,17 +164,17 @@ Public Class Wizardry04
             If mMasterMonsterGroupList Is Nothing Then
                 mMasterMonsterGroupList = {
                     New MonsterGroupData("A Dink", 0, 10),
-                    New MonsterGroupData("Bubbly Slimes", 1, 10),
+                    New MonsterGroupData("Fuzzballs", 1, 10),
                     New MonsterGroupData("Creeping Coins", 2, 10),
-                    New MonsterGroupData("Fuzzballs", 3, 10),
-                    New MonsterGroupData("Garian Raiders", 4, 10),
-                    New MonsterGroupData("Gas Clouds", 5, 10),
-                    New MonsterGroupData("Kobolds", 6, 10),
-                    New MonsterGroupData("Lvl 1 Mages", 7, 10),
-                    New MonsterGroupData("Lvl 1 Priests", 8, 10),
-                    New MonsterGroupData("Orcs", 9, 10),
-                    New MonsterGroupData("Skeletons", 10, 10),
-                    New MonsterGroupData("Zombies", 11, 10),
+                    New MonsterGroupData("Bubbly Slimes", 3, 10),
+                    New MonsterGroupData("Orcs", 4, 10),
+                    New MonsterGroupData("Lvl 1 Mages", 5, 10),
+                    New MonsterGroupData("Gas Clouds", 6, 10),
+                    New MonsterGroupData("Skeletons", 7, 10),
+                    New MonsterGroupData("Garian Raiders", 8, 10),
+                    New MonsterGroupData("Lvl 1 Priests", 9, 10),
+                    New MonsterGroupData("Zombies", 10, 10),
+                    New MonsterGroupData("Kobolds", 11, 10),
                     New MonsterGroupData("Anacondas", 12, 9),
                     New MonsterGroupData("Ashers", 13, 9),
                     New MonsterGroupData("Crawling Kelps", 14, 9),
@@ -304,6 +304,9 @@ Public Class Wizardry04
         End Get
     End Property
 
+    Public Overrides Function GetCharacter(ByVal Tag As String) As CharacterBase
+        Return mCharacters(CInt(Tag.Substring(Tag.Length - 1, 1)) - 1)
+    End Function
     Public Overrides Sub Read()
         Dim binReader As BinaryReader = Nothing
         Dim iGame As Short = 0

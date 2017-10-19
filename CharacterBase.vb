@@ -38,10 +38,10 @@ Public Class CharacterBase
         mLVL = New PointsBase
         mHP = New PointsBase
 
-        mSpellBooks = {0, 0, 0, 0, 0, 0, 0, 0}
-        ReDim mMageSpellBook(mBase.MageSpellBook.Length - 1)
+        'mSpellBooks = {0, 0, 0, 0, 0, 0, 0, 0}
+        'ReDim mMageSpellBook(mBase.MageSpellBook.Length - 1)
         mMageSpellPoints = {0S, 0S, 0S, 0S, 0S, 0S, 0S}
-        ReDim mPriestSpellBook(mBase.PriestSpellBook.Length - 1)
+        'ReDim mPriestSpellBook(mBase.PriestSpellBook.Length - 1)
         mPriestSpellPoints = {0S, 0S, 0S, 0S, 0S, 0S, 0S}
         mArmorClass = 0S
         mLocation = 0S
@@ -124,15 +124,33 @@ Public Class CharacterBase
     Protected mLVL As PointsBase
     Protected mHP As PointsBase
     Protected mSpellBooks(7) As Byte
-    Protected mMageSpellBook() As Boolean
     Protected mMageSpellPoints(SpellLevelMax - 1) As UInt16
-    Protected mPriestSpellBook() As Boolean
     Protected mPriestSpellPoints(SpellLevelMax - 1) As UInt16
     Protected mArmorClass As Int16
     Protected mLocation As UInt16
     Protected mDown As UInt16
     Protected mHonors As UInt16
 #End Region
+
+    Public Sub ShowSpells()
+        Dim mySpells As String = ""
+        For iByte As Short = 0 To 7
+            For iBit As Short = 0 To 7
+                mySpells &= IIf(CBool((mSpellBooks(iByte) And 2 ^ iBit) = 2 ^ iBit), "1", "0")
+            Next iBit
+        Next iByte
+        Debug.WriteLine(mySpells)
+
+        Debug.WriteLine("Mage SpellBook...")
+        For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+            Debug.WriteLine(String.Format("{0:00}) {1:32} {2}", iSpell, mBase.MageSpellBook(iSpell).Name, Me.MageSpellBook(iSpell)))
+        Next
+        Debug.WriteLine("Priest SpellBook...")
+        For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+            Debug.WriteLine(String.Format("{0:00}) {1:32} {2}", iSpell, mBase.PriestSpellBook(iSpell - 1).Name, Me.PriestSpellBook(iSpell)))
+        Next
+    End Sub
+
     Public Property Age As Short
         Get
             Return mAgeInWeeks \ 52
@@ -320,10 +338,29 @@ Public Class CharacterBase
             Return mLVL
         End Get
     End Property
-    Public ReadOnly Property MageSpellBook As Boolean()
+    Public Property MageSpellBook(ByVal iSpell As Short) As Boolean
         Get
-            Return mMageSpellBook
+            Dim min As Short = 1
+            Dim max As Short = mBase.MageSpellBook.GetUpperBound(0)
+            Select Case iSpell
+                Case min To max 'Mage Spells range from bits 1-21 (excluding 0 - "Unknown")
+                Case Else : Throw New ArgumentException(String.Format("Mage Spell out of range!"))
+            End Select
+            Dim iByte As Short = iSpell \ 8
+            Dim iBit As Short = iSpell Mod 8
+            Return CBool((mSpellBooks(iByte) And 2 ^ iBit) = 2 ^ iBit)
         End Get
+        Set(value As Boolean)
+            Dim min As Short = 1
+            Dim max As Short = mBase.MageSpellBook.GetUpperBound(0)
+            Select Case iSpell
+                Case min To max 'Mage Spells range from bits 1-21 (excluding 0 - "Unknown")
+                Case Else : Throw New ArgumentException(String.Format("Mage Spell out of range!"))
+            End Select
+            Dim iByte As Short = iSpell \ 8
+            Dim iBit As Short = iSpell Mod 8
+            mSpellBooks(iByte) = IIf(value, mSpellBooks(iByte) Or CByte(2 ^ iBit), mSpellBooks(iByte) And Not CByte(2 ^ iBit))
+        End Set
     End Property
     Public Property MageSpellPoints(ByVal Level As Short) As Int16
         Get
@@ -359,10 +396,31 @@ Public Class CharacterBase
             mPassword = value
         End Set
     End Property
-    Public ReadOnly Property PriestSpellBook As Boolean()
+    Public Property PriestSpellBook(ByVal iSpell As Short) As Boolean
         Get
-            Return mPriestSpellBook
+            Dim min As Short = mBase.MageSpellBook.GetUpperBound(0) + 1
+            Dim max As Short = min + mBase.PriestSpellBook.GetUpperBound(0) + 1
+            iSpell += min - 1
+            Select Case iSpell
+                Case min To max 'Priest Spells range from bits 22-50
+                Case Else : Throw New ArgumentException(String.Format("Priest Spell out of range!"))
+            End Select
+            Dim iByte As Short = iSpell \ 8
+            Dim iBit As Short = iSpell Mod 8
+            Return CBool((mSpellBooks(iByte) And 2 ^ iBit) = 2 ^ iBit)
         End Get
+        Set(value As Boolean)
+            Dim min As Short = mBase.MageSpellBook.GetUpperBound(0) + 1
+            Dim max As Short = min + mBase.PriestSpellBook.GetUpperBound(0) + 1
+            iSpell += min - 1
+            Select Case iSpell
+                Case min To max 'Priest Spells range from bits 22-50
+                Case Else : Throw New ArgumentException(String.Format("Priest Spell out of range!"))
+            End Select
+            Dim iByte As Short = iSpell \ 8
+            Dim iBit As Short = iSpell Mod 8
+            mSpellBooks(iByte) = IIf(value, mSpellBooks(iByte) Or CByte(2 ^ iBit), mSpellBooks(iByte) And Not CByte(2 ^ iBit))
+        End Set
     End Property
     Public Property PriestSpellPoints(ByVal Level As Short) As Int16
         Get
@@ -518,18 +576,6 @@ Public Class CharacterBase
         For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
             mSpellBooks(i) = binReader.ReadByte()
         Next i
-        Dim iSpell As Short = 0
-        For i As Short = 0 To mSpellBooks.Length - 1
-            For Offset As Short = 0 To 7
-                If iSpell > 50 Then Exit For
-                If iSpell <= 21 Then
-                    mMageSpellBook(iSpell) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
-                Else
-                    mPriestSpellBook(iSpell - 22) = CBool((mSpellBooks(i) And 2 ^ Offset) = 2 ^ Offset)
-                End If
-                iSpell += 1
-            Next Offset
-        Next i
 
         For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
             mMageSpellPoints(i) = binReader.ReadUInt16()
@@ -628,16 +674,16 @@ Public Class CharacterBase
 
         'SpellBooks...
         ToString &= String.Format("{0}Mage SpellBook...{0}", vbCrLf)
-        For iSpell As Short = 1 To mMageSpellBook.Length - 1
-            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString, IIf(mMageSpellBook(iSpell), "Yes", "No")})
+        For iSpell As Short = 1 To mBase.MageSpellBook.Length - 1
+            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString, IIf(Me.MageSpellBook(iSpell), "Yes", "No")})
         Next iSpell
         ToString &= String.Format("{0}Mage Spell Points:    {1}", vbCrLf, mMageSpellPoints(0))
         For iPoints As Integer = 1 To mMageSpellPoints.Length - 1
             ToString &= String.Format("/{0}", mMageSpellPoints(iPoints))
         Next iPoints
         ToString &= String.Format("{0}Priest SpellBook...{0}", vbCrLf)
-        For iSpell As Short = 0 To mPriestSpellBook.Length - 1
-            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell + 1, mBase.PriestSpellBook(iSpell).ToString, IIf(mPriestSpellBook(iSpell), "Yes", "No")})
+        For iSpell As Short = 0 To mBase.PriestSpellBook.Length - 1
+            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell + 1, mBase.PriestSpellBook(iSpell).ToString, IIf(Me.PriestSpellBook(iSpell), "Yes", "No")})
         Next iSpell
         ToString &= String.Format("{0}Priest Spell Points:  {1}", vbCrLf, mPriestSpellPoints(0))
         For iPoints As Integer = 1 To mPriestSpellPoints.Length - 1

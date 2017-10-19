@@ -81,11 +81,17 @@ Public Class frmMain
             cmdCancel_Click(sender, e)
         End Try
     End Sub
+    Private Function ToBit(ByVal iByte As Byte) As String
+        ToBit = ""
+        For iBit As Short = 0 To 7
+            ToBit &= IIf(CBool((iByte And 2 ^ iBit) = 2 ^ iBit), "1", "0")
+        Next iBit
+    End Function
+
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             'Handle Command Line Arguments (if any)...
             'CommandLineArgs = GetCommandLine()
-
             cmdOK.Visible = False
             cmdCancel.Visible = False
             cmdExit.Enabled = True

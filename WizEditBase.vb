@@ -394,7 +394,7 @@ Public Class WizEditBase
         End Try
     End Function
 #End Region
-    Public Function GetCharacter(ByVal Tag As String) As CharacterBase
+    Public Overridable Function GetCharacter(ByVal Tag As String) As CharacterBase
         For iChar As Short = 0 To mCharacters.Length - 1
             If mCharacters(iChar).Tag = Tag Then Return mCharacters(iChar)
         Next iChar
