@@ -93,6 +93,7 @@
     <Compile Include="frmWizardry15Base.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Item05.vb" />
     <Compile Include="ItemBase.vb" />
     <Compile Include="ItemData.vb" />
     <Compile Include="MonsterGroupData.vb" />

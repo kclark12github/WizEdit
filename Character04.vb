@@ -62,13 +62,13 @@ Public Class Character04
                 Me.Statistics = .ReadUInt32()                   '0x4AC2C    94 52 94 52 = 20/20/20/20/20/20
                 .BaseStream.Position += 4                       '0x4AC30
 
-                For i As Short = 0 To 2                                  '0x4AC34
+                For i As Short = 0 To 2                         '0x4AC34
                     mGoldPacked(i) = .ReadUInt16()
                 Next i
                 mGold = mBase.I6toD(mGoldPacked)
 
                 mItemCount = .ReadUInt16()                      '0x4AC3A
-                For i As Short = 0 To ItemListMax - 1                    '0x4AC3C    List of Items (stowing not an option in Wiz01...)
+                For i As Short = 0 To ItemListMax - 1           '0x4AC3C    List of Items (stowing not an option in Wiz04...)
                     '	                                                    0x4AC42 ItemCode1[I2];
                     '	                                                    0x4AC4A ItemCode2[I2];	
                     '	                                                    0x4AC52 ItemCode3[I2];	
@@ -80,32 +80,32 @@ Public Class Character04
                     mItemList(i).Read(binReader)
                 Next i
 
-                For i As Short = 0 To 2                                 '0x4AC7C (Keystrokes)
+                For i As Short = 0 To 2                         '0x4AC7C (Keystrokes)
                     mExperiencePacked(i) = .ReadUInt16()
                 Next i
                 mExperience = mBase.I6toD(mExperiencePacked)
 
-                mLVL.Read(binReader)                                    '0x4AC82
-                mHP.Read(binReader)                                     '0x4AC86
+                mLVL.Read(binReader)                            '0x4AC82
+                mHP.Read(binReader)                             '0x4AC86
 
-                For i As Short = 0 To 7                                 '0x4AC8A    Need to mask as bits...
+                For i As Short = 0 To 7                         '0x4AC8A    Need to mask as bits...
                     mSpellBooks(i) = .ReadByte()
                 Next i
 
-                For i As Short = 0 To SpellLevelMax - 1                 '0x4AC92-9F
+                For i As Short = 0 To SpellLevelMax - 1         '0x4AC92-9F
                     mMageSpellPoints(i) = .ReadUInt16()
                 Next i
-                For i As Short = 0 To SpellLevelMax - 1                 '0x4ACA0-AD
+                For i As Short = 0 To SpellLevelMax - 1         '0x4ACA0-AD
                     mPriestSpellPoints(i) = .ReadUInt16()
                 Next i
                 '0x4AC
-                .BaseStream.Position += 2                      '0x4ACAE
-                mArmorClass = .ReadUInt16()                    '0x4ACB0
-                .BaseStream.Position += 24                     '0x4ACB2-C9
+                .BaseStream.Position += 2                       '0x4ACAE
+                mArmorClass = .ReadUInt16()                     '0x4ACB0
+                .BaseStream.Position += 24                      '0x4ACB2-C9
 
-                mLocation = .ReadUInt16()                      '0x4ACCA
-                mDown = .ReadUInt16()                          '0x4ACCC    Screen says -2 but data says 0E 00
-                mHonors = .ReadUInt16()                        '0x4ACCE    Need more testing, but 1 = ">"
+                mLocation = .ReadUInt16()                       '0x4ACCA
+                mDown = .ReadUInt16()                           '0x4ACCC    Screen says -2 but data says 0E 00
+                mHonors = .ReadUInt16()                         '0x4ACCE    Need more testing, but 1 = ">"
 
                 mSummonedMonsterGroupCount(0) = .ReadUInt16()   '0x4ACD0 Group1.Count[I2]
                 mSummonedMonsterGroupCount(1) = .ReadUInt16()   '0x4ACD2 Group2.Count[I2]
@@ -120,7 +120,7 @@ Public Class Character04
                 mSummonedMonsterGroupName(2) = .ReadString()    '0x4ACFC Group3.Name ("VAMPIRE LORD") String(15) 0x70
                 .BaseStream.Position += NamePasswordLengthMax - mSummonedMonsterGroupName(2).Length
 
-                .BaseStream.Position += 4 + (16 * 15)          '0x4AD0C-FF 
+                .BaseStream.Position += 4 + (16 * 15)           '0x4AD0C-FF 
             End With
         Catch ex As Exception When ex.Message.ToUpper.Contains("OVERFLOW")
             Debug.WriteLine(String.Format("Read Failed @ 0x{0:X00000}{1}{2}", binReader.BaseStream.Position, vbCrLf, ex.ToString))
@@ -144,31 +144,31 @@ Public Class Character04
             .Write(Me.Statistics)                          '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
             .BaseStream.Position += 4                      '0x1D830
 
-            For i As Short = 0 To 2                                 '0x1D834
+            For i As Short = 0 To 2                        '0x1D834
                 .Write(mGoldPacked(i))
             Next i
 
             .Write(mItemCount)                             '0x1D83A
-            For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
+            For i As Short = 0 To ItemListMax - 1          '0x1D83C    List of Items (stowing not an option in Wiz01...)
                 mItemList(i).Save(binWriter)
             Next i
 
-            For i As Short = 0 To 2                                 '0x1D87C
+            For i As Short = 0 To 2                        '0x1D87C
                 .Write(mExperiencePacked(i))
             Next i
 
-            mLVL.Save(binWriter)                                    '0x1D882
-            mHP.Save(binWriter)                                     '0x1D886
+            mLVL.Save(binWriter)                           '0x1D882
+            mHP.Save(binWriter)                            '0x1D886
 
-            For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
+            For i As Short = 0 To 7                        '0x1D88A    Need to mask as bits...
                 .Write(mSpellBooks(i))
             Next i
 
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
+            For i As Short = 0 To SpellLevelMax - 1        '0x1D892
                 .Write(mMageSpellPoints(i))
             Next i
 
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
+            For i As Short = 0 To SpellLevelMax - 1        '0x1D8A0
                 .Write(mPriestSpellPoints(i))
             Next i
             .BaseStream.Position += 2                      '0x1D8AE

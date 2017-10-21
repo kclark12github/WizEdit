@@ -126,7 +126,7 @@ Public Class CharacterBase
     Protected mSpellBooks(7) As Byte
     Protected mMageSpellPoints(SpellLevelMax - 1) As UInt16
     Protected mPriestSpellPoints(SpellLevelMax - 1) As UInt16
-    Protected mArmorClass As Int16
+    Protected mArmorClass As UInt16
     Protected mLocation As UInt16
     Protected mDown As UInt16
     Protected mHonors As UInt16
@@ -216,22 +216,25 @@ Public Class CharacterBase
     End Property
     Public ReadOnly Property HonorsFull As String
         Get
-            If mHonors Or &H1 Then Return "> Chevron of Trebor"
-            If mHonors Or &H4000 Then Return "G - Mark of Gnilda"
-            If mHonors Or &H800 Then Return "K - Knight of Gnilda"
-            If mHonors Or &H2000 Then Return "D - Descendant of Heroes"
-            If mHonors Or &H20 Then Return "* - Star of Llylgamyn"
-            Return ""
+            HonorsFull = ""
+            If mHonors Or &H1 Then HonorsFull &= String.Format("> Chevron of Trebor{0}", vbCrLf)
+            If mHonors Or &H20 Then HonorsFull &= String.Format("* - Star of Llylgamyn{0}", vbCrLf)
+            If mHonors Or &H800 Then HonorsFull &= String.Format("K - Knight of Gnilda{0}", vbCrLf)
+            If mHonors Or &H2000 Then HonorsFull &= String.Format("D - Descendant of Heroes{0}", vbCrLf)
+            If mHonors Or &H4000 Then HonorsFull &= String.Format("G - Mark of Gnilda{0}", vbCrLf)
+            If mHonors Or &H8000 Then HonorsFull &= String.Format("@ - Heart of Abriel (?){0}", vbCrLf)
+            If HonorsFull <> "" Then HonorsFull = HonorsFull.Substring(0, HonorsFull.Length - 2)
         End Get
     End Property
     Public ReadOnly Property HonorsShort As String
         Get
-            If mHonors Or &H1 Then Return ">"
-            If mHonors Or &H4000 Then Return "G"
-            If mHonors Or &H800 Then Return "K"
-            If mHonors Or &H2000 Then Return "D"
-            If mHonors Or &H20 Then Return "*"
-            Return ""
+            HonorsShort = ""
+            If mHonors Or &H1 Then HonorsShort &= ">"
+            If mHonors Or &H20 Then HonorsShort &= "*"
+            If mHonors Or &H800 Then HonorsShort &= "K"
+            If mHonors Or &H2000 Then HonorsShort &= "D"
+            If mHonors Or &H4000 Then HonorsShort &= "G"
+            If mHonors Or &H8000 Then HonorsShort &= "@"
         End Get
     End Property
     Public ReadOnly Property HP As PointsBase
@@ -247,7 +250,7 @@ Public Class CharacterBase
             mItemCount = value
         End Set
     End Property
-    Public ReadOnly Property Items As ItemBase()
+    Public Overridable ReadOnly Property Items As ItemBase()
         Get
             Return mItemList
         End Get
@@ -539,59 +542,63 @@ Public Class CharacterBase
 #End Region
 #Region "Methods"
     Public Overridable Sub Read(binReader As BinaryReader)
-        With binReader
-            'Debug.WriteLine(String.Format("Character Data @ 0x{0:X00000}", .BaseStream.Position))
-            mName = .ReadString()                          '0x1D800   Pascal Varying Length String Format...
-            .BaseStream.Position += NamePasswordLengthMax - mName.Length
-            mPassword = .ReadString()                      '0x1D810   Pascal Varying Length String Format...
-            .BaseStream.Position += NamePasswordLengthMax - mPassword.Length
+        Try
+            With binReader                                      'Offset/Sample
+                'Debug.WriteLine(String.Format("Character Data @ 0x{0:X00000}", .BaseStream.Position))
+                mName = .ReadString()                           '000/0x1D800   Pascal Varying Length String Format...
+                .BaseStream.Position += NamePasswordLengthMax - mName.Length
+                mPassword = .ReadString()                       '016/0x1D810   Pascal Varying Length String Format...
+                .BaseStream.Position += NamePasswordLengthMax - mPassword.Length
 
-            mOut = .ReadUInt16()                            '0x1D820    00 00 = No; 01 00 = Yes;
-            mRace = .ReadUInt16()                           '0x1D822    01 00 = Human
-            mProfession = .ReadUInt16()                     '0x1D824    06 00 = Lord
-            mAgeInWeeks = .ReadUInt16()                     '0x1D826    0C 03 = Weeks Alive...
-            mStatus = .ReadUInt16()                         '0x1D828    00 00 = OK
-            mAlignment = .ReadUInt16()                      '0x1D82A    02 00 = Neutral
+                mOut = .ReadUInt16()                            '032/0x1D820    00 00 = No; 01 00 = Yes;
+                mRace = .ReadUInt16()                           '034/0x1D822    01 00 = Human
+                mProfession = .ReadUInt16()                     '036/0x1D824    06 00 = Lord
+                mAgeInWeeks = .ReadUInt16()                     '038/0x1D826    0C 03 = Weeks Alive...
+                mStatus = .ReadUInt16()                         '040/0x1D828    00 00 = OK
+                mAlignment = .ReadUInt16()                      '042/0x1D82A    02 00 = Neutral
 
-            Me.Statistics = .ReadUInt32()                   '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
-            .BaseStream.Position += 4                      '0x1D830
+                Me.Statistics = .ReadUInt32()                   '044/0x1D82C    94 52 94 52 = 20/20/20/20/20/20
+                .BaseStream.Position += 4                       '048/0x1D830
 
-            For i As Short = 0 To 2                                 '0x1D834
-                mGoldPacked(i) = .ReadUInt16()
-            Next i
-            mGold = mBase.I6toD(mGoldPacked)
+                For i As Short = 0 To 2                         '052/0x1D834
+                    mGoldPacked(i) = .ReadUInt16()
+                Next i
+                mGold = mBase.I6toD(mGoldPacked)
 
-            mItemCount = .ReadUInt16()                      '0x1D83A
-            For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
-                mItemList(i).Read(binReader)
-            Next i
+                mItemCount = .ReadUInt16()                      '058/0x1D83A
+                For i As Short = 0 To ItemListMax - 1           '060/0x1D83C    List of Items (stowing not an option in Wiz01-05...)
+                    mItemList(i).Read(binReader)
+                Next i
 
-            For i As Short = 0 To 2                                 '0x1D87C
-                mExperiencePacked(i) = .ReadUInt16()
-            Next i
-            mExperience = mBase.I6toD(mExperiencePacked)
+                For i As Short = 0 To 2                         '124/0x1D87C
+                    mExperiencePacked(i) = .ReadUInt16()
+                Next i
+                mExperience = mBase.I6toD(mExperiencePacked)
 
-            mLVL.Read(binReader)                                    '0x1D882
-            mHP.Read(binReader)                                     '0x1D886
+                mLVL.Read(binReader)                            '130/0x1D882
+                mHP.Read(binReader)                             '134/0x1D886
 
-            For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
-                mSpellBooks(i) = .ReadByte()
-            Next i
-
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
-                mMageSpellPoints(i) = .ReadUInt16()
-            Next i
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
-                mPriestSpellPoints(i) = .ReadUInt16()
-            Next i
-            .BaseStream.Position += 2                      '0x1D8AE
-            mArmorClass = .ReadUInt16()                     '0x1D8B0
-            .BaseStream.Position += 24                     '0x1D8B2
-            mLocation = .ReadUInt16()                       '0x1D8CA    Some sort of packed variable...
-            mDown = .ReadUInt16()                           '0x1D8CC    Seems to be a simple 2-byte Int16...
-            mHonors = .ReadUInt16()                         '0x1D8CE    Need more testing, but 1 = ">"
-            '                                                       '0x1D8D0    Next Character Record...
-        End With
+                For i As Short = 0 To 7                         '138/0x1D88A    Need to mask as bits...
+                    mSpellBooks(i) = .ReadByte()
+                Next i
+                For i As Short = 0 To SpellLevelMax - 1         '146/0x1D892
+                    mMageSpellPoints(i) = .ReadUInt16()
+                Next i
+                For i As Short = 0 To SpellLevelMax - 1         '160/0x1D8A0
+                    mPriestSpellPoints(i) = .ReadUInt16()
+                Next i
+                .BaseStream.Position += 2                       '174/0x1D8AE
+                mArmorClass = .ReadUInt16()                     '176/0x1D8B0
+                .BaseStream.Position += 24                      '178/0x1D8B2
+                mLocation = .ReadUInt16()                       '202/0x1D8CA    Some sort of packed variable...
+                mDown = .ReadUInt16()                           '204/0x1D8CC    Seems to be a simple 2-byte Int16...
+                mHonors = .ReadUInt16()                         '206/0x1D8CE    Need more testing, but 1 = ">"
+                '                                               '0x1D8D0    Next Character Record...
+            End With
+        Catch ex As Exception When ex.Message.ToUpper.Contains("OVERFLOW")
+            Debug.WriteLine(String.Format("Read Failed @ 0x{0:X00000}{1}{2}", binReader.BaseStream.Position, vbCrLf, ex.ToString))
+            Throw
+        End Try
     End Sub
     Public Overridable Sub Save(binWriter As BinaryWriter)
         With binWriter
@@ -610,32 +617,30 @@ Public Class CharacterBase
             .Write(Me.Statistics)                          '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
             .BaseStream.Position += 4                      '0x1D830
 
-            For i As Short = 0 To 2                                 '0x1D834
+            For i As Short = 0 To 2                        '0x1D834
                 .Write(mGoldPacked(i))
             Next i
 
             .Write(mItemCount)                             '0x1D83A
-            For i As Short = 0 To ItemListMax - 1                   '0x1D83C    List of Items (stowing not an option in Wiz01...)
+            For i As Short = 0 To ItemListMax - 1          '0x1D83C    List of Items (stowing not an option in Wiz01...)
                 mItemList(i).Save(binWriter)
             Next i
 
-            For i As Short = 0 To 2                                 '0x1D87C
+            For i As Short = 0 To 2                        '0x1D87C
                 .Write(mExperiencePacked(i))
             Next i
 
-            mLVL.Save(binWriter)                                    '0x1D882
-            mHP.Save(binWriter)                                     '0x1D886
+            mLVL.Save(binWriter)                           '0x1D882
+            mHP.Save(binWriter)                            '0x1D886
 
-            For i As Short = 0 To 7                                 '0x1D88A    Need to mask as bits...
+            For i As Short = 0 To 7                        '0x1D88A    Need to mask as bits...
                 .Write(mSpellBooks(i))
             Next i
 
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D892
+            For i As Short = 0 To SpellLevelMax - 1        '0x1D892
                 .Write(mMageSpellPoints(i))
             Next i
-            If mName = "NEB" Then Debug.WriteLine(String.Format("NEB Priest Spells @ 0x{0:X00000}", .BaseStream.Position))
-            'TODO: VB6 incarnation reports this as 9/9/9/9/9/9/9 while we seem to find 2/0/0/0/0/0/0/0
-            For i As Short = 0 To SpellLevelMax - 1                 '0x1D8A0
+            For i As Short = 0 To SpellLevelMax - 1        '0x1D8A0
                 .Write(mPriestSpellPoints(i))
             Next i
             .BaseStream.Position += 2                      '0x1D8AE
