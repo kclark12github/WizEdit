@@ -1,4 +1,14 @@
-﻿Public Class frmWizardry15Base
+﻿'frmWizardry15Base.vb
+'   Scenario-Specific Base Form for Wizardry 1-5...
+'   Copyright © 2017, Ken Clark
+'*********************************************************************************************************************************
+'
+'   Modification History:
+'   Date:       Programmer:     Description:
+'   10/11/17    Ken Clark       Created;
+'=================================================================================================================================
+Option Explicit On
+Public Class frmWizardry15Base
     Public Sub New()
 
         ' This call is required by the designer.
@@ -23,6 +33,8 @@
         Me.cbRace.SelectedValue = -1
         Me.cbStatus.SelectedValue = -1
         Me.nudAC.Value = 0
+        Me.nudAgeInWeeks.Value = 0
+        Me.nudAgeInYears.Value = 0
         Me.nudAgility.Value = 0
         Me.nudHitPoints.Value = 0
         Me.nudIntelligence.Value = 0
@@ -34,10 +46,8 @@
         Me.nudLocationEast.Value = 0
         Me.nudLocationNorth.Value = 0
         Me.nudLocationDown.Value = 0
-        Me.txtAgeInWeeks.Text = 0
-        Me.txtAgeInYears.Text = 0
-        Me.txtExperience.Text = 0
-        Me.txtGold.Text = 0
+        Me.nudEXP.Value = 0
+        Me.nudGold.Value = 0
         Me.txtName.Text = ""
         Me.txtPassword.Text = ""
     End Sub
@@ -53,7 +63,7 @@
 #Region "Methods"
     Protected Sub ClearItems()
         For i As Short = 1 To 8
-            initItem(i, False, False, False, 0)
+            InitItem(i, False, False, False, 0)
         Next i
     End Sub
     Protected Friend Sub EnableControl(ByVal ctl As Control, ByVal Enable As Boolean)
@@ -221,18 +231,15 @@
                 Me.nudLuck.Value = .Luck
 
                 Me.nudAC.Value = .ArmorClass : Me.ttMain.SetToolTip(Me.lblAC, "Armor Class") : Me.ttMain.SetToolTip(Me.nudAC, "Armor Class")
+                Me.nudAgeInWeeks.Value = .AgeInWeeks : Me.nudAgeInYears.Value = .Age
                 Me.nudHitPoints.Value = .HP.Current : Me.nudHitPointsMax.Value = .HP.Maximum
                 Me.nudLevel.Value = .LVL.Current : Me.nudLevelMax.Value = .LVL.Maximum
                 Me.ttMain.SetToolTip(Me.lblLocation, .Location)
                 Me.nudLocationEast.Value = .LocationEast : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
                 Me.nudLocationNorth.Value = .LocationNorth : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
                 Me.nudLocationDown.Value = .LocationDown : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
-
-                Me.txtAgeInWeeks.Text = .AgeInWeeks
-                Me.txtAgeInYears.Text = .Age
-
-                Me.txtExperience.Text = .Experience
-                Me.txtGold.Text = .Gold
+                Me.nudEXP.Value = .Experience
+                Me.nudGold.Value = .Gold
 
                 'Items...
                 Me.ClearItems()
@@ -315,10 +322,10 @@
                 .LocationNorth = Me.nudLocationNorth.Value
                 .LocationDown = Me.nudLocationDown.Value
 
-                .AgeInWeeks = Me.txtAgeInWeeks.Text
+                .AgeInWeeks = Me.nudAgeInWeeks.Value
 
-                .Experience = Me.txtExperience.Text
-                .Gold = Me.txtGold.Text
+                .Experience = Me.nudEXP.Value
+                .Gold = Me.nudGold.Value
 
                 'Items...
                 .ItemCount = Me.nudItemCount.Value
@@ -391,6 +398,11 @@
             Debug.WriteLine(ex.ToString)
             Throw
         End Try
+    End Sub
+    Private Sub nudAge_ValueChanged(sender As Object, e As EventArgs) Handles nudAgeInWeeks.ValueChanged, nudAgeInYears.ValueChanged
+        Dim nud As NumericUpDown = sender
+        If nud Is Me.nudAgeInWeeks AndAlso nud.Focused Then Me.nudAgeInYears.Value = CInt(nud.Value * 52)
+        If nud Is Me.nudAgeInYears AndAlso nud.Focused Then Me.nudAgeInWeeks.Value = CInt(nud.Value \ 52)
     End Sub
     Private Sub nudItemCount_ValueChanged(sender As Object, e As EventArgs) Handles nudItemCount.ValueChanged
         If mEditMode Then ProtectItems(Me.nudItemCount.Value)

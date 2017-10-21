@@ -14,6 +14,10 @@ Public Class Wizardry05
     Inherits WizEditBase
     Public Sub New(ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image, ByVal Parent As Form)
         MyBase.New(Caption, Icon, BoxArt, Parent)
+        ReDim mCharacters(Me.CharactersMax - 1)
+        For iChar As Short = 0 To Me.CharactersMax - 1
+            mCharacters(iChar) = New Character05(Me)
+        Next iChar
     End Sub
     Public Overrides ReadOnly Property CharacterDataOffset As Int32
         Get
@@ -185,4 +189,24 @@ Public Class Wizardry05
             Return "HEART OF THE MAELSTROM"
         End Get
     End Property
+    Public Overrides Sub Read()
+        Dim binReader As BinaryReader = Nothing
+        Dim iChar As Short = 0
+        Try
+            binReader = New BinaryReader(File.Open(Me.ScenarioDataPath, FileMode.Open))
+            binReader.BaseStream.Position = Me.CharacterDataOffset
+            For iChar = 1 To Me.CharactersMax
+                Characters(iChar - 1).Read(binReader)
+            Next iChar
+        Catch ex As Exception
+            Debug.WriteLine(String.Format("{0} encountered reading Character #{1}{2}{3}", New Object() {ex.GetType.Name, iChar, vbCrLf, ex.ToString}))
+            Throw
+        Finally
+            If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
+        End Try
+    End Sub
+    Public Overrides Sub Show()
+        mForm = New frmWizardry05(Me, mCaption, mIcon, mBoxArt)
+        mForm.ShowDialog(mParent)
+    End Sub
 End Class

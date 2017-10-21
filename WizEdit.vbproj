@@ -87,6 +87,12 @@
     <Compile Include="frmWizardry04.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmWizardry05.Designer.vb">
+      <DependentUpon>frmWizardry05.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWizardry05.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmWizardry15Base.Designer.vb">
       <DependentUpon>frmWizardry15Base.vb</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWizardry04.resx">
       <DependentUpon>frmWizardry04.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWizardry05.resx">
+      <DependentUpon>frmWizardry05.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWizardry15Base.resx">
       <DependentUpon>frmWizardry15Base.vb</DependentUpon>

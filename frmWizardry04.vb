@@ -1,5 +1,5 @@
-﻿'WizEditBase.cls
-'   Base Class for WizEdit...
+﻿'frmWizardry04.vb
+'   Scenario-Specific Form for Wizardry04...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
 '
@@ -13,6 +13,10 @@ Public Class frmWizardry04
     Public Sub New(ByVal base As WizEditBase, ByVal Caption As String, ByVal Icon As Icon, ByVal BoxArt As Image)
         MyBase.New(base, Caption, Icon, BoxArt)
         InitializeComponent()
+        'These properties are set in the base class, but our InitializeComponent will have most likely overwritten them...
+        Me.Text = Caption
+        Me.Icon = Icon
+        Me.pbBoxArt.Image = BoxArt
     End Sub
     Protected Sub ClearGroups()
         For i As Short = 1 To 3
@@ -59,6 +63,7 @@ Public Class frmWizardry04
     Protected Overrides Sub cmdSave_Click(sender As Object, e As EventArgs)
         Try
             Me.epMain.SetError(sender, "")
+            MyBase.cmdSave_Click(sender, e)
             With CType(mCharacter, Character04)
                 'Groups...
                 .SummonedMonsterCount(0) = Me.nudGroup1.Value

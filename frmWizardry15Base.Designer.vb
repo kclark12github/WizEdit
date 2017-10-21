@@ -43,6 +43,11 @@ Partial Class frmWizardry15Base
         Me.lblCharacter = New System.Windows.Forms.Label()
         Me.tcWiz = New System.Windows.Forms.TabControl()
         Me.tpStats = New System.Windows.Forms.TabPage()
+        Me.nudAgeInYears = New System.Windows.Forms.NumericUpDown()
+        Me.nudAgeInWeeks = New System.Windows.Forms.NumericUpDown()
+        Me.nudGold = New System.Windows.Forms.NumericUpDown()
+        Me.nudEXP = New System.Windows.Forms.NumericUpDown()
+        Me.lblOut = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.nudLevelMax = New System.Windows.Forms.NumericUpDown()
@@ -51,15 +56,11 @@ Partial Class frmWizardry15Base
         Me.lblLevel = New System.Windows.Forms.Label()
         Me.cbStatus = New System.Windows.Forms.ComboBox()
         Me.lblAgeInYears = New System.Windows.Forms.Label()
-        Me.txtAgeInYears = New System.Windows.Forms.TextBox()
         Me.nudHitPoints = New System.Windows.Forms.NumericUpDown()
-        Me.txtAgeInWeeks = New System.Windows.Forms.TextBox()
         Me.lblAge = New System.Windows.Forms.Label()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.lblGold = New System.Windows.Forms.Label()
-        Me.txtGold = New System.Windows.Forms.TextBox()
         Me.lblHitPoints = New System.Windows.Forms.Label()
-        Me.txtExperience = New System.Windows.Forms.TextBox()
         Me.lblExperience = New System.Windows.Forms.Label()
         Me.lblDown = New System.Windows.Forms.Label()
         Me.nudLocationDown = New System.Windows.Forms.NumericUpDown()
@@ -189,6 +190,10 @@ Partial Class frmWizardry15Base
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcWiz.SuspendLayout()
         Me.tpStats.SuspendLayout()
+        CType(Me.nudAgeInYears, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudAgeInWeeks, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudGold, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudEXP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudLevelMax, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudHitPointsMax, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudLevel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,6 +407,11 @@ Partial Class frmWizardry15Base
         'tpStats
         '
         Me.tpStats.BackgroundImage = Global.WizEdit.My.Resources.Resources.backgnd3b
+        Me.tpStats.Controls.Add(Me.nudAgeInYears)
+        Me.tpStats.Controls.Add(Me.nudAgeInWeeks)
+        Me.tpStats.Controls.Add(Me.nudGold)
+        Me.tpStats.Controls.Add(Me.nudEXP)
+        Me.tpStats.Controls.Add(Me.lblOut)
         Me.tpStats.Controls.Add(Me.Label2)
         Me.tpStats.Controls.Add(Me.Label1)
         Me.tpStats.Controls.Add(Me.nudLevelMax)
@@ -410,15 +420,11 @@ Partial Class frmWizardry15Base
         Me.tpStats.Controls.Add(Me.lblLevel)
         Me.tpStats.Controls.Add(Me.cbStatus)
         Me.tpStats.Controls.Add(Me.lblAgeInYears)
-        Me.tpStats.Controls.Add(Me.txtAgeInYears)
         Me.tpStats.Controls.Add(Me.nudHitPoints)
-        Me.tpStats.Controls.Add(Me.txtAgeInWeeks)
         Me.tpStats.Controls.Add(Me.lblAge)
         Me.tpStats.Controls.Add(Me.lblStatus)
         Me.tpStats.Controls.Add(Me.lblGold)
-        Me.tpStats.Controls.Add(Me.txtGold)
         Me.tpStats.Controls.Add(Me.lblHitPoints)
-        Me.tpStats.Controls.Add(Me.txtExperience)
         Me.tpStats.Controls.Add(Me.lblExperience)
         Me.tpStats.Controls.Add(Me.lblDown)
         Me.tpStats.Controls.Add(Me.nudLocationDown)
@@ -464,6 +470,60 @@ Partial Class frmWizardry15Base
         Me.tpStats.TabIndex = 0
         Me.tpStats.Text = "Statistics"
         Me.tpStats.UseVisualStyleBackColor = True
+        '
+        'nudAgeInYears
+        '
+        Me.nudAgeInYears.BackColor = System.Drawing.Color.LightGray
+        Me.nudAgeInYears.Location = New System.Drawing.Point(383, 430)
+        Me.nudAgeInYears.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudAgeInYears.Name = "nudAgeInYears"
+        Me.nudAgeInYears.Size = New System.Drawing.Size(34, 22)
+        Me.nudAgeInYears.TabIndex = 91
+        Me.nudAgeInYears.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'nudAgeInWeeks
+        '
+        Me.nudAgeInWeeks.BackColor = System.Drawing.Color.LightGray
+        Me.nudAgeInWeeks.Location = New System.Drawing.Point(291, 430)
+        Me.nudAgeInWeeks.Maximum = New Decimal(New Integer() {10400, 0, 0, 0})
+        Me.nudAgeInWeeks.Name = "nudAgeInWeeks"
+        Me.nudAgeInWeeks.Size = New System.Drawing.Size(47, 22)
+        Me.nudAgeInWeeks.TabIndex = 90
+        Me.nudAgeInWeeks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'nudGold
+        '
+        Me.nudGold.BackColor = System.Drawing.Color.LightGray
+        Me.nudGold.Location = New System.Drawing.Point(291, 317)
+        Me.nudGold.Maximum = New Decimal(New Integer() {999999999, 0, 0, 0})
+        Me.nudGold.Name = "nudGold"
+        Me.nudGold.Size = New System.Drawing.Size(126, 22)
+        Me.nudGold.TabIndex = 89
+        Me.nudGold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'nudEXP
+        '
+        Me.nudEXP.BackColor = System.Drawing.Color.LightGray
+        Me.nudEXP.Location = New System.Drawing.Point(291, 289)
+        Me.nudEXP.Maximum = New Decimal(New Integer() {-1, -1, -1, 0})
+        Me.nudEXP.Name = "nudEXP"
+        Me.nudEXP.Size = New System.Drawing.Size(126, 22)
+        Me.nudEXP.TabIndex = 88
+        Me.nudEXP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'lblOut
+        '
+        Me.lblOut.AutoSize = True
+        Me.lblOut.BackColor = System.Drawing.Color.Transparent
+        Me.lblOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOut.ForeColor = System.Drawing.Color.Yellow
+        Me.lblOut.Location = New System.Drawing.Point(68, 208)
+        Me.lblOut.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblOut.Name = "lblOut"
+        Me.lblOut.Size = New System.Drawing.Size(75, 16)
+        Me.lblOut.TabIndex = 87
+        Me.lblOut.Text = "Out (Reset)"
+        Me.lblOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label2
         '
@@ -563,17 +623,6 @@ Partial Class frmWizardry15Base
         Me.lblAgeInYears.Text = "(Yrs)"
         Me.lblAgeInYears.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'txtAgeInYears
-        '
-        Me.txtAgeInYears.BackColor = System.Drawing.Color.LightGray
-        Me.txtAgeInYears.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAgeInYears.Location = New System.Drawing.Point(383, 430)
-        Me.txtAgeInYears.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtAgeInYears.Name = "txtAgeInYears"
-        Me.txtAgeInYears.Size = New System.Drawing.Size(34, 22)
-        Me.txtAgeInYears.TabIndex = 25
-        Me.txtAgeInYears.Text = "txtAgeInYears"
-        '
         'nudHitPoints
         '
         Me.nudHitPoints.BackColor = System.Drawing.Color.LightGray
@@ -583,17 +632,6 @@ Partial Class frmWizardry15Base
         Me.nudHitPoints.Size = New System.Drawing.Size(71, 22)
         Me.nudHitPoints.TabIndex = 19
         Me.nudHitPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtAgeInWeeks
-        '
-        Me.txtAgeInWeeks.BackColor = System.Drawing.Color.LightGray
-        Me.txtAgeInWeeks.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAgeInWeeks.Location = New System.Drawing.Point(291, 430)
-        Me.txtAgeInWeeks.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtAgeInWeeks.Name = "txtAgeInWeeks"
-        Me.txtAgeInWeeks.Size = New System.Drawing.Size(47, 22)
-        Me.txtAgeInWeeks.TabIndex = 24
-        Me.txtAgeInWeeks.Text = "txtAgeInWeeks"
         '
         'lblAge
         '
@@ -637,17 +675,6 @@ Partial Class frmWizardry15Base
         Me.lblGold.Text = "Gold"
         Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'txtGold
-        '
-        Me.txtGold.BackColor = System.Drawing.Color.LightGray
-        Me.txtGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtGold.Location = New System.Drawing.Point(291, 317)
-        Me.txtGold.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtGold.Name = "txtGold"
-        Me.txtGold.Size = New System.Drawing.Size(126, 22)
-        Me.txtGold.TabIndex = 18
-        Me.txtGold.Text = "txtGold"
-        '
         'lblHitPoints
         '
         Me.lblHitPoints.AutoSize = True
@@ -661,17 +688,6 @@ Partial Class frmWizardry15Base
         Me.lblHitPoints.TabIndex = 67
         Me.lblHitPoints.Text = "Hit Points"
         Me.lblHitPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtExperience
-        '
-        Me.txtExperience.BackColor = System.Drawing.Color.LightGray
-        Me.txtExperience.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtExperience.Location = New System.Drawing.Point(291, 289)
-        Me.txtExperience.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtExperience.Name = "txtExperience"
-        Me.txtExperience.Size = New System.Drawing.Size(126, 22)
-        Me.txtExperience.TabIndex = 17
-        Me.txtExperience.Text = "txtExperience"
         '
         'lblExperience
         '
@@ -997,12 +1013,11 @@ Partial Class frmWizardry15Base
         Me.chkOut.AutoSize = True
         Me.chkOut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.chkOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOut.Location = New System.Drawing.Point(68, 208)
+        Me.chkOut.Location = New System.Drawing.Point(147, 210)
         Me.chkOut.Margin = New System.Windows.Forms.Padding(4)
         Me.chkOut.Name = "chkOut"
-        Me.chkOut.Size = New System.Drawing.Size(94, 20)
+        Me.chkOut.Size = New System.Drawing.Size(15, 14)
         Me.chkOut.TabIndex = 8
-        Me.chkOut.Text = "Out (Reset)"
         Me.chkOut.UseVisualStyleBackColor = True
         '
         'lblAlignment
@@ -2258,6 +2273,10 @@ Partial Class frmWizardry15Base
         Me.tcWiz.ResumeLayout(False)
         Me.tpStats.ResumeLayout(False)
         Me.tpStats.PerformLayout()
+        CType(Me.nudAgeInYears, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudAgeInWeeks, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudGold, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudEXP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudLevelMax, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudHitPointsMax, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudLevel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2317,15 +2336,11 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents lblLevel As Label
     Protected Friend WithEvents cbStatus As ComboBox
     Protected Friend WithEvents lblAgeInYears As Label
-    Protected Friend WithEvents txtAgeInYears As TextBox
     Protected Friend WithEvents nudHitPoints As NumericUpDown
-    Protected Friend WithEvents txtAgeInWeeks As TextBox
     Protected Friend WithEvents lblAge As Label
     Protected Friend WithEvents lblStatus As Label
     Protected Friend WithEvents lblGold As Label
-    Protected Friend WithEvents txtGold As TextBox
     Protected Friend WithEvents lblHitPoints As Label
-    Protected Friend WithEvents txtExperience As TextBox
     Protected Friend WithEvents lblExperience As Label
     Protected Friend WithEvents lblDown As Label
     Protected Friend WithEvents nudLocationDown As NumericUpDown
@@ -2457,4 +2472,9 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents tsslTime As ToolStripStatusLabel
     Protected Friend WithEvents timMain As Timer
     Protected Friend WithEvents tcWiz As TabControl
+    Protected Friend WithEvents nudAgeInYears As NumericUpDown
+    Protected Friend WithEvents nudAgeInWeeks As NumericUpDown
+    Protected Friend WithEvents nudGold As NumericUpDown
+    Protected Friend WithEvents nudEXP As NumericUpDown
+    Protected Friend WithEvents lblOut As Label
 End Class

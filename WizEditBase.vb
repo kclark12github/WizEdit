@@ -64,10 +64,11 @@ Public Class WizEditBase
         Get
             HonorsList = {
                 "> Chevron of Trebor",
-                "G - Mark of Gnilda",
+                "* - Star of Llylgamyn",
                 "K - Knight of Gnilda",
+                "G - Mark of Gnilda",
                 "D - Descendant of Heroes",
-                "* - Star of Llylgamyn"
+                "@ - Heart of Abriel (?)"
                 }
         End Get
     End Property
