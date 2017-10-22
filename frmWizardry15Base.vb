@@ -413,7 +413,7 @@ Public Class frmWizardry15Base
     Private Sub timScenario_Tick(sender As Object, e As EventArgs) Handles timScenario.Tick
         tsslTime.Text = String.Format("{0:hh:mm tt}", Now)
     End Sub
-    Private Sub tsmiOptionsRestore_Click(sender As Object, e As EventArgs) Handles tsmiOptionsRestore.Click
+    Protected Sub tsmiOptionsRestore_Click(sender As Object, e As EventArgs) Handles tsmiOptionsRestore.Click
         Try
             Dim fi As FileInfo = New FileInfo(mBase.ScenarioDataPath)
             Dim fs() As String = fi.Name.Split({"."c})

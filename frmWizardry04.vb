@@ -39,6 +39,16 @@ Public Class frmWizardry04
         End Select
         cbGroup.SelectedIndex = FindGroup(cbGroup, GroupCode)
     End Sub
+    Protected Overrides Sub RefreshData(ByVal Reread As Boolean)
+        MyBase.RefreshData(False)
+        For iChar As Short = 0 To mBase.Characters.Length - 1
+            cbCharacter.Items(iChar) = String.Format("Save Game {0}", iChar + 1)
+        Next iChar
+        Me.cbGroup1.Items.Clear() : Me.cbGroup1.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
+        Me.cbGroup2.Items.Clear() : Me.cbGroup2.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
+        Me.cbGroup3.Items.Clear() : Me.cbGroup3.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
+        If Reread Then mBase.Read()
+    End Sub
     Protected Friend Overrides Sub ToggleEditMode(ByVal EditMode As Boolean)
         MyBase.ToggleEditMode(EditMode)
         'Under no circumstances should we ever allow change of txtName or txtPassword...
@@ -79,20 +89,6 @@ Public Class frmWizardry04
             MyBase.cmdSave_Click(sender, e)
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
             Me.epScenario.SetError(sender, ex.ToString)
-        End Try
-    End Sub
-    Protected Overrides Sub Form_Load(sender As Object, e As EventArgs)
-        If DesignMode Then Exit Sub   'Form Designer
-        Try
-            MyBase.Form_Load(sender, e)
-            For iChar As Short = 0 To mBase.Characters.Length - 1
-                cbCharacter.Items(iChar) = String.Format("Save Game {0}", iChar + 1)
-            Next iChar
-            Me.cbGroup1.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
-            Me.cbGroup2.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
-            Me.cbGroup3.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
-        Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Throw
         End Try
     End Sub
 End Class
