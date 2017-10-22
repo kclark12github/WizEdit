@@ -19,7 +19,7 @@ Public Class frmMain
                 '.InitialDirectory = dPath
                 .FileName = txtFile.Text
                 .Filter = dFilter
-                .FilterIndex = 1
+                .FilterIndex = 0
                 .ShowReadOnly = False
                 .Multiselect = False
                 .CheckPathExists = True
@@ -156,7 +156,7 @@ Public Class frmMain
                         Case "04" : SelectedScenario = New Wizardry04(ttMain.GetToolTip(pbWiz04), Global.WizEdit.My.Resources.Resources.Wiz4, Global.WizEdit.My.Resources.Resources.Wiz04Box, Me)
                         Case "05" : SelectedScenario = New Wizardry05(ttMain.GetToolTip(pbWiz05), Global.WizEdit.My.Resources.Resources.Wiz5, Global.WizEdit.My.Resources.Resources.Wiz05Box, Me)
                     End Select
-                    dFilter = "Saved Games (SAVE?.DSK)|SAVE?.DSK|All Files (*.*)|*.*"
+                    dFilter = String.Format("{0} Saved Games (SAVE{1}.DSK)|SAVE{1}.DSK|All Files (*.*)|*.*", SelectedScenario.ScenarioName, CInt(Scenario))
                 Case "06"
                     'SelectedScenario = New Wizardry06(ttMain.GetToolTip(pbWiz06), Global.WizEdit.My.Resources.Resources.Wiz6, Global.WizEdit.My.Resources.Resources.Wiz06Box, Me)
                     'With SelectedScenario : dPath = .GetRegSetting("Environment", .RegDataPath, "C:\BANE") : End With

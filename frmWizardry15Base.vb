@@ -195,6 +195,30 @@ Public Class frmWizardry15Base
             End If
         Next i
     End Sub
+    Protected Overridable Sub RefreshData(ByVal Reread As Boolean)
+        'Populate our List controls here - not specific to any given Character...
+        Me.cbCharacter.Items.Clear()
+        For iChar As Short = 0 To mBase.Characters.Length - 1
+            If mBase.Characters(iChar).Name <> "" Then Me.cbCharacter.Items.Add(mBase.Characters(iChar).Tag)
+        Next iChar
+        Me.cbAlignment.Items.Clear() : Me.cbAlignment.Items.AddRange(mBase.AlignmentList)
+        Me.cbProfession.Items.Clear() : Me.cbProfession.Items.AddRange(mBase.ProfessionList)
+        Me.cbRace.Items.Clear() : Me.cbRace.Items.AddRange(mBase.RaceList)
+        Me.cbStatus.Items.Clear() : Me.cbStatus.Items.AddRange(mBase.StatusList)
+        Me.clbHonors.Items.Clear() : Me.clbHonors.Items.AddRange(mBase.HonorsList)
+        Me.cbItem1.Items.Clear() : Me.cbItem1.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem2.Items.Clear() : Me.cbItem2.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem3.Items.Clear() : Me.cbItem3.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem4.Items.Clear() : Me.cbItem4.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem5.Items.Clear() : Me.cbItem5.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem6.Items.Clear() : Me.cbItem6.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem7.Items.Clear() : Me.cbItem7.Items.AddRange(mBase.MasterItemList)
+        Me.cbItem8.Items.Clear() : Me.cbItem8.Items.AddRange(mBase.MasterItemList)
+        Me.clbMageSpells.Items.Clear() : Me.clbMageSpells.Items.AddRange(mBase.MageSpellList)
+        Me.clbPriestSpells.Items.Clear() : Me.clbPriestSpells.Items.AddRange(mBase.PriestSpellList)
+
+        If Reread Then mBase.Read()
+    End Sub
     Protected Friend Overridable Sub ToggleEditMode(ByVal EditMode As Boolean)
         mEditMode = EditMode
         Me.EnableControls(Me.Controls, EditMode, False)
@@ -210,7 +234,7 @@ Public Class frmWizardry15Base
 #Region "Event Handlers"
     Protected Overridable Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCharacter.SelectedIndexChanged
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             mCharacter = mBase.GetCharacter(cbCharacter.Items(cbCharacter.SelectedIndex))
             'Populate our controls with Character data...
             With mCharacter
@@ -230,14 +254,14 @@ Public Class frmWizardry15Base
                 Me.nudAgility.Value = .Agility
                 Me.nudLuck.Value = .Luck
 
-                Me.nudAC.Value = .ArmorClass : Me.ttMain.SetToolTip(Me.lblAC, "Armor Class") : Me.ttMain.SetToolTip(Me.nudAC, "Armor Class")
+                Me.nudAC.Value = .ArmorClass : Me.ttScenario.SetToolTip(Me.lblAC, "Armor Class") : Me.ttScenario.SetToolTip(Me.nudAC, "Armor Class")
                 Me.nudAgeInWeeks.Value = .AgeInWeeks : Me.nudAgeInYears.Value = .Age
                 Me.nudHitPoints.Value = .HP.Current : Me.nudHitPointsMax.Value = .HP.Maximum
                 Me.nudLevel.Value = .LVL.Current : Me.nudLevelMax.Value = .LVL.Maximum
-                Me.ttMain.SetToolTip(Me.lblLocation, .Location)
-                Me.nudLocationEast.Value = .LocationEast : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
-                Me.nudLocationNorth.Value = .LocationNorth : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
-                Me.nudLocationDown.Value = .LocationDown : Me.ttMain.SetToolTip(Me.lblLocation, .Location)
+                Me.ttScenario.SetToolTip(Me.lblLocation, .Location)
+                Me.nudLocationEast.Value = .LocationEast : Me.ttScenario.SetToolTip(Me.lblLocation, .Location)
+                Me.nudLocationNorth.Value = .LocationNorth : Me.ttScenario.SetToolTip(Me.lblLocation, .Location)
+                Me.nudLocationDown.Value = .LocationDown : Me.ttScenario.SetToolTip(Me.lblLocation, .Location)
                 Me.nudEXP.Value = .Experience
                 Me.nudGold.Value = .Gold
 
@@ -267,19 +291,19 @@ Public Class frmWizardry15Base
             End With
         Catch ex As Exception
             Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
     Private Sub cbItem_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbItem1.SelectedIndexChanged, cbItem2.SelectedIndexChanged, cbItem3.SelectedIndexChanged, cbItem4.SelectedIndexChanged, cbItem5.SelectedIndexChanged, cbItem6.SelectedIndexChanged, cbItem7.SelectedIndexChanged, cbItem8.SelectedIndexChanged
         Dim cbItem As ComboBox = CType(sender, ComboBox)
         Select Case cbItem.Name
-            Case "cbItem1" : Me.ttMain.SetToolTip(Me.lblItem1, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem2" : Me.ttMain.SetToolTip(Me.lblItem2, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem3" : Me.ttMain.SetToolTip(Me.lblItem3, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem4" : Me.ttMain.SetToolTip(Me.lblItem4, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem5" : Me.ttMain.SetToolTip(Me.lblItem5, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem6" : Me.ttMain.SetToolTip(Me.lblItem6, CType(cbItem.SelectedItem, ItemData).Tag)
-            Case "cbItem7" : Me.ttMain.SetToolTip(Me.lblItem7, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem1" : Me.ttScenario.SetToolTip(Me.lblItem1, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem2" : Me.ttScenario.SetToolTip(Me.lblItem2, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem3" : Me.ttScenario.SetToolTip(Me.lblItem3, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem4" : Me.ttScenario.SetToolTip(Me.lblItem4, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem5" : Me.ttScenario.SetToolTip(Me.lblItem5, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem6" : Me.ttScenario.SetToolTip(Me.lblItem6, CType(cbItem.SelectedItem, ItemData).Tag)
+            Case "cbItem7" : Me.ttScenario.SetToolTip(Me.lblItem7, CType(cbItem.SelectedItem, ItemData).Tag)
         End Select
     End Sub
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
@@ -295,7 +319,7 @@ Public Class frmWizardry15Base
     End Sub
     Protected Overridable Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             mCharacter = mBase.GetCharacter(cbCharacter.Items(cbCharacter.SelectedIndex))
             'Populate our controls with Character data...
             With mCharacter
@@ -352,7 +376,7 @@ Public Class frmWizardry15Base
                 ToggleEditMode(False)
             End With
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
     Protected Overridable Sub Form_Closing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -369,31 +393,10 @@ Public Class frmWizardry15Base
     Protected Overridable Sub Form_Load(sender As Object, e As EventArgs) Handles Me.Load
         If DesignMode Then Exit Sub   'Form Designer
         Try
-            'Populate our List controls here - not specific to any given Character...
-            For iChar As Short = 0 To mBase.Characters.Length - 1
-                If mBase.Characters(iChar).Name <> "" Then cbCharacter.Items.Add(mBase.Characters(iChar).Tag)
-            Next iChar
-            Me.cbAlignment.Items.AddRange(mBase.AlignmentList)
-            Me.cbProfession.Items.AddRange(mBase.ProfessionList)
-            Me.cbRace.Items.AddRange(mBase.RaceList)
-            Me.cbStatus.Items.AddRange(mBase.StatusList)
-            Me.clbHonors.Items.AddRange(mBase.HonorsList)
-
-            Me.cbItem1.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem2.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem3.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem4.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem5.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem6.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem7.Items.AddRange(mBase.MasterItemList)
-            Me.cbItem8.Items.AddRange(mBase.MasterItemList)
-
-            Me.clbMageSpells.Items.AddRange(mBase.MageSpellList)
-            Me.clbPriestSpells.Items.AddRange(mBase.PriestSpellList)
-
+            RefreshData(False)
             ToggleEditMode(False)
             tsslMessage.Text = mBase.ScenarioDataPath
-            timMain_Tick(Nothing, Nothing)
+            timScenario_Tick(Nothing, Nothing)
         Catch ex As Exception
             Debug.WriteLine(ex.ToString)
             Throw
@@ -407,8 +410,41 @@ Public Class frmWizardry15Base
     Private Sub nudItemCount_ValueChanged(sender As Object, e As EventArgs) Handles nudItemCount.ValueChanged
         If mEditMode Then ProtectItems(Me.nudItemCount.Value)
     End Sub
-    Private Sub timMain_Tick(sender As Object, e As EventArgs) Handles timMain.Tick
+    Private Sub timScenario_Tick(sender As Object, e As EventArgs) Handles timScenario.Tick
         tsslTime.Text = String.Format("{0:hh:mm tt}", Now)
+    End Sub
+    Private Sub tsmiOptionsRestore_Click(sender As Object, e As EventArgs) Handles tsmiOptionsRestore.Click
+        Try
+            Dim fi As FileInfo = New FileInfo(mBase.ScenarioDataPath)
+            Dim fs() As String = fi.Name.Split({"."c})
+            With ofdScenario
+                .InitialDirectory = fi.DirectoryName
+                .FileName = ""
+                Dim Scenario As String = Me.Text.Substring(9, 3).Trim.ToUpper
+                Select Case Scenario
+                    Case "01", "02", "03", "04", "05"
+                        .Filter = String.Format("{0} Saved Games (SAVE{1}.*.DSK)|SAVE{1}.*.DSK|All Files (*.*)|*.*", Me.Text, CShort(Scenario))
+                    Case "06", "07"
+                        .Filter = String.Format("{0} Saved Games (SCENARIO.*.DBS)|SCENARIO.*.DBS|All Files (*.*)|*.*", Me.Text)
+                    Case "07G"
+                        .Filter = String.Format("{0} Saved Games (SCENARIO.*.GLD)|SCENARIO.*.GLD|All Files (*.*)|*.*", Me.Text)
+                End Select
+                .FilterIndex = 0
+                .ShowReadOnly = False
+                .Multiselect = False
+                .CheckPathExists = True
+                If .ShowDialog(Me) = DialogResult.Cancel Then
+                    MessageBox.Show(Me, "Operation canceled at User's request.", "Restore", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Try
+                End If
+                MessageBox.Show(Me, String.Format("Are you sure you want to replace {0} with {1}?", fi.Name, .FileName), "Restore", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'Do not use mBase.ScenarioDataPath as it checks for the existence of the file and that would screw us up attempting to replace it...
+                File.Delete(fi.FullName) : File.Copy(.FileName, fi.FullName)
+                RefreshData(True)
+            End With
+        Catch ex As Exception
+            MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
     End Sub
 #End Region
 End Class

@@ -19,7 +19,7 @@ Public Class frmWizardry05
     End Sub
     Protected Overrides Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             MyBase.cbCharacter_SelectedIndexChanged(sender, e)
             'Populate our controls with Character data...
             With CType(mCharacter, Character05)
@@ -28,12 +28,12 @@ Public Class frmWizardry05
                 Me.nudRIP.Value = .RIP
             End With
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
     Protected Overrides Sub cmdSave_Click(sender As Object, e As EventArgs)
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             MyBase.cmdSave_Click(sender, e)
             With CType(mCharacter, Character05)
                 'TODO: Scenario-Specific character property assignment...
@@ -42,7 +42,7 @@ Public Class frmWizardry05
             End With
             MyBase.cmdSave_Click(sender, e)
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
 End Class

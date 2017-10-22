@@ -25,15 +25,15 @@ Partial Class frmWizardry15Base
         Me.components = New System.ComponentModel.Container()
         Me.pbBoxArt = New System.Windows.Forms.PictureBox()
         Me.cmdExit = New System.Windows.Forms.Button()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.msScenario = New System.Windows.Forms.MenuStrip()
+        Me.tsmiOptions = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiOptionsRestore = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiOptionsExport = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiOptionsSeperator = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsmiOptionsExit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiHelpAbout = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ssStatus = New System.Windows.Forms.StatusStrip()
         Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tsslMessage = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tsslTime = New System.Windows.Forms.ToolStripStatusLabel()
@@ -48,8 +48,8 @@ Partial Class frmWizardry15Base
         Me.nudGold = New System.Windows.Forms.NumericUpDown()
         Me.nudEXP = New System.Windows.Forms.NumericUpDown()
         Me.lblOut = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblLVLSlash = New System.Windows.Forms.Label()
+        Me.lblHPSlash = New System.Windows.Forms.Label()
         Me.nudLevelMax = New System.Windows.Forms.NumericUpDown()
         Me.nudHitPointsMax = New System.Windows.Forms.NumericUpDown()
         Me.nudLevel = New System.Windows.Forms.NumericUpDown()
@@ -152,17 +152,17 @@ Partial Class frmWizardry15Base
         Me.cmdAllPS = New System.Windows.Forms.Button()
         Me.lblPriestSpells = New System.Windows.Forms.Label()
         Me.lblMageSpells = New System.Windows.Forms.Label()
-        Me.lblLevelSP = New System.Windows.Forms.Label()
+        Me.lblSPLevel = New System.Windows.Forms.Label()
         Me.lblPriestSP = New System.Windows.Forms.Label()
         Me.lblMageSP = New System.Windows.Forms.Label()
         Me.lblSpellPoints = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lblSPL7 = New System.Windows.Forms.Label()
+        Me.lblSPL6 = New System.Windows.Forms.Label()
+        Me.lblSPL5 = New System.Windows.Forms.Label()
+        Me.lblSPL4 = New System.Windows.Forms.Label()
+        Me.lblSPL3 = New System.Windows.Forms.Label()
+        Me.lblSPL2 = New System.Windows.Forms.Label()
+        Me.lblSPL1 = New System.Windows.Forms.Label()
         Me.clbPriestSpells = New System.Windows.Forms.CheckedListBox()
         Me.nudPriestSP1 = New System.Windows.Forms.NumericUpDown()
         Me.nudPriestSP2 = New System.Windows.Forms.NumericUpDown()
@@ -179,14 +179,15 @@ Partial Class frmWizardry15Base
         Me.nudMageSP3 = New System.Windows.Forms.NumericUpDown()
         Me.clbMageSpells = New System.Windows.Forms.CheckedListBox()
         Me.nudMageSP2 = New System.Windows.Forms.NumericUpDown()
-        Me.ttMain = New System.Windows.Forms.ToolTip(Me.components)
-        Me.epMain = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ttScenario = New System.Windows.Forms.ToolTip(Me.components)
+        Me.epScenario = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.cmdSave = New System.Windows.Forms.Button()
-        Me.timMain = New System.Windows.Forms.Timer(Me.components)
+        Me.timScenario = New System.Windows.Forms.Timer(Me.components)
+        Me.ofdScenario = New System.Windows.Forms.OpenFileDialog()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
+        Me.msScenario.SuspendLayout()
+        Me.ssStatus.SuspendLayout()
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcWiz.SuspendLayout()
         Me.tpStats.SuspendLayout()
@@ -225,7 +226,7 @@ Partial Class frmWizardry15Base
         CType(Me.nudMageSP1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudMageSP3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudMageSP2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.epMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.epScenario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbBoxArt
@@ -252,68 +253,69 @@ Partial Class frmWizardry15Base
         Me.cmdExit.TabIndex = 18
         Me.cmdExit.UseVisualStyleBackColor = True
         '
-        'MenuStrip1
+        'msScenario
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.HelpToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(644, 24)
-        Me.MenuStrip1.TabIndex = 19
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.msScenario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptions, Me.tsmiHelp})
+        Me.msScenario.Location = New System.Drawing.Point(0, 0)
+        Me.msScenario.Name = "msScenario"
+        Me.msScenario.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
+        Me.msScenario.Size = New System.Drawing.Size(644, 24)
+        Me.msScenario.TabIndex = 19
+        Me.msScenario.Text = "MenuStrip1"
         '
-        'OptionsToolStripMenuItem
+        'tsmiOptions
         '
-        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.ExportToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
-        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.OptionsToolStripMenuItem.Text = "&Options"
+        Me.tsmiOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptionsRestore, Me.tsmiOptionsExport, Me.tsmiOptionsSeperator, Me.tsmiOptionsExit})
+        Me.tsmiOptions.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tsmiOptions.Name = "tsmiOptions"
+        Me.tsmiOptions.Size = New System.Drawing.Size(61, 20)
+        Me.tsmiOptions.Text = "&Options"
         '
-        'OpenToolStripMenuItem
+        'tsmiOptionsRestore
         '
-        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
-        Me.OpenToolStripMenuItem.Text = "&Open..."
+        Me.tsmiOptionsRestore.Name = "tsmiOptionsRestore"
+        Me.tsmiOptionsRestore.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsRestore.Text = "&Restore..."
         '
-        'ExportToolStripMenuItem
+        'tsmiOptionsExport
         '
-        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
-        Me.ExportToolStripMenuItem.Text = "E&xport..."
+        Me.tsmiOptionsExport.Name = "tsmiOptionsExport"
+        Me.tsmiOptionsExport.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsExport.Text = "E&xport..."
         '
-        'ToolStripMenuItem1
+        'tsmiOptionsSeperator
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(113, 6)
+        Me.tsmiOptionsSeperator.Name = "tsmiOptionsSeperator"
+        Me.tsmiOptionsSeperator.Size = New System.Drawing.Size(119, 6)
         '
-        'ExitToolStripMenuItem
+        'tsmiOptionsExit
         '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
-        Me.ExitToolStripMenuItem.Text = "E&xit"
+        Me.tsmiOptionsExit.Name = "tsmiOptionsExit"
+        Me.tsmiOptionsExit.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsExit.Text = "E&xit"
         '
-        'HelpToolStripMenuItem
+        'tsmiHelp
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "&Help"
+        Me.tsmiHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiHelpAbout})
+        Me.tsmiHelp.Name = "tsmiHelp"
+        Me.tsmiHelp.Size = New System.Drawing.Size(44, 20)
+        Me.tsmiHelp.Text = "&Help"
         '
-        'AboutToolStripMenuItem
+        'tsmiHelpAbout
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
-        Me.AboutToolStripMenuItem.Text = "&About..."
+        Me.tsmiHelpAbout.Name = "tsmiHelpAbout"
+        Me.tsmiHelpAbout.Size = New System.Drawing.Size(116, 22)
+        Me.tsmiHelpAbout.Text = "&About..."
         '
-        'StatusStrip1
+        'ssStatus
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslStatus, Me.tsslMessage, Me.tsslTime})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 603)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(644, 24)
-        Me.StatusStrip1.TabIndex = 20
-        Me.StatusStrip1.Text = "ssStatus"
+        Me.ssStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslStatus, Me.tsslMessage, Me.tsslTime})
+        Me.ssStatus.Location = New System.Drawing.Point(0, 603)
+        Me.ssStatus.Name = "ssStatus"
+        Me.ssStatus.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.ssStatus.Size = New System.Drawing.Size(644, 24)
+        Me.ssStatus.TabIndex = 20
+        Me.ssStatus.Text = "ssStatus"
         '
         'tsslStatus
         '
@@ -412,8 +414,8 @@ Partial Class frmWizardry15Base
         Me.tpStats.Controls.Add(Me.nudGold)
         Me.tpStats.Controls.Add(Me.nudEXP)
         Me.tpStats.Controls.Add(Me.lblOut)
-        Me.tpStats.Controls.Add(Me.Label2)
-        Me.tpStats.Controls.Add(Me.Label1)
+        Me.tpStats.Controls.Add(Me.lblLVLSlash)
+        Me.tpStats.Controls.Add(Me.lblHPSlash)
         Me.tpStats.Controls.Add(Me.nudLevelMax)
         Me.tpStats.Controls.Add(Me.nudHitPointsMax)
         Me.tpStats.Controls.Add(Me.nudLevel)
@@ -525,33 +527,33 @@ Partial Class frmWizardry15Base
         Me.lblOut.Text = "Out (Reset)"
         Me.lblOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label2
+        'lblLVLSlash
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Yellow
-        Me.Label2.Location = New System.Drawing.Point(335, 377)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(12, 16)
-        Me.Label2.TabIndex = 86
-        Me.Label2.Text = "/"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblLVLSlash.AutoSize = True
+        Me.lblLVLSlash.BackColor = System.Drawing.Color.Transparent
+        Me.lblLVLSlash.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLVLSlash.ForeColor = System.Drawing.Color.Yellow
+        Me.lblLVLSlash.Location = New System.Drawing.Point(335, 377)
+        Me.lblLVLSlash.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLVLSlash.Name = "lblLVLSlash"
+        Me.lblLVLSlash.Size = New System.Drawing.Size(12, 16)
+        Me.lblLVLSlash.TabIndex = 86
+        Me.lblLVLSlash.Text = "/"
+        Me.lblLVLSlash.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label1
+        'lblHPSlash
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Yellow
-        Me.Label1.Location = New System.Drawing.Point(335, 349)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(12, 16)
-        Me.Label1.TabIndex = 85
-        Me.Label1.Text = "/"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblHPSlash.AutoSize = True
+        Me.lblHPSlash.BackColor = System.Drawing.Color.Transparent
+        Me.lblHPSlash.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHPSlash.ForeColor = System.Drawing.Color.Yellow
+        Me.lblHPSlash.Location = New System.Drawing.Point(335, 349)
+        Me.lblHPSlash.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblHPSlash.Name = "lblHPSlash"
+        Me.lblHPSlash.Size = New System.Drawing.Size(12, 16)
+        Me.lblHPSlash.TabIndex = 85
+        Me.lblHPSlash.Text = "/"
+        Me.lblHPSlash.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'nudLevelMax
         '
@@ -1791,17 +1793,17 @@ Partial Class frmWizardry15Base
         Me.tpSpellBooks.Controls.Add(Me.cmdAllPS)
         Me.tpSpellBooks.Controls.Add(Me.lblPriestSpells)
         Me.tpSpellBooks.Controls.Add(Me.lblMageSpells)
-        Me.tpSpellBooks.Controls.Add(Me.lblLevelSP)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPLevel)
         Me.tpSpellBooks.Controls.Add(Me.lblPriestSP)
         Me.tpSpellBooks.Controls.Add(Me.lblMageSP)
         Me.tpSpellBooks.Controls.Add(Me.lblSpellPoints)
-        Me.tpSpellBooks.Controls.Add(Me.Label3)
-        Me.tpSpellBooks.Controls.Add(Me.Label4)
-        Me.tpSpellBooks.Controls.Add(Me.Label5)
-        Me.tpSpellBooks.Controls.Add(Me.Label6)
-        Me.tpSpellBooks.Controls.Add(Me.Label7)
-        Me.tpSpellBooks.Controls.Add(Me.Label8)
-        Me.tpSpellBooks.Controls.Add(Me.Label9)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL7)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL6)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL5)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL4)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL3)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL2)
+        Me.tpSpellBooks.Controls.Add(Me.lblSPL1)
         Me.tpSpellBooks.Controls.Add(Me.clbPriestSpells)
         Me.tpSpellBooks.Controls.Add(Me.nudPriestSP1)
         Me.tpSpellBooks.Controls.Add(Me.nudPriestSP2)
@@ -1895,19 +1897,19 @@ Partial Class frmWizardry15Base
         Me.lblMageSpells.Text = "Mage Spells"
         Me.lblMageSpells.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblLevelSP
+        'lblSPLevel
         '
-        Me.lblLevelSP.AutoSize = True
-        Me.lblLevelSP.BackColor = System.Drawing.Color.Transparent
-        Me.lblLevelSP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLevelSP.ForeColor = System.Drawing.Color.Yellow
-        Me.lblLevelSP.Location = New System.Drawing.Point(49, 299)
-        Me.lblLevelSP.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblLevelSP.Name = "lblLevelSP"
-        Me.lblLevelSP.Size = New System.Drawing.Size(41, 16)
-        Me.lblLevelSP.TabIndex = 110
-        Me.lblLevelSP.Text = "Level"
-        Me.lblLevelSP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPLevel.AutoSize = True
+        Me.lblSPLevel.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPLevel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPLevel.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPLevel.Location = New System.Drawing.Point(49, 299)
+        Me.lblSPLevel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPLevel.Name = "lblSPLevel"
+        Me.lblSPLevel.Size = New System.Drawing.Size(41, 16)
+        Me.lblSPLevel.TabIndex = 110
+        Me.lblSPLevel.Text = "Level"
+        Me.lblSPLevel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblPriestSP
         '
@@ -1951,103 +1953,103 @@ Partial Class frmWizardry15Base
         Me.lblSpellPoints.Text = "Spell Points"
         Me.lblSpellPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label3
+        'lblSPL7
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Yellow
-        Me.Label3.Location = New System.Drawing.Point(374, 299)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(15, 16)
-        Me.Label3.TabIndex = 106
-        Me.Label3.Text = "7"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL7.AutoSize = True
+        Me.lblSPL7.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL7.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL7.Location = New System.Drawing.Point(374, 299)
+        Me.lblSPL7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL7.Name = "lblSPL7"
+        Me.lblSPL7.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL7.TabIndex = 106
+        Me.lblSPL7.Text = "7"
+        Me.lblSPL7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label4
+        'lblSPL6
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Yellow
-        Me.Label4.Location = New System.Drawing.Point(329, 299)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(15, 16)
-        Me.Label4.TabIndex = 105
-        Me.Label4.Text = "6"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL6.AutoSize = True
+        Me.lblSPL6.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL6.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL6.Location = New System.Drawing.Point(329, 299)
+        Me.lblSPL6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL6.Name = "lblSPL6"
+        Me.lblSPL6.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL6.TabIndex = 105
+        Me.lblSPL6.Text = "6"
+        Me.lblSPL6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label5
+        'lblSPL5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Yellow
-        Me.Label5.Location = New System.Drawing.Point(287, 299)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(15, 16)
-        Me.Label5.TabIndex = 104
-        Me.Label5.Text = "5"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL5.AutoSize = True
+        Me.lblSPL5.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL5.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL5.Location = New System.Drawing.Point(287, 299)
+        Me.lblSPL5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL5.Name = "lblSPL5"
+        Me.lblSPL5.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL5.TabIndex = 104
+        Me.lblSPL5.Text = "5"
+        Me.lblSPL5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label6
+        'lblSPL4
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.Yellow
-        Me.Label6.Location = New System.Drawing.Point(239, 299)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(15, 16)
-        Me.Label6.TabIndex = 103
-        Me.Label6.Text = "4"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL4.AutoSize = True
+        Me.lblSPL4.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL4.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL4.Location = New System.Drawing.Point(239, 299)
+        Me.lblSPL4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL4.Name = "lblSPL4"
+        Me.lblSPL4.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL4.TabIndex = 103
+        Me.lblSPL4.Text = "4"
+        Me.lblSPL4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label7
+        'lblSPL3
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Yellow
-        Me.Label7.Location = New System.Drawing.Point(191, 299)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(15, 16)
-        Me.Label7.TabIndex = 102
-        Me.Label7.Text = "3"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL3.AutoSize = True
+        Me.lblSPL3.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL3.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL3.Location = New System.Drawing.Point(191, 299)
+        Me.lblSPL3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL3.Name = "lblSPL3"
+        Me.lblSPL3.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL3.TabIndex = 102
+        Me.lblSPL3.Text = "3"
+        Me.lblSPL3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label8
+        'lblSPL2
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.Yellow
-        Me.Label8.Location = New System.Drawing.Point(145, 299)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(15, 16)
-        Me.Label8.TabIndex = 101
-        Me.Label8.Text = "2"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL2.AutoSize = True
+        Me.lblSPL2.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL2.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL2.Location = New System.Drawing.Point(145, 299)
+        Me.lblSPL2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL2.Name = "lblSPL2"
+        Me.lblSPL2.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL2.TabIndex = 101
+        Me.lblSPL2.Text = "2"
+        Me.lblSPL2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label9
+        'lblSPL1
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.Yellow
-        Me.Label9.Location = New System.Drawing.Point(98, 299)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(15, 16)
-        Me.Label9.TabIndex = 100
-        Me.Label9.Text = "1"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSPL1.AutoSize = True
+        Me.lblSPL1.BackColor = System.Drawing.Color.Transparent
+        Me.lblSPL1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSPL1.ForeColor = System.Drawing.Color.Yellow
+        Me.lblSPL1.Location = New System.Drawing.Point(98, 299)
+        Me.lblSPL1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSPL1.Name = "lblSPL1"
+        Me.lblSPL1.Size = New System.Drawing.Size(15, 16)
+        Me.lblSPL1.TabIndex = 100
+        Me.lblSPL1.Text = "1"
+        Me.lblSPL1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'clbPriestSpells
         '
@@ -2207,9 +2209,9 @@ Partial Class frmWizardry15Base
         Me.nudMageSP2.TabIndex = 58
         Me.nudMageSP2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'epMain
+        'epScenario
         '
-        Me.epMain.ContainerControl = Me
+        Me.epScenario.ContainerControl = Me
         '
         'cmdCancel
         '
@@ -2232,10 +2234,10 @@ Partial Class frmWizardry15Base
         Me.cmdSave.TabIndex = 30
         Me.cmdSave.UseVisualStyleBackColor = True
         '
-        'timMain
+        'timScenario
         '
-        Me.timMain.Enabled = True
-        Me.timMain.Interval = 1000
+        Me.timScenario.Enabled = True
+        Me.timScenario.Interval = 1000
         '
         'frmWizardry15Base
         '
@@ -2250,14 +2252,14 @@ Partial Class frmWizardry15Base
         Me.Controls.Add(Me.cbCharacter)
         Me.Controls.Add(Me.cmdEdit)
         Me.Controls.Add(Me.pbWizardry)
-        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.ssStatus)
         Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.pbBoxArt)
-        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.msScenario)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Yellow
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.MainMenuStrip = Me.msScenario
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -2265,10 +2267,10 @@ Partial Class frmWizardry15Base
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmWizardry15Base"
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.msScenario.ResumeLayout(False)
+        Me.msScenario.PerformLayout()
+        Me.ssStatus.ResumeLayout(False)
+        Me.ssStatus.PerformLayout()
         CType(Me.pbWizardry, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tcWiz.ResumeLayout(False)
         Me.tpStats.ResumeLayout(False)
@@ -2310,7 +2312,7 @@ Partial Class frmWizardry15Base
         CType(Me.nudMageSP1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudMageSP3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudMageSP2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.epMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.epScenario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2318,15 +2320,15 @@ Partial Class frmWizardry15Base
 
     Protected Friend WithEvents pbBoxArt As PictureBox
     Protected Friend WithEvents cmdExit As Button
-    Protected Friend WithEvents MenuStrip1 As MenuStrip
-    Protected Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
-    Protected Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Protected Friend WithEvents StatusStrip1 As StatusStrip
+    Protected Friend WithEvents msScenario As MenuStrip
+    Protected Friend WithEvents tsmiOptions As ToolStripMenuItem
+    Protected Friend WithEvents tsmiOptionsRestore As ToolStripMenuItem
+    Protected Friend WithEvents tsmiOptionsExport As ToolStripMenuItem
+    Protected Friend WithEvents tsmiOptionsSeperator As ToolStripSeparator
+    Protected Friend WithEvents tsmiOptionsExit As ToolStripMenuItem
+    Protected Friend WithEvents tsmiHelp As ToolStripMenuItem
+    Protected Friend WithEvents tsmiHelpAbout As ToolStripMenuItem
+    Protected Friend WithEvents ssStatus As StatusStrip
     Protected Friend WithEvents pbWizardry As PictureBox
     Protected Friend WithEvents cmdEdit As Button
     Protected Friend WithEvents cbCharacter As ComboBox
@@ -2380,12 +2382,12 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents lblPassword As Label
     Protected Friend WithEvents tpItems As TabPage
     Protected Friend WithEvents tpSpellBooks As TabPage
-    Protected Friend WithEvents Label2 As Label
-    Protected Friend WithEvents Label1 As Label
+    Protected Friend WithEvents lblLVLSlash As Label
+    Protected Friend WithEvents lblHPSlash As Label
     Protected Friend WithEvents nudLevelMax As NumericUpDown
     Protected Friend WithEvents nudHitPointsMax As NumericUpDown
-    Protected Friend WithEvents ttMain As ToolTip
-    Protected Friend WithEvents epMain As ErrorProvider
+    Protected Friend WithEvents ttScenario As ToolTip
+    Protected Friend WithEvents epScenario As ErrorProvider
     Protected Friend WithEvents lblEquipped As Label
     Protected Friend WithEvents cbItem1 As ComboBox
     Protected Friend WithEvents chkEquipped1 As CheckBox
@@ -2448,17 +2450,17 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents lblItem3 As Label
     Protected Friend WithEvents lblItem2 As Label
     Protected Friend WithEvents lblItem1 As Label
-    Protected Friend WithEvents lblLevelSP As Label
+    Protected Friend WithEvents lblSPLevel As Label
     Protected Friend WithEvents lblPriestSP As Label
     Protected Friend WithEvents lblMageSP As Label
     Protected Friend WithEvents lblSpellPoints As Label
-    Protected Friend WithEvents Label3 As Label
-    Protected Friend WithEvents Label4 As Label
-    Protected Friend WithEvents Label5 As Label
-    Protected Friend WithEvents Label6 As Label
-    Protected Friend WithEvents Label7 As Label
-    Protected Friend WithEvents Label8 As Label
-    Protected Friend WithEvents Label9 As Label
+    Protected Friend WithEvents lblSPL7 As Label
+    Protected Friend WithEvents lblSPL6 As Label
+    Protected Friend WithEvents lblSPL5 As Label
+    Protected Friend WithEvents lblSPL4 As Label
+    Protected Friend WithEvents lblSPL3 As Label
+    Protected Friend WithEvents lblSPL2 As Label
+    Protected Friend WithEvents lblSPL1 As Label
     Protected Friend WithEvents cmdAllMS As Button
     Protected Friend WithEvents cmdNoneMS As Button
     Protected Friend WithEvents cmdNonePS As Button
@@ -2470,11 +2472,12 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents tsslStatus As ToolStripStatusLabel
     Protected Friend WithEvents tsslMessage As ToolStripStatusLabel
     Protected Friend WithEvents tsslTime As ToolStripStatusLabel
-    Protected Friend WithEvents timMain As Timer
+    Protected Friend WithEvents timScenario As Timer
     Protected Friend WithEvents tcWiz As TabControl
     Protected Friend WithEvents nudAgeInYears As NumericUpDown
     Protected Friend WithEvents nudAgeInWeeks As NumericUpDown
     Protected Friend WithEvents nudGold As NumericUpDown
     Protected Friend WithEvents nudEXP As NumericUpDown
     Protected Friend WithEvents lblOut As Label
+    Friend WithEvents ofdScenario As OpenFileDialog
 End Class

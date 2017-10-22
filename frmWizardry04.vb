@@ -46,7 +46,7 @@ Public Class frmWizardry04
     End Sub
     Protected Overrides Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             MyBase.cbCharacter_SelectedIndexChanged(sender, e)
             'Populate our controls with Character data...
             With CType(mCharacter, Character04)
@@ -57,12 +57,12 @@ Public Class frmWizardry04
                 Me.InitGroup(3, .SummonedMonsterCode(2))
             End With
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
     Protected Overrides Sub cmdSave_Click(sender As Object, e As EventArgs)
         Try
-            Me.epMain.SetError(sender, "")
+            Me.epScenario.SetError(sender, "")
             MyBase.cmdSave_Click(sender, e)
             With CType(mCharacter, Character04)
                 'Groups...
@@ -78,7 +78,7 @@ Public Class frmWizardry04
             End With
             MyBase.cmdSave_Click(sender, e)
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
-            Me.epMain.SetError(sender, ex.ToString)
+            Me.epScenario.SetError(sender, ex.ToString)
         End Try
     End Sub
     Protected Overrides Sub Form_Load(sender As Object, e As EventArgs)
