@@ -1,4 +1,4 @@
-﻿'Wizardry01.cls
+﻿'Wizardry01.vb
 '   Main Class for Proving Grounds of the Mad Overlord...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************

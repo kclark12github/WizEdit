@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmWizardry15Base
     Inherits System.Windows.Forms.Form
 
@@ -185,6 +185,7 @@ Partial Class frmWizardry15Base
         Me.cmdSave = New System.Windows.Forms.Button()
         Me.timScenario = New System.Windows.Forms.Timer(Me.components)
         Me.ofdScenario = New System.Windows.Forms.OpenFileDialog()
+        Me.tsmiOptionsOpen = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.msScenario.SuspendLayout()
         Me.ssStatus.SuspendLayout()
@@ -265,7 +266,7 @@ Partial Class frmWizardry15Base
         '
         'tsmiOptions
         '
-        Me.tsmiOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptionsRestore, Me.tsmiOptionsExport, Me.tsmiOptionsSeperator, Me.tsmiOptionsExit})
+        Me.tsmiOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptionsOpen, Me.tsmiOptionsRestore, Me.tsmiOptionsExport, Me.tsmiOptionsSeperator, Me.tsmiOptionsExit})
         Me.tsmiOptions.ForeColor = System.Drawing.SystemColors.ControlText
         Me.tsmiOptions.Name = "tsmiOptions"
         Me.tsmiOptions.Size = New System.Drawing.Size(61, 20)
@@ -274,24 +275,24 @@ Partial Class frmWizardry15Base
         'tsmiOptionsRestore
         '
         Me.tsmiOptionsRestore.Name = "tsmiOptionsRestore"
-        Me.tsmiOptionsRestore.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsRestore.Size = New System.Drawing.Size(152, 22)
         Me.tsmiOptionsRestore.Text = "&Restore..."
         '
         'tsmiOptionsExport
         '
         Me.tsmiOptionsExport.Name = "tsmiOptionsExport"
-        Me.tsmiOptionsExport.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsExport.Size = New System.Drawing.Size(152, 22)
         Me.tsmiOptionsExport.Text = "E&xport..."
         '
         'tsmiOptionsSeperator
         '
         Me.tsmiOptionsSeperator.Name = "tsmiOptionsSeperator"
-        Me.tsmiOptionsSeperator.Size = New System.Drawing.Size(119, 6)
+        Me.tsmiOptionsSeperator.Size = New System.Drawing.Size(149, 6)
         '
         'tsmiOptionsExit
         '
         Me.tsmiOptionsExit.Name = "tsmiOptionsExit"
-        Me.tsmiOptionsExit.Size = New System.Drawing.Size(122, 22)
+        Me.tsmiOptionsExit.Size = New System.Drawing.Size(152, 22)
         Me.tsmiOptionsExit.Text = "E&xit"
         '
         'tsmiHelp
@@ -2239,6 +2240,12 @@ Partial Class frmWizardry15Base
         Me.timScenario.Enabled = True
         Me.timScenario.Interval = 1000
         '
+        'tsmiOptionsOpen
+        '
+        Me.tsmiOptionsOpen.Name = "tsmiOptionsOpen"
+        Me.tsmiOptionsOpen.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOptionsOpen.Text = "&Open..."
+        '
         'frmWizardry15Base
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2480,4 +2487,5 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents nudEXP As NumericUpDown
     Protected Friend WithEvents lblOut As Label
     Friend WithEvents ofdScenario As OpenFileDialog
+    Friend WithEvents tsmiOptionsOpen As ToolStripMenuItem
 End Class

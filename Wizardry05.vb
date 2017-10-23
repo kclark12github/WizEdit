@@ -1,4 +1,4 @@
-﻿'Wizardry05.cls
+﻿'Wizardry05.vb
 '   Main Class for Heart of the Maelstrom...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
@@ -196,6 +196,7 @@ Public Class Wizardry05
             binReader = New BinaryReader(File.Open(Me.ScenarioDataPath, FileMode.Open))
             binReader.BaseStream.Position = Me.CharacterDataOffset
             For iChar = 1 To Me.CharactersMax
+                Debug.WriteLine(String.Format("Read - Character Data @ 0x{0:X00000}", binReader.BaseStream.Position))
                 Characters(iChar - 1).Read(binReader)
             Next iChar
         Catch ex As Exception
@@ -203,6 +204,23 @@ Public Class Wizardry05
             Throw
         Finally
             If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
+        End Try
+    End Sub
+    Public Overrides Sub Save()
+        Dim binWriter As BinaryWriter = Nothing
+        Dim iChar As Short = 0
+        Try
+            Backup()
+            binWriter = New BinaryWriter(File.Open(Me.ScenarioDataPath, FileMode.Open, FileAccess.Write, FileShare.None))
+            binWriter.BaseStream.Position = Me.CharacterDataOffset
+            For iChar = 1 To Me.CharactersMax
+                Characters(iChar - 1).Save(binWriter)
+            Next iChar
+        Catch ex As Exception
+            Debug.WriteLine(String.Format("{0} encountered saving Character #{1}{2}{3}", New Object() {ex.GetType.Name, iChar, vbCrLf, ex.ToString}))
+            Throw
+        Finally
+            If binWriter IsNot Nothing Then binWriter.Close() : binWriter = Nothing
         End Try
     End Sub
     Public Overrides Sub Show()

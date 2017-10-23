@@ -1,4 +1,4 @@
-﻿'WizEditBase.cls
+﻿'WizEditBase.vb
 '   Base Class for WizEdit...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
@@ -433,7 +433,7 @@ Public Class WizEditBase
             If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
         End Try
     End Sub
-    Public Sub Save()
+    Public Overridable Sub Save()
         Dim binWriter As BinaryWriter = Nothing
         Try
             Backup()

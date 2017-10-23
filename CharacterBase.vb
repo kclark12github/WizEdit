@@ -1,4 +1,4 @@
-﻿'CharacterBase.cls
+﻿'CharacterBase.vb
 '   Character Base Class for WizEdit...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
@@ -124,8 +124,8 @@ Public Class CharacterBase
     Protected mLVL As PointsBase
     Protected mHP As PointsBase
     Protected mSpellBooks(7) As Byte
-    Protected mMageSpellPoints(SpellLevelMax - 1) As UInt16
-    Protected mPriestSpellPoints(SpellLevelMax - 1) As UInt16
+    Protected mMageSpellPoints(SpellLevelMax - 1) As Object
+    Protected mPriestSpellPoints(SpellLevelMax - 1) As Object
     Protected mArmorClass As UInt16
     Protected mLocation As UInt16
     Protected mDown As UInt16
@@ -365,11 +365,11 @@ Public Class CharacterBase
             mSpellBooks(iByte) = IIf(value, mSpellBooks(iByte) Or CByte(2 ^ iBit), mSpellBooks(iByte) And Not CByte(2 ^ iBit))
         End Set
     End Property
-    Public Property MageSpellPoints(ByVal Level As Short) As Int16
+    Public Property MageSpellPoints(ByVal Level As Short) As UInt16
         Get
             Return mMageSpellPoints(Level)
         End Get
-        Set(value As Int16)
+        Set(value As UInt16)
             mMageSpellPoints(Level) = value
         End Set
     End Property
@@ -425,11 +425,11 @@ Public Class CharacterBase
             mSpellBooks(iByte) = IIf(value, mSpellBooks(iByte) Or CByte(2 ^ iBit), mSpellBooks(iByte) And Not CByte(2 ^ iBit))
         End Set
     End Property
-    Public Property PriestSpellPoints(ByVal Level As Short) As Int16
+    Public Property PriestSpellPoints(ByVal Level As Short) As UInt16
         Get
             Return mPriestSpellPoints(Level)
         End Get
-        Set(value As Int16)
+        Set(value As UInt16)
             mPriestSpellPoints(Level) = value
         End Set
     End Property
@@ -606,37 +606,29 @@ Public Class CharacterBase
             .BaseStream.Position += NamePasswordLengthMax - mName.Length
             .Write(mPassword)                              '0x1D810   Pascal Varying Length String Format...
             .BaseStream.Position += NamePasswordLengthMax - mPassword.Length
-
             .Write(mOut)                                   '0x1D820    00 00 = No; 01 00 = Yes;
             .Write(mRace)                                  '0x1D822    01 00 = Human
             .Write(mProfession)                            '0x1D824    06 00 = Lord
             .Write(mAgeInWeeks)                            '0x1D826    0C 03 = Weeks Alive...
             .Write(mStatus)                                '0x1D828    00 00 = OK
             .Write(mAlignment)                             '0x1D82A    02 00 = Neutral
-
             .Write(Me.Statistics)                          '0x1D82C    94 52 94 52 = 20/20/20/20/20/20
             .BaseStream.Position += 4                      '0x1D830
-
             For i As Short = 0 To 2                        '0x1D834
                 .Write(mGoldPacked(i))
             Next i
-
             .Write(mItemCount)                             '0x1D83A
             For i As Short = 0 To ItemListMax - 1          '0x1D83C    List of Items (stowing not an option in Wiz01...)
                 mItemList(i).Save(binWriter)
             Next i
-
             For i As Short = 0 To 2                        '0x1D87C
                 .Write(mExperiencePacked(i))
             Next i
-
             mLVL.Save(binWriter)                           '0x1D882
             mHP.Save(binWriter)                            '0x1D886
-
             For i As Short = 0 To 7                        '0x1D88A    Need to mask as bits...
                 .Write(mSpellBooks(i))
             Next i
-
             For i As Short = 0 To SpellLevelMax - 1        '0x1D892
                 .Write(mMageSpellPoints(i))
             Next i

@@ -195,8 +195,9 @@ Public Class frmWizardry15Base
             End If
         Next i
     End Sub
-    Protected Overridable Sub RefreshData(ByVal Reread As Boolean)
+    Protected Overridable Sub RefreshData()
         'Populate our List controls here - not specific to any given Character...
+        mBase.Read()
         Me.cbCharacter.Items.Clear()
         For iChar As Short = 0 To mBase.Characters.Length - 1
             If mBase.Characters(iChar).Name <> "" Then Me.cbCharacter.Items.Add(mBase.Characters(iChar).Tag)
@@ -216,8 +217,6 @@ Public Class frmWizardry15Base
         Me.cbItem8.Items.Clear() : Me.cbItem8.Items.AddRange(mBase.MasterItemList)
         Me.clbMageSpells.Items.Clear() : Me.clbMageSpells.Items.AddRange(mBase.MageSpellList)
         Me.clbPriestSpells.Items.Clear() : Me.clbPriestSpells.Items.AddRange(mBase.PriestSpellList)
-
-        If Reread Then mBase.Read()
     End Sub
     Protected Friend Overridable Sub ToggleEditMode(ByVal EditMode As Boolean)
         mEditMode = EditMode
@@ -230,6 +229,16 @@ Public Class frmWizardry15Base
         If EditMode Then ProtectItems(Me.nudItemCount.Value)
         tsslStatus.Visible = EditMode
     End Sub
+    Protected Function UpdateChangedData() As Boolean
+        If mChanged Then
+            Select Case MessageBox.Show(Me, "Update Save Game file?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+                Case DialogResult.Yes : mBase.Save()
+                Case DialogResult.No
+                Case DialogResult.Cancel : Return False
+            End Select
+        End If
+        Return True
+    End Function
 #End Region
 #Region "Event Handlers"
     Protected Overridable Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCharacter.SelectedIndexChanged
@@ -369,8 +378,8 @@ Public Class frmWizardry15Base
                 For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
                     .PriestSpellBook(iSpell) = Me.clbPriestSpells.GetItemChecked(iSpell - 1)
                 Next
-                .MageSpellPoints(0) = Me.nudMageSP1.Value : .MageSpellPoints(1) = Me.nudMageSP2.Value : .MageSpellPoints(2) = Me.nudMageSP3.Value : .MageSpellPoints(3) = Me.nudMageSP4.Value : .MageSpellPoints(4) = Me.nudMageSP5.Value : .MageSpellPoints(5) = Me.nudMageSP6.Value : .MageSpellPoints(6) = Me.nudMageSP7.Value
-                .PriestSpellPoints(0) = Me.nudPriestSP1.Value : .PriestSpellPoints(1) = Me.nudPriestSP2.Value : .PriestSpellPoints(2) = Me.nudPriestSP3.Value : .PriestSpellPoints(3) = Me.nudPriestSP4.Value : .PriestSpellPoints(4) = Me.nudPriestSP5.Value : .PriestSpellPoints(5) = Me.nudPriestSP6.Value : .PriestSpellPoints(6) = Me.nudPriestSP7.Value
+                .MageSpellPoints(0) = CShort(Me.nudMageSP1.Value) : .MageSpellPoints(1) = CShort(Me.nudMageSP2.Value) : .MageSpellPoints(2) = CShort(Me.nudMageSP3.Value) : .MageSpellPoints(3) = CShort(Me.nudMageSP4.Value) : .MageSpellPoints(4) = CShort(Me.nudMageSP5.Value) : .MageSpellPoints(5) = CShort(Me.nudMageSP6.Value) : .MageSpellPoints(6) = CShort(Me.nudMageSP7.Value)
+                .PriestSpellPoints(0) = CShort(Me.nudPriestSP1.Value) : .PriestSpellPoints(1) = CShort(Me.nudPriestSP2.Value) : .PriestSpellPoints(2) = CShort(Me.nudPriestSP3.Value) : .PriestSpellPoints(3) = CShort(Me.nudPriestSP4.Value) : .PriestSpellPoints(4) = CShort(Me.nudPriestSP5.Value) : .PriestSpellPoints(5) = CShort(Me.nudPriestSP6.Value) : .PriestSpellPoints(6) = CShort(Me.nudPriestSP7.Value)
 
                 mChanged = True
                 ToggleEditMode(False)
@@ -382,18 +391,12 @@ Public Class frmWizardry15Base
     Protected Overridable Sub Form_Closing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If DesignMode Then Exit Sub   'Form Designer
         If mEditMode Then Beep() : e.Cancel = True : Exit Sub
-        If mChanged Then
-            Select Case MessageBox.Show(Me, "Update Save Game file?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
-                Case DialogResult.Yes : mBase.Save()
-                Case DialogResult.No
-                Case DialogResult.Cancel : e.Cancel = True
-            End Select
-        End If
+        If Not UpdateChangedData() Then e.Cancel = True : Exit Sub
     End Sub
     Protected Overridable Sub Form_Load(sender As Object, e As EventArgs) Handles Me.Load
         If DesignMode Then Exit Sub   'Form Designer
         Try
-            RefreshData(False)
+            RefreshData()
             ToggleEditMode(False)
             tsslMessage.Text = mBase.ScenarioDataPath
             timScenario_Tick(Nothing, Nothing)
@@ -412,6 +415,39 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub timScenario_Tick(sender As Object, e As EventArgs) Handles timScenario.Tick
         tsslTime.Text = String.Format("{0:hh:mm tt}", Now)
+    End Sub
+    Protected Sub tsmiOptionsOpen_Click(sender As Object, e As EventArgs) Handles tsmiOptionsOpen.Click
+        Dim Path As String = ""
+        Dim fi As FileInfo = Nothing
+        Try
+            Try : Path = mBase.ScenarioDataPath : Catch ex As FileNotFoundException : End Try
+            With ofdScenario
+                If Path <> "" Then fi = New FileInfo(Path) : .InitialDirectory = fi.DirectoryName
+                .FileName = ""
+                Dim Scenario As String = Me.Text.Substring(9, 3).Trim.ToUpper
+                Select Case Scenario
+                    Case "01", "02", "03", "04", "05"
+                        .Filter = String.Format("{0} Saved Games (SAVE{1}.DSK)|SAVE{1}.DSK", Me.Text, CShort(Scenario))
+                    Case "06", "07"
+                        .Filter = String.Format("{0} Saved Games (SCENARIO.DBS)|SCENARIO.DBS", Me.Text)
+                    Case "07G"
+                        .Filter = String.Format("{0} Saved Games (SCENARIO.GLD)|SCENARIO.GLD", Me.Text)
+                End Select
+                .FilterIndex = 0
+                .ShowReadOnly = False
+                .Multiselect = False
+                .CheckPathExists = True
+                If .ShowDialog(Me) = DialogResult.Cancel Then
+                    MessageBox.Show(Me, "Operation canceled at User's request.", "Restore", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Try
+                End If
+                mBase.ScenarioDataPath = .FileName
+                UpdateChangedData()
+                RefreshData()
+            End With
+        Catch ex As Exception
+            MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
     End Sub
     Protected Sub tsmiOptionsRestore_Click(sender As Object, e As EventArgs) Handles tsmiOptionsRestore.Click
         Try
@@ -440,7 +476,7 @@ Public Class frmWizardry15Base
                 MessageBox.Show(Me, String.Format("Are you sure you want to replace {0} with {1}?", fi.Name, .FileName), "Restore", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'Do not use mBase.ScenarioDataPath as it checks for the existence of the file and that would screw us up attempting to replace it...
                 File.Delete(fi.FullName) : File.Copy(.FileName, fi.FullName)
-                RefreshData(True)
+                RefreshData()
             End With
         Catch ex As Exception
             MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

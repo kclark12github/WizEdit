@@ -1,4 +1,4 @@
-﻿'MonsterGroupData.cls
+﻿'MonsterGroupData.vb
 '   Item Metadata Class...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************

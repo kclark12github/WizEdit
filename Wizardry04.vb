@@ -1,4 +1,4 @@
-﻿'Wizardry04.cls
+﻿'Wizardry04.vb
 '   Main Class for The Return of Werdna...
 '   Copyright © 2017, Ken Clark
 '*********************************************************************************************************************************
@@ -323,6 +323,25 @@ Public Class Wizardry04
             Throw
         Finally
             If binReader IsNot Nothing Then binReader.Close() : binReader = Nothing
+        End Try
+    End Sub
+    Public Overrides Sub Save()
+        Dim binWriter As BinaryWriter = Nothing
+        Dim iGame As Short = 0
+        Try
+            Backup()
+            'Instead of individual characters Wizardry (4) supports up to 8 games...
+            'This is comparable when you consider the nature of the game - Werdna is the only "Character".
+            binWriter = New BinaryWriter(File.Open(Me.ScenarioDataPath, FileMode.Open, FileAccess.Write, FileShare.None))
+            binWriter.BaseStream.Position = Me.CharacterDataOffset
+            For iGame = 1 To Me.CharactersMax
+                Characters(iGame - 1).Save(binWriter)
+            Next iGame
+        Catch ex As Exception
+            Debug.WriteLine(String.Format("{0} encountered saving Game #{1}{2}{3}", New Object() {ex.GetType.Name, iGame, vbCrLf, ex.ToString}))
+            Throw
+        Finally
+            If binWriter IsNot Nothing Then binWriter.Close() : binWriter = Nothing
         End Try
     End Sub
     Public Overrides Sub Show()

@@ -65,10 +65,7 @@ Public Class frmMain
 
             tsslMessage.Text = SelectedScenario.ScenarioDataPath    'Will trigger NotFoundException if appropriate...
             Me.Hide() : bHidden = True
-
-            SelectedScenario.Read()
             SelectedScenario.Show()
-
             tsslMessage.Text = ""
         Catch ex As FileNotFoundException : tsslMessage.Text = ex.Message : epMain.SetError(sender, ex.Message)
             cmdBrowse_Click(sender, e)
@@ -129,12 +126,10 @@ Public Class frmMain
             End If
             lblSelectedScenario.Visible = True
 
-            cmdOK.Visible = True
             cmdExit.Visible = False
             cmdCancel.Visible = True
-            lblFile.Visible = True
-            txtFile.Visible = True
-            cmdBrowse.Visible = True
+            'cmdOK.Visible = True
+            'lblFile.Visible = True : txtFile.Visible = True : cmdBrowse.Visible = True
 
             'dFileName = GetRegSetting("Environment", "Wiz" & Scenario & "DataFile", "")
             If dFileName = "" Then
@@ -171,6 +166,13 @@ Public Class frmMain
                     'dFilter = "Saved Games (*.GLD)|*.GLD|All Files (*.*)|*.*"
             End Select
             If SelectedScenario IsNot Nothing Then Me.Icon = SelectedScenario.Icon
+            Try
+                If SelectedScenario.ScenarioDataPath <> "" Then cmdOK_Click(sender, e)
+            Catch ex As FileNotFoundException
+                cmdOK.Visible = True
+                lblFile.Visible = True : txtFile.Visible = True : cmdBrowse.Visible = True
+                cmdBrowse_Click(sender, e)
+            End Try
         Catch ex As Exception : MessageBox.Show(Me, ex.Message, ex.GetType.Name)
         End Try
     End Sub

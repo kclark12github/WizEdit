@@ -39,15 +39,14 @@ Public Class frmWizardry04
         End Select
         cbGroup.SelectedIndex = FindGroup(cbGroup, GroupCode)
     End Sub
-    Protected Overrides Sub RefreshData(ByVal Reread As Boolean)
-        MyBase.RefreshData(False)
+    Protected Overrides Sub RefreshData()
+        MyBase.RefreshData()
         For iChar As Short = 0 To mBase.Characters.Length - 1
             cbCharacter.Items(iChar) = String.Format("Save Game {0}", iChar + 1)
         Next iChar
         Me.cbGroup1.Items.Clear() : Me.cbGroup1.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
         Me.cbGroup2.Items.Clear() : Me.cbGroup2.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
         Me.cbGroup3.Items.Clear() : Me.cbGroup3.Items.AddRange(CType(mBase, Wizardry04).MasterMonsterGroupList)
-        If Reread Then mBase.Read()
     End Sub
     Protected Friend Overrides Sub ToggleEditMode(ByVal EditMode As Boolean)
         MyBase.ToggleEditMode(EditMode)
