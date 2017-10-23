@@ -482,5 +482,38 @@ Public Class frmWizardry15Base
             MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
+    Protected Sub tsmiOptionsExport_Click(sender As Object, e As EventArgs) Handles tsmiOptionsExport.Click
+        Dim textWriter As StreamWriter = Nothing
+        Try
+            Dim fi As FileInfo = New FileInfo(mBase.ScenarioDataPath)
+            Dim fs() As String = fi.Name.Split({"."c})
+            With sfdScenario
+                .InitialDirectory = fi.DirectoryName
+                Dim Scenario As String = Me.Text.Substring(9, 3).Trim.ToUpper
+                .Filter = String.Format("Text (Export{0}.txt)|Export{0}.txt|All Files (*.*)|*.*", CShort(Scenario))
+                .FilterIndex = 0
+                .FileName = String.Format("Export{0}.txt", CShort(Scenario))
+                .CheckPathExists = False
+                If .ShowDialog(Me) = DialogResult.Cancel Then
+                    MessageBox.Show(Me, "Operation canceled at User's request.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Try
+                End If
+                Dim sep1 As String = New String("="c, 132)
+                Dim sep2 As String = New String("-"c, 132)
+                textWriter = New StreamWriter(File.Open(.FileName, FileMode.Create))
+                textWriter.WriteLine(sep1)
+                For iChar As Short = 0 To cbCharacter.Items.Count - 1
+                    If iChar > 0 Then textWriter.WriteLine(sep2)
+                    If CShort(Scenario) = 4 Then textWriter.WriteLine(String.Format("Save Game #{0}", iChar + 1))
+                    textWriter.WriteLine(mBase.GetCharacter(cbCharacter.Items(iChar)).ToString)
+                Next iChar
+                textWriter.WriteLine(sep1)
+            End With
+        Catch ex As Exception
+            MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        Finally
+            If textWriter IsNot Nothing Then textWriter.Close() : textWriter = Nothing
+        End Try
+    End Sub
 #End Region
 End Class

@@ -27,12 +27,9 @@ Partial Class frmWizardry15Base
         Me.cmdExit = New System.Windows.Forms.Button()
         Me.msScenario = New System.Windows.Forms.MenuStrip()
         Me.tsmiOptions = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiOptionsOpen = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiOptionsRestore = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiOptionsExport = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiOptionsSeperator = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsmiOptionsExit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiHelp = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiHelpAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.ssStatus = New System.Windows.Forms.StatusStrip()
         Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tsslMessage = New System.Windows.Forms.ToolStripStatusLabel()
@@ -185,7 +182,7 @@ Partial Class frmWizardry15Base
         Me.cmdSave = New System.Windows.Forms.Button()
         Me.timScenario = New System.Windows.Forms.Timer(Me.components)
         Me.ofdScenario = New System.Windows.Forms.OpenFileDialog()
-        Me.tsmiOptionsOpen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.sfdScenario = New System.Windows.Forms.SaveFileDialog()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.msScenario.SuspendLayout()
         Me.ssStatus.SuspendLayout()
@@ -256,7 +253,7 @@ Partial Class frmWizardry15Base
         '
         'msScenario
         '
-        Me.msScenario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptions, Me.tsmiHelp})
+        Me.msScenario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptions})
         Me.msScenario.Location = New System.Drawing.Point(0, 0)
         Me.msScenario.Name = "msScenario"
         Me.msScenario.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
@@ -266,11 +263,17 @@ Partial Class frmWizardry15Base
         '
         'tsmiOptions
         '
-        Me.tsmiOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptionsOpen, Me.tsmiOptionsRestore, Me.tsmiOptionsExport, Me.tsmiOptionsSeperator, Me.tsmiOptionsExit})
+        Me.tsmiOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOptionsOpen, Me.tsmiOptionsRestore, Me.tsmiOptionsExport})
         Me.tsmiOptions.ForeColor = System.Drawing.SystemColors.ControlText
         Me.tsmiOptions.Name = "tsmiOptions"
         Me.tsmiOptions.Size = New System.Drawing.Size(61, 20)
         Me.tsmiOptions.Text = "&Options"
+        '
+        'tsmiOptionsOpen
+        '
+        Me.tsmiOptionsOpen.Name = "tsmiOptionsOpen"
+        Me.tsmiOptionsOpen.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOptionsOpen.Text = "&Open..."
         '
         'tsmiOptionsRestore
         '
@@ -283,30 +286,6 @@ Partial Class frmWizardry15Base
         Me.tsmiOptionsExport.Name = "tsmiOptionsExport"
         Me.tsmiOptionsExport.Size = New System.Drawing.Size(152, 22)
         Me.tsmiOptionsExport.Text = "E&xport..."
-        '
-        'tsmiOptionsSeperator
-        '
-        Me.tsmiOptionsSeperator.Name = "tsmiOptionsSeperator"
-        Me.tsmiOptionsSeperator.Size = New System.Drawing.Size(149, 6)
-        '
-        'tsmiOptionsExit
-        '
-        Me.tsmiOptionsExit.Name = "tsmiOptionsExit"
-        Me.tsmiOptionsExit.Size = New System.Drawing.Size(152, 22)
-        Me.tsmiOptionsExit.Text = "E&xit"
-        '
-        'tsmiHelp
-        '
-        Me.tsmiHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiHelpAbout})
-        Me.tsmiHelp.Name = "tsmiHelp"
-        Me.tsmiHelp.Size = New System.Drawing.Size(44, 20)
-        Me.tsmiHelp.Text = "&Help"
-        '
-        'tsmiHelpAbout
-        '
-        Me.tsmiHelpAbout.Name = "tsmiHelpAbout"
-        Me.tsmiHelpAbout.Size = New System.Drawing.Size(116, 22)
-        Me.tsmiHelpAbout.Text = "&About..."
         '
         'ssStatus
         '
@@ -2240,12 +2219,6 @@ Partial Class frmWizardry15Base
         Me.timScenario.Enabled = True
         Me.timScenario.Interval = 1000
         '
-        'tsmiOptionsOpen
-        '
-        Me.tsmiOptionsOpen.Name = "tsmiOptionsOpen"
-        Me.tsmiOptionsOpen.Size = New System.Drawing.Size(152, 22)
-        Me.tsmiOptionsOpen.Text = "&Open..."
-        '
         'frmWizardry15Base
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2331,10 +2304,6 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents tsmiOptions As ToolStripMenuItem
     Protected Friend WithEvents tsmiOptionsRestore As ToolStripMenuItem
     Protected Friend WithEvents tsmiOptionsExport As ToolStripMenuItem
-    Protected Friend WithEvents tsmiOptionsSeperator As ToolStripSeparator
-    Protected Friend WithEvents tsmiOptionsExit As ToolStripMenuItem
-    Protected Friend WithEvents tsmiHelp As ToolStripMenuItem
-    Protected Friend WithEvents tsmiHelpAbout As ToolStripMenuItem
     Protected Friend WithEvents ssStatus As StatusStrip
     Protected Friend WithEvents pbWizardry As PictureBox
     Protected Friend WithEvents cmdEdit As Button
@@ -2488,4 +2457,5 @@ Partial Class frmWizardry15Base
     Protected Friend WithEvents lblOut As Label
     Friend WithEvents ofdScenario As OpenFileDialog
     Friend WithEvents tsmiOptionsOpen As ToolStripMenuItem
+    Friend WithEvents sfdScenario As SaveFileDialog
 End Class

@@ -333,7 +333,7 @@ Public Class CharacterBase
     End Property
     Public ReadOnly Property LocationFull As String
         Get
-            Return String.Format("{0} (from the steps leading to the castle)", Me.Location)
+            Return String.Format("{0}{1}", Me.Location, IIf(mLocation = 0, "", " (from the steps leading to the castle)"))
         End Get
     End Property
     Public ReadOnly Property LVL As PointsBase
@@ -644,7 +644,7 @@ Public Class CharacterBase
         End With
     End Sub
     Public Overrides Function ToString() As String
-        ToString = String.Format("Name:               {1}{2}{0}", vbCrLf, Me.Name, Me.HonorsShort)
+        ToString = String.Format("Name:               {1} {2}{0}", vbCrLf, Me.Name, Me.HonorsShort)
         ToString &= String.Format("Password:           {1}{0}", vbCrLf, Me.Password)
         ToString &= String.Format("On Expedition:      {1}{0}", vbCrLf, IIf(Me.Out, "YES", "NO"))
         ToString &= String.Format("Location:           {1}{0}", vbCrLf, Me.LocationFull)
@@ -653,7 +653,8 @@ Public Class CharacterBase
         ToString &= String.Format("Age:                {1} ({2} weeks){0}", vbCrLf, Me.Age, Me.AgeInWeeks)
         ToString &= String.Format("Status:             {1}{0}", vbCrLf, Me.Status)
         ToString &= String.Format("Alignment:          {1}{0}", vbCrLf, Me.Alignment)
-        ToString &= String.Format("Honors:             {1}{0}", vbCrLf, Me.HonorsFull)
+        ToString &= String.Format("Honors:             {0}", vbCrLf)
+        ToString &= String.Format("{1}{2}{0}", vbCrLf, vbTab, Me.HonorsFull.Replace(vbCrLf, vbCrLf & vbTab))
         ToString &= String.Format("Level:              {1}{0}", vbCrLf, Me.Level)
         ToString &= String.Format("Hit Points:         {1}{0}", vbCrLf, Me.HitPoints)
         ToString &= String.Format("Gold Pieces:        {1}{0}", vbCrLf, Me.Gold)
@@ -668,24 +669,24 @@ Public Class CharacterBase
         ToString &= String.Format("   Agility:         {1}{0}", vbCrLf, mAgility)
         ToString &= String.Format("   Luck:            {1}{0}", vbCrLf, mLuck)
 
-        ToString &= String.Format("{0}List of Items (Currently carrying {1} items)...{0}", vbCrLf, Me.Items.Length)
-        For iItem As Integer = 0 To Me.Items.Length - 1
-            ToString &= String.Format("{1}{2:D}) {3}{0}", New Object() {vbCrLf, vbTab, iItem, Me.Items(iItem).ToString})
+        ToString &= String.Format("{0}List of Items (Currently carrying {1} items)...{0}", vbCrLf, Me.ItemCount)
+        For iItem As Integer = 0 To Me.ItemCount - 1
+            ToString &= String.Format("{1}{2:D}) {3}{0}", New Object() {vbCrLf, vbTab, iItem + 1, Me.Items(iItem).ToString})
         Next iItem
 
         'SpellBooks...
         ToString &= String.Format("{0}Mage SpellBook...{0}", vbCrLf)
         For iSpell As Short = 1 To mBase.MageSpellBook.Length - 1
-            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString, IIf(Me.MageSpellBook(iSpell), "Yes", "No")})
+            If Me.MageSpellBook(iSpell) Then ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString})
         Next iSpell
         ToString &= String.Format("{0}Mage Spell Points:    {1}", vbCrLf, mMageSpellPoints(0))
         For iPoints As Integer = 1 To mMageSpellPoints.Length - 1
             ToString &= String.Format("/{0}", mMageSpellPoints(iPoints))
         Next iPoints
         ToString &= String.Format("{0}Priest SpellBook...{0}", vbCrLf)
-        For iSpell As Short = 0 To mBase.PriestSpellBook.Length - 1
-            ToString &= String.Format("{1}{2:00}) {3}; Known: {4}{0}", New Object() {vbCrLf, vbTab, iSpell + 1, mBase.PriestSpellBook(iSpell).ToString, IIf(Me.PriestSpellBook(iSpell), "Yes", "No")})
-        Next iSpell
+        For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+            If Me.PriestSpellBook(iSpell) Then ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.PriestSpellBook(iSpell - 1).ToString})
+        Next
         ToString &= String.Format("{0}Priest Spell Points:  {1}", vbCrLf, mPriestSpellPoints(0))
         For iPoints As Integer = 1 To mPriestSpellPoints.Length - 1
             ToString &= String.Format("/{0}", mPriestSpellPoints(iPoints))

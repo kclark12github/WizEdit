@@ -194,4 +194,13 @@ Public Class Character04
             .BaseStream.Position += 4 + (16 * 15)           '0x4AD0C-FF 
         End With
     End Sub
+    Public Overrides Function ToString() As String
+        Dim baseToString As String = MyBase.ToString
+        Dim iGroup As Short = 1
+        baseToString &= String.Format("{0}Summoned Monster Groups...{0}", vbCrLf)
+        For i As Short = 0 To SummonedMonsterGroupsMax - 1
+            If mSummonedMonsterGroupCount(i) > 0 Then baseToString &= String.Format("{1}{2}) {3} {4}{0}", New Object() {vbCrLf, vbTab, iGroup, mSummonedMonsterGroupCount(i), mSummonedMonsterGroupName(i)}) : iGroup += 1
+        Next i
+        Return baseToString
+    End Function
 End Class

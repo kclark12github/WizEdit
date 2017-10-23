@@ -207,4 +207,56 @@ Public Class Character05
         '3) 0x4DEC
         '4) 0x4EE2
     End Sub
+    Public Overrides Function ToString() As String
+        ToString = String.Format("Name:               {1} {2}{0}", vbCrLf, Me.Name, Me.HonorsShort)
+        ToString &= String.Format("Password:           {1}{0}", vbCrLf, Me.Password)
+        ToString &= String.Format("On Expedition:      {1}{0}", vbCrLf, IIf(Me.Out, "YES", "NO"))
+        ToString &= String.Format("Location:           {1}{0}", vbCrLf, Me.LocationFull)
+        ToString &= String.Format("Race:               {1}{0}", vbCrLf, Me.Race)
+        ToString &= String.Format("Profession:         {1}{0}", vbCrLf, Me.Profession)
+        ToString &= String.Format("Age:                {1} ({2} weeks){0}", vbCrLf, Me.Age, Me.AgeInWeeks)
+        ToString &= String.Format("Status:             {1}{0}", vbCrLf, Me.Status)
+        ToString &= String.Format("Alignment:          {1}{0}", vbCrLf, Me.Alignment)
+        ToString &= String.Format("Honors:             {0}", vbCrLf)
+        ToString &= String.Format("{1}{2}{0}", vbCrLf, vbTab, Me.HonorsFull.Replace(vbCrLf, vbCrLf & vbTab))
+        ToString &= String.Format("Level:              {1}{0}", vbCrLf, Me.Level)
+        ToString &= String.Format("Hit Points:         {1}{0}", vbCrLf, Me.HitPoints)
+        ToString &= String.Format("Gold Pieces:        {1}{0}", vbCrLf, Me.Gold)
+        ToString &= String.Format("Experience Points:  {1}{0}", vbCrLf, Me.Experience)
+        ToString &= String.Format("Armor Class:        {1}{0}", vbCrLf, Me.ArmorClass)
+        ToString &= String.Format("Swim:               {1}{0}", vbCrLf, "?")
+        ToString &= String.Format("Marks:              {1}{0}", vbCrLf, Me.Marks)
+        ToString &= String.Format("RIP:                {1}{0}", vbCrLf, Me.RIP)
+
+        ToString &= String.Format("{0}Basic Statistics...{0}", vbCrLf)
+        ToString &= String.Format("   Strength:        {1}{0}", vbCrLf, mStrength)
+        ToString &= String.Format("   Intelligence:    {1}{0}", vbCrLf, mIntelligence)
+        ToString &= String.Format("   Piety:           {1}{0}", vbCrLf, mPiety)
+        ToString &= String.Format("   Vitality:        {1}{0}", vbCrLf, mVitality)
+        ToString &= String.Format("   Agility:         {1}{0}", vbCrLf, mAgility)
+        ToString &= String.Format("   Luck:            {1}{0}", vbCrLf, mLuck)
+
+        ToString &= String.Format("{0}List of Items (Currently carrying {1} items)...{0}", vbCrLf, Me.ItemCount)
+        For iItem As Integer = 0 To Me.ItemCount - 1
+            ToString &= String.Format("{1}{2:D}) {3}{0}", New Object() {vbCrLf, vbTab, iItem + 1, Me.Items(iItem).ToString})
+        Next iItem
+
+        'SpellBooks...
+        ToString &= String.Format("{0}Mage SpellBook...{0}", vbCrLf)
+        For iSpell As Short = 1 To mBase.MageSpellBook.Length - 1
+            If Me.MageSpellBook(iSpell) Then ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.MageSpellBook(iSpell).ToString})
+        Next iSpell
+        ToString &= String.Format("{0}Mage Spell Points:    {1}", vbCrLf, myMageSpellPoints(0))
+        For iPoints As Integer = 1 To myMageSpellPoints.Length - 1
+            ToString &= String.Format("/{0}", myMageSpellPoints(iPoints))
+        Next iPoints
+        ToString &= String.Format("{0}Priest SpellBook...{0}", vbCrLf)
+        For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+            If Me.PriestSpellBook(iSpell) Then ToString &= String.Format("{1}{2:00}) {3}{0}", New Object() {vbCrLf, vbTab, iSpell, mBase.PriestSpellBook(iSpell - 1).ToString})
+        Next
+        ToString &= String.Format("{0}Priest Spell Points:  {1}", vbCrLf, myPriestSpellPoints(0))
+        For iPoints As Integer = 1 To myPriestSpellPoints.Length - 1
+            ToString &= String.Format("/{0}", myPriestSpellPoints(iPoints))
+        Next iPoints
+    End Function
 End Class
