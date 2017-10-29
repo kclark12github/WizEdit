@@ -395,6 +395,138 @@ Public Class WizEditBase
         End Try
     End Function
 #End Region
+    Public Function EXPRequiredForNextLevel(ByVal LVL As Integer, ByVal Profession As enumProfession) As Decimal
+        Select Case Profession
+            Case enumProfession.Fighter
+                Select Case LVL
+                    Case 0 : Return 1000
+                    Case 1 : Return 1724
+                    Case 2 : Return 2972
+                    Case 3 : Return 5124
+                    Case 4 : Return 8834
+                    Case 5 : Return 15231
+                    Case 6 : Return 26250
+                    Case 7 : Return 45275
+                    Case 8 : Return 78060
+                    Case 9 : Return 134586
+                    Case 10 : Return 232044
+                    Case 11 : Return 400075
+                    Case Else : Return 400075 + (289709 * (LVL - 11))
+                End Select
+            Case enumProfession.Mage
+                Select Case LVL
+                    Case 0 : Return 1100
+                    Case 1 : Return 1896
+                    Case 2 : Return 3258
+                    Case 3 : Return 5634
+                    Case 4 : Return 9713
+                    Case 5 : Return 16746
+                    Case 6 : Return 28872
+                    Case 7 : Return 49779
+                    Case 8 : Return 85825
+                    Case 9 : Return 147974
+                    Case 10 : Return 255127
+                    Case 11 : Return 439874
+                    Case Else : Return 439874 + (318529 * (LVL - 11))
+                End Select
+            Case enumProfession.Priest
+                Select Case LVL
+                    Case 0 : Return 1050
+                    Case 1 : Return 1810
+                    Case 2 : Return 3120
+                    Case 3 : Return 5379
+                    Case 4 : Return 9274
+                    Case 5 : Return 15989
+                    Case 6 : Return 27567
+                    Case 7 : Return 47529
+                    Case 8 : Return 81946
+                    Case 9 : Return 141286
+                    Case 10 : Return 243596
+                    Case 11 : Return 419993
+                    Case Else : Return 419993 + (304132 * (LVL - 11))
+                End Select
+            Case enumProfession.Thief
+                Select Case LVL
+                    Case 0 : Return 900
+                    Case 1 : Return 1551
+                    Case 2 : Return 2674
+                    Case 3 : Return 4610
+                    Case 4 : Return 7948
+                    Case 5 : Return 13703
+                    Case 6 : Return 23625
+                    Case 7 : Return 40732
+                    Case 8 : Return 70227
+                    Case 9 : Return 121081
+                    Case 10 : Return 208760
+                    Case 11 : Return 359931
+                    Case Else : Return 359931 + (260639 * (LVL - 11))
+                End Select
+            Case enumProfession.Bishop
+                Select Case LVL
+                    Case 0 : Return 1200
+                    Case 1 : Return 2105
+                    Case 2 : Return 3692
+                    Case 3 : Return 5477
+                    Case 4 : Return 11353
+                    Case 5 : Return 19935
+                    Case 6 : Return 34973
+                    Case 7 : Return 61356
+                    Case 8 : Return 107642
+                    Case 9 : Return 188845
+                    Case 10 : Return 331307
+                    Case 11 : Return 581240
+                    Case Else : Return 581240 + (438479 * (LVL - 11))
+                End Select
+            Case enumProfession.Samurai
+                Select Case LVL
+                    Case 0 : Return 1250
+                    Case 1 : Return 2192
+                    Case 2 : Return 3845
+                    Case 3 : Return 5745
+                    Case 4 : Return 11833
+                    Case 5 : Return 20759
+                    Case 6 : Return 36419
+                    Case 7 : Return 63892
+                    Case 8 : Return 112091
+                    Case 9 : Return 196650
+                    Case 10 : Return 345000
+                    Case 11 : Return 605263
+                    Case Else : Return 605263 + (456601 * (LVL - 11))
+                End Select
+            Case enumProfession.Lord
+                Select Case LVL
+                    Case 0 : Return 1300
+                    Case 1 : Return 2280
+                    Case 2 : Return 4000
+                    Case 3 : Return 7017
+                    Case 4 : Return 12310
+                    Case 5 : Return 21595
+                    Case 6 : Return 37887
+                    Case 7 : Return 66458
+                    Case 8 : Return 116610
+                    Case 9 : Return 204578
+                    Case 10 : Return 358908
+                    Case 11 : Return 629663
+                    Case Else : Return 629663 + (475008 * (LVL - 11))
+                End Select
+            Case enumProfession.Ninja
+                Select Case LVL
+                    Case 0 : Return 1450
+                    Case 1 : Return 2543
+                    Case 2 : Return 4451
+                    Case 3 : Return 7826
+                    Case 4 : Return 13729
+                    Case 5 : Return 24085
+                    Case 6 : Return 42254
+                    Case 7 : Return 74129
+                    Case 8 : Return 130050
+                    Case 9 : Return 228157
+                    Case 10 : Return 400275
+                    Case 11 : Return 702236
+                    Case Else : Return 702236 = (529756 * (LVL - 11))
+                End Select
+        End Select
+    End Function
     Public Overridable Function GetCharacter(ByVal Tag As String) As CharacterBase
         For iChar As Short = 0 To mCharacters.Length - 1
             If mCharacters(iChar).Tag = Tag Then Return mCharacters(iChar)

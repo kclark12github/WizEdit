@@ -174,12 +174,9 @@ Public Class frmWizardry15Base
         chkEquipped.Checked = Equipped : chkCursed.Checked = Cursed : chkID.Checked = IDed : cbItem.SelectedIndex = FindItem(cbItem, ItemCode)
     End Sub
     Protected Overridable Sub ProtectItems(ByVal Count As Short)
-        Dim chkEquipped As CheckBox = Nothing
-        Dim chkCursed As CheckBox = Nothing
-        Dim chkID As CheckBox = Nothing
-        Dim cbItem As ComboBox = Nothing
-        For i As Short = 1 To 8
-            Select Case i
+        Dim chkEquipped As CheckBox = Nothing, chkCursed As CheckBox = Nothing, chkID As CheckBox = Nothing, cbItem As ComboBox = Nothing
+        For iItem As Short = 1 To 8
+            Select Case iItem
                 Case 1 : chkEquipped = Me.chkEquipped1 : chkCursed = Me.chkCursed1 : chkID = Me.chkID1 : cbItem = Me.cbItem1
                 Case 2 : chkEquipped = Me.chkEquipped2 : chkCursed = Me.chkCursed2 : chkID = Me.chkID2 : cbItem = Me.cbItem2
                 Case 3 : chkEquipped = Me.chkEquipped3 : chkCursed = Me.chkCursed3 : chkID = Me.chkID3 : cbItem = Me.cbItem3
@@ -189,11 +186,34 @@ Public Class frmWizardry15Base
                 Case 7 : chkEquipped = Me.chkEquipped7 : chkCursed = Me.chkCursed7 : chkID = Me.chkID7 : cbItem = Me.cbItem7
                 Case 8 : chkEquipped = Me.chkEquipped8 : chkCursed = Me.chkCursed8 : chkID = Me.chkID8 : cbItem = Me.cbItem8
             End Select
-            EnableControl(chkEquipped, False) : EnableControl(chkCursed, False) : EnableControl(chkID, False) : EnableControl(cbItem, False)
-            If i <= Count Then
-                EnableControl(chkEquipped, True) : EnableControl(chkCursed, True) : EnableControl(chkID, True) : EnableControl(cbItem, True)
+            Me.EnableControl(chkEquipped, False) : Me.EnableControl(chkCursed, False) : Me.EnableControl(chkID, False) : Me.EnableControl(cbItem, False)
+            If iItem <= Count Then
+                Me.EnableControl(chkEquipped, True) : Me.EnableControl(chkCursed, True) : Me.EnableControl(chkID, True) : Me.EnableControl(cbItem, True)
             End If
-        Next i
+        Next iItem
+        Select Case mCharacter.Profession
+            Case CharacterBase.enumProfession.Fighter, CharacterBase.enumProfession.Thief, CharacterBase.enumProfession.Ninja
+                Me.EnableControl(Me.clbMageSpells, False) : Me.EnableControl(Me.clbPriestSpells, False)
+                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
+                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
+                Me.EnableControl(Me.nudPriestSP1, False) : Me.EnableControl(Me.nudPriestSP2, False) : Me.EnableControl(Me.nudPriestSP3, False) : Me.EnableControl(Me.nudPriestSP4, False) : Me.EnableControl(Me.nudPriestSP5, False) : Me.EnableControl(Me.nudPriestSP6, False) : Me.EnableControl(Me.nudPriestSP7, False)
+                Me.EnableControl(Me.cmdAllPS, False) : Me.EnableControl(Me.cmdNonePS, False)
+            Case CharacterBase.enumProfession.Mage, CharacterBase.enumProfession.Samurai
+                Me.EnableControl(Me.clbPriestSpells, False)
+                Me.EnableControl(Me.cmdAllPS, False) : Me.EnableControl(Me.cmdNonePS, False)
+                Me.EnableControl(Me.nudPriestSP1, False) : Me.EnableControl(Me.nudPriestSP2, False) : Me.EnableControl(Me.nudPriestSP3, False) : Me.EnableControl(Me.nudPriestSP4, False) : Me.EnableControl(Me.nudPriestSP5, False) : Me.EnableControl(Me.nudPriestSP6, False) : Me.EnableControl(Me.nudPriestSP7, False)
+            Case CharacterBase.enumProfession.Priest
+                Me.EnableControl(Me.clbMageSpells, False)
+                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
+                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
+            Case CharacterBase.enumProfession.Bishop
+            Case CharacterBase.enumProfession.Lord
+                Me.EnableControl(Me.clbMageSpells, False)
+                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
+                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
+                'Reset Max on Priest Spell Points...
+                Me.cmdAllSP_Click(Me.cmdAllPSP, New EventArgs())
+        End Select
     End Sub
     Protected Overridable Sub RefreshData()
         'Populate our List controls here - not specific to any given Character...
@@ -288,10 +308,10 @@ Public Class frmWizardry15Base
 
                 'SpellBooks...
                 For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
-                    If .MageSpellBook(iSpell) Then Me.clbMageSpells.SetItemChecked(iSpell - 1, True)
+                    Me.clbMageSpells.SetItemChecked(iSpell - 1, .MageSpellBook(iSpell))
                 Next
                 For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
-                    If .PriestSpellBook(iSpell) Then Me.clbPriestSpells.SetItemChecked(iSpell - 1, True)
+                    Me.clbPriestSpells.SetItemChecked(iSpell - 1, .PriestSpellBook(iSpell))
                 Next
                 Me.nudMageSP1.Value = .MageSpellPoints(0) : Me.nudMageSP2.Value = .MageSpellPoints(1) : Me.nudMageSP3.Value = .MageSpellPoints(2) : Me.nudMageSP4.Value = .MageSpellPoints(3) : Me.nudMageSP5.Value = .MageSpellPoints(4) : Me.nudMageSP6.Value = .MageSpellPoints(5) : Me.nudMageSP7.Value = .MageSpellPoints(6)
                 Me.nudPriestSP1.Value = .PriestSpellPoints(0) : Me.nudPriestSP2.Value = .PriestSpellPoints(1) : Me.nudPriestSP3.Value = .PriestSpellPoints(2) : Me.nudPriestSP4.Value = .PriestSpellPoints(3) : Me.nudPriestSP5.Value = .PriestSpellPoints(4) : Me.nudPriestSP6.Value = .PriestSpellPoints(5) : Me.nudPriestSP7.Value = .PriestSpellPoints(6)
@@ -305,6 +325,7 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub cbItem_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbItem1.SelectedIndexChanged, cbItem2.SelectedIndexChanged, cbItem3.SelectedIndexChanged, cbItem4.SelectedIndexChanged, cbItem5.SelectedIndexChanged, cbItem6.SelectedIndexChanged, cbItem7.SelectedIndexChanged, cbItem8.SelectedIndexChanged
         Dim cbItem As ComboBox = CType(sender, ComboBox)
+        If cbItem.SelectedIndex = -1 Then Exit Sub
         Select Case cbItem.Name
             Case "cbItem1" : Me.ttScenario.SetToolTip(Me.lblItem1, CType(cbItem.SelectedItem, ItemData).Tag)
             Case "cbItem2" : Me.ttScenario.SetToolTip(Me.lblItem2, CType(cbItem.SelectedItem, ItemData).Tag)
@@ -314,6 +335,45 @@ Public Class frmWizardry15Base
             Case "cbItem6" : Me.ttScenario.SetToolTip(Me.lblItem6, CType(cbItem.SelectedItem, ItemData).Tag)
             Case "cbItem7" : Me.ttScenario.SetToolTip(Me.lblItem7, CType(cbItem.SelectedItem, ItemData).Tag)
         End Select
+    End Sub
+    Private Sub cbProfession_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProfession.SelectedIndexChanged
+        Const defaultMax As Short = 9
+        Select Case CType(Me.cbProfession.SelectedIndex, CharacterBase.enumProfession)
+            Case CharacterBase.enumProfession.Lord
+                Me.nudPriestSP1.Maximum = defaultMax
+                Me.nudPriestSP2.Maximum = 7
+                Me.nudPriestSP3.Maximum = 4
+                Me.nudPriestSP4.Maximum = 4
+                Me.nudPriestSP5.Maximum = 6
+                Me.nudPriestSP6.Maximum = 4
+                Me.nudPriestSP7.Maximum = 2
+            Case Else
+                Me.nudPriestSP1.Maximum = defaultMax
+                Me.nudPriestSP2.Maximum = defaultMax
+                Me.nudPriestSP3.Maximum = defaultMax
+                Me.nudPriestSP4.Maximum = defaultMax
+                Me.nudPriestSP5.Maximum = defaultMax
+                Me.nudPriestSP6.Maximum = defaultMax
+                Me.nudPriestSP7.Maximum = defaultMax
+        End Select
+    End Sub
+    Private Sub cmdAllSpells_Click(sender As Object, e As EventArgs) Handles cmdAllMS.Click, cmdAllPS.Click
+        If sender Is cmdAllMS Then
+            For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+                Me.clbMageSpells.SetItemChecked(iSpell - 1, True)
+            Next
+        Else
+            For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+                Me.clbPriestSpells.SetItemChecked(iSpell - 1, True)
+            Next
+        End If
+    End Sub
+    Private Sub cmdAllSP_Click(sender As Object, e As EventArgs) Handles cmdAllMSP.Click, cmdAllMSP.Click
+        If sender Is cmdAllMSP Then
+            Me.nudMageSP1.Value = Me.nudMageSP1.Maximum : Me.nudMageSP2.Value = Me.nudMageSP2.Maximum : Me.nudMageSP3.Value = Me.nudMageSP3.Maximum : Me.nudMageSP4.Value = Me.nudMageSP4.Maximum : Me.nudMageSP5.Value = Me.nudMageSP5.Maximum : Me.nudMageSP6.Value = Me.nudMageSP6.Maximum : Me.nudMageSP7.Value = Me.nudMageSP7.Maximum
+        Else
+            Me.nudPriestSP1.Value = Me.nudPriestSP1.Maximum : Me.nudPriestSP2.Value = Me.nudPriestSP2.Maximum : Me.nudPriestSP3.Value = Me.nudPriestSP3.Maximum : Me.nudPriestSP4.Value = Me.nudPriestSP4.Maximum : Me.nudPriestSP5.Value = Me.nudPriestSP5.Maximum : Me.nudPriestSP6.Value = Me.nudPriestSP6.Maximum : Me.nudPriestSP7.Value = Me.nudPriestSP7.Maximum
+        End If
     End Sub
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         ToggleEditMode(False)
@@ -325,6 +385,23 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
+    End Sub
+    Private Sub cmdHPReset_Click(sender As Object, e As EventArgs) Handles cmdHPReset.Click
+        Me.nudHitPoints.Value = Me.nudHitPointsMax.Value
+    End Sub
+    Private Sub cmdLVLReset_Click(sender As Object, e As EventArgs) Handles cmdLVLReset.Click
+        Me.nudLevel.Value = Me.nudLevelMax.Value
+    End Sub
+    Private Sub cmdNoneMS_Click(sender As Object, e As EventArgs) Handles cmdNoneMS.Click, cmdNonePS.Click
+        If sender Is cmdAllMS Then
+            For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+                Me.clbMageSpells.SetItemChecked(iSpell - 1, False)
+            Next
+        Else
+            For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+                Me.clbPriestSpells.SetItemChecked(iSpell - 1, False)
+            Next
+        End If
     End Sub
     Protected Overridable Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Try
@@ -407,8 +484,21 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub nudAge_ValueChanged(sender As Object, e As EventArgs) Handles nudAgeInWeeks.ValueChanged, nudAgeInYears.ValueChanged
         Dim nud As NumericUpDown = sender
-        If nud Is Me.nudAgeInWeeks AndAlso nud.Focused Then Me.nudAgeInYears.Value = CInt(nud.Value * 52)
-        If nud Is Me.nudAgeInYears AndAlso nud.Focused Then Me.nudAgeInWeeks.Value = CInt(nud.Value \ 52)
+        If nud Is Me.nudAgeInWeeks AndAlso nud.Focused Then Me.nudAgeInYears.Value = CInt(nud.Value \ 52)
+        If nud Is Me.nudAgeInYears AndAlso nud.Focused Then Me.nudAgeInWeeks.Value = CInt(nud.Value * 52)
+    End Sub
+    Private Sub nudLevel_ValueChanged(sender As Object, e As EventArgs) Handles nudLevel.ValueChanged ', nudEXP.ValueChanged
+        Dim nud As NumericUpDown = sender
+        If nud.Value > Me.nudLevelMax.Value Then Me.nudLevelMax.Value = nud.Value
+
+        'Allow change of Level to affect Experience Points, but not vice-versa as there are still unknown fields within the
+        'Character structure that may be updated when leveling through the Adventurer's Inn...
+        Dim EXPNeeded4LVL As Decimal = mBase.EXPRequiredForNextLevel(CInt(nud.Value) - 2, Me.cbProfession.SelectedIndex)
+        If Me.nudEXP.Value < EXPNeeded4LVL Then Me.nudEXP.Value = EXPNeeded4LVL
+    End Sub
+    Private Sub nudHitPoints_ValueChanged(sender As Object, e As EventArgs) Handles nudHitPoints.ValueChanged
+        Dim nud As NumericUpDown = sender
+        If nud.Value > Me.nudHitPointsMax.Value Then Me.nudHitPointsMax.Value = nud.Value
     End Sub
     Private Sub nudItemCount_ValueChanged(sender As Object, e As EventArgs) Handles nudItemCount.ValueChanged
         If mEditMode Then ProtectItems(Me.nudItemCount.Value)

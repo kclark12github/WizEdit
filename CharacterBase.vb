@@ -126,7 +126,7 @@ Public Class CharacterBase
     Protected mSpellBooks(7) As Byte
     Protected mMageSpellPoints(SpellLevelMax - 1) As Object
     Protected mPriestSpellPoints(SpellLevelMax - 1) As Object
-    Protected mArmorClass As UInt16
+    Protected mArmorClass As Int16
     Protected mLocation As UInt16
     Protected mDown As UInt16
     Protected mHonors As UInt16
@@ -588,7 +588,7 @@ Public Class CharacterBase
                     mPriestSpellPoints(i) = .ReadUInt16()
                 Next i
                 .BaseStream.Position += 2                       '174/0x1D8AE
-                mArmorClass = .ReadUInt16()                     '176/0x1D8B0
+                mArmorClass = .ReadInt16()                      '176/0x1D8B0
                 .BaseStream.Position += 24                      '178/0x1D8B2
                 mLocation = .ReadUInt16()                       '202/0x1D8CA    Some sort of packed variable...
                 mDown = .ReadUInt16()                           '204/0x1D8CC    Seems to be a simple 2-byte Int16...

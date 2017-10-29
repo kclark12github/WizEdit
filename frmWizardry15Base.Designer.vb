@@ -40,6 +40,8 @@ Partial Class frmWizardry15Base
         Me.lblCharacter = New System.Windows.Forms.Label()
         Me.tcWiz = New System.Windows.Forms.TabControl()
         Me.tpStats = New System.Windows.Forms.TabPage()
+        Me.cmdLVLReset = New System.Windows.Forms.Button()
+        Me.cmdHPReset = New System.Windows.Forms.Button()
         Me.nudAgeInYears = New System.Windows.Forms.NumericUpDown()
         Me.nudAgeInWeeks = New System.Windows.Forms.NumericUpDown()
         Me.nudGold = New System.Windows.Forms.NumericUpDown()
@@ -183,6 +185,8 @@ Partial Class frmWizardry15Base
         Me.timScenario = New System.Windows.Forms.Timer(Me.components)
         Me.ofdScenario = New System.Windows.Forms.OpenFileDialog()
         Me.sfdScenario = New System.Windows.Forms.SaveFileDialog()
+        Me.cmdAllMSP = New System.Windows.Forms.Button()
+        Me.cmdAllPSP = New System.Windows.Forms.Button()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.msScenario.SuspendLayout()
         Me.ssStatus.SuspendLayout()
@@ -272,19 +276,19 @@ Partial Class frmWizardry15Base
         'tsmiOptionsOpen
         '
         Me.tsmiOptionsOpen.Name = "tsmiOptionsOpen"
-        Me.tsmiOptionsOpen.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOptionsOpen.Size = New System.Drawing.Size(122, 22)
         Me.tsmiOptionsOpen.Text = "&Open..."
         '
         'tsmiOptionsRestore
         '
         Me.tsmiOptionsRestore.Name = "tsmiOptionsRestore"
-        Me.tsmiOptionsRestore.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOptionsRestore.Size = New System.Drawing.Size(122, 22)
         Me.tsmiOptionsRestore.Text = "&Restore..."
         '
         'tsmiOptionsExport
         '
         Me.tsmiOptionsExport.Name = "tsmiOptionsExport"
-        Me.tsmiOptionsExport.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOptionsExport.Size = New System.Drawing.Size(122, 22)
         Me.tsmiOptionsExport.Text = "E&xport..."
         '
         'ssStatus
@@ -354,7 +358,7 @@ Partial Class frmWizardry15Base
         Me.cbCharacter.Location = New System.Drawing.Point(106, 33)
         Me.cbCharacter.Margin = New System.Windows.Forms.Padding(4)
         Me.cbCharacter.Name = "cbCharacter"
-        Me.cbCharacter.Size = New System.Drawing.Size(354, 24)
+        Me.cbCharacter.Size = New System.Drawing.Size(374, 24)
         Me.cbCharacter.TabIndex = 0
         '
         'lblCharacter
@@ -383,12 +387,14 @@ Partial Class frmWizardry15Base
         Me.tcWiz.Margin = New System.Windows.Forms.Padding(4)
         Me.tcWiz.Name = "tcWiz"
         Me.tcWiz.SelectedIndex = 0
-        Me.tcWiz.Size = New System.Drawing.Size(444, 496)
+        Me.tcWiz.Size = New System.Drawing.Size(468, 496)
         Me.tcWiz.TabIndex = 1
         '
         'tpStats
         '
         Me.tpStats.BackgroundImage = Global.WizEdit.My.Resources.Resources.backgnd3b
+        Me.tpStats.Controls.Add(Me.cmdLVLReset)
+        Me.tpStats.Controls.Add(Me.cmdHPReset)
         Me.tpStats.Controls.Add(Me.nudAgeInYears)
         Me.tpStats.Controls.Add(Me.nudAgeInWeeks)
         Me.tpStats.Controls.Add(Me.nudGold)
@@ -448,28 +454,48 @@ Partial Class frmWizardry15Base
         Me.tpStats.Margin = New System.Windows.Forms.Padding(4)
         Me.tpStats.Name = "tpStats"
         Me.tpStats.Padding = New System.Windows.Forms.Padding(4)
-        Me.tpStats.Size = New System.Drawing.Size(436, 467)
+        Me.tpStats.Size = New System.Drawing.Size(460, 467)
         Me.tpStats.TabIndex = 0
         Me.tpStats.Text = "Statistics"
         Me.tpStats.UseVisualStyleBackColor = True
         '
+        'cmdLVLReset
+        '
+        Me.cmdLVLReset.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdLVLReset.Location = New System.Drawing.Point(423, 374)
+        Me.cmdLVLReset.Name = "cmdLVLReset"
+        Me.cmdLVLReset.Size = New System.Drawing.Size(21, 23)
+        Me.cmdLVLReset.TabIndex = 93
+        Me.cmdLVLReset.Text = "="
+        Me.cmdLVLReset.UseVisualStyleBackColor = True
+        '
+        'cmdHPReset
+        '
+        Me.cmdHPReset.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdHPReset.Location = New System.Drawing.Point(423, 348)
+        Me.cmdHPReset.Name = "cmdHPReset"
+        Me.cmdHPReset.Size = New System.Drawing.Size(21, 23)
+        Me.cmdHPReset.TabIndex = 92
+        Me.cmdHPReset.Text = "="
+        Me.cmdHPReset.UseVisualStyleBackColor = True
+        '
         'nudAgeInYears
         '
         Me.nudAgeInYears.BackColor = System.Drawing.Color.LightGray
-        Me.nudAgeInYears.Location = New System.Drawing.Point(383, 430)
+        Me.nudAgeInYears.Location = New System.Drawing.Point(398, 430)
         Me.nudAgeInYears.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.nudAgeInYears.Name = "nudAgeInYears"
-        Me.nudAgeInYears.Size = New System.Drawing.Size(34, 22)
+        Me.nudAgeInYears.Size = New System.Drawing.Size(46, 22)
         Me.nudAgeInYears.TabIndex = 91
         Me.nudAgeInYears.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'nudAgeInWeeks
         '
         Me.nudAgeInWeeks.BackColor = System.Drawing.Color.LightGray
-        Me.nudAgeInWeeks.Location = New System.Drawing.Point(291, 430)
+        Me.nudAgeInWeeks.Location = New System.Drawing.Point(284, 430)
         Me.nudAgeInWeeks.Maximum = New Decimal(New Integer() {10400, 0, 0, 0})
         Me.nudAgeInWeeks.Name = "nudAgeInWeeks"
-        Me.nudAgeInWeeks.Size = New System.Drawing.Size(47, 22)
+        Me.nudAgeInWeeks.Size = New System.Drawing.Size(66, 22)
         Me.nudAgeInWeeks.TabIndex = 90
         Me.nudAgeInWeeks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -479,7 +505,7 @@ Partial Class frmWizardry15Base
         Me.nudGold.Location = New System.Drawing.Point(291, 317)
         Me.nudGold.Maximum = New Decimal(New Integer() {999999999, 0, 0, 0})
         Me.nudGold.Name = "nudGold"
-        Me.nudGold.Size = New System.Drawing.Size(126, 22)
+        Me.nudGold.Size = New System.Drawing.Size(153, 22)
         Me.nudGold.TabIndex = 89
         Me.nudGold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -489,7 +515,7 @@ Partial Class frmWizardry15Base
         Me.nudEXP.Location = New System.Drawing.Point(291, 289)
         Me.nudEXP.Maximum = New Decimal(New Integer() {-1, -1, -1, 0})
         Me.nudEXP.Name = "nudEXP"
-        Me.nudEXP.Size = New System.Drawing.Size(126, 22)
+        Me.nudEXP.Size = New System.Drawing.Size(153, 22)
         Me.nudEXP.TabIndex = 88
         Me.nudEXP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -499,7 +525,7 @@ Partial Class frmWizardry15Base
         Me.lblOut.BackColor = System.Drawing.Color.Transparent
         Me.lblOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOut.ForeColor = System.Drawing.Color.Yellow
-        Me.lblOut.Location = New System.Drawing.Point(68, 208)
+        Me.lblOut.Location = New System.Drawing.Point(229, 169)
         Me.lblOut.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblOut.Name = "lblOut"
         Me.lblOut.Size = New System.Drawing.Size(75, 16)
@@ -585,10 +611,10 @@ Partial Class frmWizardry15Base
         Me.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbStatus.FormattingEnabled = True
-        Me.cbStatus.Location = New System.Drawing.Point(291, 402)
+        Me.cbStatus.Location = New System.Drawing.Point(284, 402)
         Me.cbStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.cbStatus.Name = "cbStatus"
-        Me.cbStatus.Size = New System.Drawing.Size(126, 24)
+        Me.cbStatus.Size = New System.Drawing.Size(160, 24)
         Me.cbStatus.TabIndex = 23
         '
         'lblAgeInYears
@@ -597,7 +623,7 @@ Partial Class frmWizardry15Base
         Me.lblAgeInYears.BackColor = System.Drawing.Color.Transparent
         Me.lblAgeInYears.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAgeInYears.ForeColor = System.Drawing.Color.Yellow
-        Me.lblAgeInYears.Location = New System.Drawing.Point(346, 433)
+        Me.lblAgeInYears.Location = New System.Drawing.Point(364, 432)
         Me.lblAgeInYears.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblAgeInYears.Name = "lblAgeInYears"
         Me.lblAgeInYears.Size = New System.Drawing.Size(36, 16)
@@ -691,7 +717,7 @@ Partial Class frmWizardry15Base
         Me.lblDown.BackColor = System.Drawing.Color.Transparent
         Me.lblDown.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDown.ForeColor = System.Drawing.Color.Yellow
-        Me.lblDown.Location = New System.Drawing.Point(335, 169)
+        Me.lblDown.Location = New System.Drawing.Point(313, 142)
         Me.lblDown.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDown.Name = "lblDown"
         Me.lblDown.Size = New System.Drawing.Size(18, 16)
@@ -702,7 +728,7 @@ Partial Class frmWizardry15Base
         'nudLocationDown
         '
         Me.nudLocationDown.BackColor = System.Drawing.Color.LightGray
-        Me.nudLocationDown.Location = New System.Drawing.Point(360, 167)
+        Me.nudLocationDown.Location = New System.Drawing.Point(338, 140)
         Me.nudLocationDown.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
         Me.nudLocationDown.Name = "nudLocationDown"
         Me.nudLocationDown.Size = New System.Drawing.Size(40, 22)
@@ -715,7 +741,7 @@ Partial Class frmWizardry15Base
         Me.lblNorth.BackColor = System.Drawing.Color.Transparent
         Me.lblNorth.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNorth.ForeColor = System.Drawing.Color.Yellow
-        Me.lblNorth.Location = New System.Drawing.Point(259, 169)
+        Me.lblNorth.Location = New System.Drawing.Point(313, 110)
         Me.lblNorth.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNorth.Name = "lblNorth"
         Me.lblNorth.Size = New System.Drawing.Size(18, 16)
@@ -726,7 +752,7 @@ Partial Class frmWizardry15Base
         'nudLocationNorth
         '
         Me.nudLocationNorth.BackColor = System.Drawing.Color.LightGray
-        Me.nudLocationNorth.Location = New System.Drawing.Point(284, 167)
+        Me.nudLocationNorth.Location = New System.Drawing.Point(338, 108)
         Me.nudLocationNorth.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
         Me.nudLocationNorth.Name = "nudLocationNorth"
         Me.nudLocationNorth.Size = New System.Drawing.Size(40, 22)
@@ -739,7 +765,7 @@ Partial Class frmWizardry15Base
         Me.lblEast.BackColor = System.Drawing.Color.Transparent
         Me.lblEast.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEast.ForeColor = System.Drawing.Color.Yellow
-        Me.lblEast.Location = New System.Drawing.Point(186, 169)
+        Me.lblEast.Location = New System.Drawing.Point(314, 80)
         Me.lblEast.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblEast.Name = "lblEast"
         Me.lblEast.Size = New System.Drawing.Size(17, 16)
@@ -750,7 +776,7 @@ Partial Class frmWizardry15Base
         'nudLocationEast
         '
         Me.nudLocationEast.BackColor = System.Drawing.Color.LightGray
-        Me.nudLocationEast.Location = New System.Drawing.Point(210, 167)
+        Me.nudLocationEast.Location = New System.Drawing.Point(338, 78)
         Me.nudLocationEast.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
         Me.nudLocationEast.Name = "nudLocationEast"
         Me.nudLocationEast.Size = New System.Drawing.Size(40, 22)
@@ -763,7 +789,7 @@ Partial Class frmWizardry15Base
         Me.lblLocation.BackColor = System.Drawing.Color.Transparent
         Me.lblLocation.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLocation.ForeColor = System.Drawing.Color.Yellow
-        Me.lblLocation.Location = New System.Drawing.Point(107, 169)
+        Me.lblLocation.Location = New System.Drawing.Point(235, 80)
         Me.lblLocation.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblLocation.Name = "lblLocation"
         Me.lblLocation.Size = New System.Drawing.Size(59, 16)
@@ -775,9 +801,9 @@ Partial Class frmWizardry15Base
         '
         Me.clbHonors.BackColor = System.Drawing.Color.LightGray
         Me.clbHonors.FormattingEnabled = True
-        Me.clbHonors.Location = New System.Drawing.Point(124, 235)
+        Me.clbHonors.Location = New System.Drawing.Point(124, 195)
         Me.clbHonors.Name = "clbHonors"
-        Me.clbHonors.Size = New System.Drawing.Size(275, 21)
+        Me.clbHonors.Size = New System.Drawing.Size(320, 72)
         Me.clbHonors.TabIndex = 10
         '
         'lblHonors
@@ -786,7 +812,7 @@ Partial Class frmWizardry15Base
         Me.lblHonors.BackColor = System.Drawing.Color.Transparent
         Me.lblHonors.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHonors.ForeColor = System.Drawing.Color.Yellow
-        Me.lblHonors.Location = New System.Drawing.Point(56, 235)
+        Me.lblHonors.Location = New System.Drawing.Point(56, 195)
         Me.lblHonors.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHonors.Name = "lblHonors"
         Me.lblHonors.Size = New System.Drawing.Size(52, 16)
@@ -969,7 +995,7 @@ Partial Class frmWizardry15Base
         'nudAC
         '
         Me.nudAC.BackColor = System.Drawing.Color.LightGray
-        Me.nudAC.Location = New System.Drawing.Point(222, 206)
+        Me.nudAC.Location = New System.Drawing.Point(383, 167)
         Me.nudAC.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudAC.Name = "nudAC"
         Me.nudAC.Size = New System.Drawing.Size(61, 22)
@@ -982,7 +1008,7 @@ Partial Class frmWizardry15Base
         Me.lblAC.BackColor = System.Drawing.Color.Transparent
         Me.lblAC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAC.ForeColor = System.Drawing.Color.Yellow
-        Me.lblAC.Location = New System.Drawing.Point(189, 208)
+        Me.lblAC.Location = New System.Drawing.Point(350, 169)
         Me.lblAC.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblAC.Name = "lblAC"
         Me.lblAC.Size = New System.Drawing.Size(26, 16)
@@ -995,7 +1021,7 @@ Partial Class frmWizardry15Base
         Me.chkOut.AutoSize = True
         Me.chkOut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.chkOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOut.Location = New System.Drawing.Point(147, 210)
+        Me.chkOut.Location = New System.Drawing.Point(308, 171)
         Me.chkOut.Margin = New System.Windows.Forms.Padding(4)
         Me.chkOut.Name = "chkOut"
         Me.chkOut.Size = New System.Drawing.Size(15, 14)
@@ -1008,7 +1034,7 @@ Partial Class frmWizardry15Base
         Me.lblAlignment.BackColor = System.Drawing.Color.Transparent
         Me.lblAlignment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAlignment.ForeColor = System.Drawing.Color.Yellow
-        Me.lblAlignment.Location = New System.Drawing.Point(99, 142)
+        Me.lblAlignment.Location = New System.Drawing.Point(34, 142)
         Me.lblAlignment.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblAlignment.Name = "lblAlignment"
         Me.lblAlignment.Size = New System.Drawing.Size(67, 16)
@@ -1022,10 +1048,10 @@ Partial Class frmWizardry15Base
         Me.cbAlignment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbAlignment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbAlignment.FormattingEnabled = True
-        Me.cbAlignment.Location = New System.Drawing.Point(179, 139)
+        Me.cbAlignment.Location = New System.Drawing.Point(124, 139)
         Me.cbAlignment.Margin = New System.Windows.Forms.Padding(4)
         Me.cbAlignment.Name = "cbAlignment"
-        Me.cbAlignment.Size = New System.Drawing.Size(221, 24)
+        Me.cbAlignment.Size = New System.Drawing.Size(91, 24)
         Me.cbAlignment.TabIndex = 4
         '
         'lblProfession
@@ -1034,7 +1060,7 @@ Partial Class frmWizardry15Base
         Me.lblProfession.BackColor = System.Drawing.Color.Transparent
         Me.lblProfession.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblProfession.ForeColor = System.Drawing.Color.Yellow
-        Me.lblProfession.Location = New System.Drawing.Point(94, 110)
+        Me.lblProfession.Location = New System.Drawing.Point(29, 110)
         Me.lblProfession.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblProfession.Name = "lblProfession"
         Me.lblProfession.Size = New System.Drawing.Size(72, 16)
@@ -1048,10 +1074,10 @@ Partial Class frmWizardry15Base
         Me.cbProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbProfession.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbProfession.FormattingEnabled = True
-        Me.cbProfession.Location = New System.Drawing.Point(179, 107)
+        Me.cbProfession.Location = New System.Drawing.Point(124, 107)
         Me.cbProfession.Margin = New System.Windows.Forms.Padding(4)
         Me.cbProfession.Name = "cbProfession"
-        Me.cbProfession.Size = New System.Drawing.Size(221, 24)
+        Me.cbProfession.Size = New System.Drawing.Size(91, 24)
         Me.cbProfession.TabIndex = 3
         '
         'lblRace
@@ -1060,7 +1086,7 @@ Partial Class frmWizardry15Base
         Me.lblRace.BackColor = System.Drawing.Color.Transparent
         Me.lblRace.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRace.ForeColor = System.Drawing.Color.Yellow
-        Me.lblRace.Location = New System.Drawing.Point(125, 80)
+        Me.lblRace.Location = New System.Drawing.Point(60, 80)
         Me.lblRace.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblRace.Name = "lblRace"
         Me.lblRace.Size = New System.Drawing.Size(41, 16)
@@ -1074,10 +1100,10 @@ Partial Class frmWizardry15Base
         Me.cbRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbRace.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbRace.FormattingEnabled = True
-        Me.cbRace.Location = New System.Drawing.Point(179, 77)
+        Me.cbRace.Location = New System.Drawing.Point(124, 77)
         Me.cbRace.Margin = New System.Windows.Forms.Padding(4)
         Me.cbRace.Name = "cbRace"
-        Me.cbRace.Size = New System.Drawing.Size(221, 24)
+        Me.cbRace.Size = New System.Drawing.Size(91, 24)
         Me.cbRace.TabIndex = 2
         '
         'txtPassword
@@ -1087,7 +1113,7 @@ Partial Class frmWizardry15Base
         Me.txtPassword.Location = New System.Drawing.Point(124, 47)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(276, 22)
+        Me.txtPassword.Size = New System.Drawing.Size(226, 22)
         Me.txtPassword.TabIndex = 1
         Me.txtPassword.Text = "txtPassword"
         '
@@ -1098,7 +1124,7 @@ Partial Class frmWizardry15Base
         Me.txtName.Location = New System.Drawing.Point(123, 17)
         Me.txtName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(276, 22)
+        Me.txtName.Size = New System.Drawing.Size(224, 22)
         Me.txtName.TabIndex = 0
         Me.txtName.Text = "txtName"
         '
@@ -1183,7 +1209,7 @@ Partial Class frmWizardry15Base
         Me.tpItems.Margin = New System.Windows.Forms.Padding(4)
         Me.tpItems.Name = "tpItems"
         Me.tpItems.Padding = New System.Windows.Forms.Padding(4)
-        Me.tpItems.Size = New System.Drawing.Size(436, 467)
+        Me.tpItems.Size = New System.Drawing.Size(460, 467)
         Me.tpItems.TabIndex = 1
         Me.tpItems.Text = "Items"
         Me.tpItems.UseVisualStyleBackColor = True
@@ -1767,6 +1793,8 @@ Partial Class frmWizardry15Base
         'tpSpellBooks
         '
         Me.tpSpellBooks.BackgroundImage = Global.WizEdit.My.Resources.Resources.backgnd3b
+        Me.tpSpellBooks.Controls.Add(Me.cmdAllPSP)
+        Me.tpSpellBooks.Controls.Add(Me.cmdAllMSP)
         Me.tpSpellBooks.Controls.Add(Me.cmdAllMS)
         Me.tpSpellBooks.Controls.Add(Me.cmdNoneMS)
         Me.tpSpellBooks.Controls.Add(Me.cmdNonePS)
@@ -1804,7 +1832,7 @@ Partial Class frmWizardry15Base
         Me.tpSpellBooks.Margin = New System.Windows.Forms.Padding(4)
         Me.tpSpellBooks.Name = "tpSpellBooks"
         Me.tpSpellBooks.Padding = New System.Windows.Forms.Padding(4)
-        Me.tpSpellBooks.Size = New System.Drawing.Size(436, 467)
+        Me.tpSpellBooks.Size = New System.Drawing.Size(460, 467)
         Me.tpSpellBooks.TabIndex = 2
         Me.tpSpellBooks.Text = "Spell Books"
         Me.tpSpellBooks.UseVisualStyleBackColor = True
@@ -2219,6 +2247,28 @@ Partial Class frmWizardry15Base
         Me.timScenario.Enabled = True
         Me.timScenario.Interval = 1000
         '
+        'cmdAllMSP
+        '
+        Me.cmdAllMSP.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdAllMSP.Location = New System.Drawing.Point(410, 317)
+        Me.cmdAllMSP.Name = "cmdAllMSP"
+        Me.cmdAllMSP.Size = New System.Drawing.Size(21, 23)
+        Me.cmdAllMSP.TabIndex = 117
+        Me.cmdAllMSP.Text = "*"
+        Me.cmdAllMSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdAllMSP.UseVisualStyleBackColor = True
+        '
+        'cmdAllPSP
+        '
+        Me.cmdAllPSP.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdAllPSP.Location = New System.Drawing.Point(410, 345)
+        Me.cmdAllPSP.Name = "cmdAllPSP"
+        Me.cmdAllPSP.Size = New System.Drawing.Size(21, 23)
+        Me.cmdAllPSP.TabIndex = 118
+        Me.cmdAllPSP.Text = "*"
+        Me.cmdAllPSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdAllPSP.UseVisualStyleBackColor = True
+        '
         'frmWizardry15Base
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2458,4 +2508,8 @@ Partial Class frmWizardry15Base
     Friend WithEvents ofdScenario As OpenFileDialog
     Friend WithEvents tsmiOptionsOpen As ToolStripMenuItem
     Friend WithEvents sfdScenario As SaveFileDialog
+    Friend WithEvents cmdLVLReset As Button
+    Friend WithEvents cmdHPReset As Button
+    Friend WithEvents cmdAllPSP As Button
+    Friend WithEvents cmdAllMSP As Button
 End Class
