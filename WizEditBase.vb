@@ -147,7 +147,7 @@ Public Class WizEditBase
                     New SpellBase("BAMATU", "Prayer", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
                     New SpellBase("DIAL", "Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
                     New SpellBase("BADIAL", "Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("LATUMOFIS", "Cleanse", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
+                    New SpellBase("LATUMOFIS", "Cleanse/Cure Poison", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
                     New SpellBase("MAPORFIC", "Big Shield", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 4),
                     New SpellBase("DIALMA", "Big Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
                     New SpellBase("BADIALMA", "Big Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
@@ -523,7 +523,7 @@ Public Class WizEditBase
                     Case 9 : Return 228157
                     Case 10 : Return 400275
                     Case 11 : Return 702236
-                    Case Else : Return 702236 = (529756 * (LVL - 11))
+                    Case Else : Return 702236 + (529756 * (LVL - 11))
                 End Select
         End Select
     End Function
