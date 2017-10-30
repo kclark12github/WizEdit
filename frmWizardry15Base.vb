@@ -66,6 +66,20 @@ Public Class frmWizardry15Base
             InitItem(i, False, False, False, 0)
         Next i
     End Sub
+    Protected Sub ClearSpellBooks(ByVal Mage As Boolean, ByVal Priest As Boolean)
+        If Mage Then
+            For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
+                Me.clbMageSpells.SetItemChecked(iSpell - 1, False)
+            Next
+            Me.nudMageSP1.Value = 0 : Me.nudMageSP2.Value = 0 : Me.nudMageSP3.Value = 0 : Me.nudMageSP4.Value = 0 : Me.nudMageSP5.Value = 0 : Me.nudMageSP6.Value = 0 : Me.nudMageSP7.Value = 0
+        End If
+        If Priest Then
+            For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
+                Me.clbPriestSpells.SetItemChecked(iSpell - 1, False)
+            Next
+            Me.nudPriestSP1.Value = 0 : Me.nudPriestSP2.Value = 0 : Me.nudPriestSP3.Value = 0 : Me.nudPriestSP4.Value = 0 : Me.nudPriestSP5.Value = 0 : Me.nudPriestSP6.Value = 0 : Me.nudPriestSP7.Value = 0
+        End If
+    End Sub
     Protected Friend Sub EnableControl(ByVal ctl As Control, ByVal Enable As Boolean)
         EnableControl(ctl, Enable, False)
     End Sub
@@ -191,29 +205,31 @@ Public Class frmWizardry15Base
                 Me.EnableControl(chkEquipped, True) : Me.EnableControl(chkCursed, True) : Me.EnableControl(chkID, True) : Me.EnableControl(cbItem, True)
             End If
         Next iItem
-        Select Case mCharacter.Profession
+    End Sub
+    Protected Overridable Sub ProtectSpellBooks(ByVal Profession As CharacterBase.enumProfession)
+        Dim gotMage As Boolean = False
+        Dim gotPriest As Boolean = False
+        Select Case Profession
             Case CharacterBase.enumProfession.Fighter, CharacterBase.enumProfession.Thief, CharacterBase.enumProfession.Ninja
-                Me.EnableControl(Me.clbMageSpells, False) : Me.EnableControl(Me.clbPriestSpells, False)
-                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
-                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
-                Me.EnableControl(Me.nudPriestSP1, False) : Me.EnableControl(Me.nudPriestSP2, False) : Me.EnableControl(Me.nudPriestSP3, False) : Me.EnableControl(Me.nudPriestSP4, False) : Me.EnableControl(Me.nudPriestSP5, False) : Me.EnableControl(Me.nudPriestSP6, False) : Me.EnableControl(Me.nudPriestSP7, False)
-                Me.EnableControl(Me.cmdAllPS, False) : Me.EnableControl(Me.cmdNonePS, False)
+                gotMage = False : gotPriest = False
             Case CharacterBase.enumProfession.Mage, CharacterBase.enumProfession.Samurai
-                Me.EnableControl(Me.clbPriestSpells, False)
-                Me.EnableControl(Me.cmdAllPS, False) : Me.EnableControl(Me.cmdNonePS, False)
-                Me.EnableControl(Me.nudPriestSP1, False) : Me.EnableControl(Me.nudPriestSP2, False) : Me.EnableControl(Me.nudPriestSP3, False) : Me.EnableControl(Me.nudPriestSP4, False) : Me.EnableControl(Me.nudPriestSP5, False) : Me.EnableControl(Me.nudPriestSP6, False) : Me.EnableControl(Me.nudPriestSP7, False)
+                gotMage = True : gotPriest = False
             Case CharacterBase.enumProfession.Priest
-                Me.EnableControl(Me.clbMageSpells, False)
-                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
-                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
+                gotMage = False : gotPriest = True
             Case CharacterBase.enumProfession.Bishop
+                gotMage = True : gotPriest = True
             Case CharacterBase.enumProfession.Lord
-                Me.EnableControl(Me.clbMageSpells, False)
-                Me.EnableControl(Me.cmdAllMS, False) : Me.EnableControl(Me.cmdNoneMS, False)
-                Me.EnableControl(Me.nudMageSP1, False) : Me.EnableControl(Me.nudMageSP2, False) : Me.EnableControl(Me.nudMageSP3, False) : Me.EnableControl(Me.nudMageSP4, False) : Me.EnableControl(Me.nudMageSP5, False) : Me.EnableControl(Me.nudMageSP6, False) : Me.EnableControl(Me.nudMageSP7, False)
+                gotMage = False : gotPriest = True
                 'Reset Max on Priest Spell Points...
                 Me.cmdAllSP_Click(Me.cmdAllPSP, New EventArgs())
         End Select
+        Me.ClearSpellBooks(Not gotMage, Not gotPriest)
+        Me.EnableControl(Me.clbMageSpells, gotMage)
+        Me.EnableControl(Me.cmdAllMS, gotMage) : Me.EnableControl(Me.cmdNoneMS, gotMage)
+        Me.EnableControl(Me.nudMageSP1, gotMage) : Me.EnableControl(Me.nudMageSP2, gotMage) : Me.EnableControl(Me.nudMageSP3, gotMage) : Me.EnableControl(Me.nudMageSP4, gotMage) : Me.EnableControl(Me.nudMageSP5, gotMage) : Me.EnableControl(Me.nudMageSP6, gotMage) : Me.EnableControl(Me.nudMageSP7, gotMage)
+        Me.EnableControl(Me.clbPriestSpells, gotPriest)
+        Me.EnableControl(Me.cmdAllPS, gotPriest) : Me.EnableControl(Me.cmdNonePS, gotPriest)
+        Me.EnableControl(Me.nudPriestSP1, gotPriest) : Me.EnableControl(Me.nudPriestSP2, gotPriest) : Me.EnableControl(Me.nudPriestSP3, gotPriest) : Me.EnableControl(Me.nudPriestSP4, gotPriest) : Me.EnableControl(Me.nudPriestSP5, gotPriest) : Me.EnableControl(Me.nudPriestSP6, gotPriest) : Me.EnableControl(Me.nudPriestSP7, gotPriest)
     End Sub
     Protected Overridable Sub RefreshData()
         'Populate our List controls here - not specific to any given Character...
@@ -246,8 +262,8 @@ Public Class frmWizardry15Base
         Me.EnableControl(Me.cmdExit, Not EditMode) : Me.cmdExit.Visible = Not EditMode
         Me.EnableControl(Me.cmdCancel, EditMode) : Me.cmdCancel.Visible = EditMode
         Me.EnableControl(Me.cmdSave, EditMode) : Me.cmdSave.Visible = EditMode
-        If EditMode Then ProtectItems(Me.nudItemCount.Value)
-        tsslStatus.Visible = EditMode
+        If EditMode Then Me.ProtectItems(Me.nudItemCount.Value) : Me.ProtectSpellBooks(Me.cbProfession.SelectedIndex)
+        Me.tsslStatus.Visible = EditMode
     End Sub
     Protected Function UpdateChangedData() As Boolean
         If mChanged Then
@@ -338,6 +354,7 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub cbProfession_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProfession.SelectedIndexChanged
         Const defaultMax As Short = 9
+        Me.ProtectSpellBooks(Me.cbProfession.SelectedIndex)
         Select Case CType(Me.cbProfession.SelectedIndex, CharacterBase.enumProfession)
             Case CharacterBase.enumProfession.Lord
                 Me.nudPriestSP1.Maximum = defaultMax
@@ -368,7 +385,7 @@ Public Class frmWizardry15Base
             Next
         End If
     End Sub
-    Private Sub cmdAllSP_Click(sender As Object, e As EventArgs) Handles cmdAllMSP.Click, cmdAllMSP.Click
+    Private Sub cmdAllSP_Click(sender As Object, e As EventArgs) Handles cmdAllMSP.Click, cmdAllPSP.Click
         If sender Is cmdAllMSP Then
             Me.nudMageSP1.Value = Me.nudMageSP1.Maximum : Me.nudMageSP2.Value = Me.nudMageSP2.Maximum : Me.nudMageSP3.Value = Me.nudMageSP3.Maximum : Me.nudMageSP4.Value = Me.nudMageSP4.Maximum : Me.nudMageSP5.Value = Me.nudMageSP5.Maximum : Me.nudMageSP6.Value = Me.nudMageSP6.Maximum : Me.nudMageSP7.Value = Me.nudMageSP7.Maximum
         Else
@@ -394,13 +411,9 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub cmdNoneMS_Click(sender As Object, e As EventArgs) Handles cmdNoneMS.Click, cmdNonePS.Click
         If sender Is cmdAllMS Then
-            For iSpell As Short = 1 To mBase.MageSpellBook.GetUpperBound(0)
-                Me.clbMageSpells.SetItemChecked(iSpell - 1, False)
-            Next
+            Me.ClearSpellBooks(True, False)
         Else
-            For iSpell As Short = 1 To mBase.PriestSpellBook.GetUpperBound(0) + 1
-                Me.clbPriestSpells.SetItemChecked(iSpell - 1, False)
-            Next
+            Me.ClearSpellBooks(False, True)
         End If
     End Sub
     Protected Overridable Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -460,6 +473,13 @@ Public Class frmWizardry15Base
 
                 mChanged = True
                 ToggleEditMode(False)
+                'Since we cannot reset just our character's Tag, we have to reload the entire list based on our updated data
+                Dim saveIndex As Integer = Me.cbCharacter.SelectedIndex
+                Me.cbCharacter.Items.Clear()
+                For iChar As Short = 0 To mBase.Characters.Length - 1
+                    If mBase.Characters(iChar).Name <> "" Then Me.cbCharacter.Items.Add(mBase.Characters(iChar).Tag)
+                Next iChar
+                Me.cbCharacter.SelectedIndex = saveIndex
             End With
         Catch ex As Exception : Debug.WriteLine(ex.ToString)
             Me.epScenario.SetError(sender, ex.ToString)
@@ -534,6 +554,7 @@ Public Class frmWizardry15Base
                 mBase.ScenarioDataPath = .FileName
                 UpdateChangedData()
                 RefreshData()
+                tsslMessage.Text = mBase.ScenarioDataPath
             End With
         Catch ex As Exception
             MessageBox.Show(Me, String.Format("{0}{1}{2}", ex.Message, vbCrLf, ex.StackTrace), ex.GetType.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

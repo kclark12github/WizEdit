@@ -145,6 +145,8 @@ Partial Class frmWizardry15Base
         Me.cbItem1 = New System.Windows.Forms.ComboBox()
         Me.chkEquipped1 = New System.Windows.Forms.CheckBox()
         Me.tpSpellBooks = New System.Windows.Forms.TabPage()
+        Me.cmdAllPSP = New System.Windows.Forms.Button()
+        Me.cmdAllMSP = New System.Windows.Forms.Button()
         Me.cmdAllMS = New System.Windows.Forms.Button()
         Me.cmdNoneMS = New System.Windows.Forms.Button()
         Me.cmdNonePS = New System.Windows.Forms.Button()
@@ -185,8 +187,6 @@ Partial Class frmWizardry15Base
         Me.timScenario = New System.Windows.Forms.Timer(Me.components)
         Me.ofdScenario = New System.Windows.Forms.OpenFileDialog()
         Me.sfdScenario = New System.Windows.Forms.SaveFileDialog()
-        Me.cmdAllMSP = New System.Windows.Forms.Button()
-        Me.cmdAllPSP = New System.Windows.Forms.Button()
         CType(Me.pbBoxArt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.msScenario.SuspendLayout()
         Me.ssStatus.SuspendLayout()
@@ -1109,24 +1109,26 @@ Partial Class frmWizardry15Base
         'txtPassword
         '
         Me.txtPassword.BackColor = System.Drawing.Color.LightGray
+        Me.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.Location = New System.Drawing.Point(124, 47)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(226, 22)
         Me.txtPassword.TabIndex = 1
-        Me.txtPassword.Text = "txtPassword"
+        Me.txtPassword.Text = "TXTPASSWORD"
         '
         'txtName
         '
         Me.txtName.BackColor = System.Drawing.Color.LightGray
+        Me.txtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtName.Location = New System.Drawing.Point(123, 17)
         Me.txtName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(224, 22)
         Me.txtName.TabIndex = 0
-        Me.txtName.Text = "txtName"
+        Me.txtName.Text = "TXTNAME"
         '
         'lblName
         '
@@ -1837,6 +1839,28 @@ Partial Class frmWizardry15Base
         Me.tpSpellBooks.Text = "Spell Books"
         Me.tpSpellBooks.UseVisualStyleBackColor = True
         '
+        'cmdAllPSP
+        '
+        Me.cmdAllPSP.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdAllPSP.Location = New System.Drawing.Point(410, 345)
+        Me.cmdAllPSP.Name = "cmdAllPSP"
+        Me.cmdAllPSP.Size = New System.Drawing.Size(21, 23)
+        Me.cmdAllPSP.TabIndex = 118
+        Me.cmdAllPSP.Text = "*"
+        Me.cmdAllPSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdAllPSP.UseVisualStyleBackColor = True
+        '
+        'cmdAllMSP
+        '
+        Me.cmdAllMSP.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.cmdAllMSP.Location = New System.Drawing.Point(410, 317)
+        Me.cmdAllMSP.Name = "cmdAllMSP"
+        Me.cmdAllMSP.Size = New System.Drawing.Size(21, 23)
+        Me.cmdAllMSP.TabIndex = 117
+        Me.cmdAllMSP.Text = "*"
+        Me.cmdAllMSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdAllMSP.UseVisualStyleBackColor = True
+        '
         'cmdAllMS
         '
         Me.cmdAllMS.ForeColor = System.Drawing.Color.Black
@@ -2246,28 +2270,6 @@ Partial Class frmWizardry15Base
         '
         Me.timScenario.Enabled = True
         Me.timScenario.Interval = 1000
-        '
-        'cmdAllMSP
-        '
-        Me.cmdAllMSP.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdAllMSP.Location = New System.Drawing.Point(410, 317)
-        Me.cmdAllMSP.Name = "cmdAllMSP"
-        Me.cmdAllMSP.Size = New System.Drawing.Size(21, 23)
-        Me.cmdAllMSP.TabIndex = 117
-        Me.cmdAllMSP.Text = "*"
-        Me.cmdAllMSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdAllMSP.UseVisualStyleBackColor = True
-        '
-        'cmdAllPSP
-        '
-        Me.cmdAllPSP.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdAllPSP.Location = New System.Drawing.Point(410, 345)
-        Me.cmdAllPSP.Name = "cmdAllPSP"
-        Me.cmdAllPSP.Size = New System.Drawing.Size(21, 23)
-        Me.cmdAllPSP.TabIndex = 118
-        Me.cmdAllPSP.Text = "*"
-        Me.cmdAllPSP.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdAllPSP.UseVisualStyleBackColor = True
         '
         'frmWizardry15Base
         '
