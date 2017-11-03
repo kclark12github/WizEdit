@@ -19,6 +19,7 @@ Public Class WizEditBase
         For iChar As Short = 0 To Me.CharactersMax - 1
             mCharacters(iChar) = New CharacterBase(Me)
         Next iChar
+        LoadMasterSpellBooks()
     End Sub
 #Region "Properties"
 #Region "Declarations"
@@ -29,8 +30,10 @@ Public Class WizEditBase
     Protected mParent As Form = Nothing
 
     Protected mCharacters As CharacterBase()
-    Protected mMasterItemList As ItemData()
     Protected mMageSpellBook As SpellBase()
+    Protected mMasterItemList As ItemData()
+    Protected mMasterMageSpellbook As Collection = New Collection()
+    Protected mMasterPriestSpellbook As Collection = New Collection()
     Protected mPriestSpellBook As SpellBase()
     Private mScenarioDataPath As String = ""
     Private mRegKey As String = "Software\KClark Software"
@@ -85,30 +88,19 @@ Public Class WizEditBase
     Public Overridable ReadOnly Property MageSpellBook As SpellBase()
         Get
             If mMageSpellBook Is Nothing Then
-                mMageSpellBook = {
-                    New SpellBase("Unknown", "Unknown", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 0),
-                    New SpellBase("HALITO", "Little Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("MOGREF", "Body Iron", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("KATINO", "Bad Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("DUMAPIC", "Clarity", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 1),
-                    New SpellBase("DILTO", "Darkness", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 2),
-                    New SpellBase("SOPIC", "Glass", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 2),
-                    New SpellBase("MAHALITO", "Big Fire", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
-                    New SpellBase("MOLITO", "Sparks", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3),
-                    New SpellBase("MORLIS", "Fear", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("DALTO", "Blizzard", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("LAHALITO", "Torch", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4),
-                    New SpellBase("MAMORLIS", "Terror", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("MAKANITO", "Deadly Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("MADALTO", "Frost King", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5),
-                    New SpellBase("LAKANITO", "Vacuum", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("ZILWAN", "Dispell", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("MASOPIC", "Crystal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("HAMAN", "Beg", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 6),
-                    New SpellBase("MALOR", "Teleport", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 7),
-                    New SpellBase("MAHAMAN", "Beseech", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 7),
-                    New SpellBase("TILTOWAIT", "Ka-Blam!", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 7)
-                }
+                With mMasterMageSpellbook
+                    'The order of the objects in the array is important. They must correspond to the bit position in the character data structure.
+                    mMageSpellBook = {
+                        .Item("Unknown"),
+                        .Item("HALITO"), .Item("MOGREF"), .Item("KATINO"), .Item("DUMAPIC"),
+                        .Item("DILTO"), .Item("SOPIC"),
+                        .Item("MAHALITO"), .Item("MOLITO"),
+                        .Item("MORLIS"), .Item("DALTO"), .Item("LAHALITO"),
+                        .Item("MAMORLIS"), .Item("MAKANITO"), .Item("MADALTO"),
+                        .Item("LAKANITO"), .Item("ZILWAN"), .Item("MASOPIC"), .Item("HAMAN"),
+                        .Item("MALOR"), .Item("MAHAMAN"), .Item("TILTOWAIT")
+                    }
+                End With
             End If
             Return mMageSpellBook
         End Get
@@ -131,37 +123,18 @@ Public Class WizEditBase
     Public Overridable ReadOnly Property PriestSpellBook As SpellBase()
         Get
             If mPriestSpellBook Is Nothing Then
-                mPriestSpellBook = {
-                    New SpellBase("KALKI", "Blessings", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("DIOS", "Heal", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("BADIOS", "Harm", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("MILWA", "Light", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("PORFIC", "Shield", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 1),
-                    New SpellBase("MATU", "Zeal", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("CALFO", "X-Ray", SpellBase.enumSpellType.Looting, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("MANIFO", "Statue", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("MONTINO", "Still Air", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2),
-                    New SpellBase("LOMILWA", "Sunbeam", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("DIALKO", "Softness", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("LATUMAPIC", "Identify", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("BAMATU", "Prayer", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3),
-                    New SpellBase("DIAL", "Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("BADIAL", "Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("LATUMOFIS", "Cleanse/Cure Poison", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("MAPORFIC", "Big Shield", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 4),
-                    New SpellBase("DIALMA", "Big Cure", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("BADIALMA", "Big Wound", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("LITOKAN", "Flames", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("KANDI", "Location", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("DI", "Life", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("BADI", "Death", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5),
-                    New SpellBase("LORTO", "Blades", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("MADI", "Restore", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("MABADI", "Maiming", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("LOKTOFEIT", "Recall", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 6),
-                    New SpellBase("MALIKTO", "Wrath", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Priest, 7),
-                    New SpellBase("KADORTO", "Rebirth", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 7)
-                }
+                With mMasterPriestSpellbook
+                    'The order of the objects in the array is important. They must correspond to the bit position in the character data structure.
+                    mPriestSpellBook = {
+                        .Item("KALKI"), .Item("DIOS"), .Item("BADIOS"), .Item("MILWA"), .Item("PORFIC"),
+                        .Item("MATU"), .Item("CALFO"), .Item("MANIFO"), .Item("MONTINO"),
+                        .Item("LOMILWA"), .Item("DIALKO"), .Item("LATUMAPIC"), .Item("BAMATU"),
+                        .Item("DIAL"), .Item("BADIAL"), .Item("LATUMOFIS"), .Item("MAPORFIC"),
+                        .Item("DIALMA"), .Item("BADIALMA"), .Item("LITOKAN"), .Item("KANDI"), .Item("DI"), .Item("BADI"),
+                        .Item("LORTO"), .Item("MADI"), .Item("MABADI"), .Item("LOKTOFEIT"),
+                        .Item("MALIKTO"), .Item("KADORTO")
+                    }
+                End With
             End If
             Return mPriestSpellBook
         End Get
@@ -396,6 +369,7 @@ Public Class WizEditBase
     End Function
 #End Region
     Public Function EXPRequiredForNextLevel(ByVal LVL As Integer, ByVal Profession As enumProfession) As Decimal
+        EXPRequiredForNextLevel = Nothing
         Select Case Profession
             Case enumProfession.Fighter
                 Select Case LVL
@@ -533,6 +507,140 @@ Public Class WizEditBase
         Next iChar
         Return Nothing
     End Function
+    Private Sub LoadMasterSpellBooks()
+        'Note that here the order of the objects in each collection is not important
+        With mMasterMageSpellbook
+            .Add(New SpellBase("Unknown", "Unknown", "<placeholder>", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 0), "Unknown")
+            'Level 1
+            .Add(New SpellBase("DUMAPIC", "Clarity", "Informs you of the party's exact position from the stairs to the castle", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 1), "DUMAPIC")
+            .Add(New SpellBase("HALITO", "Little Fire", "Causes a flame ball the size of a baseball to hit a monster for 1-8 points damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 1), "HALITO")
+            .Add(New SpellBase("KATINO", "Bad Air", "Causes most of the monsters in a group to fall asleep", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 1), "KATINO")
+            .Add(New SpellBase("MOGREF", "Body Iron", "Reduces the casters armor class by 2 for the encounter", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 1), "MOGREF")
+
+            'Level 2
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("DILTO", "Darkness", "Causes one group of monsters to be enveloped in darkness, which reduces their ability to defend against your attacks ", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 2), "DILTO")
+            .Add(New SpellBase("SOPIC", "Glass", "Causes the caster to become transparent, thus reducing their armor class by 4", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 2), "SOPIC")
+            'Wizardry 5-Only
+            .Add(New SpellBase("BOLATU", "Heart of Stone", "Attempts to stone one monster", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 2), "BOLATU")
+            .Add(New SpellBase("DESTO", "Unlock", "Gives the caster thief skills of the same level to try and unlock doors", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Mage, 2), "DESTO")
+            .Add(New SpellBase("MELITO", "Little Sparks", "Causes 1 to 8 points of damage to a monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 2), "MELITO")
+            .Add(New SpellBase("PONTI", "Speed", "Reduces a party member's AC by one and makes them quicker in combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Mage, 2), "PONTI")
+
+            'Level 3
+            .Add(New SpellBase("MAHALITO", "Big Fire", "Causes a fiery explosion in a monster group, doing 4-24 points damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3), "MAHALITO")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("MOLITO", "Sparks", "Causes sparks to damage half of the monsters in a group for 3-18 points damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3), "MOLITO")
+            'Wizardry 5-Only
+            .Add(New SpellBase("CALIFIC", "Reveal", "Shows secret doors while exploring", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 3), "CALIFIC")
+            .Add(New SpellBase("CORTU", "Magic Screen", "Erects a protective barrier from breathing monsters during combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 3), "CORTU")
+            .Add(New SpellBase("KANTIOS", "Disruption", "Attempts to confuse a monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 3), "KANTIOS")
+
+            'Level 4
+            .Add(New SpellBase("LAHALITO", "Torch", "Does 6-36 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4), "LAHALITO")
+            .Add(New SpellBase("MORLIS", "Fear", "Causes a group of monsters to fear the party, twice as powerful as DILTO", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4), "MORLIS")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("DALTO", "Blizzard", "Does 6-36 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4), "DALTO")
+            'Wizardry 5-Only
+            .Add(New SpellBase("LITOFEIT", "Levitate", "Helps the party avoid traps while exploring", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 4), "LITOFEIT")
+            .Add(New SpellBase("ROKDO", "Stun", "Attempts to confuse and stun a group of monsters", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 4), "ROKDO")
+            .Add(New SpellBase("TZALIK", "Fist of God", "Hits a monster for 24 to 58 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 4), "TZALIK")
+
+            'Level 5
+            .Add(New SpellBase("MADALTO", "Frost/Frost King", "Causes 8-64 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5), "MADALTO")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("MAKANITO", "Deadly Air", "Kills any monsters of less than 8th level (about 35-40 hit points)", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5), "MAKANITO")
+            .Add(New SpellBase("MAMORLIS", "Terror", "Causes all monsters to fear the party", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5), "MAMORLIS")
+            'Wizardry 5-Only
+            .Add(New SpellBase("BACORTU", "Fizzle Field", "Erects a spell dampening field around a monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5), "BACORTU")
+            .Add(New SpellBase("PALIOS", "Anti-Magic", "Destroys monster built spell dampening fields", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 5), "PALIOS")
+            .Add(New SpellBase("SOCORDI", "Conjure", "Summons an elemental to fight for the party during combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 5), "SOCORDI")
+            .Add(New SpellBase("VASKYRE", "Rainbow Rays", "Random damaging effects to a monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 5), "VASKYRE")
+
+            'Level 6
+            .Add(New SpellBase("ZILWAN", "Dispel", "[Wizardry 1-4] Will destroy any one undead monster;[Wizardry 5] Causes 500-1000 points of damage to an undead monster", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Mage, 6), "ZILWAN")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("HAMAN", "Change/Beg", "Has random effects, and drains the caster one level (See MAHAMAN)", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 6), "HAMAN")
+            .Add(New SpellBase("LAKANITO", "Suffocation/Vacuum", "Kills all monsters affected by this spell, but some monsters are immune", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 6), "LAKANITO")
+            .Add(New SpellBase("MASOPIC", "Big Glass/Crystal", "Reduces the armor class of the entire party by 4", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 6), "MASOPIC")
+            'Wizardry 5-Only
+            .Add(New SpellBase("LADALTO", "Ice Storm", "Freezes a monster group for 34 to 98 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Mage, 6), "LADALTO")
+            .Add(New SpellBase("LOKARA", "Earth Feast", "Attempts to eliminate all monsters with varying success", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 6), "LOKARA")
+            .Add(New SpellBase("MAMOGREF", "Wall of Force", "Erects an AC -10 field around a party member", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Mage, 6), "MAMOGREF")
+
+            'Level 7
+            .Add(New SpellBase("MAHAMAN", "Great Change/Beseech", "Does something random, stronger than Haman. Drains the caster one experience level, and is forgotten when cast. In some versions the caster can choose from a list of three possible effects. In the Wizardry Archives, you cannot choose in Scenario 1, but you can in Scenario 2 (useful for facing the KOD items). These are the possible effects: Silence the Monsters; Make Magic More Effective; DIALKO the Party 3 Times; Heal the Party; Destroy the Monsters; Protect the Party; Teleport the Monsters; Reanimate Corpses", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 7), "MAHAMAN")
+            .Add(New SpellBase("MALOR", "Teleport", "Teleports the party randomly within the current level when used in melee, but when cast in camp, you can decide exactly where you want to go. If a party teleports into stone it is LOST forever, so the spell is best used in conjunction with DUMAPIC. Some levels of the dungeon (1-10 and 2-6, for example) contain magnetic fields that bounce back incoming teleports.", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Mage, 7), "MALOR")
+            .Add(New SpellBase("TILTOWAIT", "Ka-Blam!", "The effect of this spell is somewhat like the detonation of a small tactical nuclear weapon. The party is protected from its effects. Unfortunately for the monsters, they are not. The spell causes 10-100 hit points of damage to all monsters.", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 7), "TILTOWAIT")
+            'Wizardry 5-Only
+            .Add(New SpellBase("ABRIEL", "Divine Wish", "Alas, only the vanished Gatekeeper knows this spell", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Variable, SpellBase.enumSpellCategory.Mage, 7), "ABRIEL")
+            .Add(New SpellBase("MAWXIWTZ", "Mad House", "Causes random but usually devastating effects to all monsters", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Mage, 7), "MAWXIWTZ")
+        End With
+        With mMasterPriestSpellbook
+            'Level 1
+            .Add(New SpellBase("KALKI", "Blessings", "Reduces the armor class of all party members by one during combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1), "KALKI")
+            .Add(New SpellBase("DIOS", "Heal", "Restores from one to eight points of damage to a party member", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 1), "DIOS")
+            .Add(New SpellBase("BADIOS", "Harm", "Causes one to eight points of damage to a monster", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 1), "BADIOS")
+            .Add(New SpellBase("MILWA", "Light", "Causes a softly glowing light to follow the party, increasing vision and revealing secret doors", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 1), "MILWA")
+            .Add(New SpellBase("PORFIC", "Shield", "Lowers the armor class of the caster a little by 4 during combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 1), "PORFIC")
+
+            'Level 2
+            .Add(New SpellBase("CALFO", "X-Ray Vision", "Allows the caster to decide what the trap on a chest is 95% of the time", SpellBase.enumSpellType.Looting, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 2), "CALFO")
+            .Add(New SpellBase("MANIFO", "Statue", "Causes some of the monsters to become paralyzed temporarily", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2), "MANIFO")
+            .Add(New SpellBase("MONTINO", "Still Air", "Causes the air around a group of monsters to stop transmitting sounds, and therefore makes it impossible for them to cast spells", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2), "MONTINO")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("MATU", "Zeal", "Lowers armor class of all party members by two during combat", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2), "MATU")
+            'Wizardry 5-Only
+            .Add(New SpellBase("KATU", "Charm", "Attempts to charm a monster", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 2), "KATU")
+
+            'Level 3
+            .Add(New SpellBase("LOMILWA", "More Light/Sunbeam", "A more powerful MILWA spell that lasts for the entire expedition, but is terminated upon entering a darkness area", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3), "LOMILWA")
+            .Add(New SpellBase("DIALKO", "Softness", "Cures paralysis, and cures the effects of MANIFO and KATINO", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 3), "DIALKO")
+            .Add(New SpellBase("LATUMAPIC", "Identify", "Tells you exactly what the monsters really are", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3), "LATUMAPIC")
+            .Add(New SpellBase("BAMATU", "Prayer", "Lowers the party's armor class by four in combat [three in Wizardry 5]", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 3), "BAMATU")
+            'Wizardry 5-Only
+            .Add(New SpellBase("HAKANIDO", "Magic Drain", "Attempts to drain a monster of upper magic powers", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 2), "HAKANIDO")
+
+            'Level 4
+            .Add(New SpellBase("DIAL", "More Heal/Cure", "Heals 2 to 16 points of damage", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4), "DIAL")
+            .Add(New SpellBase("BADIAL", "More Hurt/Wound", "Causes 2 to 16 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 4), "BADIAL")
+            .Add(New SpellBase("LATUMOFIS", "Cure Poison/Cleanse", "Cures poisoning", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 4), "LATUMOFIS")
+            .Add(New SpellBase("MAPORFIC", "Big Shield", "Lowers the party's armor class by 2, and lasts for the entire expedition", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 4), "MAPORFIC")
+            'Wizardry 5-Only
+            .Add(New SpellBase("BARIKO", "Razor Wind", "Causes 6 to 15 points of damage to a monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2), "BARIKO")
+
+            'Level 5
+            .Add(New SpellBase("DIALMA", "Great Heal/Big Cure", "Restores 3 to 24 hit points", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5), "DIALMA")
+            .Add(New SpellBase("KANDI", "Locate Soul", "Gives the direction of the person the party is attempting to locate and is relative to the position of the caster", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.Caster, SpellBase.enumSpellCategory.Priest, 5), "KANDI")
+            .Add(New SpellBase("DI", "Life", "Causes a dead person to be resurrected, but the character has only 1 hit point and decreased vitality, and it doesn't always work (In which case a dead character is turned to ashes)", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 5), "DI")
+            .Add(New SpellBase("BADI", "Death", "Gives a monster a coronary attack, which may or may not cause death", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5), "BADI")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("BADIALMA", "Great Hurt/Big Wound", "Causes 3 to 24 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 5), "BADIALMA")
+            .Add(New SpellBase("LITOKAN", "Flames", "Causes a pillar of flame to strike a group of monsters, doing 3 to 24 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 5), "LITOKAN")
+            'Wizardry 5-Only
+            .Add(New SpellBase("BAMORDI", "Summoning", "Attempts to summon one group of monsters from the elemental planes to fight for the party", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2), "BAMORDI")
+            .Add(New SpellBase("MOGATO", "Astral Gate", "Attempts to banish a demon monster back from whence it came", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 2), "MOGATO")
+
+            'Level 6
+            .Add(New SpellBase("LOKTOFEIT", "Recall", "[Wizardry 1-3] Causes all party members to be transported back to the castle, minus all of their equipment and most of their gold;[Wizardry 5] Party is transported back to the castle with all of their equipment and gold, but the spell is forgotten after casting and must be relearned, and there is a chance the spell will not work ", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.EntireParty, SpellBase.enumSpellCategory.Priest, 6), "LOKTOFEIT")
+            .Add(New SpellBase("MADI", "Healing/Restore", "Causes all hit points to be restored and cures any condition except death", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 6), "MADI")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("LORTO", "Blades", "Causes sharp blades to slice through a group, causing 6 to 36 points of damage", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 6), "LORTO")
+            .Add(New SpellBase("MABADI", "Harming/Maiming", "Causes all but 1 to 8 hit points to be removed from a target", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 6), "MABADI")
+            'Wizardry 5-Only
+            .Add(New SpellBase("KAKAMEN", "Fire Wind", "Causes 18 to 38 points of damage to one monster group", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2), "KAKAMEN")
+            .Add(New SpellBase("LABADI", "Life Steal", "Attempts to drain all but 1 to 8 points from a monster, and transfer the life force to heal the caster", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneMonster, SpellBase.enumSpellCategory.Priest, 2), "LABADI")
+
+            'Level 7
+            .Add(New SpellBase("KADORTO", "Rebirth", "Restores the dead to life, and restores all hit points, even if the character is ashes, but if the spell fails the character is LOST forever", SpellBase.enumSpellType.Camp, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 7), "KADORTO")
+            'Wizardry [1-4]-Only
+            .Add(New SpellBase("MALIKTO", "Word of Death/Wrath", "Causes 12 to 72 hit points of damage to all monsters", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Priest, 7), "MALIKTO")
+            'Wizardry 5-Only
+            .Add(New SpellBase("BAKADI", "Death Wind", "Attempts to slay one group of monsters", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.OneGroup, SpellBase.enumSpellCategory.Priest, 2), "BAKADI")
+            .Add(New SpellBase("IHALON", "Wish", "Grants a special favor to a party member, but is forgotten after being cast", SpellBase.enumSpellType.AnyTime, SpellBase.enumSpellAffects.OnePerson, SpellBase.enumSpellCategory.Priest, 2), "IHALON")
+            .Add(New SpellBase("MABARIKO", "Meteor Winds", "Causes 18 to 58 points of damage to all monsters", SpellBase.enumSpellType.Combat, SpellBase.enumSpellAffects.AllMonsters, SpellBase.enumSpellCategory.Priest, 2), "MABARIKO")
+        End With
+    End Sub
     Public Overridable Sub Read()
         Dim binReader As BinaryReader = Nothing
         Try

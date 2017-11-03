@@ -9,9 +9,10 @@
 '=================================================================================================================================
 Option Explicit On
 Public Class SpellBase
-    Public Sub New(ByVal Name As String, ByVal Translation As String, ByVal Type As enumSpellType, ByVal Affects As enumSpellAffects, ByVal Category As enumSpellCategory, ByVal Level As Short)
+    Public Sub New(ByVal Name As String, ByVal Translation As String, ByVal Description As String, ByVal Type As enumSpellType, ByVal Affects As enumSpellAffects, ByVal Category As enumSpellCategory, ByVal Level As Short)
         mName = Name
         mTranslation = Translation
+        mDescription = Description
         mType = Type
         mAffects = Affects
         mCategory = Category
@@ -42,6 +43,7 @@ Public Class SpellBase
 #Region "Declarations"
     Private mName As String
     Private mTranslation As String
+    Private mDescription As String
     Private mType As enumSpellType
     Private mAffects As enumSpellAffects
     Private mCategory As enumSpellCategory
@@ -55,6 +57,11 @@ Public Class SpellBase
     Public ReadOnly Property Translation As String
         Get
             Return mTranslation
+        End Get
+    End Property
+    Public ReadOnly Property Description As String
+        Get
+            Return mDescription
         End Get
     End Property
     Public ReadOnly Property Type As String

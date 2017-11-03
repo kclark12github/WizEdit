@@ -29,6 +29,26 @@ Public Class Wizardry05
             Return 20
         End Get
     End Property
+    Public Overrides ReadOnly Property MageSpellBook As SpellBase()
+        Get
+            If mMageSpellBook Is Nothing Then
+                With mMasterMageSpellbook
+                    'The order of the objects in the array is important. They must correspond to the bit position in the character data structure.
+                    mMageSpellBook = {
+                        .Item("Unknown"),
+                        .Item("KATINO"), .Item("HALITO"), .Item("DUMAPIC"), .Item("MOGREF"),
+                        .Item("PONTI"), .Item("MELITO"), .Item("DESTO"), .Item("MORLIS"), .Item("BOLATU"),
+                        .Item("CALIFIC"), .Item("MAHALITO"), .Item("CORTU"), .Item("KANTIOS"),
+                        .Item("TZALIK"), .Item("LAHALITO"), .Item("LITOFEIT"), .Item("ROKDO"),
+                         .Item("SOCORDI"), .Item("MADALTO"), .Item("PALIOS"), .Item("VASKYRE"), .Item("BACORTU"),
+                        .Item("MAMOGREF"), .Item("ZILWAN"), .Item("LOKARA"), .Item("LADALTO"),
+                        .Item("MALOR"), .Item("MAHAMAN"), .Item("TILTOWAIT").Item("ABRIEL"), .Item("MAWXIWTZ")
+                    }
+                End With
+            End If
+            Return mMageSpellBook
+        End Get
+    End Property
     Public Overrides ReadOnly Property MasterItemList As ItemData()
         Get
             If mMasterItemList Is Nothing Then
@@ -172,6 +192,25 @@ Public Class Wizardry05
                 }
             End If
             Return mMasterItemList
+        End Get
+    End Property
+    Public Overrides ReadOnly Property PriestSpellBook As SpellBase()
+        Get
+            If mPriestSpellBook Is Nothing Then
+                With mMasterPriestSpellbook
+                    'The order of the objects in the array is important. They must correspond to the bit position in the character data structure.
+                    mPriestSpellBook = {
+                        .Item("DIOS"), .Item("BADIOS"), .Item("MILWA"), .Item("KALKI"), .Item("PORFIC"),
+                        .Item("KATU"), .Item("CALFO"), .Item("MONTINO"), .Item("KANDI"),
+                        .Item("LATUMAPIC"), .Item("DIALKO"), .Item("BAMATU"), .Item("LOMILWA"), .Item("HAKANIDO"),
+                        .Item("DIAL"), .Item("BADIAL"), .Item("LATUMOFIS"), .Item("MAPORFIC"), .Item("BARIKO"),
+                        .Item("DIALMA"), .Item("BADI"), .Item("DI"), .Item("BAMORDI"), .Item("MOGATO"),
+                        .Item("LOKTOFEIT"), .Item("MADI"), .Item("LABADI"), .Item("KAKAMEN"),
+                        .Item("MABARIKO"), .Item("KADORTO"), .Item("IHALON"), .Item("BAKADI")
+                    }
+                End With
+            End If
+            Return mPriestSpellBook
         End Get
     End Property
     Public Overrides ReadOnly Property RegDataPath As String

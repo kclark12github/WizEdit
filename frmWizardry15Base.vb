@@ -61,6 +61,43 @@ Public Class frmWizardry15Base
 #End Region
 #End Region
 #Region "Methods"
+    Protected Friend Sub ClearError(ByVal ctl As Control)
+        Dim strTag As String = IIf(ctl.Tag Is Nothing, "", CType(ctl.Tag, String))
+        Dim tagParams() As String = strTag.Split(",".ToCharArray)
+        For i As Integer = 0 To tagParams.Length - 1
+            Select Case tagParams(i).ToUpper
+                Case "IGNORE" : Exit Sub
+            End Select
+        Next i
+
+        Select Case TypeName(ctl)
+            Case "Button" : Me.epScenario.SetError(ctl, "")
+            Case "CheckBox" : Me.epScenario.SetError(ctl, "")
+            Case "CheckedListBox" : Me.epScenario.SetError(ctl, "")
+            Case "ComboBox" : Me.epScenario.SetError(ctl, "")
+            Case "DateTimePicker" : Me.epScenario.SetError(ctl, "")
+            'Case "Form"
+            Case "GroupBox" : ClearErrors(CType(ctl, GroupBox).Controls)
+            Case "HScrollBar"
+            Case "Label"
+            Case "NumericUpDown" : Me.epScenario.SetError(ctl, "")
+            Case "PictureBox" : Me.epScenario.SetError(ctl, "")
+            Case "RichTextBox" : Me.epScenario.SetError(ctl, "")
+            Case "StatusBar", "StatusStrip", "MenuStrip"
+            Case "TabControl" : ClearErrors(CType(ctl, GroupBox).Controls)
+            Case "TabPage" : ClearErrors(CType(ctl, GroupBox).Controls)
+            Case "TextBox" : Me.epScenario.SetError(ctl, "")
+            Case "TreeView" : Me.epScenario.SetError(ctl, "")
+            Case "ToolBar"
+            Case "VScrollBar"
+            Case Else : Throw New Exception(String.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", TypeName(ctl), "EnableControl", ctl.Name))
+        End Select
+    End Sub
+    Protected Friend Sub ClearErrors(ByVal pControls As Control.ControlCollection)
+        For Each ctl As Control In pControls
+            ClearError(ctl)
+        Next
+    End Sub
     Protected Sub ClearItems()
         For i As Short = 1 To 8
             InitItem(i, False, False, False, 0)
@@ -214,16 +251,12 @@ Public Class frmWizardry15Base
                 gotMage = False : gotPriest = False
             Case CharacterBase.enumProfession.Mage, CharacterBase.enumProfession.Samurai
                 gotMage = True : gotPriest = False
-            Case CharacterBase.enumProfession.Priest
+            Case CharacterBase.enumProfession.Priest, CharacterBase.enumProfession.Lord
                 gotMage = False : gotPriest = True
             Case CharacterBase.enumProfession.Bishop
                 gotMage = True : gotPriest = True
-            Case CharacterBase.enumProfession.Lord
-                gotMage = False : gotPriest = True
-                'Reset Max on Priest Spell Points...
-                Me.cmdAllSP_Click(Me.cmdAllPSP, New EventArgs())
         End Select
-        Me.ClearSpellBooks(Not gotMage, Not gotPriest)
+        'Me.ClearSpellBooks(Not gotMage, Not gotPriest)
         Me.EnableControl(Me.clbMageSpells, gotMage)
         Me.EnableControl(Me.cmdAllMS, gotMage) : Me.EnableControl(Me.cmdNoneMS, gotMage)
         Me.EnableControl(Me.nudMageSP1, gotMage) : Me.EnableControl(Me.nudMageSP2, gotMage) : Me.EnableControl(Me.nudMageSP3, gotMage) : Me.EnableControl(Me.nudMageSP4, gotMage) : Me.EnableControl(Me.nudMageSP5, gotMage) : Me.EnableControl(Me.nudMageSP6, gotMage) : Me.EnableControl(Me.nudMageSP7, gotMage)
@@ -275,8 +308,31 @@ Public Class frmWizardry15Base
         End If
         Return True
     End Function
+    Protected Function ValidateAlignment()
+        Me.epScenario.SetError(Me.cbAlignment, "")
+        Try
+            Dim Profession As String = CType(Me.cbProfession.SelectedIndex, CharacterBase.enumProfession).ToString
+            Select Case CType(Me.cbProfession.SelectedIndex, CharacterBase.enumProfession)
+                Case CharacterBase.enumProfession.Thief
+                    If cbAlignment.SelectedIndex = CharacterBase.enumAlignment.Good Then Throw New ArgumentException(String.Format("Characters with a profession of {0} cannot be Good!", Profession))
+                Case CharacterBase.enumProfession.Bishop
+                    If cbAlignment.SelectedIndex = CharacterBase.enumAlignment.Neutral Then Throw New ArgumentException(String.Format("Characters with a profession of {0} cannot be Neutral!", Profession))
+                Case CharacterBase.enumProfession.Samurai
+                    If cbAlignment.SelectedIndex = CharacterBase.enumAlignment.Evil Then Throw New ArgumentException(String.Format("Characters with a profession of {0} cannot be Evil!", Profession))
+                Case CharacterBase.enumProfession.Priest, CharacterBase.enumProfession.Lord
+                    If cbAlignment.SelectedIndex = CharacterBase.enumAlignment.Evil Then Throw New ArgumentException(String.Format("Characters with a profession of {0} cannot be Evil!", Profession))
+                Case CharacterBase.enumProfession.Ninja
+                    If cbAlignment.SelectedIndex <> CharacterBase.enumAlignment.Evil Then Throw New ArgumentException(String.Format("Characters with a profession of {0} must be Evil!", Profession))
+            End Select
+        Catch ex As Exception : Me.epScenario.SetError(Me.cbAlignment, ex.message)
+        End Try
+        Return CBool(Me.epScenario.GetError(Me.cbAlignment) = "")
+    End Function
 #End Region
 #Region "Event Handlers"
+    Private Sub cbAlignment_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAlignment.SelectedIndexChanged
+        ValidateAlignment()
+    End Sub
     Protected Overridable Sub cbCharacter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCharacter.SelectedIndexChanged
         Try
             Me.epScenario.SetError(sender, "")
@@ -353,26 +409,8 @@ Public Class frmWizardry15Base
         End Select
     End Sub
     Private Sub cbProfession_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProfession.SelectedIndexChanged
-        Const defaultMax As Short = 9
         Me.ProtectSpellBooks(Me.cbProfession.SelectedIndex)
-        Select Case CType(Me.cbProfession.SelectedIndex, CharacterBase.enumProfession)
-            Case CharacterBase.enumProfession.Lord
-                Me.nudPriestSP1.Maximum = defaultMax
-                Me.nudPriestSP2.Maximum = 7
-                Me.nudPriestSP3.Maximum = 4
-                Me.nudPriestSP4.Maximum = 4
-                Me.nudPriestSP5.Maximum = 6
-                Me.nudPriestSP6.Maximum = 4
-                Me.nudPriestSP7.Maximum = 2
-            Case Else
-                Me.nudPriestSP1.Maximum = defaultMax
-                Me.nudPriestSP2.Maximum = defaultMax
-                Me.nudPriestSP3.Maximum = defaultMax
-                Me.nudPriestSP4.Maximum = defaultMax
-                Me.nudPriestSP5.Maximum = defaultMax
-                Me.nudPriestSP6.Maximum = defaultMax
-                Me.nudPriestSP7.Maximum = defaultMax
-        End Select
+        ValidateAlignment()
     End Sub
     Private Sub cmdAllSpells_Click(sender As Object, e As EventArgs) Handles cmdAllMS.Click, cmdAllPS.Click
         If sender Is cmdAllMS Then
@@ -394,6 +432,7 @@ Public Class frmWizardry15Base
     End Sub
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         ToggleEditMode(False)
+        ClearErrors(Me.Controls)
         'Use our event handler to re-read the character...
         cbCharacter_SelectedIndexChanged(cbCharacter, e)
     End Sub
@@ -409,8 +448,8 @@ Public Class frmWizardry15Base
     Private Sub cmdLVLReset_Click(sender As Object, e As EventArgs) Handles cmdLVLReset.Click
         Me.nudLevel.Value = Me.nudLevelMax.Value
     End Sub
-    Private Sub cmdNoneMS_Click(sender As Object, e As EventArgs) Handles cmdNoneMS.Click, cmdNonePS.Click
-        If sender Is cmdAllMS Then
+    Private Sub cmdNoneSP_Click(sender As Object, e As EventArgs) Handles cmdNoneMS.Click, cmdNonePS.Click
+        If sender Is cmdNoneMS Then
             Me.ClearSpellBooks(True, False)
         Else
             Me.ClearSpellBooks(False, True)
@@ -419,6 +458,7 @@ Public Class frmWizardry15Base
     Protected Overridable Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Try
             Me.epScenario.SetError(sender, "")
+            If Not ValidateAlignment() Then Exit Try
             mCharacter = mBase.GetCharacter(cbCharacter.Items(cbCharacter.SelectedIndex))
             'Populate our controls with Character data...
             With mCharacter
