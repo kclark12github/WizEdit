@@ -105,7 +105,7 @@ Public Class Character05
                 Next i
                 .BaseStream.Position += 1 '(alignment)
                 .BaseStream.Position += 2                       '130/0x4C82 - Unknown (but something)
-                mArmorClass = .ReadUInt16()                     '132/0x4C84
+                mArmorClass = .ReadInt16()                      '132/0x4C84
                 .BaseStream.Position += 28                      '134/0x4C86 - Unknown (but lots of somethings)
                 mMarks = .ReadUInt16()                          '162/0x4CA2
                 .BaseStream.Position += 4                       '164/0x4C86 - Unknown (zeros)

@@ -140,11 +140,11 @@ Partial Class frmWizardry05
         '
         'nudAC
         '
-        Me.nudAC.Location = New System.Drawing.Point(86, 207)
+        Me.nudAC.Location = New System.Drawing.Point(113, 169)
         '
         'lblAC
         '
-        Me.lblAC.Location = New System.Drawing.Point(53, 209)
+        Me.lblAC.Location = New System.Drawing.Point(80, 171)
         '
         'chkOut
         '
@@ -159,7 +159,7 @@ Partial Class frmWizardry05
         'nudMarks
         '
         Me.nudMarks.BackColor = System.Drawing.Color.LightGray
-        Me.nudMarks.Location = New System.Drawing.Point(215, 207)
+        Me.nudMarks.Location = New System.Drawing.Point(242, 169)
         Me.nudMarks.Maximum = New Decimal(New Integer() {-1, -1, -1, 0})
         Me.nudMarks.Name = "nudMarks"
         Me.nudMarks.Size = New System.Drawing.Size(121, 22)
@@ -172,7 +172,7 @@ Partial Class frmWizardry05
         Me.lblMarks.BackColor = System.Drawing.Color.Transparent
         Me.lblMarks.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMarks.ForeColor = System.Drawing.Color.Yellow
-        Me.lblMarks.Location = New System.Drawing.Point(170, 209)
+        Me.lblMarks.Location = New System.Drawing.Point(197, 171)
         Me.lblMarks.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblMarks.Name = "lblMarks"
         Me.lblMarks.Size = New System.Drawing.Size(45, 16)
@@ -183,7 +183,7 @@ Partial Class frmWizardry05
         'nudRIP
         '
         Me.nudRIP.BackColor = System.Drawing.Color.LightGray
-        Me.nudRIP.Location = New System.Drawing.Point(377, 207)
+        Me.nudRIP.Location = New System.Drawing.Point(404, 169)
         Me.nudRIP.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
         Me.nudRIP.Name = "nudRIP"
         Me.nudRIP.Size = New System.Drawing.Size(40, 22)
@@ -196,7 +196,7 @@ Partial Class frmWizardry05
         Me.lblRIP.BackColor = System.Drawing.Color.Transparent
         Me.lblRIP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRIP.ForeColor = System.Drawing.Color.Yellow
-        Me.lblRIP.Location = New System.Drawing.Point(347, 209)
+        Me.lblRIP.Location = New System.Drawing.Point(374, 171)
         Me.lblRIP.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblRIP.Name = "lblRIP"
         Me.lblRIP.Size = New System.Drawing.Size(30, 16)

@@ -40,9 +40,9 @@ Public Class Wizardry05
                         .Item("PONTI"), .Item("MELITO"), .Item("DESTO"), .Item("MORLIS"), .Item("BOLATU"),
                         .Item("CALIFIC"), .Item("MAHALITO"), .Item("CORTU"), .Item("KANTIOS"),
                         .Item("TZALIK"), .Item("LAHALITO"), .Item("LITOFEIT"), .Item("ROKDO"),
-                         .Item("SOCORDI"), .Item("MADALTO"), .Item("PALIOS"), .Item("VASKYRE"), .Item("BACORTU"),
+                        .Item("SOCORDI"), .Item("MADALTO"), .Item("PALIOS"), .Item("VASKYRE"), .Item("BACORTU"),
                         .Item("MAMOGREF"), .Item("ZILWAN"), .Item("LOKARA"), .Item("LADALTO"),
-                        .Item("MALOR"), .Item("MAHAMAN"), .Item("TILTOWAIT").Item("ABRIEL"), .Item("MAWXIWTZ")
+                        .Item("MALOR"), .Item("MAHAMAN"), .Item("TILTOWAIT"), .Item("ABRIEL"), .Item("MAWXIWTZ")
                     }
                 End With
             End If
