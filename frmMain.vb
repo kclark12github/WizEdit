@@ -153,6 +153,7 @@ Public Class frmMain
                     End Select
                     dFilter = String.Format("{0} Saved Games (SAVE{1}.DSK)|SAVE{1}.DSK|All Files (*.*)|*.*", SelectedScenario.ScenarioName, CInt(Scenario))
                 Case "06"
+                    'Characters start @ 0xC2C0
                     'SelectedScenario = New Wizardry06(ttMain.GetToolTip(pbWiz06), Global.WizEdit.My.Resources.Resources.Wiz6, Global.WizEdit.My.Resources.Resources.Wiz06Box, Me)
                     'With SelectedScenario : dPath = .GetRegSetting("Environment", .RegDataPath, "C:\BANE") : End With
                     'dFilter = "Saved Games (*.DBS)|*.DBS|All Files (*.*)|*.*"
