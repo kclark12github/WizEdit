@@ -200,8 +200,8 @@ Public Class WizEditBase
         Set(value As String)
             Dim binReader As BinaryReader = Nothing
             Try
-                If Not File.Exists(mScenarioDataPath) Then Throw New FileNotFoundException(String.Format("{0} does not exist!", mScenarioDataPath))
-                binReader = New BinaryReader(File.Open(mScenarioDataPath, FileMode.Open))
+                If Not File.Exists(value) Then Throw New FileNotFoundException(String.Format("{0} does not exist!", value))
+                binReader = New BinaryReader(File.Open(value, FileMode.Open))
                 binReader.BaseStream.Position = Me.ScenarioDataOffset
                 Dim myScenarioName As String = binReader.ReadString()
                 If myScenarioName <> Me.ScenarioName Then Throw New NotSupportedException(String.Format("Save game file specified is not a valid Ultimate Wizardry Archives: {0} save game file.", Me.ScenarioName))
